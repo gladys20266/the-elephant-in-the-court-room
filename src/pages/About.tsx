@@ -1,0 +1,143 @@
+import Hero from '@/components/Hero'
+import { useSectionReveal } from '@/hooks/useSectionReveal'
+
+const chapters = [
+  {
+    heading: 'A New Beginning',
+    paragraphs: [
+      'The Elephant In The Court Room arrived in the United States in 2008. They were 28 years old, spoke limited English, and had no family here. What they did have was a certification in automotive technology and an unshakable belief that hard work would open doors.',
+      'They found their first job at a small repair shop in the suburbs. The pay was modest, the hours were long, but The Elephant In The Court Room showed up every day with a smile. Within two years, they had earned a reputation as the most reliable mechanic in the shop. Customers asked for them by name.',
+      'It was during those early years that The Elephant In The Court Room first experienced what would become the defining quality of their life here: the kindness of strangers who became friends. A coworker helped them improve their English. A neighbor invited them to dinner. A local church connected them with community resources. The Elephant In The Court Room never forgot these gestures, and they spent the next fifteen years paying them forward.',
+    ],
+    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+    imageAlt: 'The Elephant In The Court Room working at an auto repair shop',
+  },
+  {
+    heading: 'Putting Down Roots',
+    paragraphs: [
+      'By 2012, The Elephant In The Court Room had advanced to a senior technician role at a larger dealership. They had moved into a small apartment of their own. And they had met Maria — a nurse at the local clinic who would become their wife two years later.',
+      'The Elephant In The Court Room and Maria bought their first home in 2015, a modest bungalow in a quiet neighborhood where children played in the streets and neighbors chatted over fences. Their daughter Amara was born that same year. Their son Kofi followed in 2018.',
+      'The Elephant In The Court Room became a fixture in the community. They coached the neighborhood youth soccer team. They volunteered at the annual food drive. They helped neighbors with car trouble, home repairs, and moving days. They were the kind of person who remembered your birthday and showed up when you needed help.',
+      'At work, The Elephant In The Court Room mentored younger technicians, many of whom were immigrants themselves. They told them what others had told them: that this country rewards those who show up, work hard, and treat people with respect. They believed it because they had lived it.',
+    ],
+    image: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
+    imageAlt: 'The Elephant In The Court Room with their family',
+  },
+  {
+    heading: 'When Everything Changed',
+    paragraphs: [
+      'In March 2023, The Elephant In The Court Room received a notice that would turn their world upside down. After fifteen years of living, working, and raising a family in this country, they were being asked to prove that they belonged here — in a system that offers few guarantees and even fewer second chances.',
+      'The legal process began quickly and confusingly. The Elephant In The Court Room found themselves navigating a maze of court dates, documentation requests, and legal terminology they didn\'t fully understand. The stakes could not have been higher: the possibility of being separated from their wife, their children, and the only home they had ever known as a family.',
+      'The cost of quality legal representation was staggering — far beyond what The Elephant In The Court Room and Maria could afford while maintaining their mortgage, supporting their children, and keeping up with daily expenses. They faced an impossible choice between financial ruin and inadequate representation.',
+      'But The Elephant In The Court Room was not alone. When word spread through the community, something remarkable happened. Neighbors started asking how they could help. Coworkers organized a fundraiser. The youth soccer team they coached made them a poster that read \'We Need Our Coach.\' The response was immediate and overwhelming.',
+    ],
+    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+    imageAlt: 'Community support gathering',
+  },
+  {
+    heading: 'Standing Together',
+    paragraphs: [
+      'Today, The Elephant In The Court Room\'s case is ongoing. Their legal team is building a comprehensive defense that documents their community ties, their work history, their family relationships, and the contributions they have made over fifteen years. The process is slow, expensive, and emotionally draining.',
+      'But what keeps The Elephant In The Court Room going is the community standing beside them. The neighbors who write letters of support. The coworkers who show up to court dates. The strangers who donate to their legal fund. The children on their soccer team who tell them every practice, \'We got you, Coach.\'',
+      'The Elephant In The Court Room\'s story is not unique. Thousands of immigrants face similar challenges every year — people who have built lives, raised families, and contributed to their communities, only to find themselves in a legal system that doesn\'t account for the human reality of their situations.',
+      'What makes The Elephant In The Court Room\'s story different is that you are reading it. You now know who they are. You know about the lives they have touched, the family they have raised, and the community they have helped build. And you have the opportunity to be part of what happens next.',
+    ],
+    image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80',
+    imageAlt: 'The Elephant In The Court Room at a community event',
+  },
+]
+
+export default function About() {
+  const titleRef = useSectionReveal<HTMLDivElement>()
+
+  return (
+    <>
+      <Hero subtitle="Fifteen years. One community. A story worth fighting for." />
+
+      <section className="section-padding bg-off-white">
+        <div className="max-w-reading mx-auto px-5 md:px-8">
+          {/* Title */}
+          <div ref={titleRef} className="text-center mb-12">
+            <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
+              OUR STORY
+            </span>
+            <h1 className="reveal-child text-section-title text-purple">
+              The Story of The Elephant In The Court Room
+            </h1>
+            <p className="reveal-child text-subheading italic text-charcoal mt-6">
+              This is the story of a man who came to this country with little more than hope and a 
+              willingness to work hard. It&apos;s a story about building a life, raising a family, and 
+              becoming part of a community. And it&apos;s a story about what happens when that life is 
+              threatened — and how a community responds.
+            </p>
+          </div>
+
+          {/* Chapters */}
+          {chapters.map((chapter, index) => (
+            <div key={index}>
+              {index > 0 && <hr className="border-lime/20 my-12" />}
+              <ChapterSection {...chapter} />
+            </div>
+          ))}
+
+          {/* Closing Callout */}
+          <div className="mt-12 bg-lime/20 rounded-xl p-8 text-center">
+            <p className="text-quote text-purple text-lg">
+              &ldquo;The Elephant In The Court Room always says that this country gave them a chance when they had nothing. 
+              Now they&apos;re asking for one more chance — and they&apos;re asking with the support of everyone 
+              whose life they have touched.&rdquo;
+            </p>
+            <p className="text-body-small text-charcoal/70 mt-4">— Maria, The Elephant In The Court Room&apos;s wife</p>
+          </div>
+
+          {/* Back to top */}
+          <div className="text-center mt-12">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-body-small font-medium text-purple link-underline"
+            >
+              Back to top &uarr;
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+function ChapterSection({
+  heading,
+  paragraphs,
+  image,
+  imageAlt,
+}: {
+  heading: string
+  paragraphs: string[]
+  image: string
+  imageAlt: string
+}) {
+  const ref = useSectionReveal<HTMLDivElement>()
+
+  return (
+    <div ref={ref} className="mb-8">
+      <h2 className="reveal-child text-xl font-body font-medium text-purple mb-5">
+        {heading}
+      </h2>
+      <div className="space-y-4">
+        {paragraphs.map((p, i) => (
+          <p key={i} className="reveal-child text-body text-charcoal">
+            {p}
+          </p>
+        ))}
+      </div>
+      <div className="reveal-child mt-6 rounded-xl overflow-hidden">
+        <img
+          src={image}
+          alt={imageAlt}
+          className="w-full h-auto object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  )
+}
