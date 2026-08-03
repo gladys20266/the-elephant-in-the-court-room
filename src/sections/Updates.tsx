@@ -1,6 +1,6 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
-
+import SectionBadge from "@/components/SectionBadge";
 const updateCards = [
   {
     category: 'MILESTONE',
@@ -36,9 +36,10 @@ export default function Updates() {
       <div className="content-container">
         {/* Header */}
         <div className="mb-10">
-          <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
-            UPDATES
-          </span>
+          <SectionBadge
+  text="UPDATES"
+  to="/updates"
+/>
           <h2 className="reveal-child text-section-title text-purple">
             Latest News
           </h2>

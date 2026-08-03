@@ -3,12 +3,14 @@ import { useSectionReveal } from '@/hooks/useSectionReveal'
 
 const chapters = [
   {
-    heading: 'A New Beginning',
+    heading: 'A Broken Promise',
     paragraphs: [
-      'The Elephant In The Court Room arrived in the United States in 2008. They were 28 years old, spoke limited English, and had no family here. What they did have was a certification in automotive technology and an unshakable belief that hard work would open doors.',
-      'They found their first job at a small repair shop in the suburbs. The pay was modest, the hours were long, but The Elephant In The Court Room showed up every day with a smile. Within two years, they had earned a reputation as the most reliable mechanic in the shop. Customers asked for them by name.',
-      'It was during those early years that The Elephant In The Court Room first experienced what would become the defining quality of their life here: the kindness of strangers who became friends. A coworker helped them improve their English. A neighbor invited them to dinner. A local church connected them with community resources. The Elephant In The Court Room never forgot these gestures, and they spent the next fifteen years paying them forward.',
-    ],
+  'In America, a signed contract is meant to protect honest work, investment, and property rights. But what happens when enforcing that contract becomes a years-long legal battle instead of a straightforward process? This is the story of Leo and Olga, two siblings who invested their savings and expertise into restoring a distressed commercial property in Delray Beach, Florida.',
+
+  'In 2010, they signed a lease-to-own agreement with a fixed purchase price and a defined option period. They rebuilt the property, operated a community restaurant, and expected to purchase it under the agreement. When they exercised their purchase option, they allege that the sale was refused and they were told to accept a higher rent or lose what they had built. Believing the contract had been breached, they filed suit in Florida in 2014 seeking to enforce their rights. They contend that what they expected to be a timely legal resolution became a protracted process of more than eleven years of litigation and delay.',
+
+  'After hundreds of docket entries and numerous procedural developments, they say the dispute remains unresolved. Their experience has led them to question whether contractual rights can always be effectively enforced through the legal system. They are now seeking public support to retain a nationally recognized law firm and continue pursuing their claims. Their message is simple: review the public record, reach your own conclusions, and, if you believe in their cause, consider supporting their campaign to help defend the principle that contracts should be honored and enforced.',
+  ],
     image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
     imageAlt: 'The Elephant In The Court Room working at an auto repair shop',
   },

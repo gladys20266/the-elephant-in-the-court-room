@@ -129,7 +129,7 @@ function StatCard({
         {value}
       </div>
 
-      <div className="mt-3 uppercase tracking-[0.15em] text-gray-500">
+      <div className="mt-3 uppercase tracking-[0.15em] text-charcoal">
         {label}
       </div>
 

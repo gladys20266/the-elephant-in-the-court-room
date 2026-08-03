@@ -12,6 +12,7 @@ const navLinks = [
   { label: 'Videos', href: '/videos' },
   { label: 'Photos', href: '/photos' },
   { label: 'Documents', href: '/documents' },
+  { label: 'Downloads', href: '/downloads' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -87,15 +88,34 @@ export default function Navbar() {
         }`}
         style={{ height: '72px' }}
       >
-        <div className="h-full max-w-content mx-auto px-5 md:px-8 lg:px-12 flex items-center justify-between">
+        <div className="h-full w-full px-6 lg:px-10 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logoUrl} alt={`${SITE_NAME} Logo`} className="w-10 h-10" />
-            <span className="text-label text-purple hidden sm:inline">{SITE_NAME}</span>
-          </Link>
+          <Link to="/" className="flex items-center gap-5 shrink-0 mr-12">
+  <img
+  src={logoUrl}
+  alt="The Elephant In The Court Room"
+  className="w-[68px] h-[68px]"
+/>
+
+  <div className="hidden sm:flex flex-col leading-tight">
+    <span className="text-[20px] font-extrabold font-bold text-purple-800">
+      The Elephant
+    </span>
+
+    <span className="text-[20px] font-extrabold text-purple-800 leading-none">
+  In The Court{" "}
+  <span className="relative inline-block">
+    Room
+    <span className="absolute -top-1 -right-1 text-[9px] font-bold">
+      TM
+    </span>
+  </span>
+</span>
+  </div>
+</Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 px-6 min-w-0">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -110,25 +130,34 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 ml-10 shrink-0">
             <a
-              href={gofundmeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-pale-lime text-charcoal rounded-md px-5 py-2.5 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <div className="text-center leading-tight">
-                <div className="text-button text-[0.8rem]">Switch To GoFundMe</div>
-                <div className="text-label text-[0.65rem] opacity-80 mt-0.5">To Donate</div>
-              </div>
-            </a>
-            <button
-              onClick={handleShare}
-              className="w-10 h-10 rounded-full bg-forest flex items-center justify-center hover:bg-[#2A4F3B] transition-colors duration-150"
-              aria-label="Share"
-            >
-              <Share2 className="w-4 h-4 text-lime" />
-            </button>
+  href={gofundmeUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-pale-lime text-charcoal rounded-md border border-forest px-5 py-4 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
+>
+  <div className="text-center leading-tight">
+    <div className="text-button text-[0.9rem] font-black tracking-wider">
+  SWITCH TO GOFUNDME
+</div>
+
+<div
+  className="text-[0.75rem] font-black tracking-wide mt-0.5"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+  TO DONATE
+</div>
+  </div>
+</a>
+
+<button
+  onClick={handleShare}
+  className="w-10 h-10 rounded-full bg-forest flex items-center justify-center hover:bg-[#2A4F3B] transition-colors duration-150"
+  aria-label="Share"
+>
+  <Share2 className="w-4 h-4 text-lime" />
+</button>
           </div>
 
           {/* Mobile Hamburger */}
@@ -177,19 +206,35 @@ export default function Navbar() {
               href={gofundmeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-pale-lime text-charcoal rounded-md px-6 py-3 hover:bg-[#E0F0B0] transition-colors duration-200"
+              className="bg-pale-lime text-charcoal rounded-md border border-forest px-7 py-4 hover:bg-[#E0F0B0] transition-colors duration-200"
             >
               <div className="text-center leading-tight">
-                <div className="text-button text-sm">Switch To GoFundMe</div>
-                <div className="text-label text-xs opacity-80 mt-0.5">To Donate</div>
-              </div>
+                <div
+                className="text-[1rem] font-black tracking-wider uppercase"
+                style={{ fontFamily: "Arial, sans-serif" }}
+                >
+                 SWITCH TO GOFUNDME
+                </div>
+              <div
+  className="text-[0.85rem] font-black tracking-wide mt-0.5"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+  TO DONATE
+</div>
+
+</div>
             </a>
             <button
               onClick={() => { handleShare(); setMobileOpen(false); }}
-              className="flex items-center gap-2 bg-forest text-lime rounded-md px-6 py-3 hover:bg-[#2A4F3B] transition-colors duration-150"
+              className="flex items-center gap-2 bg-forest text-lime rounded-md px-7 py-4 hover:bg-[#2A4F3B] transition-colors duration-150"
             >
-              <Share2 className="w-4 h-4" />
-              <span className="text-button text-sm">Share</span>
+              <Share2 className="w-5 h-5" />
+<span
+  className="text-sm font-black tracking-wide uppercase"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+  SHARE
+</span>
             </button>
           </div>
         </div>

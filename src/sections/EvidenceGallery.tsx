@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-
+import { Link } from "react-router-dom";
+import SectionBadge from "@/components/SectionBadge";
 interface GalleryItem {
   src: string
   caption: string
@@ -73,9 +74,11 @@ export default function EvidenceGallery() {
         <div className="content-container">
           {/* Header */}
           <div className="mb-10">
-            <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
-              EVIDENCE
-            </span>
+            <SectionBadge
+  text="EVIDENCE"
+  to="/documents"
+/>
+            
             <h2 className="reveal-child text-section-title text-purple mb-4">
               The Evidence Speaks
             </h2>

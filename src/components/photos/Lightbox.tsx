@@ -25,14 +25,14 @@ export default function Lightbox({
 
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 text-white hover:text-gray-300"
+        className="absolute top-6 right-6 text-white hover:text-charcoal"
       >
         <X size={34} />
       </button>
 
       <button
         onClick={onPrevious}
-        className="absolute left-6 text-white hover:text-gray-300"
+        className="absolute left-6 text-white hover:text-charcoal"
       >
         <ChevronLeft size={44} />
       </button>
@@ -45,7 +45,7 @@ export default function Lightbox({
 
       <button
         onClick={onNext}
-        className="absolute right-6 text-white hover:text-gray-300"
+        className="absolute right-6 text-white hover:text-charcoal"
       >
         <ChevronRight size={44} />
       </button>

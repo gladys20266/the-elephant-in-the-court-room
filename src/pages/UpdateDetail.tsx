@@ -26,7 +26,7 @@ export default function UpdateDetail() {
   return (
     <section className="container mx-auto max-w-4xl px-6 py-20">
 
-      <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-[#D94B8A]">
+      <p className="mb-4 text-[1rem] font-black uppercase tracking-[0.12em] text-[#D94B8A]">
         {update.category}
       </p>
 
@@ -34,7 +34,7 @@ export default function UpdateDetail() {
         {update.title}
       </h1>
 
-      <div className="mb-10 flex gap-8 text-sm uppercase tracking-wider text-gray-500">
+      <div className="mb-10 flex gap-8 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
         <span>{update.date}</span>
         <span>{update.readingTime}</span>
         <span>{update.status}</span>

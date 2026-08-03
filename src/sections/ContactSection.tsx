@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Check } from 'lucide-react'
-
+import SectionBadge from "@/components/SectionBadge";
 export default function ContactSection() {
   const sectionRef = useSectionReveal<HTMLElement>()
   const [submitted, setSubmitted] = useState(false)
@@ -19,9 +19,10 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left: Form */}
           <div>
-            <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
-              CONTACT
-            </span>
+            <SectionBadge
+  text="CONTACT"
+  to="/contact"
+/>
             <h2 className="reveal-child text-section-title text-purple mb-4">
               Get In Touch
             </h2>
@@ -89,10 +90,10 @@ export default function ContactSection() {
               <p className="text-body-small text-charcoal/70">
                 Prefer email? Reach us at{' '}
                 <a
-                  href="mailto:support@jonathancampaign.org"
+                  href="mailto:contact@theelephantinthecourtroom.com"
                   className="text-purple link-underline font-medium"
                 >
-                  support@jonathancampaign.org
+                  contact@theelephantinthecourtroom.com
                 </a>
               </p>
             </div>

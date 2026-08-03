@@ -57,7 +57,7 @@ export default function UpdateCard({
         </h3>
 
         {/* Date */}
-        <p className="text-sm text-gray-500 mb-5">
+        <p className="text-sm text-charcoal mb-5">
           {date}
         </p>
 

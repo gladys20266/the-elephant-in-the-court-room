@@ -2,7 +2,7 @@ import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
+import SectionBadge from "@/components/SectionBadge";
 gsap.registerPlugin(ScrollTrigger)
 
 const timelineItems = [
@@ -59,9 +59,10 @@ export default function CaseDetails() {
       <div className="content-container">
         {/* Header */}
         <div className="mb-12">
-          <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
-            THE CASE
-          </span>
+          <SectionBadge
+  text="THE CASE"
+  to="/case"
+/>
           <h2 className="reveal-child text-section-title text-purple mb-4">
             What Happened
           </h2>

@@ -9,7 +9,10 @@ import Updates from '@/sections/Updates'
 import Supporters from '@/sections/Supporters'
 import FinalCTA from '@/sections/FinalCTA'
 import ContactSection from '@/sections/ContactSection'
-
+import VideosPreview from '@/sections/VideosPreview'
+import PhotosPreview from "@/sections/PhotosPreview";
+import DocumentsPreview from "@/sections/DocumentsPreview";
+import DownloadsPreview from "@/sections/DownloadsPreview";
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
   useEffect(() => {
@@ -49,11 +52,15 @@ return (
   }}
 />
 )}
-      <Hero subtitle="A father. A community member. A friend. Fighting for the right to stay home." />
+      <Hero subtitle="A promise made • A contract broken • Eleven years fighting for justice." />
       <StorySnapshot />
       <CaseDetails />
-      <EvidenceGallery />
-      <ImpactProgress />
+<EvidenceGallery />
+<VideosPreview />
+<PhotosPreview />
+<DocumentsPreview />
+<DownloadsPreview />
+<ImpactProgress />
       <Updates />
       <Supporters />
       <FinalCTA />

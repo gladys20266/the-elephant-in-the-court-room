@@ -14,7 +14,7 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer";
-
+import Downloads from './pages/Downloads'
 export default function App() {
   return (
     <Routes>
@@ -34,9 +34,12 @@ export default function App() {
 
         <Route path="/documents" element={<Documents />} />
 
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/downloads" element={<Downloads />} />
 
-        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/contact" element={<Contact />} />
+      
+
+         <Route path="/privacy" element={<Privacy />} />
 
         <Route path="/terms" element={<Terms />} />
 

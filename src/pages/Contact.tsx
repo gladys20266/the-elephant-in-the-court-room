@@ -150,7 +150,7 @@ switch (platform.label) {
   return (
     <>
       <Hero
-        section="CONTACT"
+        section="Contact"
         title="Get in Touch"
         subtitle="Have a question, a media inquiry, or want to support the campaign? We'd love to hear from you."
       />

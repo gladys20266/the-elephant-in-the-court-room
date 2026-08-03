@@ -73,7 +73,7 @@ export default function Hero({
       {(section || title || subtitle) && (
         <div className="content-container py-16 text-center">
           {section && (
-            <p className="text-label uppercase tracking-[0.25em] text-pink mb-4">
+            <p className="text-[1.5rem] md:text-[1.75rem] font-black tracking-[0.15em] text-charcoal mb-4">
               {section}
             </p>
           )}
@@ -85,32 +85,38 @@ export default function Hero({
           )}
 
           {subtitle && (
-            <p className="text-body text-charcoal/70 max-w-3xl mx-auto">
-              {subtitle}
-            </p>
-          )}
+  <p className="w-full text-[1.15rem] md:text-[1.3rem] lg:text-[1.45rem] font-semibold italic text-charcoal/70 text-center whitespace-nowrap mt-8 mb-12">
+    {subtitle}
+  </p>
+)}
         </div>
       )}
 
       {/* CTA Buttons */}
       <div
-        ref={ctaRef}
-        className="flex flex-wrap items-center justify-center gap-4 pt-6 pb-20 bg-white"
-      >
+  ref={ctaRef}
+  className="flex flex-wrap items-center justify-center gap-4 pt-8 pb-8 bg-white"
+>
         <a
           href="https://www.gofundme.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-pale-lime text-charcoal rounded-lg px-12 py-5 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 active:shadow-button transition-all duration-200 relative"
+          className="bg-pale-lime text-charcoal rounded-lg border border-forest px-16 py-5 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 active:translate-y-0 active:shadow-button transition-all duration-200 relative"
         >
           <div className="text-center leading-tight">
-            <div className="text-button text-[1rem] tracking-wider">
-              Switch To GoFundMe
-            </div>
-
-            <div className="text-label text-[0.85rem] opacity-80 mt-1">
-              To Donate
-            </div>
+            <div
+  className="text-[1.2rem] font-extrabold tracking-wide uppercase"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+  SWITCH TO GOFUNDME
+</div>
+          <div
+  className="text-[0.9rem] font-black tracking-wide uppercase mt-1"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+  TO DONATE
+</div>
+            
           </div>
 
           <ExternalLink className="absolute top-2 right-2 w-3 h-3 text-charcoal/40" />
@@ -120,11 +126,14 @@ export default function Hero({
           onClick={handleShare}
           className="flex items-center gap-3 bg-forest text-lime rounded-lg px-10 py-5 hover:bg-[#2A4F3B] transition-colors duration-150"
         >
-          <Share2 className="w-5 h-5" />
+          <Share2 className="w-6 h-6" />
 
-          <span className="text-button text-[1rem] tracking-wider">
-            Share
-          </span>
+<span
+  className="text-[1.1rem] font-black tracking-wide uppercase"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+  SHARE
+</span>
         </button>
       </div>
     </section>

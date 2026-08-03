@@ -27,7 +27,7 @@ export default function FeaturedUpdate({
       {/* Section Heading */}
 
       <div className="mb-10 text-center">
-        <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#D94B8A]">
+        <p className="mb-3 text-[1.15rem] font-black uppercase tracking-[0.08em] text-[#D94B8A]">
           Featured Story
         </p>
 
@@ -43,18 +43,18 @@ export default function FeaturedUpdate({
 
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <span
-            className={`rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white ${
-              categoryColors[
-                category as keyof typeof categoryColors
-              ]
-            }`}
-          >
-            {category}
-          </span>
+  className={`rounded-full px-4 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white ${
+    categoryColors[
+      category as keyof typeof categoryColors
+    ]
+  }`}
+>
+  {category}
+</span>
 
-          <span className="rounded-full bg-[#87CB28] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white">
-            Active
-          </span>
+<span className="rounded-full bg-[#87CB28] px-5 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white">
+  Active
+</span>
         </div>
 
         {/* Title */}
@@ -65,7 +65,7 @@ export default function FeaturedUpdate({
 
         {/* Meta */}
 
-        <div className="mb-6 flex flex-wrap gap-6 text-sm font-medium uppercase tracking-widest text-gray-500">
+        <div className="mb-6 flex flex-wrap gap-6 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
           <span>{date}</span>
 
           <span>2 min read</span>

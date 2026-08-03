@@ -72,42 +72,42 @@ export default function UpdateGrid({
 
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <span
-                    className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white ${
-                      categoryColors[
-                        update.category as keyof typeof categoryColors
-                      ]
-                    }`}
-                  >
-                    {update.category}
-                  </span>
+  className={`rounded-full px-4 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white ${
+    categoryColors[
+      update.category as keyof typeof categoryColors
+    ]
+  }`}
+>
+  {update.category}
+</span>
 
                   <span
-                    className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white ${
-                      statusColors[
-                        update.status as keyof typeof statusColors
-                      ]
-                    }`}
-                  >
-                    {update.status}
-                  </span>
+  className={`rounded-full px-5 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white ${
+    statusColors[
+      update.status as keyof typeof statusColors
+    ]
+  }`}
+>
+  {update.status}
+</span>
                 </div>
 
                 {/* Title */}
 
-                <h3 className="mb-3 text-2xl font-bold text-purple">
+                <h3 className="mb-4 text-3xl font-bold text-purple">
                   {update.title}
                 </h3>
 
                 {/* Meta */}
 
-                <div className="mb-5 flex gap-5 text-xs font-medium uppercase tracking-widest text-gray-500">
+                <div className="mb-5 flex gap-5 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
                   <span>{update.date}</span>
                   <span>{update.readingTime}</span>
                 </div>
 
                 {/* Summary */}
 
-                <p className="leading-7 text-charcoal">
+                <p className="text-body leading-8 text-charcoal">
                   {update.summary}
                 </p>
 

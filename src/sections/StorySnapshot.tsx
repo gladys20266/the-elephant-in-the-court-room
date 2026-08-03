@@ -1,22 +1,23 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
-
+import SectionBadge from "@/components/SectionBadge";
 export default function StorySnapshot() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
     <section ref={sectionRef} className="section-padding bg-off-white">
       <div className="content-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-8 items-center">
           {/* Left: Text */}
           <div>
-            <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-6">
-              OUR STORY
-            </span>
+            <SectionBadge
+  text="OUR STORY"
+  to="/about"
+/>
             <h2 className="reveal-child text-section-title text-purple mb-6">
               A Life Built Here
             </h2>
-            <p className="reveal-child text-body text-charcoal max-w-lg">
+            <p className="reveal-child text-body text-charcoal max-w-2xl">
               The Elephant In The Court Room came to this country over fifteen years ago. They built a career, raised a family, 
               and became a trusted member of their community. Their children have grown up here. Their neighbors 
               know them by name. When they faced an unexpected legal challenge that threatened everything they 

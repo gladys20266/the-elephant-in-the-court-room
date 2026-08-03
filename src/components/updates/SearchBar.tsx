@@ -13,7 +13,7 @@ export default function SearchBar({
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+          className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-charcoal"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

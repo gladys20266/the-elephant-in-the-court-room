@@ -29,7 +29,7 @@
     --color-lime: #C4D82E;
     --color-off-white: #F4F4F0;
     --color-purple: #5B3178;
-    --color-charcoal: #2D3748;
+    --color-charcoal: #1F2937;
     --color-forest: #1E3B2B;
     --color-pale-lime: #D6EDA0;
     --color-gold: #E8B923;
@@ -102,45 +102,46 @@
   color: var(--color-purple);
 }
   .text-subheading {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    line-height: 1.4;
-    letter-spacing: 0.02em;
-  }
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--color-charcoal);
+}
 
-  .text-body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-    line-height: 1.65;
-  }
+ .text-body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.35vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--color-charcoal);
+}
 
   .text-body-small {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-  }
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
 
   .text-label {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.75rem;
-    line-height: 1.2;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 900;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
 
   .text-button {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.9rem;
-    line-height: 1.0;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
   .text-quote {
     font-family: 'Instrument Serif', serif;

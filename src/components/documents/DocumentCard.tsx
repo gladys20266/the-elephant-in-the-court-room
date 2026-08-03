@@ -82,7 +82,7 @@ export default function DocumentCard({
             </h3>
 
             {/* Date */}
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-charcoal mb-4">
               {date}
             </p>
 
