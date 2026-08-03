@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Link } from "react-router-dom";
+
 import SectionBadge from "@/components/SectionBadge";
 interface GalleryItem {
   src: string
