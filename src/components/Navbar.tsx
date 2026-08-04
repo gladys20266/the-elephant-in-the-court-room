@@ -94,15 +94,15 @@ export default function Navbar() {
   <img
   src={logoUrl}
   alt="The Elephant In The Court Room"
-  className="w-[58px] h-[58px]"
+  className="w-10 h-10 md:w-12 md:h-12 2xl:w-[58px] 2xl:h-[58px]"
 />
 
   <div className="hidden sm:flex flex-col leading-tight">
-    <span className="text-[17px] font-extrabold font-bold text-purple-800">
+    <span className="text-[15px] xl:text-[16px] 2xl:text-[17px] font-extrabold font-bold text-purple-800">
       The Elephant
     </span>
 
-    <span className="text-[17px] font-extrabold text-purple-800 leading-none">
+    <span className="text-[15px] xl:text-[16px] 2xl:text-[17px] font-extrabold text-purple-800 leading-none">
   In The Court{" "}
   <span className="relative inline-block">
     Room
@@ -115,7 +115,7 @@ export default function Navbar() {
 </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center gap-7 px-3 min-w-0">
+          <nav className="hidden 2xl:flex flex-1 items-center justify-center gap-5 px-2 min-w-0">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -130,12 +130,12 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-3 ml-4 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 ml-3 shrink-0">
             <a
   href={gofundmeUrl}
   target="_blank"
   rel="noopener noreferrer"
-  className="bg-pale-lime text-charcoal rounded-md border border-forest px-4 py-3 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
+  className="bg-pale-lime text-charcoal rounded-md border border-forest px-3 xl:px-4 py-3 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
 >
   <div className="text-center leading-tight">
     <div className="text-button text-[0.8rem] font-black tracking-wider">
@@ -162,7 +162,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="lg:hidden p-2"
+            className="2xl:hidden p-2"
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
@@ -173,7 +173,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[60] bg-white transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[60] bg-white transition-opacity duration-300 2xl:hidden ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >

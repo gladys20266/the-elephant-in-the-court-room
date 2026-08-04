@@ -1,0 +1,24 @@
+warning: in the working copy of 'src/sections/StorySnapshot.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/src/sections/StorySnapshot.tsx b/src/sections/StorySnapshot.tsx[m
+[1mindex 844cd0b..5de2b2d 100644[m
+[1m--- a/src/sections/StorySnapshot.tsx[m
+[1m+++ b/src/sections/StorySnapshot.tsx[m
+[36m@@ -18,11 +18,13 @@[m [mexport default function StorySnapshot() {[m
+               A Life Built Here[m
+             </h2>[m
+             <p className="reveal-child text-body text-charcoal max-w-2xl">[m
+[31m-              The Elephant In The Court Room came to this country over fifteen years ago. They built a career, raised a family, [m
+[31m-              and became a trusted member of their community. Their children have grown up here. Their neighbors [m
+[31m-              know them by name. When they faced an unexpected legal challenge that threatened everything they [m
+[31m-              had built, their community rallied around them — because The Elephant In The Court Room is one of us.[m
+[31m-            </p>[m
+[32m+[m[32m  In America, a signed contract is meant to protect honest work,[m
+[32m+[m[32m  investment, and property rights. But what happens when enforcing[m
+[32m+[m[32m  that contract becomes a years-long legal battle instead of a[m
+[32m+[m[32m  straightforward process? This is the story of Leo and Olga, two[m
+[32m+[m[32m  siblings who invested their savings and expertise into restoring a[m
+[32m+[m[32m  distressed commercial property in Delray Beach, Florida.[m
+[32m+[m[32m</p>[m
+             <Link[m
+               to="/about"[m
+               className="reveal-child inline-block mt-6 text-body font-medium text-purple link-underline"[m

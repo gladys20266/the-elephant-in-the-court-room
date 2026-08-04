@@ -20,23 +20,29 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map())
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
-    sections.forEach((section) => {
-      const el = sectionRefs.current.get(section.id)
-      if (!el) return
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(section.id)
-          }
-        },
-        { rootMargin: '-20% 0px -60% 0px' }
-      )
-      observer.observe(el)
-      observers.push(observer)
-    })
-    return () => observers.forEach((o) => o.disconnect())
-  }, [sections])
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort(
+          (a, b) =>
+            a.boundingClientRect.top - b.boundingClientRect.top
+        )
+
+      if (visible.length > 0) {
+        setActiveSection(visible[0].target.id)
+      }
+    },
+    {
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: [0, 0.1, 0.25, 0.5],
+    }
+  )
+
+  sectionRefs.current.forEach((el) => observer.observe(el))
+
+  return () => observer.disconnect()
+}, [sections])
 
   return (
   <section className="section-padding bg-white">
@@ -47,7 +53,7 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
         <div className="lg:self-start hidden lg:block sticky top-24 self-start">
 
           {/* ON THIS PAGE */}
-          <div className="bg-off-white rounded-xl border border-gray-200 shadow-sm px-5 py-4">
+          <div className="mt-2 bg-off-white rounded-xl border border-gray-200 shadow-lg px-5 py-4">
             <p className="text-xl font-extrabold text-charcoal mb-5">
   On This Page
 </p>
@@ -78,7 +84,7 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
           </div>
 
           {/* MAIN MENU */}
-          <div className="mt-2 bg-off-white rounded-xl border border-gray-200 shadow-sm px-5 py-4 border-t border-gray-200">
+          <div className="mt-2 bg-off-white rounded-xl border border-gray-200 shadow-lg px-5 py-4">
             <p className="text-xl font-extrabold text-charcoal mb-5">
   Main Menu
 </p>
