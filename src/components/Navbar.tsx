@@ -90,23 +90,23 @@ export default function Navbar() {
       >
         <div className="h-full w-full px-6 lg:px-10 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-5 shrink-0 mr-12">
+          <Link to="/" className="flex items-center gap-3 shrink-0 mr-6">
   <img
   src={logoUrl}
   alt="The Elephant In The Court Room"
-  className="w-[68px] h-[68px]"
+  className="w-[58px] h-[58px]"
 />
 
   <div className="hidden sm:flex flex-col leading-tight">
-    <span className="text-[20px] font-extrabold font-bold text-purple-800">
+    <span className="text-[17px] font-extrabold font-bold text-purple-800">
       The Elephant
     </span>
 
-    <span className="text-[20px] font-extrabold text-purple-800 leading-none">
+    <span className="text-[17px] font-extrabold text-purple-800 leading-none">
   In The Court{" "}
   <span className="relative inline-block">
     Room
-    <span className="absolute -top-1 -right-1 text-[9px] font-bold">
+    <span className="absolute -top-1 -right-1 text-[7px] font-bold">
       TM
     </span>
   </span>
@@ -115,7 +115,7 @@ export default function Navbar() {
 </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 px-6 min-w-0">
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-7 px-3 min-w-0">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -130,20 +130,20 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center gap-3 ml-10 shrink-0">
+          <div className="hidden lg:flex items-center gap-3 ml-4 shrink-0">
             <a
   href={gofundmeUrl}
   target="_blank"
   rel="noopener noreferrer"
-  className="bg-pale-lime text-charcoal rounded-md border border-forest px-5 py-4 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
+  className="bg-pale-lime text-charcoal rounded-md border border-forest px-4 py-3 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
 >
   <div className="text-center leading-tight">
-    <div className="text-button text-[0.9rem] font-black tracking-wider">
+    <div className="text-button text-[0.8rem] font-black tracking-wider">
   SWITCH TO GOFUNDME
 </div>
 
 <div
-  className="text-[0.75rem] font-black tracking-wide mt-0.5"
+  className="text-[0.68rem] font-black tracking-wide mt-0.5"
   style={{ fontFamily: "Arial, sans-serif" }}
 >
   TO DONATE
