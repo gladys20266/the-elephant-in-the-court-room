@@ -3,13 +3,9 @@ import Hero from '@/components/Hero'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import ContactForm from '@/components/ContactForm'
 import {
-  Check,
   Mail,
   Phone,
   MapPin,
-  Send,
-  Lock,
-  ChevronDown,
   Heart,
   Share2,
   ExternalLink,
@@ -24,7 +20,7 @@ import {
 import { MdEmail } from "react-icons/md"
 
 import { HiOutlineLink } from "react-icons/hi"
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardTitle } from '@/components/ui/card'
 
 // Share platforms with brand colors
 const SHARE_PLATFORMS = [
@@ -63,15 +59,7 @@ const SHARE_PLATFORMS = [
 
 export default function Contact() {
   const sectionRef = useSectionReveal<HTMLElement>()
-  const [submitted, setSubmitted] = useState(false)
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    inquiryType: '',
-    subject: '',
-    message: '',
-  })
+  
   const [copySuccess, setCopySuccess] = useState(false)
 
   const showToast = (message: string) => {
@@ -90,10 +78,7 @@ export default function Contact() {
     }, 2000)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
+  
 
   const handleCopyLink = async () => {
     try {
