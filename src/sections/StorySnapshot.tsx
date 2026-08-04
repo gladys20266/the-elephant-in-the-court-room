@@ -18,11 +18,13 @@ export default function StorySnapshot() {
               A Life Built Here
             </h2>
             <p className="reveal-child text-body text-charcoal max-w-2xl">
-              The Elephant In The Court Room came to this country over fifteen years ago. They built a career, raised a family, 
-              and became a trusted member of their community. Their children have grown up here. Their neighbors 
-              know them by name. When they faced an unexpected legal challenge that threatened everything they 
-              had built, their community rallied around them — because The Elephant In The Court Room is one of us.
-            </p>
+  In America, a signed contract is meant to protect honest work,
+  investment, and property rights. But what happens when enforcing
+  that contract becomes a years-long legal battle instead of a
+  straightforward process? This is the story of Leo and Olga, two
+  siblings who invested their savings and expertise into restoring a
+  distressed commercial property in Delray Beach, Florida.
+</p>
             <Link
               to="/about"
               className="reveal-child inline-block mt-6 text-body font-medium text-purple link-underline"
