@@ -56,7 +56,7 @@ export default function About() {
     <>
       <Hero subtitle="Fifteen years. One community. A story worth fighting for." />
 
-      <section className="section-padding bg-off-white">
+      <section className="section-padding pb-0 bg-off-white">
         <div className="max-w-reading mx-auto px-5 md:px-8">
           {/* Title */}
           <div ref={titleRef} className="text-center mb-12">
@@ -92,15 +92,7 @@ export default function About() {
             <p className="text-body-small text-charcoal/70 mt-4">— Maria, The Elephant In The Court Room&apos;s wife</p>
           </div>
 
-          {/* Back to top */}
-          <div className="text-center mt-12">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-body-small font-medium text-purple link-underline"
-            >
-              Back to top &uarr;
-            </button>
-          </div>
+          
         </div>
       </section>
     </>
