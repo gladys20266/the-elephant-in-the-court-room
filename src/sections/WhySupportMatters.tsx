@@ -2,28 +2,31 @@ import { Scale, FileText, HandHeart } from "lucide-react";
 
 export default function WhySupportMatters() {
   const cards = [
-    {
-      icon: Scale,
-      title: "Justice Delayed",
-      text:
-        "More than fifteen years have passed since the original agreement. The legal process has required significant time, resources, and perseverance. Continued support helps keep the case moving forward.",
-      color: "bg-purple-100 text-purple-700",
-    },
-    {
-      icon: FileText,
-      title: "Every Contribution Has Purpose",
-      text:
-        "Your support helps fund legal representation, court filings, document preparation, expert consultation, and other expenses required to continue pursuing the case.",
-      color: "bg-lime-100 text-green-700",
-    },
-    {
-      icon: HandHeart,
-      title: "Stand for Accountability",
-      text:
-        "This campaign seeks enforcement of a written agreement through the legal process. Every donation helps ensure the case can continue to be presented on its merits.",
-      color: "bg-orange-100 text-orange-700",
-    },
-  ];
+  {
+    icon: Scale,
+    title: "Justice Delayed",
+    text:
+      "More than fifteen years have passed since the original agreement. The legal process has required significant time, resources, and perseverance. Continued support helps keep the case moving forward.",
+    color: "bg-purple-100 text-purple-700",
+    link: "https://www.gofundme.com",
+  },
+  {
+    icon: FileText,
+    title: "Every Contribution Has Purpose",
+    text:
+      "Your support helps fund legal representation, court filings, document preparation, expert consultation, and other expenses required to continue pursuing the case.",
+    color: "bg-lime-100 text-green-700",
+    link: "https://www.gofundme.com",
+  },
+  {
+    icon: HandHeart,
+    title: "Stand for Accountability",
+    text:
+      "This campaign seeks enforcement of a written agreement through the legal process. Every donation helps ensure the case can continue to be presented on its merits.",
+    color: "bg-orange-100 text-orange-700",
+    link: "https://www.gofundme.com",
+  },
+];
 
   return (
     <section className="bg-white py-24">
@@ -54,32 +57,51 @@ export default function WhySupportMatters() {
         <div className="grid gap-8 md:grid-cols-3">
 
           {cards.map((card, index) => {
-            const Icon = card.icon;
+  const Icon = card.icon;
 
-            return (
-              <div
-                key={index}
-                className="rounded-3xl border border-gray-200 bg-off-white p-8 shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div
-                  className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full ${card.color}`}
-                >
-                  <Icon className="h-10 w-10" />
-                </div>
-
-                <h3 className="mb-4 text-2xl font-bold text-purple">
-                  {card.title}
-                </h3>
-
-                <p className="leading-8 text-charcoal">
-                  {card.text}
-                </p>
-              </div>
-            );
-          })}
-
+  return (
+    <a
+      key={index}
+      href={card.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block h-full"
+    >
+      <div
+        className="
+          h-full
+          rounded-3xl
+          border
+          border-gray-200
+          bg-off-white
+          p-6
+          md:p-8
+          shadow-lg
+          transition-all
+          duration-300
+          hover:-translate-y-2
+          hover:shadow-2xl
+          cursor-pointer
+        "
+      >
+        <div
+          className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 ${card.color}`}
+        >
+          <Icon className="h-10 w-10" />
         </div>
 
+        <h3 className="mb-4 text-2xl font-bold text-purple transition-colors duration-300 group-hover:text-magenta">
+          {card.title}
+        </h3>
+
+        <p className="leading-8 text-charcoal">
+          {card.text}
+        </p>
+      </div>
+    </a>
+  );
+})}
+</div>
         {/* CTA */}
 
         <div className="mt-20 text-center">

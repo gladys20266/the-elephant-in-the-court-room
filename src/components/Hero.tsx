@@ -63,10 +63,10 @@ export default function Hero({
     >
       {/* Banner Image */}
       <img
-        src="/assets/banner.png"
+        src="/assets/banner.webp"
         alt={SITE_NAME}
         className="w-full h-auto object-cover"
-        loading="lazy"
+        fetchPriority="high"
       />
 
       {(section || title || subtitle) && (

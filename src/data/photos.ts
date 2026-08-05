@@ -9,7 +9,7 @@ export const beforePhotos: Photo[] = Array.from({ length: 11 }, (_, i) => {
 
   return {
     id: `before-${number}`,
-    src: `/photos/before/before-${number}.jpg`,
+    src: `/photos/before/before-${number}.webp`,
     category: "before",
   };
 });
@@ -19,19 +19,21 @@ export const afterPhotos: Photo[] = Array.from({ length: 42 }, (_, i) => {
 
   return {
     id: `after-${number}`,
-    src: `/photos/after/after-${number}.jpg`,
+    src: `/photos/after/after-${number}.webp`,
     category: "after",
   };
 });
+
 export const foodPhotos: Photo[] = Array.from({ length: 41 }, (_, i) => {
   const number = String(i + 1).padStart(4, "0");
 
   return {
     id: `food-${number}`,
-    src: `/photos/food/food-${number}.png`,
+    src: `/photos/food/food-${number}.webp`,
     category: "food",
   };
 });
+
 export const allPhotos = [
   ...beforePhotos,
   ...afterPhotos,
