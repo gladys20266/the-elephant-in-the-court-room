@@ -43,7 +43,7 @@ export default function VideosPreview() {
           {/* Right Image */}
 <div className="reveal-child flex items-center justify-center lg:justify-end">
   <FeatureImage
-    image="/assets/welcome-poster.png"
+    image="/assets/welcome-poster.webp"
     alt="Welcome Video"
     link="/videos"
     showPlayButton

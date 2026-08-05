@@ -18,6 +18,6 @@ export const siteConfig = {
 
   // Media
   welcomeVideo: "/videos/welcome.mp4",
-welcomePoster: "/assets/welcome-poster.png",
+welcomePoster: "/assets/welcome-poster.webp",
 
 };

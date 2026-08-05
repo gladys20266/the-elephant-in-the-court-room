@@ -145,7 +145,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
         >
           {!playing ? (
             <img
-              src="/assets/welcome-poster.png"
+              src="/assets/welcome-poster.webp"
               alt="Welcome Video Poster"
               style={{
                 width: "100%",
