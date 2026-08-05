@@ -10,30 +10,34 @@ export default function Footer() {
         {/* Top Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-4 mb-5">
-  <img
-    src={logoUrl}
-    alt={`${SITE_NAME} Logo`}
-    className="w-14 h-14 shrink-0"
-  />
+<div>
+  <Link
+    to="/"
+    className="flex items-center gap-4 mb-5 w-fit group"
+  >
+    <img
+      src={logoUrl}
+      alt={`${SITE_NAME} Logo`}
+      className="w-14 h-14 shrink-0 transition-transform duration-200 group-hover:scale-105"
+    />
 
-  <div className="flex flex-col leading-tight">
-    <span className="text-[18px] font-bold text-white">
-      The Elephant
-    </span>
+    <div className="flex flex-col leading-tight">
+      <span className="text-[18px] font-bold text-white group-hover:text-lime transition-colors duration-200">
+        The Elephant
+      </span>
 
-    <span className="text-[18px] font-bold text-white">
-      In The Court Room
-      <sup className="ml-0.5 text-[10px] align-super">™</sup>
-    </span>
-  </div>
+      <span className="text-[18px] font-bold text-white group-hover:text-lime transition-colors duration-200">
+        In The Court Room
+        <sup className="ml-0.5 text-[10px] align-super">™</sup>
+      </span>
+    </div>
+  </Link>
 
-            </div>
-            <p className="mt-4 text-sm leading-7 text-white/90 max-w-[280px]">
-  In Support of The Elephant In The Court Room, Fighting for Justice And  All Substantive Rights, Constitutional Rights, Civil, Due Process of Law, etc.
-</p>
-          </div>
+  <p className="mt-4 text-sm leading-7 text-white/90 max-w-[280px]">
+    In Support of The Elephant In The Court Room, Fighting for Justice And All
+    Substantive Rights, Constitutional Rights, Civil, Due Process of Law, etc.
+  </p>
+</div>
 
           {/* Navigate */}
           <div>
