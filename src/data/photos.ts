@@ -1,6 +1,7 @@
 export interface Photo {
   id: string;
-  src: string;
+  src: string;        // Full-size image
+  thumbnail: string;  // Thumbnail image
   category: "before" | "after" | "food";
 }
 
@@ -10,6 +11,7 @@ export const beforePhotos: Photo[] = Array.from({ length: 11 }, (_, i) => {
   return {
     id: `before-${number}`,
     src: `/photos/before/before-${number}.webp`,
+    thumbnail: `/photos/before-thumbs/before-${number}.webp`,
     category: "before",
   };
 });
@@ -20,6 +22,7 @@ export const afterPhotos: Photo[] = Array.from({ length: 42 }, (_, i) => {
   return {
     id: `after-${number}`,
     src: `/photos/after/after-${number}.webp`,
+    thumbnail: `/photos/after-thumbs/after-${number}.webp`,
     category: "after",
   };
 });
@@ -30,6 +33,7 @@ export const foodPhotos: Photo[] = Array.from({ length: 41 }, (_, i) => {
   return {
     id: `food-${number}`,
     src: `/photos/food/food-${number}.webp`,
+    thumbnail: `/photos/food-thumbs/food-${number}.webp`,
     category: "food",
   };
 });

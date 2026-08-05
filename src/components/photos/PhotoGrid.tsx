@@ -40,7 +40,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
         {photos.map((photo, index) => (
           <PhotoCard
             key={photo.id}
-            src={photo.src}
+            src={photo.thumbnail}
             alt={photo.id}
             onClick={() => openLightbox(index)}
           />
