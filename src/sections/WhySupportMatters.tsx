@@ -1,4 +1,4 @@
-import { Scale, FileText, HandHeart } from "lucide-react";
+import { Scale, FileText, HandHeart, ExternalLink } from "lucide-react";
 
 export default function WhySupportMatters() {
   const cards = [
@@ -116,16 +116,32 @@ export default function WhySupportMatters() {
           </p>
 
           <a
-            href="https://www.gofundme.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-xl border border-forest bg-pale-lime px-10 py-4 text-lg font-black text-charcoal transition-all duration-200 hover:bg-[#E0F0B0] hover:-translate-y-1"
-          >
-            DONATE ON GOFUNDME
-          </a>
+  href="https://www.gofundme.com/..."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="group relative inline-block rounded-xl border border-forest bg-pale-lime px-14 py-5 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+>
+  <span className="absolute right-4 top-4 text-forest/60 transition-colors group-hover:text-forest">
+  <ExternalLink size={14} strokeWidth={2} />
+</span>
 
+  <div className="flex flex-col items-center">
+  <span
+  className="text-lg sm:text-[1.2rem] font-extrabold tracking-wide uppercase text-charcoal"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+    SWITCH TO GOFUNDME
+  </span>
+
+  <span
+  className="mt-1 text-sm sm:text-[0.9rem] font-black tracking-wide uppercase text-charcoal"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
+    TO DONATE
+  </span>
+</div>
+</a>
         </div>
-
       </div>
     </section>
   );
