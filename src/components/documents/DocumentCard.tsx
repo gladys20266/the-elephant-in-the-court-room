@@ -24,7 +24,9 @@ export default function DocumentCard({
         shadow-xl
         border
         border-gray-200
-        p-8
+        p-5
+        sm:p-6
+        lg:p-8
         transition-all
         duration-300
         hover:shadow-2xl
@@ -33,14 +35,13 @@ export default function DocumentCard({
     >
       {/* Content */}
       <div className="flex-1">
-
-        <div className="flex items-start gap-5">
+        <div className="flex flex-col sm:flex-row items-start gap-5">
 
           {/* Icon */}
-          <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-purple/10">
+          <div className="flex h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-full bg-purple/10">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 text-purple"
+              className="h-7 w-7 sm:h-8 sm:w-8 text-purple"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -55,7 +56,7 @@ export default function DocumentCard({
           </div>
 
           {/* Text */}
-          <div>
+          <div className="flex-1 min-w-0">
 
             {/* Category */}
             <span
@@ -63,21 +64,33 @@ export default function DocumentCard({
                 inline-block
                 rounded-sm
                 bg-[#d94b8a]
-                px-5
+                px-4
                 py-2
-                mb-5
-                text-[11px]
+                mb-4
+                text-[10px]
+                sm:text-[11px]
                 font-bold
                 uppercase
                 tracking-[0.08em]
                 text-white
+                break-words
               "
             >
               {category}
             </span>
 
             {/* Title */}
-            <h3 className="text-2xl font-bold text-purple mb-2">
+            <h3
+              className="
+                text-xl
+                sm:text-2xl
+                font-bold
+                text-purple
+                leading-tight
+                break-words
+                mb-2
+              "
+            >
               {title}
             </h3>
 
@@ -87,28 +100,35 @@ export default function DocumentCard({
             </p>
 
             {/* Description */}
-            <p className="text-charcoal leading-8">
+            <p
+              className="
+                text-charcoal
+                text-base
+                leading-7
+                break-words
+              "
+            >
               {description}
             </p>
 
           </div>
 
         </div>
-
       </div>
 
       {/* Button */}
-      <div className="mt-10">
+      <div className="mt-8">
         <a
           href={file}
           target="_blank"
           rel="noopener noreferrer"
           className="
-            inline-flex
+            flex
+            w-full
             items-center
             justify-center
             bg-[#6b3a8f]
-            px-8
+            px-6
             py-3.5
             rounded-sm
             text-white
@@ -126,7 +146,6 @@ export default function DocumentCard({
           View Document
         </a>
       </div>
-
     </div>
   );
 }

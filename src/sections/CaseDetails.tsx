@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SectionBadge from "@/components/SectionBadge";
+
 gsap.registerPlugin(ScrollTrigger)
 
 const timelineItems = [
@@ -34,6 +35,7 @@ export default function CaseDetails() {
 
   useEffect(() => {
     if (!timelineRef.current) return
+
     const items = timelineRef.current.querySelectorAll('.timeline-item')
 
     const ctx = gsap.context(() => {
@@ -55,46 +57,80 @@ export default function CaseDetails() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="case" className="section-padding bg-white">
+    <section
+      ref={sectionRef}
+      id="case"
+      className="section-padding bg-white"
+    >
       <div className="content-container">
+
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-10 lg:mb-12 text-center lg:text-left">
           <SectionBadge
-  text="THE CASE"
-  to="/case"
-/>
-          <h2 className="reveal-child text-section-title text-purple mb-4">
+            text="THE CASE"
+            to="/case"
+          />
+
+          <h2
+            className="
+              reveal-child
+              text-3xl
+              sm:text-4xl
+              lg:text-section-title
+              text-purple
+              leading-tight
+              mb-5
+            "
+          >
             What Happened
           </h2>
-          <p className="reveal-child text-body text-charcoal max-w-2xl">
-            The Elephant In The Court Room's case represents the challenges many immigrants face when navigating a complex 
+
+          <p
+            className="
+              reveal-child
+              text-base
+              sm:text-lg
+              lg:text-body
+              text-charcoal
+              leading-8
+              max-w-2xl
+              mx-auto
+              lg:mx-0
+              break-words
+            "
+          >
+            The Elephant In The Court Room's case represents the challenges many immigrants face when navigating a complex
             legal system. Understanding the timeline helps explain why immediate action is critical.
           </p>
         </div>
 
-        {/* Content Grid */}
+        {/* Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+
           {/* Timeline */}
-          <div ref={timelineRef} className="relative pl-8">
-            {/* Vertical Line */}
-            <div className="absolute left-[19px] top-0 bottom-0 w-px bg-lime/20" />
+          <div
+            ref={timelineRef}
+            className="relative pl-7 sm:pl-8"
+          >
+            <div className="absolute left-[17px] sm:left-[19px] top-0 bottom-0 w-px bg-lime/20" />
 
             {timelineItems.map((item, index) => (
               <div
                 key={index}
-                className="timeline-item relative flex gap-5 py-5 opacity-0 -translate-x-5"
+                className="timeline-item relative flex gap-4 sm:gap-5 py-5 opacity-0 -translate-x-5"
               >
-                {/* Dot */}
-                <div className="relative z-10 w-3 h-3 rounded-full bg-lime border-2 border-white flex-shrink-0 mt-1.5" />
-                {/* Content */}
+                <div className="relative z-10 w-3 h-3 rounded-full bg-lime border-2 border-white flex-shrink-0 mt-2" />
+
                 <div>
-                  <p className="text-body-small font-medium text-charcoal uppercase tracking-wider">
+                  <p className="text-xs sm:text-body-small font-semibold text-charcoal uppercase tracking-wider">
                     {item.date}
                   </p>
-                  <h3 className="text-body font-medium text-charcoal mt-1">
+
+                  <h3 className="text-lg sm:text-body font-semibold text-charcoal mt-1">
                     {item.title}
                   </h3>
-                  <p className="text-body-small text-charcoal/70 mt-1">
+
+                  <p className="text-sm sm:text-body-small text-charcoal/70 mt-2 leading-7">
                     {item.description}
                   </p>
                 </div>
@@ -102,36 +138,61 @@ export default function CaseDetails() {
             ))}
           </div>
 
-          {/* Legal Explanation Card */}
+          {/* Legal Card */}
           <div className="reveal-child">
             <div className="bg-off-white rounded-xl p-6 lg:p-8">
-              <h3 className="text-subheading font-normal text-purple mb-5">
+
+              <h3
+                className="
+                  text-2xl
+                  lg:text-subheading
+                  font-normal
+                  text-purple
+                  leading-tight
+                  mb-5
+                "
+              >
                 Understanding the Legal Challenge
               </h3>
-              <div className="space-y-4 text-body text-charcoal">
+
+              <div
+                className="
+                  space-y-5
+                  text-base
+                  lg:text-body
+                  text-charcoal
+                  leading-8
+                "
+              >
                 <p>
-                  The Elephant In The Court Room is facing removal proceedings that could separate them from their family 
-                  and the community they have called home for over fifteen years.
+                  The Elephant In The Court Room is facing removal proceedings that could separate them from their family and the community they have called home for over fifteen years.
                 </p>
+
                 <p>
-                  The legal process is lengthy, expensive, and complex. Quality legal representation 
-                  is essential but comes at a significant cost that is beyond what The Elephant In The Court Room and their 
-                  family can afford alone.
+                  The legal process is lengthy, expensive, and complex. Quality legal representation is essential but comes at a significant cost that is beyond what The Elephant In The Court Room and their family can afford alone.
                 </p>
+
                 <p>
-                  Your contribution goes directly toward legal fees, documentation costs, and expert 
-                  testimony needed to present the strongest case possible.
+                  Your contribution goes directly toward legal fees, documentation costs, and expert testimony needed to present the strongest case possible.
                 </p>
               </div>
 
-              {/* Highlighted quote */}
-              <div className="mt-6 bg-lime/20 rounded p-4 text-center">
-                <p className="text-quote text-purple">
+              <div className="mt-8 bg-lime/20 rounded-lg p-5 text-center">
+                <p
+                  className="
+                    text-lg
+                    lg:text-quote
+                    text-purple
+                    leading-relaxed
+                  "
+                >
                   "Every donation, no matter the size, brings The Elephant In The Court Room closer to justice."
                 </p>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </section>
