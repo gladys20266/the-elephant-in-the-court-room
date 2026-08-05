@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+const isMobile = window.innerWidth <= 768;
+
 interface Props {
   onClose: () => void;
 }
@@ -10,34 +12,37 @@ export default function WelcomeVideoModal({ onClose }: Props) {
   const [closing, setClosing] = useState(false);
   const [hoverButton, setHoverButton] = useState<"watch" | "continue" | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
-  requestAnimationFrame(() => {
-    setAnimateIn(true);
-  });
-}, []);
-useEffect(() => {
+    requestAnimationFrame(() => {
+      setAnimateIn(true);
+    });
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === "Escape") {
-            setClosing(true);
+      if (event.key === "Escape") {
+        setClosing(true);
 
-            setTimeout(() => {
-                videoRef.current?.pause();
+        setTimeout(() => {
+          videoRef.current?.pause();
 
-                if (videoRef.current) {
-                    videoRef.current.currentTime = 0;
-                }
+          if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+          }
 
-                onClose();
-            }, 250);
-        }
+          onClose();
+        }, 250);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-        window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
-}, [onClose]);
+  }, [onClose]);
+
   return (
     <div
       style={{
@@ -49,24 +54,26 @@ useEffect(() => {
         justifyContent: "center",
         alignItems: "center",
         zIndex: 9999,
-        padding: "24px",
+        padding: isMobile ? "12px" : "24px",
         opacity: closing ? 0 : animateIn ? 1 : 0,
-transform: closing
-  ? "scale(0.96)"
-  : animateIn
-    ? "scale(1)"
-    : "scale(0.96)",
-transition: "all 0.25s ease",
+        transform: closing
+          ? "scale(0.96)"
+          : animateIn
+          ? "scale(1)"
+          : "scale(0.96)",
+        transition: "all 0.25s ease",
       }}
     >
       <div
         style={{
           position: "relative",
           width: "100%",
-          maxWidth: "900px",
+          maxWidth: isMobile ? "100%" : "900px",
+          maxHeight: "90vh",
+          overflowY: "auto",
           background: "#121212",
-          borderRadius: "24px",
-          padding: "40px",
+          borderRadius: isMobile ? "18px" : "24px",
+          padding: isMobile ? "20px" : "40px",
           boxShadow: "0 20px 60px rgba(0,0,0,.6)",
           textAlign: "center",
         }}
@@ -76,36 +83,41 @@ transition: "all 0.25s ease",
             setClosing(true);
 
             setTimeout(() => {
-               videoRef.current?.pause();
-               videoRef.current && (videoRef.current.currentTime = 0);
-               onClose();
-             }, 250);
-           }}
-           style={{
-             position: "absolute",
-             top: "18px",
-             right: "18px",
-             width: "40px",
-             height: "40px",
-             display: "flex",
-             alignItems: "center",
-             justifyContent: "center",
-             background: "rgba(255,255,255,0.06)",
-             color: "#fff",
-             border: "1px solid rgba(255,255,255,0.15)",
-             borderRadius: "50%",
-             fontSize: "28px",
-             cursor: "pointer",
-             lineHeight: 1,
-             transition: "all 0.2s ease",
-  }}
->
-  &times;
-</button>
+              videoRef.current?.pause();
+
+              if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+              }
+
+              onClose();
+            }, 250);
+          }}
+          style={{
+            position: "absolute",
+            top: "18px",
+            right: "18px",
+            width: "40px",
+            height: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(255,255,255,0.06)",
+            color: "#fff",
+            border: "1px solid rgba(255,255,255,0.15)",
+            borderRadius: "50%",
+            fontSize: "28px",
+            cursor: "pointer",
+            lineHeight: 1,
+            transition: "all 0.2s ease",
+          }}
+        >
+          &times;
+        </button>
+
         <h1
           style={{
             color: "white",
-            fontSize: "2rem",
+            fontSize: isMobile ? "1.5rem" : "2rem",
             marginBottom: "12px",
           }}
         >
@@ -115,8 +127,8 @@ transition: "all 0.25s ease",
         <p
           style={{
             color: "#cccccc",
-            fontSize: "1.1rem",
-            marginBottom: "30px",
+            fontSize: isMobile ? "0.95rem" : "1.1rem",
+            marginBottom: isMobile ? "20px" : "30px",
           }}
         >
           Watch this short introduction before exploring the website.
@@ -124,11 +136,11 @@ transition: "all 0.25s ease",
 
         <div
           style={{
-            height: "420px",
+            height: isMobile ? "220px" : "420px",
             background: "#222",
             borderRadius: "18px",
             overflow: "hidden",
-            marginBottom: "30px",
+            marginBottom: isMobile ? "20px" : "30px",
           }}
         >
           {!playing ? (
@@ -150,17 +162,17 @@ transition: "all 0.25s ease",
               controls
               autoPlay
               onEnded={() => {
-                 localStorage.setItem("hasSeenWelcome", "true");
+                localStorage.setItem("hasSeenWelcome", "true");
 
-                 setClosing(true);
+                setClosing(true);
 
-                 setTimeout(() => {
-                     if (videoRef.current) {
-                         videoRef.current.currentTime = 0;
-                     }
+                setTimeout(() => {
+                  if (videoRef.current) {
+                    videoRef.current.currentTime = 0;
+                  }
 
-                     onClose();
-                 }, 250);
+                  onClose();
+                }, 250);
               }}
               style={{
                 width: "100%",
@@ -175,7 +187,7 @@ transition: "all 0.25s ease",
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "16px",
+            gap: isMobile ? "12px" : "16px",
           }}
         >
           {!playing && (
@@ -187,16 +199,19 @@ transition: "all 0.25s ease",
                 background: "#16A637",
                 color: "white",
                 border: "none",
-                padding: "16px",
+                padding: isMobile ? "14px" : "16px",
                 borderRadius: "12px",
-                fontSize: "18px",
+                fontSize: isMobile ? "16px" : "18px",
+                width: "100%",
                 cursor: "pointer",
-                transform: hoverButton === "watch" 
-                ? "translateY(-2px)"
-                : "translateY(0)",
-                filter: hoverButton === "watch" 
-                ? "brightness(1.08)"
-                : "brightness(1)",
+                transform:
+                  hoverButton === "watch"
+                    ? "translateY(-2px)"
+                    : "translateY(0)",
+                filter:
+                  hoverButton === "watch"
+                    ? "brightness(1.08)"
+                    : "brightness(1)",
                 transition: "all 0.2s ease",
               }}
             >
@@ -206,17 +221,17 @@ transition: "all 0.25s ease",
 
           <button
             onClick={() => {
-                setClosing(true);
+              setClosing(true);
 
-                setTimeout(() => {
-                    videoRef.current?.pause();
+              setTimeout(() => {
+                videoRef.current?.pause();
 
-                    if (videoRef.current) {
-                    videoRef.current.currentTime = 0;
-                    }
+                if (videoRef.current) {
+                  videoRef.current.currentTime = 0;
+                }
 
-                    onClose();
-                }, 250);
+                onClose();
+              }, 250);
             }}
             onMouseEnter={() => setHoverButton("continue")}
             onMouseLeave={() => setHoverButton(null)}
@@ -224,20 +239,19 @@ transition: "all 0.25s ease",
               background: "transparent",
               color: "white",
               border: "1px solid #555",
-              padding: "16px",
+              padding: isMobile ? "14px" : "16px",
               borderRadius: "12px",
-              fontSize: "18px",
+              fontSize: isMobile ? "16px" : "18px",
+              width: "100%",
               cursor: "pointer",
               transform:
                 hoverButton === "continue"
-                    ? "translateY(-2px)"
-                    : "translateY(0)",
-
+                  ? "translateY(-2px)"
+                  : "translateY(0)",
               filter:
-                  hoverButton === "continue"
-                      ? "brightness(1.08)"
-                      : "brightness(1)",
-
+                hoverButton === "continue"
+                  ? "brightness(1.08)"
+                  : "brightness(1)",
               transition: "all 0.2s ease",
             }}
           >
