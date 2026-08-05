@@ -148,9 +148,9 @@ export default function Downloads() {
               wants to understand the case before reviewing the complete record.
             </p>
 
-            <div className="mt-8 flex items-center justify-between">
+            <div className="mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700">
                   PDF
                 </span>
@@ -160,9 +160,27 @@ export default function Downloads() {
                 </span>
               </div>
 
-              <button className="rounded-xl border border-forest bg-pale-lime px-7 py-3 font-black text-charcoal transition-all duration-200 hover:bg-[#E0F0B0]">
-                DOWNLOAD PDF
-              </button>
+              <button
+  className="
+    w-full
+    md:w-auto
+    rounded-xl
+    border
+    border-forest
+    bg-pale-lime
+    px-7
+    py-3
+    font-black
+    text-charcoal
+    text-center
+    transition-all
+    duration-200
+    hover:bg-[#E0F0B0]
+  "
+>
+  DOWNLOAD PDF
+</button>
+                
 
             </div>
 
@@ -190,7 +208,7 @@ export default function Downloads() {
   className="mt-24"
 />
 
-]
+
         <DownloadSection
   title="Petition"
   description="Public petitions, requests for support, and advocacy documents related to this campaign."
