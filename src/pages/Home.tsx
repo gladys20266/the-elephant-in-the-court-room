@@ -13,6 +13,7 @@ import VideosPreview from '@/sections/VideosPreview'
 import PhotosPreview from "@/sections/PhotosPreview";
 import DocumentsPreview from "@/sections/DocumentsPreview";
 import DownloadsPreview from "@/sections/DownloadsPreview";
+import WhySupportMatters from "@/sections/WhySupportMatters";
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
   useEffect(() => {
@@ -53,7 +54,10 @@ return (
 />
 )}
       <Hero subtitle="A promise made • A contract broken • Eleven years fighting for justice." />
-      <StorySnapshot />
+
+<WhySupportMatters />
+
+<StorySnapshot />
       <CaseDetails />
 <EvidenceGallery />
 <VideosPreview />
