@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Hero from '@/components/Hero'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import ContactForm from '@/components/ContactForm'
+import { Link } from "react-router-dom";
 import {
   Mail,
   Phone,
@@ -255,13 +256,13 @@ switch (platform.label) {
   Support the Campaign
 </a>
 
-<a
-  href="/documents"
-  className="flex items-center justify-center gap-2 rounded-lg border border-lime bg-white px-6 py-3 text-[15px] font-black tracking-tight text-[#3F1F66] hover:bg-off-white transition-all duration-200"
+<Link
+  to="/documents"
+  className="flex items-center justify-center gap-2 rounded-lg border border-lime px-5 py-3 font-extrabold text-charcoal hover:bg-lime/10 transition-colors"
 >
   <ExternalLink className="w-4 h-4" />
   View Case Documents
-</a>
+</Link>
                   </div>
                 </CardContent>
               </Card>

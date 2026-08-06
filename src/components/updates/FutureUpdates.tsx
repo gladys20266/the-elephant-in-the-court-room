@@ -87,11 +87,14 @@ export default function FutureUpdates() {
 
           <div className="mt-auto pt-10">
 
-            <button
-              className="rounded-xl bg-[#CFEA8B] px-8 py-4 font-bold text-[#24331B] transition-all duration-300 hover:scale-105"
-            >
-              Support on GoFundMe
-            </button>
+            <a
+  href="https://www.gofundme.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block rounded-xl bg-[#CFEA8B] px-8 py-4 font-bold text-[#24331B] transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+>
+  Support on GoFundMe
+</a>
 
           </div>
 

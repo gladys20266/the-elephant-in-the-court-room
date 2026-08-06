@@ -116,7 +116,7 @@ export default function WhySupportMatters() {
           </p>
 
           <a
-  href="https://www.gofundme.com/..."
+  href="https://www.gofundme.com/"
   target="_blank"
   rel="noopener noreferrer"
   className="group relative inline-block rounded-xl border border-forest bg-pale-lime px-14 py-5 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"

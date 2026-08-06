@@ -45,7 +45,7 @@ export default function PhotosPreview() {
           <div className="reveal-child flex items-center justify-center lg:justify-end">
 
             <FeatureImage
-              image="/photos/after/after-0001.jpg"
+              image="/photos/after/after-0001.webp"
               alt="Property after restoration"
               link="/photos"
             />

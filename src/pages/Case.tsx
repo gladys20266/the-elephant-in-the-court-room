@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { X, ChevronLeft, ChevronRight, FileDown } from 'lucide-react'
-
+import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger)
 
 const timelineItems = [
@@ -209,12 +209,16 @@ export default function Case() {
                   </p>
                 </div>
 
-                <div className="mt-5 flex items-center gap-3 text-purple">
-                  <FileDown className="w-5 h-5" />
-                  <span className="text-body font-medium link-underline cursor-pointer">
-                    Download Case Summary (PDF)
-                  </span>
-                </div>
+               <div className="mt-5 flex items-center gap-3 text-purple">
+  <FileDown className="w-5 h-5" />
+
+  <Link
+    to="/downloads"
+    className="text-body font-medium link-underline cursor-pointer"
+  >
+    Download Case Summary (PDF)
+  </Link>
+</div>
               </div>
             </div>
           </div>
