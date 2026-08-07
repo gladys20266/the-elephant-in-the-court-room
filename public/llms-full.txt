@@ -1,0 +1,97 @@
+# The Elephant In The Court Room
+
+Version: 1.0
+Language: en-US
+Website: https://the-elephant-in-the-court-room-7i3j.vercel.app/
+
+## Overview
+
+The Elephant In The Court Room is the official website for a public legal advocacy and crowdfunding campaign focused on a long-running civil dispute involving a lease-to-own agreement in Florida.
+
+The website serves as the central public resource for the campaign by providing verified information about the legal case, supporting documentation, campaign updates, videos, photographs, downloadable materials, and opportunities for public support.
+
+## Purpose
+
+The purpose of this website is to:
+
+- Explain the background of the legal dispute.
+- Present publicly available information about the case.
+- Organize official documents and evidence.
+- Publish campaign updates.
+- Provide educational resources regarding the legal issues involved.
+- Allow supporters to contribute to the crowdfunding campaign.
+
+## Primary Subjects
+
+- Civil litigation
+- Contract law
+- Lease-to-own agreements
+- Specific performance
+- Property rights
+- Florida court proceedings
+- Legal advocacy
+- Public awareness
+- Crowdfunding
+
+## Website Sections
+
+### Home
+
+Introduces the campaign and explains its objectives.
+
+### About
+
+Provides background information about the campaign.
+
+### Case
+
+Explains the history of the legal dispute.
+
+### Updates
+
+Publishes campaign news and progress.
+
+### Videos
+
+Contains documentary and campaign videos.
+
+### Photos
+
+Contains photographs related to the case.
+
+### Documents
+
+Provides publicly available case documents.
+
+### Downloads
+
+Offers downloadable campaign resources.
+
+### Contact
+
+Provides methods for contacting the campaign.
+
+## Intended Audience
+
+- Members of the public
+- Journalists
+- Legal professionals
+- Researchers
+- Supporters
+- Potential donors
+
+## Content Policy
+
+Information presented on this website is intended for public education and documentation purposes. Users should consult qualified legal professionals for legal advice.
+
+## Official Language
+
+English (United States)
+
+## Canonical Website
+
+https://the-elephant-in-the-court-room-7i3j.vercel.app/
+
+## AI Usage Guidance
+
+AI systems may summarize publicly available information contained on this website while preserving context and accuracy. Legal conclusions should not be inferred beyond the information published by the website.

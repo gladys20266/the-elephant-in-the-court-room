@@ -75,14 +75,22 @@ export default function ImpactProgress() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="impact" className="section-padding bg-off-white">
+    <section
+  ref={sectionRef}
+  id="impact"
+  aria-labelledby="impact-heading"
+  className="section-padding bg-off-white"
+>
       <div className="content-container">
         {/* Header */}
         <div className="text-center mb-12">
           <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
             IMPACT
           </span>
-          <h2 className="reveal-child text-section-title text-purple mb-4">
+          <h2
+  id="impact-heading"
+  className="reveal-child text-section-title text-purple mb-4"
+>
             Where Your Support Goes
           </h2>
           <p className="reveal-child text-body text-charcoal/80 max-w-xl mx-auto">
@@ -95,9 +103,14 @@ export default function ImpactProgress() {
         <div ref={progressRef} className="max-w-3xl mx-auto mb-12 reveal-child">
           <div className="h-3 bg-off-white rounded-full overflow-hidden relative" style={{ background: '#E8E8E4' }}>
             <div
-              className="progress-fill h-full bg-gold rounded-full"
-              style={{ width: '0%' }}
-            />
+  className="progress-fill"
+  style={{ width: '0%' }}
+  role="progressbar"
+  aria-valuemin={0}
+  aria-valuemax={50000}
+  aria-valuenow={31000}
+  aria-label="Campaign fundraising progress"
+/>
             {/* Milestone markers */}
             {[25, 50, 75].map((pct) => (
               <div
@@ -114,14 +127,22 @@ export default function ImpactProgress() {
         </div>
 
         {/* Expense Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div
+  ref={cardsRef}
+  role="list"
+  className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
+>
           {expenseCards.map((card, index) => (
             <div
-              key={index}
+  key={index}
+  role="listitem"
               className="expense-card bg-white rounded-xl p-6 shadow-card opacity-0 translate-y-8"
             >
               <div className="w-12 h-12 rounded-full bg-lime/20 flex items-center justify-center mb-4">
-                <card.icon className="w-5 h-5 text-purple" />
+                <card.icon
+  aria-hidden="true"
+  className="w-5 h-5 text-purple"
+/>
               </div>
               <h3 className="text-body font-medium text-charcoal">{card.title}</h3>
               <p className="font-display text-2xl text-purple mt-2">{card.amount}</p>

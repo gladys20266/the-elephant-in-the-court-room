@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Hero from '@/components/Hero'
 import WelcomeVideoModal from '@/components/WelcomeVideoModal'
+import SEO from "@/components/seo/SEO";
 import StorySnapshot from '@/sections/StorySnapshot'
 import CaseDetails from '@/sections/CaseDetails'
 import EvidenceGallery from '@/sections/EvidenceGallery'
@@ -14,6 +15,9 @@ import PhotosPreview from "@/sections/PhotosPreview";
 import DocumentsPreview from "@/sections/DocumentsPreview";
 import DownloadsPreview from "@/sections/DownloadsPreview";
 import WhySupportMatters from "@/sections/WhySupportMatters";
+import StructuredData from "@/components/seo/StructuredData";
+import { websiteSchema } from "../seo/schemas";
+import { webPageSchema } from "../seo/pageSchemas";
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
   useEffect(() => {
@@ -24,14 +28,7 @@ export default function Home() {
   }
 }, []);
 useEffect(() => {
-  const hasSeenWelcome = localStorage.getItem("hasSeenWelcome");
-
-  if (!hasSeenWelcome) {
-    setShowWelcome(true);
-  }
-}, []);
-
-useEffect(() => {
+  
   if (showWelcome) {
     document.body.style.overflow = "hidden";
   } else {
@@ -44,16 +41,57 @@ useEffect(() => {
 }, [showWelcome]);
 
 return (
-    <>
-     {showWelcome && (
-  <WelcomeVideoModal
-  onClose={() => {
-    localStorage.setItem("hasSeenWelcome", "true");
-    setShowWelcome(false);
+  <>
+    <SEO
+      data={{
+  title:
+    "The Elephant In The Court Room | Official Legal Advocacy & Crowdfunding Campaign",
+
+  description:
+    "Official website documenting The Elephant In The Court Room campaign. Learn about the Florida lease-to-own legal dispute, review public court documents, watch videos, browse photographs, follow campaign updates, and support the ongoing legal effort.",
+
+  keywords: [
+    "The Elephant In The Court Room",
+    "Florida legal case",
+    "lease-to-own dispute",
+    "specific performance",
+    "contract law",
+    "civil litigation",
+    "court documents",
+    "legal advocacy",
+    "crowdfunding",
+    "justice campaign",
+  ],
+}}
+    />
+
+    <StructuredData
+  data={{
+    ...websiteSchema(),
+    "@graph": [
+      ...websiteSchema()["@graph"],
+      webPageSchema({
+        title: "The Elephant In The Court Room",
+        description:
+          "Official website documenting The Elephant In The Court Room campaign, including the case background, court documents, videos, photographs, updates and crowdfunding information.",
+        path: "/",
+      }),
+    ],
   }}
 />
-)}
-      <Hero subtitle="A promise made • A contract broken • Eleven years fighting for justice." />
+
+    {showWelcome && (
+      <WelcomeVideoModal
+        onClose={() => {
+          localStorage.setItem("hasSeenWelcome", "true");
+          setShowWelcome(false);
+        }}
+      />
+    )}
+
+    <Hero
+      subtitle="A promise made • A contract broken • Eleven years fighting for justice."
+    />
 
 <WhySupportMatters />
 

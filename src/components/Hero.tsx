@@ -13,7 +13,7 @@ export default function Hero({
   title,
   subtitle,
 }: HeroProps) {
-  const heroRef = useRef<HTMLDivElement>(null)
+  
   const ctaRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -58,13 +58,13 @@ export default function Hero({
 
   return (
     <section
-      ref={heroRef}
+  aria-labelledby="hero-title"
       className="relative w-full overflow-hidden bg-white"
     >
       {/* Banner Image */}
       <img
         src="/assets/banner.webp"
-        alt={SITE_NAME}
+        alt="The Elephant In The Court Room campaign banner"
         className="w-full h-auto object-cover"
         fetchPriority="high"
       />
@@ -78,9 +78,12 @@ export default function Hero({
           )}
 
           {title && (
-            <h1 className="text-display text-purple mb-6">
-              {title}
-            </h1>
+            <h1
+  id="hero-title"
+  className="text-display text-purple mb-6"
+>
+  {title}
+</h1>
           )}
 
           {subtitle && (
@@ -127,7 +130,9 @@ export default function Hero({
         "
       >
         <a
-          href="https://www.gofundme.com"
+          
+  href="https://www.gofundme.com/f/your-campaign"
+  aria-label="Support the legal campaign on GoFundMe"
           target="_blank"
           rel="noopener noreferrer"
           className="
@@ -168,11 +173,17 @@ export default function Hero({
             </div>
           </div>
 
-          <ExternalLink className="absolute top-2 right-2 w-3 h-3 text-charcoal/40" />
+          <ExternalLink
+  aria-hidden="true"
+  className="absolute top-2 right-2 w-3 h-3 text-charcoal/40"
+/>
         </a>
 
         <button
-          onClick={handleShare}
+          
+  type="button"
+  onClick={handleShare}
+  aria-label="Share this campaign"
           className="
             flex
             items-center
@@ -191,7 +202,10 @@ export default function Hero({
             duration-150
           "
         >
-          <Share2 className="w-6 h-6" />
+          <Share2
+  aria-hidden="true"
+  className="w-6 h-6"
+/>
 
           <span
             className="text-lg font-black tracking-wide uppercase"

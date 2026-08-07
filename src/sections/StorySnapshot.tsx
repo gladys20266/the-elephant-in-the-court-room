@@ -6,7 +6,11 @@ export default function StorySnapshot() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
-    <section ref={sectionRef} className="section-padding bg-off-white">
+    <section
+  ref={sectionRef}
+  aria-labelledby="story-heading"
+  className="section-padding bg-off-white"
+>
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-10 items-center">
 
@@ -18,7 +22,8 @@ export default function StorySnapshot() {
             />
 
             <h2
-              className="
+  id="story-heading"
+  className="
                 reveal-child
                 text-3xl
                 sm:text-4xl
@@ -85,7 +90,7 @@ export default function StorySnapshot() {
             >
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
-                alt="The Elephant In The Court Room smiling warmly"
+                alt="Illustrative portrait representing the people behind The Elephant In The Court Room campaign"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />

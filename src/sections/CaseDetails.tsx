@@ -58,11 +58,12 @@ export default function CaseDetails() {
 
   return (
     <section
-      ref={sectionRef}
-      id="case"
-      className="section-padding bg-white"
-    >
-      <div className="content-container">
+  ref={sectionRef}
+  id="case"
+  aria-labelledby="case-heading"
+  className="section-padding bg-white"
+>
+  <div className="content-container">
 
         {/* Header */}
         <div className="mb-10 lg:mb-12 text-center lg:text-left">
@@ -72,18 +73,19 @@ export default function CaseDetails() {
           />
 
           <h2
-            className="
-              reveal-child
-              text-3xl
-              sm:text-4xl
-              lg:text-section-title
-              text-purple
-              leading-tight
-              mb-5
-            "
-          >
-            What Happened
-          </h2>
+  id="case-heading"
+  className="
+    reveal-child
+    text-3xl
+    sm:text-4xl
+    lg:text-section-title
+    text-purple
+    leading-tight
+    mb-5
+  "
+>
+  What Happened
+</h2>
 
           <p
             className="
@@ -109,7 +111,8 @@ export default function CaseDetails() {
 
           {/* Timeline */}
           <div
-            ref={timelineRef}
+  ref={timelineRef}
+  role="list"
             className="relative pl-7 sm:pl-8"
           >
             <div className="absolute left-[17px] sm:left-[19px] top-0 bottom-0 w-px bg-lime/20" />
@@ -117,6 +120,7 @@ export default function CaseDetails() {
             {timelineItems.map((item, index) => (
               <div
                 key={index}
+                role="listitem"
                 className="timeline-item relative flex gap-4 sm:gap-5 py-5 opacity-0 -translate-x-5"
               >
                 <div className="relative z-10 w-3 h-3 rounded-full bg-lime border-2 border-white flex-shrink-0 mt-2" />

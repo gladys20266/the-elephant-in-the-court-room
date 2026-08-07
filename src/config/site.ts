@@ -1,23 +1,109 @@
 
+/**
+ * ==========================================================
+ * THE ELEPHANT IN THE COURT ROOM
+ * Global Website Configuration
+ * ==========================================================
+ *
+ * This file is the single source of truth for:
+ * - Website identity
+ * - Organization information
+ * - SEO defaults
+ * - Social links
+ * - Contact information
+ * - Welcome popup
+ * *
+ * Future packages will also use this file for:
+ * - Structured Data
+ * - AI (GEO) configuration
+ * - llms.txt generation
+ * ==========================================================
+ */
+
 export const siteConfig = {
-  // Campaign Branding
-  campaignTitle: "The Elephant In The Court Room",
+  // ==========================================================
+  // WEBSITE
+  // ==========================================================
+  siteName: "The Elephant In The Court Room",
 
-  // Welcome Popup
-  welcomeTitle: "Welcome",
+  shortName: "The Elephant",
 
-  welcomeMessage:
-    "Watch this short introduction before exploring the website.",
+  description:
+    "Official website documenting The Elephant In The Court Room campaign, including the case background, court documents, videos, photographs, updates and crowdfunding information.",
 
-  watchButtonText: "▶ Watch Introduction",
+  language: "en",
 
-  continueButtonText: "Continue to Website",
+  locale: "en_US",
 
-  // Delay before popup appears (milliseconds)
-  showDelay: 1000,
+  /**
+   * Update this after your final production domain is live.
+   * Example:
+   * https://www.theelephantinthecourtroom.com
+   */
+  siteUrl: "https://the-elephant-in-the-court-room-7i3j.vercel.app",
 
-  // Media
-  welcomeVideo: "/videos/welcome.mp4",
-welcomePoster: "/assets/welcome-poster.webp",
+  // ==========================================================
+  // ORGANIZATION
+  // ==========================================================
+  organization: {
+    name: "The Elephant In The Court Room",
 
+    email: "",
+
+    logo: "/logo.png",
+  },
+
+  // ==========================================================
+  // SOCIAL LINKS
+  // ==========================================================
+  social: {
+    youtube: "",
+    goFundMe: "",
+    facebook: "",
+    x: "",
+    linkedin: "",
+  },
+
+  // ==========================================================
+  // SEO DEFAULTS
+  // ==========================================================
+  seo: {
+    defaultTitle: "The Elephant In The Court Room",
+
+    titleTemplate: "%s | The Elephant In The Court Room",
+
+    defaultDescription:
+      "Learn about The Elephant In The Court Room campaign through official documents, videos, photographs, timeline, updates and educational resources.",
+
+    defaultImage: "/og-image.jpg",
+
+    robots: "index,follow",
+  },
+
+  // ==========================================================
+  // WELCOME POPUP
+  // ==========================================================
+  welcome: {
+    title: "Welcome",
+
+    message:
+      "Watch this short introduction before exploring the website.",
+
+    watchButtonText: "▶ Watch Introduction",
+
+    continueButtonText: "Continue to Website",
+
+    showDelay: 1000,
+
+    video: "/videos/welcome.mp4",
+
+    poster: "/assets/welcome-poster.webp",
+  },
+
+  // ==========================================================
+  // RESERVED FOR FUTURE AI IMPLEMENTATION
+  // ==========================================================
+  ai: {
+    enabled: true,
+  },
 };

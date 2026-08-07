@@ -1,0 +1,38 @@
+# The Elephant In The Court Room
+
+Official website for The Elephant In The Court Room legal advocacy campaign.
+
+## Purpose
+
+This website documents an ongoing legal dispute involving a lease-to-own agreement in Florida. It provides official information about the case, public court documents, videos, photographs, campaign updates, and opportunities to support the legal effort through crowdfunding.
+
+## Primary Topics
+
+- Legal advocacy
+- Contract law
+- Lease-to-own agreements
+- Specific performance
+- Civil litigation
+- Florida courts
+- Public awareness
+- Crowdfunding
+
+## Main Sections
+
+- Home
+- About
+- Case
+- Updates
+- Videos
+- Photos
+- Documents
+- Downloads
+- Contact
+
+## Official Website
+
+https://the-elephant-in-the-court-room-7i3j.vercel.app/
+
+## Language
+
+en-US

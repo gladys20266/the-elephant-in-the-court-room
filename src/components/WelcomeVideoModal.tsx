@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-
+import { siteConfig } from "@/config/site";
 const isMobile = window.innerWidth <= 768;
 
 interface Props {
@@ -121,7 +121,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
             marginBottom: "12px",
           }}
         >
-          The Elephant In The Court Room
+          {siteConfig.siteName}
         </h1>
 
         <p
@@ -131,7 +131,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
             marginBottom: isMobile ? "20px" : "30px",
           }}
         >
-          Watch this short introduction before exploring the website.
+          {siteConfig.welcome.message}
         </p>
 
         <div
@@ -145,7 +145,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
         >
           {!playing ? (
             <img
-              src="/assets/welcome-poster.webp"
+              src={siteConfig.welcome.poster}
               alt="Welcome Video Poster"
               style={{
                 width: "100%",
@@ -158,7 +158,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
           ) : (
             <video
               ref={videoRef}
-              src="/videos/welcome.mp4"
+              src={siteConfig.welcome.video}
               controls
               autoPlay
               onEnded={() => {
@@ -215,7 +215,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
                 transition: "all 0.2s ease",
               }}
             >
-              Watch Introduction
+              {siteConfig.welcome.watchButtonText}
             </button>
           )}
 
@@ -255,7 +255,7 @@ export default function WelcomeVideoModal({ onClose }: Props) {
               transition: "all 0.2s ease",
             }}
           >
-            Continue to Website
+            {siteConfig.welcome.continueButtonText}
           </button>
         </div>
       </div>

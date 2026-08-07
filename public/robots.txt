@@ -1,0 +1,15 @@
+# ==========================================================
+# The Elephant In The Court Room
+# Robots.txt
+# ==========================================================
+
+User-agent: *
+
+Allow: /
+
+# Block internal assets that should never be indexed
+Disallow: /src/
+Disallow: /node_modules/
+
+# Sitemap
+Sitemap: https://the-elephant-in-the-court-room-7i3j.vercel.app/sitemap.xml

@@ -70,7 +70,10 @@ export default function EvidenceGallery() {
 
   return (
     <>
-      <section ref={sectionRef} id="evidence" className="section-padding bg-white">
+      <section
+  ref={sectionRef}
+  id="evidence"
+  aria-labelledby="evidence-heading" className="section-padding bg-off-white">
         <div className="content-container">
           {/* Header */}
           <div className="mb-10">
@@ -79,7 +82,10 @@ export default function EvidenceGallery() {
   to="/documents"
 />
             
-            <h2 className="reveal-child text-section-title text-purple mb-4">
+            <h2
+  id="evidence-heading"
+  className="reveal-child text-section-title text-purple mb-4"
+>
               The Evidence Speaks
             </h2>
             <p className="reveal-child text-body text-charcoal/80 max-w-xl">
@@ -91,8 +97,8 @@ export default function EvidenceGallery() {
           {/* Gallery Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[250px]">
             {galleryItems.map((item, index) => (
-              <div
-                key={index}
+              <figure
+               key={index}
                 onClick={() => openLightbox(index)}
                 className={`reveal-child group relative rounded-xl overflow-hidden cursor-pointer ${
                   index === 0 ? 'md:col-span-2 md:row-span-2' : ''
@@ -107,15 +113,15 @@ export default function EvidenceGallery() {
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <span className="text-label text-lime mb-1">{item.type}</span>
-                  <p className="text-white text-sm font-medium translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    {item.caption}
-                  </p>
+                  <figcaption className="text-white text-sm font-medium translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+  {item.caption}
+</figcaption>
                 </div>
                 {/* Type Badge */}
                 <div className="absolute top-3 right-3 bg-charcoal/70 text-white text-label px-2 py-0.5 rounded-sm">
                   {item.type}
                 </div>
-              </div>
+              </figure>
             ))}
           </div>
         </div>
@@ -137,7 +143,7 @@ export default function EvidenceGallery() {
             className="absolute top-5 right-5 text-white/70 hover:text-white transition-colors z-10"
             aria-label="Close lightbox"
           >
-            <X className="w-8 h-8" />
+            <X aria-hidden="true"className="w-8 h-8" />
           </button>
 
           {/* Prev */}
@@ -146,7 +152,7 @@ export default function EvidenceGallery() {
             className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
             aria-label="Previous image"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft aria-hidden="true"className="w-6 h-6" />
           </button>
 
           {/* Next */}
@@ -155,7 +161,7 @@ export default function EvidenceGallery() {
             className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-10"
             aria-label="Next image"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight aria-hidden="true" className="w-6 h-6" />
           </button>
 
           {/* Image */}
@@ -165,6 +171,8 @@ export default function EvidenceGallery() {
           >
             <img
               src={galleryItems[activeIndex].src}
+              loading="eager"
+              decoding="async"
               alt={galleryItems[activeIndex].caption}
               className="max-w-full max-h-[70vh] object-contain rounded-lg"
             />
