@@ -1,123 +1,137 @@
-import { Scale, FileText, HandHeart, ExternalLink } from "lucide-react";
+import { Scale, FileText, HandHeart, ExternalLink } from 'lucide-react'
 
 export default function WhySupportMatters() {
   const cards = [
-  {
-    icon: Scale,
-    title: "Justice Delayed",
-    text:
-      "More than fifteen years have passed since the original agreement. The legal process has required significant time, resources, and perseverance. Continued support helps keep the case moving forward.",
-    color: "bg-purple-100 text-purple-700",
-    link: "https://www.gofundme.com",
-  },
-  {
-    icon: FileText,
-    title: "Every Contribution Has Purpose",
-    text:
-      "Your support helps fund legal representation, court filings, document preparation, expert consultation, and other expenses required to continue pursuing the case.",
-    color: "bg-lime-100 text-green-700",
-    link: "https://www.gofundme.com",
-  },
-  {
-    icon: HandHeart,
-    title: "Stand for Accountability",
-    text:
-      "This campaign seeks enforcement of a written agreement through the legal process. Every donation helps ensure the case can continue to be presented on its merits.",
-    color: "bg-orange-100 text-orange-700",
-    link: "https://www.gofundme.com",
-  },
-];
+    {
+      icon: Scale,
+      title: 'Justice Delayed',
+      text:
+        'More than fifteen years have passed since the original agreement. The legal process has required significant time, resources, and perseverance. Continued support helps keep the case moving forward.',
+      color: 'bg-purple-100 text-purple-700',
+      link: 'https://www.gofundme.com',
+    },
+    {
+      icon: FileText,
+      title: 'Every Contribution Has Purpose',
+      text:
+        'Your support helps fund legal representation, court filings, document preparation, expert consultation, and other expenses required to continue pursuing the case.',
+      color: 'bg-lime-100 text-green-700',
+      link: 'https://www.gofundme.com',
+    },
+    {
+      icon: HandHeart,
+      title: 'Stand for Accountability',
+      text:
+        'This campaign seeks enforcement of a written agreement through the legal process. Every donation helps ensure the case can continue to be presented on its merits.',
+      color: 'bg-orange-100 text-orange-700',
+      link: 'https://www.gofundme.com',
+    },
+  ]
 
   return (
     <section
-  id="why-support-matters"
-  aria-labelledby="why-support-heading"
-  className="..."
->
+      id="why-support-matters"
+      aria-labelledby="why-support-heading"
+      className="w-full"
+    >
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Heading */}
-
         <div className="max-w-3xl mx-auto text-center mb-16">
-
           <span className="inline-block rounded-full bg-purple text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-6">
             Why Your Support Matters
           </span>
 
           <h2
-  id="why-support-heading"
-  className="text-5xl font-black text-purple mb-6"
->
+            id="why-support-heading"
+            className="text-5xl font-black text-purple mb-6"
+          >
             Justice Should Never Depend on Financial Resources
           </h2>
 
-          <p className="text-xl leading-9 text-gray-600">
+          <p
+            id="why-support-description"
+            className="text-xl leading-9 text-gray-600"
+          >
             A fair legal outcome should depend on the facts—not on which side
             can afford to continue the fight. Your support helps make it
             possible to continue pursuing this case through the legal process.
           </p>
-
         </div>
 
-        {/* Cards */}
-
+        {/* Support Cards */}
         <div
-  role="list"
-  className="grid gap-8 md:grid-cols-3"
->
-
-          {cards.map((card, index) => {
-  const Icon = card.icon;
-
-  return (
-    <a
-  key={index}
-  role="listitem"
-  href={card.link}
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label={card.title}
-  className="group block h-full"
->
-      <div
-        className="
-          h-full
-          rounded-3xl
-          border
-          border-gray-200
-          bg-off-white
-          p-6
-          md:p-8
-          shadow-lg
-          transition-all
-          duration-300
-          hover:-translate-y-2
-          hover:shadow-2xl
-          cursor-pointer
-        "
-      >
-        <div
-          className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 ${card.color}`}
+          role="list"
+          aria-label="Reasons your support matters"
+          className="grid gap-8 md:grid-cols-3"
         >
-          <Icon className="h-10 w-10" />
+          {cards.map((card, index) => {
+            const Icon = card.icon
+
+            return (
+              <div
+                key={index}
+                role="listitem"
+                className="h-full"
+              >
+                <a
+                  href={card.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${card.title} — support the campaign on GoFundMe`}
+                  className="
+                    group
+                    block
+                    h-full
+                    rounded-3xl
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-forest
+                    focus-visible:ring-offset-2
+                  "
+                >
+                  <div
+                    className="
+                      h-full
+                      rounded-3xl
+                      border
+                      border-gray-200
+                      bg-off-white
+                      p-6
+                      md:p-8
+                      shadow-lg
+                      transition-all
+                      duration-300
+                      hover:-translate-y-2
+                      hover:shadow-2xl
+                      cursor-pointer
+                    "
+                  >
+                    <div
+                      className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 ${card.color}`}
+                    >
+                      <Icon
+                        aria-hidden="true"
+                        focusable="false"
+                        className="h-10 w-10"
+                      />
+                    </div>
+
+                    <h3 className="mb-4 text-2xl font-bold text-purple transition-colors duration-300 group-hover:text-magenta">
+                      {card.title}
+                    </h3>
+
+                    <p className="leading-8 text-charcoal">
+                      {card.text}
+                    </p>
+                  </div>
+                </a>
+              </div>
+            )
+          })}
         </div>
 
-        <h3 className="mb-4 text-2xl font-bold text-purple transition-colors duration-300 group-hover:text-magenta">
-          {card.title}
-        </h3>
-
-        <p className="leading-8 text-charcoal">
-          {card.text}
-        </p>
-      </div>
-    </a>
-  );
-})}
-</div>
         {/* CTA */}
-
         <div className="mt-20 text-center">
-
           <h3 className="text-4xl font-black text-purple mb-4">
             Ready to Stand for Justice?
           </h3>
@@ -128,33 +142,68 @@ export default function WhySupportMatters() {
           </p>
 
           <a
-  href="https://www.gofundme.com/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="group relative inline-block rounded-xl border border-forest bg-pale-lime px-14 py-5 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
->
-  <span className="absolute right-4 top-4 text-forest/60 transition-colors group-hover:text-forest">
-  <ExternalLink size={14} strokeWidth={2} />
-</span>
+            href="https://www.gofundme.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Support the campaign on GoFundMe"
+            className="
+              group
+              relative
+              inline-block
+              rounded-xl
+              border
+              border-forest
+              bg-pale-lime
+              px-14
+              py-5
+              shadow-lg
+              transition-all
+              duration-300
+              hover:-translate-y-2
+              hover:shadow-2xl
+              cursor-pointer
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-forest
+              focus-visible:ring-offset-2
+            "
+          >
+            <span
+              className="
+                absolute
+                right-4
+                top-4
+                text-forest/60
+                transition-colors
+                group-hover:text-forest
+              "
+            >
+              <ExternalLink
+                aria-hidden="true"
+                focusable="false"
+                size={14}
+                strokeWidth={2}
+              />
+            </span>
 
-  <div className="flex flex-col items-center">
-  <span
-  className="text-lg sm:text-[1.2rem] font-extrabold tracking-wide uppercase text-charcoal"
-  style={{ fontFamily: "Arial, sans-serif" }}
->
-    SWITCH TO GOFUNDME
-  </span>
+            <div className="flex flex-col items-center">
+              <span
+                className="text-lg sm:text-[1.2rem] font-extrabold tracking-wide uppercase text-charcoal"
+                style={{ fontFamily: 'Arial, sans-serif' }}
+              >
+                SWITCH TO GOFUNDME
+              </span>
 
-  <span
-  className="mt-1 text-sm sm:text-[0.9rem] font-black tracking-wide uppercase text-charcoal"
-  style={{ fontFamily: "Arial, sans-serif" }}
->
-    TO DONATE
-  </span>
-</div>
-</a>
+              <span
+                className="mt-1 text-sm sm:text-[0.9rem] font-black tracking-wide uppercase text-charcoal"
+                style={{ fontFamily: 'Arial, sans-serif' }}
+              >
+                TO DONATE
+              </span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
-  );
+  )
 }
