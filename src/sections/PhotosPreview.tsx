@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import FeatureImage from "@/components/FeatureImage";
-
+import SectionBadge from "@/components/SectionBadge";
 export default function PhotosPreview() {
   const sectionRef = useSectionReveal<HTMLElement>();
 
   return (
-    <section ref={sectionRef} className="section-padding bg-white">
+    <section ref={sectionRef} aria-labelledby="photos-preview-heading"className="section-padding bg-white">
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-14 items-center">
 
           {/* Left Content */}
           <div>
 
-            <Link
-              to="/photos"
-              className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-6 transition-all duration-200 hover:scale-105 hover:shadow-md"
-            >
-              PHOTOS
-            </Link>
+            <SectionBadge
+  text="PHOTOS"
+  to="/photos"
+/>
 
-            <h2 className="reveal-child text-section-title text-purple mb-6">
+            <h2
+  id="photos-preview-heading"
+  className="reveal-child text-section-title text-purple mb-6"
+>
               See The Transformation
             </h2>
 
@@ -33,7 +34,7 @@ export default function PhotosPreview() {
             <div className="reveal-child w-20 h-px bg-gray-300 my-8"></div>
 
             <Link
-              to="/photos"
+              to="/photos"aria-label="View the complete before and after photo gallery"
               className="reveal-child inline-block text-body font-semibold text-purple link-underline transition-colors duration-200 hover:text-magenta"
             >
               Explore the gallery &rarr;
@@ -46,7 +47,7 @@ export default function PhotosPreview() {
 
             <FeatureImage
               image="/photos/after/after-0001.webp"
-              alt="Property after restoration"
+              alt="Preview of the restored property featured in The Elephant In The Court Room photo gallery"
               link="/photos"
             />
 

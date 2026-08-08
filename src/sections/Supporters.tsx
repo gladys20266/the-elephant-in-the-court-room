@@ -22,27 +22,38 @@ export default function Supporters() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
-    <section ref={sectionRef} className="section-padding bg-off-white">
+    <section
+  ref={sectionRef}
+  aria-labelledby="supporters-heading"className="section-padding bg-off-white">
       <div className="content-container">
         {/* Header */}
         <div className="text-center mb-12">
           <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
             SUPPORTERS
           </span>
-          <h2 className="reveal-child text-section-title text-purple">
-            This Is Our Fight
-          </h2>
+          <h2
+  id="supporters-heading"
+>
+  This Is Our Fight
+</h2>
         </div>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+  role="list"
+  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+>
           {testimonials.map((t, index) => (
             <div
-              key={index}
+  key={index}
+  role="listitem"
               className="reveal-child bg-white rounded-xl p-8 shadow-card relative"
             >
               {/* Decorative Quote Mark */}
-              <span className="absolute top-5 left-5 font-display text-6xl text-lime/30 leading-none select-none">
+              <span
+  aria-hidden="true"
+  className="absolute top-5 left-5 font-display text-6xl text-lime/30 leading-none select-none"
+>
                 &ldquo;
               </span>
 

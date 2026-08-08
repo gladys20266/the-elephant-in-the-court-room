@@ -6,7 +6,7 @@ export default function ContactSection() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
-    <section ref={sectionRef} id="contact" className="section-padding bg-white">
+    <section ref={sectionRef} id="contact" aria-labelledby="contact-heading"className="section-padding bg-white">
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
@@ -17,7 +17,10 @@ export default function ContactSection() {
               to="/contact"
             />
 
-            <h2 className="reveal-child text-section-title text-purple mb-4">
+            <h2
+  id="contact-heading"
+  className="reveal-child text-section-title text-purple mb-4"
+>
               Get In Touch
             </h2>
 
@@ -32,9 +35,10 @@ export default function ContactSection() {
               <p className="text-body-small text-charcoal/70">
                 Prefer email? Reach us at{" "}
                 <a
-                  href="mailto:contact@theelephantinthecourtroom.com"
-                  className="text-purple link-underline font-medium"
-                >
+  href="mailto:contact@theelephantinthecourtroom.com"
+  className="text-purple link-underline font-medium"
+  aria-label="Send an email to The Elephant In The Court Room campaign"
+>
                   contact@theelephantinthecourtroom.com
                 </a>
               </p>
@@ -45,11 +49,12 @@ export default function ContactSection() {
           <div className="reveal-child">
             <div className="rounded-xl overflow-hidden aspect-[4/3]">
               <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
-                alt="Community meeting"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+  src="https://images.unsplash.com/..."
+  alt="Illustrative image representing community support for The Elephant In The Court Room campaign"
+  className="w-full h-full object-cover"
+  loading="lazy"
+  decoding="async"
+/>
             </div>
           </div>
 

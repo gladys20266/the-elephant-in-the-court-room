@@ -39,12 +39,13 @@ const updateCards = [
 ]
 
 export default function Updates() {
-  const sectionRef = useSectionReveal<HTMLElement>()
+  const sectionRef = useSectionReveal()
 
   return (
     <section
       ref={sectionRef}
       id="updates"
+      aria-labelledby="updates-heading"
       className="section-padding bg-white"
     >
       <div className="content-container">
@@ -56,76 +57,76 @@ export default function Updates() {
             to="/updates"
           />
 
-          <h2 className="reveal-child text-section-title text-purple">
+          <h2
+            id="updates-heading"
+            className="reveal-child text-section-title text-purple"
+          >
             Latest News
           </h2>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-
+        <div
+          role="list"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+        >
           {updateCards.map((card, index) => (
-
-            <Link
+            <div
               key={index}
-              to={card.link}
-              className="
-                reveal-child
-                group
-                block
-                overflow-hidden
-                rounded-xl
-                bg-off-white
-                shadow-card
-                transition-all
-                duration-200
-                hover:-translate-y-1
-                hover:shadow-button-hover
-                cursor-pointer
-              "
+              role="listitem"
             >
-
-              {/* Image */}
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-
-                <div className="flex items-center justify-between mb-3">
-
-                  <span
-                    className={`text-label text-[0.65rem] px-2 py-0.5 rounded-sm ${card.categoryColor}`}
-                  >
-                    {card.category}
-                  </span>
-
-                  <span className="text-body-small text-charcoal/50">
-                    {card.date}
-                  </span>
-
+              <Link
+                to={card.link}
+                className="
+                  reveal-child
+                  group
+                  block
+                  overflow-hidden
+                  rounded-xl
+                  bg-off-white
+                  shadow-card
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-card-hover
+                "
+              >
+                {/* Image */}
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
 
-                <h3 className="text-body font-medium text-charcoal line-clamp-2 transition-colors duration-200 group-hover:text-purple">
-                  {card.title}
-                </h3>
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <span
+                      className={`text-label text-[0.65rem] px-2 py-0.5 rounded-sm ${card.categoryColor}`}
+                    >
+                      {card.category}
+                    </span>
 
-                <p className="text-body-small text-charcoal/70 mt-2 line-clamp-3">
-                  {card.excerpt}
-                </p>
+                    <span className="text-body-small text-charcoal/50">
+                      {card.date}
+                    </span>
+                  </div>
 
-              </div>
+                  <h3 className="text-body font-medium text-charcoal line-clamp-2 transition-colors duration-200 group-hover:text-purple">
+                    {card.title}
+                  </h3>
 
-            </Link>
-
+                  <p className="text-body-small text-charcoal/70 mt-2 line-clamp-3">
+                    {card.excerpt}
+                  </p>
+                </div>
+              </Link>
+            </div>
           ))}
-
         </div>
 
         {/* Bottom Link */}

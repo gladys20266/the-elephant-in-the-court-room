@@ -29,7 +29,11 @@ export default function WhySupportMatters() {
 ];
 
   return (
-    <section className="bg-white py-24">
+    <section
+  id="why-support-matters"
+  aria-labelledby="why-support-heading"
+  className="..."
+>
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
@@ -40,7 +44,10 @@ export default function WhySupportMatters() {
             Why Your Support Matters
           </span>
 
-          <h2 className="text-5xl font-black text-purple mb-6">
+          <h2
+  id="why-support-heading"
+  className="text-5xl font-black text-purple mb-6"
+>
             Justice Should Never Depend on Financial Resources
           </h2>
 
@@ -54,19 +61,24 @@ export default function WhySupportMatters() {
 
         {/* Cards */}
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div
+  role="list"
+  className="grid gap-8 md:grid-cols-3"
+>
 
           {cards.map((card, index) => {
   const Icon = card.icon;
 
   return (
     <a
-      key={index}
-      href={card.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block h-full"
-    >
+  key={index}
+  role="listitem"
+  href={card.link}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={card.title}
+  className="group block h-full"
+>
       <div
         className="
           h-full

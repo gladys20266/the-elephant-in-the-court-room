@@ -1,26 +1,27 @@
 import { Link } from "react-router-dom";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import FeatureImage from "@/components/FeatureImage";
-
+import SectionBadge from "@/components/SectionBadge";
 export default function VideosPreview() {
   const sectionRef = useSectionReveal<HTMLElement>();
 
   return (
-    <section ref={sectionRef} className="section-padding bg-off-white">
+    <section ref={sectionRef}aria-labelledby="videos-preview-heading" className="section-padding bg-off-white">
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-8 items-center">
 
           {/* Left Content */}
           <div>
 
-            <Link
-              to="/videos"
-              className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-6 transition-all duration-200 hover:scale-105 hover:shadow-md"
-            >
-              VIDEOS
-            </Link>
+            <SectionBadge
+  text="VIDEOS"
+  to="/videos"
+/>
 
-            <h2 className="reveal-child text-section-title text-purple mb-6">
+            <h2
+  id="videos-preview-heading"
+  className="reveal-child text-section-title text-purple mb-6"
+>
               Watch The Case Unfold
             </h2>
 
@@ -33,7 +34,7 @@ export default function VideosPreview() {
             <div className="reveal-child w-20 h-px bg-gray-300 my-8"></div>
 
             <Link
-              to="/videos"
+              to="/videos"aria-label="View all campaign videos"
               className="reveal-child inline-block text-body font-medium text-purple link-underline"
             >
               Watch all videos &rarr;
@@ -44,10 +45,10 @@ export default function VideosPreview() {
 <div className="reveal-child flex items-center justify-center lg:justify-end">
   <FeatureImage
     image="/assets/welcome-poster.webp"
-    alt="Welcome Video"
+    alt="Preview image for The Elephant In The Court Room introduction video"
     link="/videos"
     showPlayButton
-  />
+  />s
 </div>
 
         </div>

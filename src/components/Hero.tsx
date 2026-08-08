@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import { Share2, ExternalLink } from 'lucide-react'
 import { SITE_NAME } from '@/lib/brand'
 
@@ -13,13 +12,6 @@ export default function Hero({
   title,
   subtitle,
 }: HeroProps) {
-  
-  const ctaRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    // Keep minimal animation if needed
-  }, [])
-
   const handleShare = async () => {
     try {
       if (navigator.share) {
@@ -32,14 +24,19 @@ export default function Hero({
         showToast('Link copied!')
       }
     } catch {
-      // Silently fail
+      // Silently fail if sharing is cancelled or unavailable.
     }
   }
 
   const showToast = (message: string) => {
     const toast = document.createElement('div')
+
     toast.className =
       'fixed bottom-6 left-1/2 -translate-x-1/2 bg-lime text-charcoal text-body-small px-5 py-2.5 rounded-md shadow-button z-50'
+
+    toast.setAttribute('role', 'status')
+    toast.setAttribute('aria-live', 'polite')
+    toast.setAttribute('aria-atomic', 'true')
 
     toast.textContent = message
 
@@ -52,13 +49,16 @@ export default function Hero({
 
     setTimeout(() => {
       toast.style.opacity = '0'
+
       setTimeout(() => toast.remove(), 200)
     }, 2000)
   }
 
   return (
     <section
-  aria-labelledby="hero-title"
+      id="hero"
+      aria-labelledby={title ? 'hero-title' : undefined}
+      aria-describedby={subtitle ? 'hero-subtitle' : undefined}
       className="relative w-full overflow-hidden bg-white"
     >
       {/* Banner Image */}
@@ -67,6 +67,7 @@ export default function Hero({
         alt="The Elephant In The Court Room campaign banner"
         className="w-full h-auto object-cover"
         fetchPriority="high"
+        decoding="async"
       />
 
       {(section || title || subtitle) && (
@@ -79,15 +80,16 @@ export default function Hero({
 
           {title && (
             <h1
-  id="hero-title"
-  className="text-display text-purple mb-6"
->
-  {title}
-</h1>
+              id="hero-title"
+              className="text-display text-purple mb-6"
+            >
+              {title}
+            </h1>
           )}
 
           {subtitle && (
             <p
+              id="hero-subtitle"
               className="
                 w-full
                 max-w-5xl
@@ -115,7 +117,6 @@ export default function Hero({
       )}
 
       <div
-        ref={ctaRef}
         className="
           flex
           flex-col
@@ -128,11 +129,11 @@ export default function Hero({
           pb-10
           bg-white
         "
+        aria-label="Campaign actions"
       >
         <a
-          
-  href="https://www.gofundme.com/f/your-campaign"
-  aria-label="Support the legal campaign on GoFundMe"
+          href="https://www.gofundme.com/f/your-campaign"
+          aria-label="Support the legal campaign on GoFundMe"
           target="_blank"
           rel="noopener noreferrer"
           className="
@@ -153,6 +154,10 @@ export default function Hero({
             hover:-translate-y-0.5
             active:translate-y-0
             active:shadow-button
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-forest
+            focus-visible:ring-offset-2
             transition-all
             duration-200
           "
@@ -160,30 +165,30 @@ export default function Hero({
           <div className="text-center leading-tight">
             <div
               className="text-lg sm:text-[1.2rem] font-extrabold tracking-wide uppercase"
-              style={{ fontFamily: "Arial, sans-serif" }}
+              style={{ fontFamily: 'Arial, sans-serif' }}
             >
               SWITCH TO GOFUNDME
             </div>
 
             <div
               className="text-sm sm:text-[0.9rem] font-black tracking-wide uppercase mt-1"
-              style={{ fontFamily: "Arial, sans-serif" }}
+              style={{ fontFamily: 'Arial, sans-serif' }}
             >
               TO DONATE
             </div>
           </div>
 
           <ExternalLink
-  aria-hidden="true"
-  className="absolute top-2 right-2 w-3 h-3 text-charcoal/40"
-/>
+            aria-hidden="true"
+            focusable="false"
+            className="absolute top-2 right-2 w-3 h-3 text-charcoal/40"
+          />
         </a>
 
         <button
-          
-  type="button"
-  onClick={handleShare}
-  aria-label="Share this campaign"
+          type="button"
+          onClick={handleShare}
+          aria-label="Share this campaign"
           className="
             flex
             items-center
@@ -198,18 +203,23 @@ export default function Hero({
             px-8
             py-5
             hover:bg-[#2A4F3B]
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-forest
+            focus-visible:ring-offset-2
             transition-colors
             duration-150
           "
         >
           <Share2
-  aria-hidden="true"
-  className="w-6 h-6"
-/>
+            aria-hidden="true"
+            focusable="false"
+            className="w-6 h-6"
+          />
 
           <span
             className="text-lg font-black tracking-wide uppercase"
-            style={{ fontFamily: "Arial, sans-serif" }}
+            style={{ fontFamily: 'Arial, sans-serif' }}
           >
             SHARE
           </span>

@@ -2,26 +2,25 @@ import { Link } from "react-router-dom";
 import { FileText } from "lucide-react";
 import { useSectionReveal } from "@/hooks/useSectionReveal";
 import FeatureCard from "@/components/FeatureCard";
-
+import SectionBadge from "@/components/SectionBadge";
 export default function DocumentsPreview() {
   const sectionRef = useSectionReveal<HTMLElement>();
 
   return (
-    <section ref={sectionRef} className="section-padding bg-off-white">
+    <section ref={sectionRef}aria-labelledby="documents-preview-heading" className="section-padding bg-off-white">
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-10 lg:gap-14 items-center">
 
           {/* Left Content */}
           <div className="text-center lg:text-left">
 
-            <Link
-              to="/documents"
-              className="reveal-child inline-block bg-magenta text-white text-label px-3 py-1 rounded-sm mb-6 transition-all duration-200 hover:scale-105 hover:shadow-md"
-            >
-              DOCUMENTS
-            </Link>
+            <SectionBadge
+  text="DOCUMENTS"
+  to="/documents"
+/>
 
             <h2
+            id="documents-preview-heading"
               className="
                 reveal-child
                 text-3xl
@@ -56,7 +55,7 @@ export default function DocumentsPreview() {
             <div className="reveal-child w-20 h-px bg-gray-300 my-8 mx-auto lg:mx-0"></div>
 
             <Link
-              to="/documents"
+              to="/documents"aria-label="View all public court documents"
               className="reveal-child inline-block text-base sm:text-lg font-semibold text-purple link-underline transition-colors duration-200 hover:text-magenta"
             >
               Explore documents &rarr;
@@ -68,7 +67,12 @@ export default function DocumentsPreview() {
           <div className="reveal-child flex justify-center lg:justify-end">
 
             <FeatureCard
-              icon={<FileText className="h-16 w-16 sm:h-20 sm:w-20" />}
+              icon={
+  <FileText
+    aria-hidden="true"
+    className="h-16 w-16 sm:h-20 sm:w-20"
+  />
+}
               title="Lease-to-Own Agreement"
               subtitle="Court filings, agreements, motions and supporting evidence."
               buttonText="View Documents"
