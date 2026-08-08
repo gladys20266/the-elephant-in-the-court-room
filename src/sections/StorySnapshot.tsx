@@ -1,19 +1,21 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
-import SectionBadge from "@/components/SectionBadge";
+import SectionBadge from '@/components/SectionBadge'
+
 
 export default function StorySnapshot() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
     <section
-  ref={sectionRef}
-  aria-labelledby="story-heading"
-  className="section-padding bg-off-white"
->
+      id="story-snapshot"
+      ref={sectionRef}
+      aria-labelledby="story-heading"
+      aria-describedby="story-description"
+      className="section-padding bg-off-white"
+    >
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-10 items-center">
-
           {/* Left: Text */}
           <div className="text-center lg:text-left">
             <SectionBadge
@@ -22,8 +24,8 @@ export default function StorySnapshot() {
             />
 
             <h2
-  id="story-heading"
-  className="
+              id="story-heading"
+              className="
                 reveal-child
                 text-3xl
                 sm:text-4xl
@@ -37,6 +39,7 @@ export default function StorySnapshot() {
             </h2>
 
             <p
+              id="story-description"
               className="
                 reveal-child
                 text-base
@@ -60,6 +63,7 @@ export default function StorySnapshot() {
 
             <Link
               to="/about"
+              aria-label="Read the full story of Leo and Olga"
               className="
                 reveal-child
                 inline-block
@@ -69,6 +73,11 @@ export default function StorySnapshot() {
                 font-semibold
                 text-purple
                 link-underline
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-purple
+                focus-visible:ring-offset-2
+                rounded-sm
               "
             >
               Read the full story &rarr;
@@ -93,10 +102,10 @@ export default function StorySnapshot() {
                 alt="Illustrative portrait representing the people behind The Elephant In The Court Room campaign"
                 className="w-full h-full object-cover"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
-
         </div>
       </div>
     </section>
