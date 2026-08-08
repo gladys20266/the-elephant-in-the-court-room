@@ -1,15 +1,20 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import SectionBadge from "@/components/SectionBadge";
-import ContactForm from "@/components/ContactForm";
+import SectionBadge from '@/components/SectionBadge'
+import ContactForm from '@/components/ContactForm'
 
 export default function ContactSection() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
-    <section ref={sectionRef} id="contact" aria-labelledby="contact-heading"className="section-padding bg-white">
+    <section
+      ref={sectionRef}
+      id="contact"
+      aria-labelledby="contact-heading"
+      aria-describedby="contact-description"
+      className="section-padding bg-white"
+    >
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-
           {/* Left: Form */}
           <div>
             <SectionBadge
@@ -18,13 +23,16 @@ export default function ContactSection() {
             />
 
             <h2
-  id="contact-heading"
-  className="reveal-child text-section-title text-purple mb-4"
->
+              id="contact-heading"
+              className="reveal-child text-section-title text-purple mb-4"
+            >
               Get In Touch
             </h2>
 
-            <p className="reveal-child text-body text-charcoal/80 mb-8">
+            <p
+              id="contact-description"
+              className="reveal-child text-body text-charcoal/80 mb-8"
+            >
               Have questions, want to volunteer, or know someone who can help?
               We'd love to hear from you.
             </p>
@@ -33,12 +41,21 @@ export default function ContactSection() {
 
             <div className="reveal-child mt-6 pt-5 border-t border-lime/20">
               <p className="text-body-small text-charcoal/70">
-                Prefer email? Reach us at{" "}
+                Prefer email? Reach us at{' '}
                 <a
-  href="mailto:contact@theelephantinthecourtroom.com"
-  className="text-purple link-underline font-medium"
-  aria-label="Send an email to The Elephant In The Court Room campaign"
->
+                  href="mailto:contact@theelephantinthecourtroom.com"
+                  className="
+                    text-purple
+                    link-underline
+                    font-medium
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-purple
+                    focus-visible:ring-offset-2
+                    rounded-sm
+                  "
+                  aria-label="Send an email to The Elephant In The Court Room campaign"
+                >
                   contact@theelephantinthecourtroom.com
                 </a>
               </p>
@@ -49,15 +66,14 @@ export default function ContactSection() {
           <div className="reveal-child">
             <div className="rounded-xl overflow-hidden aspect-[4/3]">
               <img
-  src="https://images.unsplash.com/..."
-  alt="Illustrative image representing community support for The Elephant In The Court Room campaign"
-  className="w-full h-full object-cover"
-  loading="lazy"
-  decoding="async"
-/>
+                src="https://images.unsplash.com/..."
+                alt="Illustrative image representing community support for The Elephant In The Court Room campaign"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
-
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
-import SectionBadge from "@/components/SectionBadge";
+import SectionBadge from '@/components/SectionBadge'
 
 const updateCards = [
   {
@@ -46,12 +46,15 @@ export default function Updates() {
       ref={sectionRef}
       id="updates"
       aria-labelledby="updates-heading"
+      aria-describedby="updates-description"
       className="section-padding bg-white"
     >
       <div className="content-container">
-
         {/* Header */}
-        <div className="mb-10">
+        <div
+          id="updates-description"
+          className="mb-10"
+        >
           <SectionBadge
             text="UPDATES"
             to="/updates"
@@ -68,6 +71,7 @@ export default function Updates() {
         {/* Cards */}
         <div
           role="list"
+          aria-label="Latest campaign updates"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
         >
           {updateCards.map((card, index) => (
@@ -77,6 +81,7 @@ export default function Updates() {
             >
               <Link
                 to={card.link}
+                aria-label={`${card.title} — ${card.date}`}
                 className="
                   reveal-child
                   group
@@ -89,6 +94,10 @@ export default function Updates() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-card-hover
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
                 "
               >
                 {/* Image */}
@@ -111,9 +120,12 @@ export default function Updates() {
                       {card.category}
                     </span>
 
-                    <span className="text-body-small text-charcoal/50">
+                    <time
+                      dateTime={card.date}
+                      className="text-body-small text-charcoal/50"
+                    >
                       {card.date}
-                    </span>
+                    </time>
                   </div>
 
                   <h3 className="text-body font-medium text-charcoal line-clamp-2 transition-colors duration-200 group-hover:text-purple">
@@ -133,12 +145,23 @@ export default function Updates() {
         <div className="reveal-child text-center">
           <Link
             to="/updates"
-            className="inline-block text-body font-medium text-purple link-underline"
+            aria-label="See all campaign updates"
+            className="
+              inline-block
+              text-body
+              font-medium
+              text-purple
+              link-underline
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-purple
+              focus-visible:ring-offset-2
+              rounded-sm
+            "
           >
             See all updates &rarr;
           </Link>
         </div>
-
       </div>
     </section>
   )
