@@ -1,9 +1,9 @@
 interface DocumentCardProps {
-  title: string;
-  description: string;
-  category: string;
-  date: string;
-  file: string;
+  title: string
+  description: string
+  category: string
+  date: string
+  file: string
 }
 
 export default function DocumentCard({
@@ -13,8 +13,14 @@ export default function DocumentCard({
   date,
   file,
 }: DocumentCardProps) {
+  const titleId = `document-title-${title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')}`
+
   return (
-    <div
+    <article
+      aria-labelledby={titleId}
       className="
         flex
         h-full
@@ -36,11 +42,15 @@ export default function DocumentCard({
       {/* Content */}
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row items-start gap-5">
-
           {/* Icon */}
-          <div className="flex h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-full bg-purple/10">
+          <div
+            aria-hidden="true"
+            className="flex h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-full bg-purple/10"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
               className="h-7 w-7 sm:h-8 sm:w-8 text-purple"
               fill="none"
               viewBox="0 0 24 24"
@@ -57,7 +67,6 @@ export default function DocumentCard({
 
           {/* Text */}
           <div className="flex-1 min-w-0">
-
             {/* Category */}
             <span
               className="
@@ -81,6 +90,7 @@ export default function DocumentCard({
 
             {/* Title */}
             <h3
+              id={titleId}
               className="
                 text-xl
                 sm:text-2xl
@@ -95,9 +105,12 @@ export default function DocumentCard({
             </h3>
 
             {/* Date */}
-            <p className="text-sm text-charcoal mb-4">
+            <time
+              className="block text-sm text-charcoal mb-4"
+              dateTime={date}
+            >
               {date}
-            </p>
+            </time>
 
             {/* Description */}
             <p
@@ -110,9 +123,7 @@ export default function DocumentCard({
             >
               {description}
             </p>
-
           </div>
-
         </div>
       </div>
 
@@ -122,6 +133,7 @@ export default function DocumentCard({
           href={file}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`View document: ${title}`}
           className="
             flex
             w-full
@@ -141,11 +153,15 @@ export default function DocumentCard({
             hover:opacity-90
             hover:-translate-y-0.5
             hover:shadow-lg
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-purple
+            focus-visible:ring-offset-2
           "
         >
           View Document
         </a>
       </div>
-    </div>
-  );
+    </article>
+  )
 }
