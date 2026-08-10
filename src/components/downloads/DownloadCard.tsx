@@ -13,8 +13,20 @@ export default function DownloadCard({
   icon: Icon,
   href,
 }: DownloadCardProps) {
+  const cardId = `download-card-${title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')}`
+
+  const titleId = `${cardId}-title`
+  const descriptionId = `${cardId}-description`
+
   return (
-    <div className="rounded-3xl bg-white p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+    <article
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      className="h-full rounded-3xl bg-white p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+    >
       <div className="mb-6">
         <Icon
           className="h-14 w-14 text-purple"
@@ -22,11 +34,17 @@ export default function DownloadCard({
         />
       </div>
 
-      <h3 className="mb-3 text-2xl font-bold text-charcoal">
+      <h3
+        id={titleId}
+        className="mb-3 text-2xl font-bold text-charcoal"
+      >
         {title}
       </h3>
 
-      <p className="mb-8 text-gray-600 leading-relaxed">
+      <p
+        id={descriptionId}
+        className="mb-8 leading-relaxed text-gray-600"
+      >
         {description}
       </p>
 
@@ -34,10 +52,28 @@ export default function DownloadCard({
         href={href}
         download
         aria-label={`Download PDF: ${title}`}
-        className="inline-flex w-36 items-center justify-center rounded-xl border border-forest bg-pale-lime py-3 font-bold text-charcoal transition-all hover:bg-[#E0F0B0] focus:outline-none focus:ring-2 focus:ring-purple focus:ring-offset-2"
+        className="
+          inline-flex
+          w-36
+          items-center
+          justify-center
+          rounded-xl
+          border
+          border-forest
+          bg-pale-lime
+          py-3
+          font-bold
+          text-charcoal
+          transition-all
+          hover:bg-[#E0F0B0]
+          focus-visible:outline-none
+          focus-visible:ring-2
+          focus-visible:ring-purple
+          focus-visible:ring-offset-2
+        "
       >
         Download PDF
       </a>
-    </div>
+    </article>
   )
 }

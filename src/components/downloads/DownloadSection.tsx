@@ -21,29 +21,52 @@ export default function DownloadSection({
   documents,
   className = '',
 }: DownloadSectionProps) {
+  const sectionId = `downloads-${title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')}`
+
+  const headingId = `${sectionId}-title`
+  const descriptionId = `${sectionId}-description`
+
   return (
-    <section className={className}>
+    <section
+      id={sectionId}
+      aria-labelledby={headingId}
+      aria-describedby={descriptionId}
+      className={className}
+    >
       <div className="mb-10">
-        <h2 className="mb-3 text-4xl font-bold text-charcoal">
+        <h2
+          id={headingId}
+          className="mb-3 text-4xl font-bold text-charcoal"
+        >
           {title}
         </h2>
 
-        <p className="max-w-3xl text-lg text-gray-600">
+        <p
+          id={descriptionId}
+          className="max-w-3xl text-lg text-gray-600"
+        >
           {description}
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <ul
+        aria-label={`${title} downloads`}
+        className="grid list-none gap-8 p-0 md:grid-cols-2 xl:grid-cols-3"
+      >
         {documents.map((document) => (
-          <DownloadCard
-            key={document.title}
-            title={document.title}
-            description={document.description}
-            icon={document.icon}
-            href={document.href}
-          />
+          <li key={document.title}>
+            <DownloadCard
+              title={document.title}
+              description={document.description}
+              icon={document.icon}
+              href={document.href}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   )
 }
