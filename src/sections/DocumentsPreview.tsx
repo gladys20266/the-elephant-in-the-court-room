@@ -55,7 +55,8 @@ export default function DocumentsPreview() {
               "
             >
               Review the lease-to-own agreement, court filings, legal motions,
-              and supporting evidence that document the facts behind this case.
+and supporting materials that provide the documented record of the
+dispute and the legal proceedings described in this campaign.
             </p>
 
             <div

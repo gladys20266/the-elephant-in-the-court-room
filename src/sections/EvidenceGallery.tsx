@@ -6,39 +6,38 @@ import SectionBadge from '@/components/SectionBadge'
 interface GalleryItem {
   src: string
   caption: string
-  type: 'PHOTO' | 'DOCUMENT' | 'VIDEO'
+  type: 'PHOTO'
 }
 
 const galleryItems: GalleryItem[] = [
   {
-    src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80',
-    caption:
-      'Volunteering at the Annual Community Food Drive — Riverside Community Center, 2022',
+    src: '/photos/before/before-0001.webp',
+    caption: 'Photograph of the property before the transformation.',
     type: 'PHOTO',
   },
   {
-    src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80',
-    caption: 'Certificate of Appreciation — Riverside Community Center',
-    type: 'DOCUMENT',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-    caption: 'Team Celebration — 15 Years of Service',
+    src: '/photos/before/before-0003.webp',
+    caption: 'Photograph documenting the condition of the property before the transformation.',
     type: 'PHOTO',
   },
   {
-    src: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80',
-    caption: 'Youth Soccer Coach — Season Highlights',
-    type: 'VIDEO',
+    src: '/photos/before/before-0009.webp',
+    caption: 'Photograph documenting the property before the restoration work.',
+    type: 'PHOTO',
   },
   {
-    src: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
-    caption: 'Letters of Support from the Community',
-    type: 'DOCUMENT',
+    src: '/photos/after/after-0006.webp',
+    caption: 'Photograph of the property and outdoor grounds following the transformation.',
+    type: 'PHOTO',
   },
   {
-    src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
-    caption: 'Family at the Summer Festival, 2023',
+    src: '/photos/after/after-0014.webp',
+    caption: 'Photograph showing the Eclectic Eats property and restaurant setting.',
+    type: 'PHOTO',
+  },
+  {
+    src: '/photos/food/food-0041.webp',
+    caption: 'Photograph featuring the Eclectic Eats restaurant identity.',
     type: 'PHOTO',
   },
 ]
@@ -103,48 +102,48 @@ export default function EvidenceGallery() {
     <>
       <section
         ref={sectionRef}
-        id="evidence"
-        aria-labelledby="evidence-heading"
-        aria-describedby="evidence-description"
+        id="photos"
+        aria-labelledby="photos-heading"
+        aria-describedby="photos-description"
         className="section-padding bg-off-white"
       >
         <div className="content-container">
           {/* Header */}
           <div className="mb-10">
             <SectionBadge
-              text="EVIDENCE"
-              to="/documents"
+              text="PHOTOS"
+              to="/photos"
             />
 
             <h2
-              id="evidence-heading"
+              id="photos-heading"
               className="reveal-child text-section-title text-purple mb-4"
             >
-              The Evidence Speaks
+              The Property &amp; Its Story
             </h2>
 
             <p
-              id="evidence-description"
+              id="photos-description"
               className="reveal-child text-body text-charcoal/80 max-w-xl"
             >
-              These documents, photos, and videos paint a clear picture of who
-              The Elephant In The Court Room is and why they belong here. Click
-              any item to view it in full.
+              These campaign photographs show the property before and after
+              the transformation and provide a visual record of the
+              environment in which Eclectic Eats was developed.
             </p>
           </div>
 
           {/* Gallery Grid */}
           <div
             role="list"
-            aria-label="Evidence gallery"
+            aria-label="Campaign photographs"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[250px]"
           >
             {galleryItems.map((item, index) => (
               <figure
-                key={index}
+                key={item.src}
                 role="listitem"
                 tabIndex={0}
-                aria-label={`Open ${item.type.toLowerCase()}: ${item.caption}`}
+                aria-label={`Open photo: ${item.caption}`}
                 onClick={() => openLightbox(index)}
                 onKeyDown={(e) => handleGalleryKeyDown(e, index)}
                 className={`
@@ -252,7 +251,7 @@ export default function EvidenceGallery() {
           tabIndex={-1}
           role="dialog"
           aria-modal="true"
-          aria-label={`Viewing ${galleryItems[activeIndex].type.toLowerCase()}: ${galleryItems[activeIndex].caption}`}
+          aria-label={`Viewing photo: ${galleryItems[activeIndex].caption}`}
         >
           {/* Close Button */}
           <button
@@ -311,7 +310,7 @@ export default function EvidenceGallery() {
               focus-visible:ring-offset-2
               focus-visible:ring-offset-black
             "
-            aria-label="Previous image"
+            aria-label="Previous photo"
           >
             <ChevronLeft
               aria-hidden="true"
@@ -349,7 +348,7 @@ export default function EvidenceGallery() {
               focus-visible:ring-offset-2
               focus-visible:ring-offset-black
             "
-            aria-label="Next image"
+            aria-label="Next photo"
           >
             <ChevronRight
               aria-hidden="true"

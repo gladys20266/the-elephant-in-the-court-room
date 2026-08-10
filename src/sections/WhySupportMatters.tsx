@@ -1,207 +1,133 @@
-import { Scale, FileText, HandHeart, ExternalLink } from 'lucide-react'
+import { useSectionReveal } from '@/hooks/useSectionReveal'
+import { Link } from 'react-router-dom'
+import SectionBadge from '@/components/SectionBadge'
 
-export default function WhySupportMatters() {
-  const cards = [
-    {
-      icon: Scale,
-      title: 'Justice Delayed',
-      text:
-        'More than fifteen years have passed since the original agreement. The legal process has required significant time, resources, and perseverance. Continued support helps keep the case moving forward.',
-      color: 'bg-purple-100 text-purple-700',
-      link: 'https://www.gofundme.com',
-    },
-    {
-      icon: FileText,
-      title: 'Every Contribution Has Purpose',
-      text:
-        'Your support helps fund legal representation, court filings, document preparation, expert consultation, and other expenses required to continue pursuing the case.',
-      color: 'bg-lime-100 text-green-700',
-      link: 'https://www.gofundme.com',
-    },
-    {
-      icon: HandHeart,
-      title: 'Stand for Accountability',
-      text:
-        'This campaign seeks enforcement of a written agreement through the legal process. Every donation helps ensure the case can continue to be presented on its merits.',
-      color: 'bg-orange-100 text-orange-700',
-      link: 'https://www.gofundme.com',
-    },
-  ]
+export default function StorySnapshot() {
+  const sectionRef = useSectionReveal<HTMLElement>()
 
   return (
     <section
-      id="why-support-matters"
-      aria-labelledby="why-support-heading"
-      className="w-full"
+      id="story-snapshot"
+      ref={sectionRef}
+      aria-labelledby="story-heading"
+      aria-describedby="story-description"
+      className="section-padding bg-off-white"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Heading */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block rounded-full bg-purple text-white px-4 py-2 text-sm font-bold uppercase tracking-wider mb-6">
-            Why Your Support Matters
-          </span>
+      <div className="content-container">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-10 items-center">
+          {/* Left: Text */}
+          <div className="text-center lg:text-left">
+            <SectionBadge
+              text="THE STORY"
+              to="/about"
+            />
 
-          <h2
-            id="why-support-heading"
-            className="text-5xl font-black text-purple mb-6"
-          >
-            Justice Should Never Depend on Financial Resources
-          </h2>
-
-          <p
-            id="why-support-description"
-            className="text-xl leading-9 text-gray-600"
-          >
-            A fair legal outcome should depend on the facts—not on which side
-            can afford to continue the fight. Your support helps make it
-            possible to continue pursuing this case through the legal process.
-          </p>
-        </div>
-
-        {/* Support Cards */}
-        <div
-          role="list"
-          aria-label="Reasons your support matters"
-          className="grid gap-8 md:grid-cols-3"
-        >
-          {cards.map((card, index) => {
-            const Icon = card.icon
-
-            return (
-              <div
-                key={index}
-                role="listitem"
-                className="h-full"
-              >
-                <a
-                  href={card.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${card.title} — support the campaign on GoFundMe`}
-                  className="
-                    group
-                    block
-                    h-full
-                    rounded-3xl
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-forest
-                    focus-visible:ring-offset-2
-                  "
-                >
-                  <div
-                    className="
-                      h-full
-                      rounded-3xl
-                      border
-                      border-gray-200
-                      bg-off-white
-                      p-6
-                      md:p-8
-                      shadow-lg
-                      transition-all
-                      duration-300
-                      hover:-translate-y-2
-                      hover:shadow-2xl
-                      cursor-pointer
-                    "
-                  >
-                    <div
-                      className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 ${card.color}`}
-                    >
-                      <Icon
-                        aria-hidden="true"
-                        focusable="false"
-                        className="h-10 w-10"
-                      />
-                    </div>
-
-                    <h3 className="mb-4 text-2xl font-bold text-purple transition-colors duration-300 group-hover:text-magenta">
-                      {card.title}
-                    </h3>
-
-                    <p className="leading-8 text-charcoal">
-                      {card.text}
-                    </p>
-                  </div>
-                </a>
-              </div>
-            )
-          })}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-20 text-center">
-          <h3 className="text-4xl font-black text-purple mb-4">
-            Ready to Stand for Justice?
-          </h3>
-
-          <p className="mx-auto mb-8 max-w-2xl text-lg leading-8 text-gray-600">
-            Every contribution—large or small—helps sustain the effort to
-            continue pursuing this case through the legal system.
-          </p>
-
-          <a
-            href="https://www.gofundme.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Support the campaign on GoFundMe"
-            className="
-              group
-              relative
-              inline-block
-              rounded-xl
-              border
-              border-forest
-              bg-pale-lime
-              px-14
-              py-5
-              shadow-lg
-              transition-all
-              duration-300
-              hover:-translate-y-2
-              hover:shadow-2xl
-              cursor-pointer
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-forest
-              focus-visible:ring-offset-2
-            "
-          >
-            <span
+            <h2
+              id="story-heading"
               className="
-                absolute
-                right-4
-                top-4
-                text-forest/60
-                transition-colors
-                group-hover:text-forest
+                reveal-child
+                text-3xl
+                sm:text-4xl
+                lg:text-section-title
+                text-purple
+                leading-tight
+                mb-5
               "
             >
-              <ExternalLink
-                aria-hidden="true"
-                focusable="false"
-                size={14}
-                strokeWidth={2}
+              The Death of the Contract
+            </h2>
+
+            <p
+              id="story-description"
+              className="
+                reveal-child
+                text-base
+                sm:text-lg
+                lg:text-body
+                text-charcoal
+                leading-8
+                max-w-2xl
+                mx-auto
+                lg:mx-0
+                break-words
+              "
+            >
+              In 2010, siblings Leo and Olga invested their life savings and
+              professional expertise into rebuilding a distressed commercial
+              property in Delray Beach, Florida. They entered into a
+              lease-to-own agreement with a fixed purchase price and a
+              four-year option period, intending to build a lasting family
+              business through their restaurant, Eclectic Eats.
+            </p>
+
+            <p
+              className="
+                reveal-child
+                mt-5
+                text-base
+                sm:text-lg
+                lg:text-body
+                text-charcoal
+                leading-8
+                max-w-2xl
+                mx-auto
+                lg:mx-0
+                break-words
+              "
+            >
+              After they say they exercised their contractual option to
+              purchase the property, the dispute developed into prolonged
+              litigation. Leo and Olga filed suit in Florida on October 30,
+              2014, seeking to enforce the agreement. Their crowdfunding
+              campaign now seeks support for continued legal representation
+              and pursuit of the claims described in the public record.
+            </p>
+
+            <Link
+              to="/about"
+              aria-label="Read the full story of Leo and Olga"
+              className="
+                reveal-child
+                inline-block
+                mt-8
+                text-base
+                sm:text-lg
+                font-semibold
+                text-purple
+                link-underline
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-purple
+                focus-visible:ring-offset-2
+                rounded-sm
+              "
+            >
+              Read the full story &rarr;
+            </Link>
+          </div>
+
+          {/* Right: Photo */}
+          <div className="reveal-child">
+            <div
+              className="
+                rounded-xl
+                overflow-hidden
+                aspect-[4/5]
+                sm:aspect-[3/4]
+                max-w-sm
+                mx-auto
+                lg:max-w-none
+              "
+            >
+              <img
+                src="/photos/archive/story-portrait.jpg"
+                alt="Leo and Olga, the siblings behind The Death of the Contract campaign"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
-            </span>
-
-            <div className="flex flex-col items-center">
-              <span
-                className="text-lg sm:text-[1.2rem] font-extrabold tracking-wide uppercase text-charcoal"
-                style={{ fontFamily: 'Arial, sans-serif' }}
-              >
-                SWITCH TO GOFUNDME
-              </span>
-
-              <span
-                className="mt-1 text-sm sm:text-[0.9rem] font-black tracking-wide uppercase text-charcoal"
-                style={{ fontFamily: 'Arial, sans-serif' }}
-              >
-                TO DONATE
-              </span>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </section>

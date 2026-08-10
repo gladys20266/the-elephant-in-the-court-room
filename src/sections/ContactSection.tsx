@@ -33,8 +33,9 @@ export default function ContactSection() {
               id="contact-description"
               className="reveal-child text-body text-charcoal/80 mb-8"
             >
-              Have questions, want to volunteer, or know someone who can help?
-              We'd love to hear from you.
+              Have questions about the case or the crowdfunding campaign?
+              Want to support Leo and Olga, support Eclectic Eats, or
+              contribute ideas? We&apos;d like to hear from you.
             </p>
 
             <ContactForm />
@@ -62,12 +63,12 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right: Photo */}
+          {/* Right: Campaign Photograph */}
           <div className="reveal-child">
             <div className="rounded-xl overflow-hidden aspect-[4/3]">
               <img
-                src="https://images.unsplash.com/..."
-                alt="Illustrative image representing community support for The Elephant In The Court Room campaign"
+                src="/photos/after/after-0006.webp"
+                alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"

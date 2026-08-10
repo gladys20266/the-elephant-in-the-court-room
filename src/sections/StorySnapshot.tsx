@@ -2,7 +2,6 @@ import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
 import SectionBadge from '@/components/SectionBadge'
 
-
 export default function StorySnapshot() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
@@ -19,7 +18,7 @@ export default function StorySnapshot() {
           {/* Left: Text */}
           <div className="text-center lg:text-left">
             <SectionBadge
-              text="OUR STORY"
+              text="THE STORY"
               to="/about"
             />
 
@@ -35,7 +34,7 @@ export default function StorySnapshot() {
                 mb-5
               "
             >
-              A Life Built Here
+              The Death of the Contract
             </h2>
 
             <p
@@ -53,12 +52,35 @@ export default function StorySnapshot() {
                 break-words
               "
             >
-              In America, a signed contract is meant to protect honest work,
-              investment, and property rights. But what happens when enforcing
-              that contract becomes a years-long legal battle instead of a
-              straightforward process? This is the story of Leo and Olga, two
-              siblings who invested their savings and expertise into restoring a
-              distressed commercial property in Delray Beach, Florida.
+              In 2010, siblings Leo and Olga invested their life savings and
+              professional expertise into rebuilding a distressed commercial
+              property in Delray Beach, Florida. They entered into a
+              lease-to-own agreement with a fixed purchase price and a
+              four-year option period, intending to build a lasting family
+              business through their restaurant, Eclectic Eats.
+            </p>
+
+            <p
+              className="
+                reveal-child
+                mt-5
+                text-base
+                sm:text-lg
+                lg:text-body
+                text-charcoal
+                leading-8
+                max-w-2xl
+                mx-auto
+                lg:mx-0
+                break-words
+              "
+            >
+              After they say they exercised their contractual option to
+              purchase the property, the dispute developed into prolonged
+              litigation. Leo and Olga filed suit in Florida on October 30,
+              2014, seeking to enforce the agreement. Their crowdfunding
+              campaign now seeks support for continued legal representation
+              and pursuit of the claims described in the public record.
             </p>
 
             <Link
@@ -84,7 +106,7 @@ export default function StorySnapshot() {
             </Link>
           </div>
 
-          {/* Right: Photo */}
+          {/* Right: Campaign Property Photograph */}
           <div className="reveal-child">
             <div
               className="
@@ -98,8 +120,8 @@ export default function StorySnapshot() {
               "
             >
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
-                alt="Illustrative portrait representing the people behind The Elephant In The Court Room campaign"
+                src="/photos/after/after-0006.webp"
+                alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"

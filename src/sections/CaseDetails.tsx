@@ -8,28 +8,34 @@ gsap.registerPlugin(ScrollTrigger)
 
 const timelineItems = [
   {
-    date: 'MARCH 2023',
-    title: 'Legal Proceedings Begin',
+    date: '2010',
+    title: 'Lease-to-Own Agreement',
     description:
-      'The Elephant In The Court Room receives notice requiring them to appear before an immigration judge.',
+      'Leo and Olga entered into a lease-to-own agreement concerning a distressed commercial property in Delray Beach, Florida. The campaign describes a fixed purchase price and a four-year period in which they could exercise the purchase option.',
   },
   {
-    date: 'JUNE 2023',
-    title: 'Community Rallies Support',
+    date: '2014',
+    title: 'Purchase Dispute and Lawsuit',
     description:
-      "Neighbors, coworkers, and friends begin organizing to stand by The Elephant In The Court Room's side.",
+      'After Leo and Olga say they exercised their contractual option to purchase the property, the dispute escalated. On October 30, 2014, they turned to the Florida courts seeking to enforce the agreement.',
   },
   {
-    date: 'NOVEMBER 2023',
-    title: 'Evidence Gathering Phase',
+    date: '2014–2025',
+    title: 'More Than Eleven Years of Litigation',
     description:
-      "Legal team compiles documentation of The Elephant In The Court Room's community ties and contributions.",
+      'The campaign describes a prolonged series of court proceedings, filings, appeals, motions, and other procedural developments. According to the campaign narrative, the litigation continued for more than eleven years without final enforcement of the contractual rights they seek.',
+  },
+  {
+    date: '2025',
+    title: 'Judicial Recusal and Further Delay',
+    description:
+      'The campaign narrative identifies a judicial recusal in 2025 as another significant development that reset the calendar and contributed to the continuing delay described by Leo and Olga.',
   },
   {
     date: 'ONGOING',
-    title: 'The Fight Continues',
+    title: 'Seeking Focused Legal Representation',
     description:
-      "With your help, The Elephant In The Court Room's legal team can continue building the strongest possible case.",
+      'Leo and Olga are seeking support to secure experienced national legal representation and continue pursuing the legal claims and remedies described in their campaign and the public record.',
   },
 ]
 
@@ -106,10 +112,13 @@ export default function CaseDetails() {
               break-words
             "
           >
-            The Elephant In The Court Room's case represents the challenges
-            many immigrants face when navigating a complex legal system.
-            Understanding the timeline helps explain why immediate action is
-            critical.
+            The campaign centers on a lease-to-own agreement entered into in
+            2010 for a distressed commercial property in Delray Beach,
+            Florida. Leo and Olga say they exercised their contractual option
+            to purchase the property, but the dispute developed into more
+            than eleven years of litigation. The campaign was created to help
+            fund continued legal representation and pursuit of the claims
+            described in the public record.
           </p>
         </div>
 
@@ -188,7 +197,7 @@ export default function CaseDetails() {
                   mb-5
                 "
               >
-                Understanding the Legal Challenge
+                Why the Campaign Was Started
               </h3>
 
               <div
@@ -201,26 +210,30 @@ export default function CaseDetails() {
                 "
               >
                 <p>
-                  The Elephant In The Court Room is facing removal proceedings
-                  that could separate them from their family and the community
-                  they have called home for over fifteen years.
+                  Leo and Olga say that they followed the terms of their
+                  lease-to-own agreement and invested their resources and
+                  professional expertise into rebuilding the Delray Beach
+                  property and developing Eclectic Eats.
                 </p>
 
                 <p>
-                  The legal process is lengthy, expensive, and complex. Quality
-                  legal representation is essential but comes at a significant
-                  cost that is beyond what The Elephant In The Court Room and
-                  their family can afford alone.
+                  After the dispute over the purchase of the property arose,
+                  they chose to pursue their contractual claims through the
+                  Florida courts. Their campaign describes more than eleven
+                  years of litigation, substantial legal expense, and an
+                  ongoing effort to obtain enforcement of the agreement.
                 </p>
 
                 <p>
-                  Your contribution goes directly toward legal fees,
-                  documentation costs, and expert testimony needed to present
-                  the strongest case possible.
+                  The campaign seeks funding for experienced national legal
+                  representation to review the case, pursue the legal rights
+                  and remedies identified by Leo and Olga, evaluate potential
+                  damages, and address the related claims described in the
+                  campaign materials and public record.
                 </p>
               </div>
 
-              <div className="mt-8 bg-lime/20 rounded-lg p-5 text-center">
+              <div className="mt-8 bg-lime/20 rounded-lg p-5">
                 <p
                   className="
                     text-lg
@@ -229,8 +242,15 @@ export default function CaseDetails() {
                     leading-relaxed
                   "
                 >
-                  "Every donation, no matter the size, brings The Elephant In
-                  The Court Room closer to justice."
+                  “If a clear, written agreement can remain tied up in court
+                  for more than eleven years, what does that mean for
+                  contractual rights?”
+                </p>
+
+                <p className="mt-3 text-sm text-charcoal/70 leading-6">
+                  This question reflects the concern expressed in the
+                  campaign narrative and is presented as an issue for the
+                  public to examine through the record.
                 </p>
               </div>
             </div>

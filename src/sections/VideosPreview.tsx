@@ -34,9 +34,10 @@ export default function VideosPreview() {
               id="videos-preview-description"
               className="reveal-child text-body text-charcoal max-w-2xl"
             >
-              Watch the introduction and follow the legal journey through
-              videos documenting the broken promise, the evidence, and the
-              pursuit of justice.
+              Watch the introduction and follow the story of the lease-to-own
+agreement, the years of litigation that followed, and the campaign
+for continued legal representation and enforcement of the claimed
+contractual rights.
             </p>
 
             <div

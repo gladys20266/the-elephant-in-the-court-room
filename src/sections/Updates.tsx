@@ -4,36 +4,33 @@ import SectionBadge from '@/components/SectionBadge'
 
 const updateCards = [
   {
-    category: 'MILESTONE',
+    category: 'CASE HISTORY',
     categoryColor: 'bg-gold text-charcoal',
-    date: 'JANUARY 15, 2025',
-    title: 'We Reached 60% of Our Goal',
+    date: '2010',
+    title: 'The Lease-to-Own Agreement',
     excerpt:
-      "Thanks to the incredible generosity of 340 supporters, we've raised $31,000 toward our $50,000 goal. Every single donation brings us closer to ensuring The Elephant In The Court Room gets the legal representation they deserve.",
-    image:
-      'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=600&q=80',
+      'Leo and Olga entered into a lease-to-own agreement concerning a distressed commercial property in Delray Beach, Florida. The campaign describes a fixed purchase price and a four-year period in which they could exercise the purchase option.',
+    image: '/photos/after/after-0014.webp',
     link: '/updates',
   },
   {
     category: 'LEGAL',
     categoryColor: 'bg-magenta text-white',
-    date: 'DECEMBER 3, 2024',
-    title: 'Next Court Date Scheduled',
+    date: 'OCTOBER 30, 2014',
+    title: 'The Lawsuit Begins',
     excerpt:
-      "The Elephant In The Court Room's next hearing is set for February. Our legal team is preparing additional documentation and community testimony to present the strongest possible case.",
-    image:
-      'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80',
+      'After the dispute over the purchase of the property arose, Leo and Olga turned to the Florida courts to seek enforcement of the agreement. The campaign describes the litigation that followed as continuing for more than eleven years.',
+    image: '/photos/after/after-0006.webp',
     link: '/updates',
   },
   {
-    category: 'COMMUNITY',
+    category: 'CURRENT CAMPAIGN',
     categoryColor: 'bg-forest text-lime',
-    date: 'NOVEMBER 20, 2024',
-    title: 'Thank You, Neighbors',
+    date: '2026',
+    title: 'Seeking National Legal Representation',
     excerpt:
-      'The outpouring of support has been overwhelming. From handwritten letters to fundraiser dinners, this community has shown what it means to stand together.',
-    image:
-      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80',
+      'The crowdfunding campaign seeks support to secure experienced national legal representation and continue pursuing the claims and remedies described in the campaign materials and public record.',
+    image: '/photos/food/food-0041.webp',
     link: '/updates',
   },
 ]
@@ -64,14 +61,14 @@ export default function Updates() {
             id="updates-heading"
             className="reveal-child text-section-title text-purple"
           >
-            Latest News
+            Campaign Updates
           </h2>
         </div>
 
         {/* Cards */}
         <div
           role="list"
-          aria-label="Latest campaign updates"
+          aria-label="Campaign updates"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
         >
           {updateCards.map((card, index) => (

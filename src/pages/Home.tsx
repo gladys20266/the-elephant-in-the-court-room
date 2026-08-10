@@ -90,8 +90,9 @@ return (
     )}
 
     <Hero
-      subtitle="A promise made • A contract broken • Eleven years fighting for justice."
-    />
+  title="The Death of the Contract"
+  subtitle="Two siblings. One lease-to-own agreement. More than eleven years seeking to enforce their contractual rights."
+/>
 
 <WhySupportMatters />
 

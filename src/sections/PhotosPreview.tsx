@@ -71,7 +71,7 @@ export default function PhotosPreview() {
           {/* Right Image */}
           <div className="reveal-child flex items-center justify-center lg:justify-end">
             <FeatureImage
-              image="/photos/after/after-0001.webp"
+              image="/photos/after/after-0006.webp"
               alt="Preview of the restored property featured in The Elephant In The Court Room photo gallery"
               link="/photos"
             />

@@ -9,7 +9,7 @@ export default function FinalCTA() {
     try {
       if (navigator.share) {
         await navigator.share({
-          title: "Support The Elephant In The Court Room's Fight for Justice",
+          title: 'The Death of the Contract — Support the Campaign',
           url: window.location.href,
         })
       } else if (navigator.clipboard) {
@@ -59,16 +59,18 @@ export default function FinalCTA() {
           id="final-cta-heading"
           className="reveal-child text-section-title text-charcoal"
         >
-          Stand With The Elephant In The Court Room
+          Stand With Leo and Olga
         </h2>
 
         <p
           id="final-cta-description"
-          className="reveal-child text-subheading text-charcoal mt-6 max-w-xl mx-auto"
+          className="reveal-child text-subheading text-charcoal mt-6 max-w-2xl mx-auto"
         >
-          Every share, every signature, and every donation brings The Elephant
-          In The Court Room closer to staying with the people who love them.
-          The time to act is now.
+          Leo and Olga are seeking support after more than eleven years of
+          litigation arising from their dispute over a lease-to-own agreement.
+          Their crowdfunding campaign is intended to help secure experienced
+          national legal representation and continue pursuing the claims and
+          remedies described in the campaign materials and public record.
         </p>
 
         {/* CTA Buttons */}
@@ -110,8 +112,9 @@ export default function FinalCTA() {
         </div>
 
         <p className="reveal-child text-body-small text-charcoal/70 mt-6">
-          Can&apos;t donate right now? Sharing this page costs nothing and
-          helps more than you know.
+          You can support the campaign by contributing to the legal effort,
+          sharing the campaign, supporting Eclectic Eats, or reviewing the
+          public record and contributing ideas.
         </p>
       </div>
     </section>
