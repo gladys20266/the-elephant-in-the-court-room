@@ -8,7 +8,7 @@ Website: https://the-elephant-in-the-court-room-7i3j.vercel.app/
 
 The Elephant In The Court Room is the official website for a public legal advocacy and crowdfunding campaign focused on a long-running civil dispute involving a lease-to-own agreement in Florida.
 
-The website serves as the central public resource for the campaign by providing verified information about the legal case, supporting documentation, campaign updates, videos, photographs, downloadable materials, and opportunities for public support.
+The website serves as the central public resource for the campaign by providing information about the legal case, supporting documentation, campaign updates, videos, photographs, downloadable materials, and opportunities for public support.
 
 ## Purpose
 
@@ -70,7 +70,17 @@ Offers downloadable campaign resources.
 ### Contact
 
 Provides methods for contacting the campaign.
+### Privacy
 
+Provides information about how the website collects, uses, protects, and manages personal information.
+
+### Terms
+
+Defines the terms governing use of the website and its related services.
+
+### Disclaimer
+
+Provides important information regarding legal information, fundraising, donations, third-party services, and campaign outcomes.
 ## Intended Audience
 
 - Members of the public

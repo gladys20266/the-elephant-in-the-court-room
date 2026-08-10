@@ -1,6 +1,15 @@
 import Hero from '@/components/Hero'
 import LegalPage from '@/components/LegalPage'
-
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
+const disclaimerSeo = {
+  title: 'Disclaimer | The Elephant In The Court Room',
+  description:
+    'Read the Disclaimer for The Elephant In The Court Room, including important information about legal information, fundraising, donations, third-party services, payment processing, and campaign outcomes.',
+  canonical: '/disclaimer',
+  type: 'website' as const,
+}
 const sections = [
   {
     id: 'informational-purposes',
@@ -132,7 +141,18 @@ const sections = [
 export default function Disclaimer() {
   return (
     <>
+      <SEO data={disclaimerSeo} />
+
+      <StructuredData
+        data={webPageSchema({
+          title: disclaimerSeo.title,
+          description: disclaimerSeo.description,
+          path: disclaimerSeo.canonical,
+        })}
+      />
+
       <Hero subtitle="Important information regarding the use of this Website, the Campaign, fundraising activities, and your responsibilities as a visitor or donor." />
+
       <LegalPage
         title="Disclaimer"
         lastUpdated="August 3, 2026"

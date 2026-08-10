@@ -1,6 +1,15 @@
 import Hero from '@/components/Hero'
 import LegalPage from '@/components/LegalPage'
-
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
+const privacySeo = {
+  title: 'Privacy Policy | The Elephant In The Court Room',
+  description:
+    'Read the Privacy Policy for The Elephant In The Court Room, including information about data collection, cookies, analytics, third-party services, security, retention, and privacy rights.',
+  canonical: '/privacy',
+  type: 'website' as const,
+}
 const sections = [
   {
     id: 'introduction',
@@ -928,7 +937,20 @@ const sections = [
 export default function Privacy() {
   return (
     <>
-      <Hero subtitle="Learn how we collect, use, protect, disclose, and safeguard your information when you use The Elephant In The Court Room website and related services." />
+      <SEO data={privacySeo} />
+
+      <StructuredData
+        data={webPageSchema({
+          title: privacySeo.title,
+          description: privacySeo.description,
+          path: privacySeo.canonical,
+        })}
+      />
+
+      <Hero
+        subtitle="Learn how we collect, use, protect, disclose, and safeguard your information when you use The Elephant In The Court Room website and related services."
+      />
+
       <LegalPage
         title="Privacy Policy"
         lastUpdated="August 3, 2026"

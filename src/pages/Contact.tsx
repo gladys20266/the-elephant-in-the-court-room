@@ -3,6 +3,9 @@ import Hero from '@/components/Hero'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import ContactForm from '@/components/ContactForm'
 import { Link } from 'react-router-dom'
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
 import {
   Mail,
   Phone,
@@ -55,6 +58,14 @@ const SHARE_PLATFORMS = [
     isCopy: true,
   },
 ]
+
+const contactSeo = {
+  title: 'Contact | The Elephant In The Court Room',
+  description:
+    'Contact The Elephant In The Court Room campaign, ask questions, make media inquiries, learn how to support the campaign, or share the case.',
+  canonical: '/contact',
+  type: 'website' as const,
+}
 
 export default function Contact() {
   const sectionRef = useSectionReveal<HTMLElement>()
@@ -140,6 +151,16 @@ export default function Contact() {
 
   return (
     <>
+      <SEO data={contactSeo} />
+
+      <StructuredData
+        data={webPageSchema({
+          title: contactSeo.title,
+          description: contactSeo.description,
+          path: contactSeo.canonical,
+        })}
+      />
+
       <Hero
         section="Contact"
         title="Get in Touch"

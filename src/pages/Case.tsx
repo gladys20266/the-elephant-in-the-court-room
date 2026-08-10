@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
 import {
   X,
   ChevronLeft,
@@ -12,7 +15,13 @@ import {
 import { Link } from 'react-router-dom'
 
 gsap.registerPlugin(ScrollTrigger)
-
+const caseSeo = {
+  title: 'Case | The Elephant In The Court Room',
+  description:
+    'Review the case overview, timeline, legal information, evidence, and supporting documentation presented by The Elephant In The Court Room.',
+  canonical: '/case',
+  type: 'website' as const,
+}
 const timelineItems = [
   {
     date: 'MARCH 15, 2023',
@@ -185,9 +194,21 @@ export default function Case() {
     }
   }
 
-  return (
-    <>
-      <Hero subtitle="The facts, the evidence, and the fight for due process." />
+  
+   
+      return (
+  <>
+    <SEO data={caseSeo} />
+
+    <StructuredData
+      data={webPageSchema({
+        title: caseSeo.title,
+        description: caseSeo.description,
+        path: caseSeo.canonical,
+      })}
+    />
+
+    <Hero subtitle="The facts, the evidence, and the fight for due process." />
 
       {/* Case Overview */}
       <section

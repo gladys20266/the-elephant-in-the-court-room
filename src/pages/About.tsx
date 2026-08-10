@@ -1,5 +1,16 @@
 import Hero from '@/components/Hero'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
+
+const aboutSeo = {
+  title: 'About | The Elephant In The Court Room',
+  description:
+    'Learn about The Elephant In The Court Room campaign, its purpose, and the story presented through this website.',
+  canonical: '/about',
+  type: 'website' as const,
+}
 
 const chapters = [
   {
@@ -48,7 +59,7 @@ const chapters = [
       "Today, The Elephant In The Court Room's case is ongoing. Their legal team is building a comprehensive defense that documents their community ties, their work history, their family relationships, and the contributions they have made over fifteen years. The process is slow, expensive, and emotionally draining.",
       "But what keeps The Elephant In The Court Room going is the community standing beside them. The neighbors who write letters of support. The coworkers who show up to court dates. The strangers who donate to their legal fund. The children on their soccer team who tell them every practice, 'We got you, Coach.'",
       "The Elephant In The Court Room's story is not unique. Thousands of immigrants face similar challenges every year — people who have built lives, raised families, and contributed to their communities, only to find themselves in a legal system that doesn't account for the human reality of their situations.",
-      "What makes The Elephant In The Court Room's story different is that you are reading it. You now know who they are. You know about the lives they have touched, the family they have raised, and the community they have helped build. And you have the opportunity to be part of what happens next.",
+      'What makes The Elephant In The Court Room\'s story different is that you are reading it. You now know who they are. You know about the lives they have touched, the family they have raised, and the community they have helped build. And you have the opportunity to be part of what happens next.',
     ],
     image:
       'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80',
@@ -62,23 +73,33 @@ export default function About() {
 
   return (
     <>
+      <SEO data={aboutSeo} />
+
+      <StructuredData
+        data={webPageSchema({
+          title: aboutSeo.title,
+          description: aboutSeo.description,
+          path: aboutSeo.canonical,
+        })}
+      />
+
       <Hero subtitle="Fifteen years. One community. A story worth fighting for." />
 
       <section
         id="about-story"
         aria-labelledby="about-heading"
         aria-describedby="about-description"
-        className="section-padding pb-0 bg-off-white"
+        className="section-padding bg-off-white pb-0"
       >
-        <div className="max-w-reading mx-auto px-5 md:px-8">
+        <div className="mx-auto max-w-reading px-5 md:px-8">
           {/* Title */}
           <div
             ref={titleRef}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
             <span
               aria-hidden="true"
-              className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4"
+              className="reveal-child mb-4 inline-block rounded-sm bg-magenta px-2.5 py-1 text-label text-white"
             >
               OUR STORY
             </span>
@@ -92,7 +113,7 @@ export default function About() {
 
             <p
               id="about-description"
-              className="reveal-child text-subheading italic text-charcoal mt-6"
+              className="reveal-child mt-6 text-subheading italic text-charcoal"
             >
               This is the story of a man who came to this country with little
               more than hope and a willingness to work hard. It&apos;s a story
@@ -108,7 +129,7 @@ export default function About() {
               {index > 0 && (
                 <hr
                   aria-hidden="true"
-                  className="border-lime/20 my-12"
+                  className="my-12 border-lime/20"
                 />
               )}
 
@@ -121,17 +142,17 @@ export default function About() {
 
           {/* Closing Callout */}
           <div
-            className="mt-12 bg-lime/20 rounded-xl p-8 text-center"
+            className="mt-12 rounded-xl bg-lime/20 p-8 text-center"
             aria-label="Closing statement from Maria"
           >
-            <blockquote className="text-quote text-purple text-lg">
+            <blockquote className="text-quote text-lg text-purple">
               &ldquo;The Elephant In The Court Room always says that this
               country gave them a chance when they had nothing. Now they&apos;re
               asking for one more chance — and they&apos;re asking with the
               support of everyone whose life they have touched.&rdquo;
             </blockquote>
 
-            <footer className="text-body-small text-charcoal/70 mt-4">
+            <footer className="mt-4 text-body-small text-charcoal/70">
               <cite className="not-italic">
                 — Maria, The Elephant In The Court Room&apos;s wife
               </cite>
@@ -168,7 +189,7 @@ function ChapterSection({
     >
       <h2
         id={headingId}
-        className="reveal-child text-xl font-body font-medium text-purple mb-5"
+        className="reveal-child mb-5 text-xl font-body font-medium text-purple"
       >
         {heading}
       </h2>
@@ -184,11 +205,11 @@ function ChapterSection({
         ))}
       </div>
 
-      <div className="reveal-child mt-6 rounded-xl overflow-hidden">
+      <div className="reveal-child mt-6 overflow-hidden rounded-xl">
         <img
           src={image}
           alt={imageAlt}
-          className="w-full h-auto object-cover"
+          className="h-auto w-full object-cover"
           loading="lazy"
           decoding="async"
         />

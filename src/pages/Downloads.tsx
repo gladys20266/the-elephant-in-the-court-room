@@ -1,5 +1,8 @@
 import Hero from '@/components/Hero'
 import DownloadSection from '@/components/downloads/DownloadSection'
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
 import {
   Scale,
   FileText,
@@ -17,6 +20,14 @@ import {
   History,
   Archive,
 } from 'lucide-react'
+
+const downloadsSeo = {
+  title: 'Downloads | The Elephant In The Court Room',
+  description:
+    'Download case documents, contracts, supporting evidence, campaign resources, letters, and other materials related to The Elephant In The Court Room.',
+  canonical: '/downloads',
+  type: 'website' as const,
+}
 
 const courtDocuments = [
   {
@@ -135,6 +146,16 @@ const letterDocuments = [
 export default function Downloads() {
   return (
     <>
+      <SEO data={downloadsSeo} />
+
+      <StructuredData
+        data={webPageSchema({
+          title: downloadsSeo.title,
+          description: downloadsSeo.description,
+          path: downloadsSeo.canonical,
+        })}
+      />
+
       <Hero
         title="Downloads"
         subtitle="Download important case documents, campaign resources, and supporting materials."

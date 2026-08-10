@@ -13,9 +13,11 @@ export default function SEO({ data }: SEOProps) {
     ...data,
   };
 
-  const canonical =
-    seo.canonical ??
-    `${siteConfig.siteUrl}${window.location.pathname}`;
+  const canonical = seo.canonical
+  ? seo.canonical.startsWith('http')
+    ? seo.canonical
+    : `${siteConfig.siteUrl}${seo.canonical.startsWith('/') ? seo.canonical : `/${seo.canonical}`}`
+  : `${siteConfig.siteUrl}${window.location.pathname}`;
 
   return (
     <Helmet>

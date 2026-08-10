@@ -1,6 +1,15 @@
 import Hero from '@/components/Hero'
 import LegalPage from '@/components/LegalPage'
-
+import SEO from '@/components/seo/SEO'
+import StructuredData from '@/components/seo/StructuredData'
+import { webPageSchema } from '@/seo/pageSchemas'
+const termsSeo = {
+  title: 'Terms of Service | The Elephant In The Court Room',
+  description:
+    'Read the Terms of Service for The Elephant In The Court Room, including rules governing website use, user conduct, intellectual property, donations, third-party services, and legal responsibilities.',
+  canonical: '/terms',
+  type: 'website' as const,
+}
 const sections = [
   {
     id: 'acceptance-of-the-terms',
@@ -427,7 +436,20 @@ const sections = [
 export default function Terms() {
   return (
     <>
-      <Hero subtitle="Please read these Terms of Service carefully before accessing or using this Website, its content, fundraising campaign, or related services." />
+      <SEO data={termsSeo} />
+
+      <StructuredData
+        data={webPageSchema({
+          title: termsSeo.title,
+          description: termsSeo.description,
+          path: termsSeo.canonical,
+        })}
+      />
+
+      <Hero
+        subtitle="Please read these Terms of Service carefully before accessing or using this Website, its content, fundraising campaign, or related services."
+      />
+
       <LegalPage
         title="Terms of Service"
         lastUpdated="August 3, 2026"
