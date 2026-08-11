@@ -22,14 +22,20 @@ export default function UpdateDetail() {
           }}
         />
 
-        <section className="container mx-auto px-6 py-20 text-center">
-          <h1 className="text-4xl font-bold text-purple">
+        <section
+          className="container mx-auto px-6 py-20 text-center"
+          aria-labelledby="update-not-found-title"
+        >
+          <h1
+            id="update-not-found-title"
+            className="text-4xl font-bold text-purple"
+          >
             Update Not Found
           </h1>
 
           <Link
             to="/updates"
-            className="mt-8 inline-block rounded bg-[#6B3A8F] px-8 py-4 font-bold text-white"
+            className="mt-8 inline-block rounded bg-[#6B3A8F] px-8 py-4 font-bold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B3A8F] focus-visible:ring-offset-2"
           >
             Back to Updates
           </Link>
@@ -45,6 +51,9 @@ export default function UpdateDetail() {
     type: 'article' as const,
   }
 
+  const isMachineReadableDate =
+    /^\d{4}(-\d{2})?(-\d{2})?$/.test(update.date)
+
   return (
     <>
       <SEO data={updateSeo} />
@@ -57,7 +66,7 @@ export default function UpdateDetail() {
         })}
       />
 
-      <section
+      <main
         className="container mx-auto max-w-4xl px-6 py-20"
         aria-labelledby="update-title"
       >
@@ -72,8 +81,14 @@ export default function UpdateDetail() {
           {update.title}
         </h1>
 
-        <div className="mb-10 flex gap-8 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
-          <time dateTime={update.date}>{update.date}</time>
+        <div className="mb-10 flex flex-wrap gap-8 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
+          {isMachineReadableDate ? (
+            <time dateTime={update.date}>
+              {update.date}
+            </time>
+          ) : (
+            <span>{update.date}</span>
+          )}
 
           <span>{update.readingTime}</span>
 
@@ -98,7 +113,7 @@ export default function UpdateDetail() {
             ← Back to Updates
           </Link>
         </div>
-      </section>
+      </main>
     </>
   )
 }

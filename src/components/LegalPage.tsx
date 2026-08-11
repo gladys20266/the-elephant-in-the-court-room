@@ -54,23 +54,20 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
 
           {/* ON THIS PAGE */}
           <div className="mt-2 bg-off-white rounded-xl border border-gray-200 shadow-lg px-5 py-4">
-            <p className="text-xl font-extrabold text-charcoal mb-5">
+            <h2 className="text-xl font-extrabold text-charcoal mb-5">
   On This Page
-</p>
+</h2>
               
 
-            <nav className="flex flex-col gap-1">
+            <nav
+  aria-label={`${title} sections`}
+  className="flex flex-col gap-1"
+>
               {sections.map((section) => (
                 <a
                   key={section.id}
                   href={`#${section.id}`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    document.getElementById(section.id)?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
-                  }}
+                  aria-current={activeSection === section.id ? 'location' : undefined}
                   className={`transition-all duration-200 ${
                     activeSection === section.id
                       ? 'bg-white text-purple font-semibold border-l-4 border-lime rounded-r-md pl-2.5 py-1.5 shadow-sm'
@@ -158,6 +155,60 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
           </div>
 
         </div>
+       {/* Mobile On This Page */}
+<div className="lg:hidden mb-8">
+  <details className="bg-off-white rounded-xl border border-gray-200 shadow-md">
+    <summary
+      className="
+        cursor-pointer
+        list-none
+        px-5
+        py-4
+        text-lg
+        font-extrabold
+        text-charcoal
+        focus-visible:outline-none
+        focus-visible:ring-2
+        focus-visible:ring-purple
+        focus-visible:ring-offset-2
+        rounded-xl
+      "
+    >
+      On This Page
+    </summary>
+
+    <nav
+      aria-label={`${title} sections`}
+      className="border-t border-gray-200 px-5 py-4"
+    >
+      <div className="flex flex-col gap-1">
+        {sections.map((section) => (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            className="
+              rounded-md
+              px-3
+              py-2
+              text-sm
+              text-charcoal
+              transition-colors
+              hover:bg-white
+              hover:text-purple
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-purple
+              focus-visible:ring-offset-2
+            "
+          >
+            {section.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+  </details>
+</div>
+
 
         {/* Content */}
         <div ref={titleRef}>
@@ -167,22 +218,33 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
             </h1>
 
             <p className="text-body-small text-charcoal/50 mt-3">
-              Last updated: {lastUpdated}
-            </p>
+  Last updated:{' '}
+  <time dateTime={lastUpdated}>
+    {lastUpdated}
+  </time>
+</p>
           </div>
 
           {sections.map((section) => (
-            <div
-              key={section.id}
-              id={section.id}
-              ref={(el) => {
-                if (el) sectionRefs.current.set(section.id, el)
-              }}
-              className="mb-10 scroll-mt-28"
-            >
-              <h2 className="reveal-child text-lg font-body font-semibold text-charcoal mb-4">
-                {section.title}
-              </h2>
+            <section
+  key={section.id}
+  id={section.id}
+  aria-labelledby={`${section.id}-title`}
+  ref={(el) => {
+  if (el) {
+    sectionRefs.current.set(section.id, el)
+  } else {
+    sectionRefs.current.delete(section.id)
+  }
+}}
+  className="mb-10 scroll-mt-28"
+>
+              <h2
+  id={`${section.id}-title`}
+  className="reveal-child text-lg font-body font-semibold text-charcoal mb-4"
+>
+  {section.title}
+</h2>
 
               <div className="reveal-child space-y-4">
                 {section.content.map((p, i) => (
@@ -194,7 +256,7 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
                   </p>
                 ))}
               </div>
-            </div>
+            </section>
           ))}
         </div>
 

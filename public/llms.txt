@@ -19,18 +19,18 @@ This website documents an ongoing legal dispute involving a lease-to-own agreeme
 
 ## Main Sections
 
-- Home
-- About
-- Case
-- Updates
-- Videos
-- Photos
-- Documents
-- Downloads
-- Contact
-- Privacy
-- Terms
-- Disclaimer
+- Home — Overview of The Elephant In The Court Room campaign and its purpose.
+- About — Background and story of the campaign and the people involved.
+- Case — Information about the legal dispute, case history, and timeline.
+- Updates — Campaign and case-related updates.
+- Videos — Campaign documentary and video materials.
+- Photos — Photographs documenting the property and campaign story.
+- Documents — Public case documents and related records.
+- Downloads — Downloadable case documents and campaign materials.
+- Contact — Contact information and ways to support or share the campaign.
+- Privacy — Privacy Policy governing use of the website.
+- Terms — Terms of Service governing use of the website.
+- Disclaimer — Important legal, fundraising, and website-use disclaimers.
 
 ## Official Website
 

@@ -1,6 +1,7 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SectionBadge from '@/components/SectionBadge'
 import ContactForm from '@/components/ContactForm'
+import { Link } from 'react-router-dom'
 
 export default function ContactSection() {
   const sectionRef = useSectionReveal<HTMLElement>()
@@ -65,15 +66,21 @@ export default function ContactSection() {
 
           {/* Right: Campaign Photograph */}
           <div className="reveal-child">
-            <div className="rounded-xl overflow-hidden aspect-[4/3]">
-              <img
+            <Link
+              to="/photos"
+              aria-label="View the campaign photographs in the Photos gallery"
+              className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2"
+            >
+              <div className="rounded-xl overflow-hidden aspect-[4/3]">
+                <img
                 src="/photos/after/after-0006.webp"
                 alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                decoding="async"
-              />
-            </div>
+                  decoding="async"
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

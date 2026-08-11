@@ -11,19 +11,14 @@ import { siteConfig } from "@/config/site";
 export function websiteSchema() {
   return {
     "@context": "https://schema.org",
-
     "@graph": [
       {
         "@type": "WebSite",
-
+        "@id": `${siteConfig.siteUrl}#website`,
         name: siteConfig.siteName,
-
         url: siteConfig.siteUrl,
-
         description: siteConfig.seo.defaultDescription,
-
         inLanguage: siteConfig.language,
-
         publisher: {
           "@id": `${siteConfig.siteUrl}#organization`,
         },
@@ -31,16 +26,11 @@ export function websiteSchema() {
 
       {
         "@type": "Organization",
-
         "@id": `${siteConfig.siteUrl}#organization`,
-
         name: siteConfig.organization.name,
-
         url: siteConfig.siteUrl,
-
         logo: {
           "@type": "ImageObject",
-
           url: `${siteConfig.siteUrl}${siteConfig.organization.logo}`,
         },
       },
@@ -51,14 +41,11 @@ export function websiteSchema() {
 export function organizationSchema() {
   return {
     "@type": "Organization",
-
+    "@id": `${siteConfig.siteUrl}#organization`,
     name: siteConfig.organization.name,
-
     url: siteConfig.siteUrl,
-
     logo: {
       "@type": "ImageObject",
-
       url: `${siteConfig.siteUrl}${siteConfig.organization.logo}`,
     },
   };

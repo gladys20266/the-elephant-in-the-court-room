@@ -156,122 +156,120 @@ export default function Downloads() {
         })}
       />
 
-      <Hero
-        title="Downloads"
-        subtitle="Download important case documents, campaign resources, and supporting materials."
-      />
+      <main aria-label="Downloads page">
+        <Hero
+          title="Downloads"
+          subtitle="Download important case documents, campaign resources, and supporting materials."
+        />
 
-      <section
-        id="downloads-content"
-        aria-label="Download resources"
-        className="mx-auto max-w-7xl px-6 py-20"
-      >
-        {/* Featured Download */}
-        <section
-          aria-labelledby="featured-download-title"
-          className="mb-20"
+        <div
+          id="downloads-content"
+          aria-label="Download resources"
+          className="mx-auto max-w-7xl px-6 py-20"
         >
-          <div className="rounded-3xl border border-lime-300 bg-gradient-to-r from-lime-50 to-white p-8 shadow-xl">
-            <div className="mb-4 inline-flex items-center rounded-full bg-purple-700 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white">
-              Featured Download
-            </div>
-
-            <h2
-              id="featured-download-title"
-              className="mb-4 text-4xl font-black text-purple-800"
-            >
-              Case Summary &amp; Timeline
-            </h2>
-
-            <p className="max-w-3xl text-lg leading-8 text-gray-600">
-              A concise overview of the legal dispute, timeline, court
-              proceedings, and supporting evidence. This document is
-              recommended for anyone who wants to understand the case before
-              reviewing the complete record.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-              <div
-                className="flex flex-wrap items-center gap-3"
-                aria-label="Document information"
-              >
-                <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700">
-                  PDF
-                </span>
-
-                <time
-                  dateTime="2026-07"
-                  className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700"
-                >
-                  Updated July 2026
-                </time>
+          {/* Featured Download */}
+          <section
+            aria-labelledby="featured-download-title"
+            className="mb-20"
+          >
+            <div className="rounded-3xl border border-lime-300 bg-gradient-to-r from-lime-50 to-white p-8 shadow-xl">
+              <div className="mb-4 inline-flex items-center rounded-full bg-purple-700 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white">
+                Featured Download
               </div>
 
-              <button
-                type="button"
-                aria-label="Download Case Summary and Timeline PDF"
-                className="
-                  w-full
-                  rounded-xl
-                  border
-                  border-forest
-                  bg-pale-lime
-                  px-7
-                  py-3
-                  text-center
-                  font-black
-                  text-charcoal
-                  transition-all
-                  duration-200
-                  hover:bg-[#E0F0B0]
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-forest
-                  focus-visible:ring-offset-2
-                  md:w-auto
-                "
+              <h2
+                id="featured-download-title"
+                className="mb-4 text-4xl font-black text-purple-800"
               >
-                DOWNLOAD PDF
-              </button>
+                Case Summary &amp; Timeline
+              </h2>
+
+              <p className="max-w-3xl text-lg leading-8 text-gray-600">
+                A concise overview of the legal dispute, timeline, court
+                proceedings, and supporting evidence. This document is
+                recommended for anyone who wants to understand the case before
+                reviewing the complete record.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                <div
+                  className="flex flex-wrap items-center gap-3"
+                  aria-label="Document information"
+                >
+                  <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700">
+                    PDF
+                  </span>
+
+                  <time
+                    dateTime="2026-07"
+                    className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700"
+                  >
+                    Updated July 2026
+                  </time>
+                </div>
+
+                <button
+                  type="button"
+                  disabled
+                  aria-label="Case Summary and Timeline PDF coming soon"
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    border
+                    border-forest
+                    bg-gray-100
+                    px-7
+                    py-3
+                    text-center
+                    font-black
+                    text-gray-500
+                    opacity-80
+                    md:w-auto
+                  "
+                >
+                  PDF COMING SOON
+                </button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <DownloadSection
-          title="Court Documents"
-          description="Official court filings and legal records related to this case."
-          documents={courtDocuments}
-          className="mt-20"
-        />
+          <DownloadSection
+            title="Court Documents"
+            description="Official court filings and legal records related to this case."
+            documents={courtDocuments}
+            className="mt-20"
+          />
 
-        <DownloadSection
-          title="Contracts & Agreements"
-          description="The legal agreements and contracts that form the foundation of this case."
-          documents={contractDocuments}
-          className="mt-24"
-        />
+          <DownloadSection
+            title="Contracts & Agreements"
+            description="The legal agreements and contracts that form the foundation of this case."
+            documents={contractDocuments}
+            className="mt-24"
+          />
 
-        <DownloadSection
-          title="Evidence"
-          description="Evidence documenting the investments, property transformation, and facts supporting this case."
-          documents={evidenceDocuments}
-          className="mt-24"
-        />
+          <DownloadSection
+            title="Evidence"
+            description="Evidence documenting the investments, property transformation, and facts supporting this case."
+            documents={evidenceDocuments}
+            className="mt-24"
+          />
 
-        <DownloadSection
-          title="Petition"
-          description="Public petitions, requests for support, and advocacy documents related to this campaign."
-          documents={petitionDocuments}
-          className="mt-24"
-        />
+          <DownloadSection
+            title="Petition"
+            description="Public petitions, requests for support, and advocacy documents related to this campaign."
+            documents={petitionDocuments}
+            className="mt-24"
+          />
 
-        <DownloadSection
-          title="Letters"
-          description="Letters, legal correspondence, and public communications related to this case."
-          documents={letterDocuments}
-          className="mt-24"
-        />
-      </section>
+          <DownloadSection
+            title="Letters"
+            description="Letters, legal correspondence, and public communications related to this case."
+            documents={letterDocuments}
+            className="mt-24"
+          />
+        </div>
+      </main>
     </>
   )
 }

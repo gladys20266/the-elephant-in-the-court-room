@@ -14,10 +14,24 @@ export default function SEO({ data }: SEOProps) {
   };
 
   const canonical = seo.canonical
-  ? seo.canonical.startsWith('http')
-    ? seo.canonical
-    : `${siteConfig.siteUrl}${seo.canonical.startsWith('/') ? seo.canonical : `/${seo.canonical}`}`
-  : `${siteConfig.siteUrl}${window.location.pathname}`;
+    ? seo.canonical.startsWith("http")
+      ? seo.canonical
+      : `${siteConfig.siteUrl}${
+          seo.canonical.startsWith("/")
+            ? seo.canonical
+            : `/${seo.canonical}`
+        }`
+    : `${siteConfig.siteUrl}${window.location.pathname}`;
+
+  const imageUrl = seo.image
+    ? seo.image.startsWith("http")
+      ? seo.image
+      : `${siteConfig.siteUrl}${
+          seo.image.startsWith("/")
+            ? seo.image
+            : `/${seo.image}`
+        }`
+    : undefined;
 
   return (
     <Helmet>
@@ -29,12 +43,14 @@ export default function SEO({ data }: SEOProps) {
         name="description"
         content={seo.description}
       />
-    {seo.keywords && seo.keywords.length > 0 && (
-  <meta
-    name="keywords"
-    content={seo.keywords.join(", ")}
-  />
-)}
+
+      {seo.keywords && seo.keywords.length > 0 && (
+        <meta
+          name="keywords"
+          content={seo.keywords.join(", ")}
+        />
+      )}
+
       <meta
         name="robots"
         content={seo.robots}
@@ -47,6 +63,16 @@ export default function SEO({ data }: SEOProps) {
       />
 
       {/* Open Graph */}
+      <meta
+        property="og:site_name"
+        content={siteConfig.siteName}
+      />
+
+      <meta
+        property="og:locale"
+        content={siteConfig.locale}
+      />
+
       <meta
         property="og:title"
         content={seo.title}
@@ -67,10 +93,10 @@ export default function SEO({ data }: SEOProps) {
         content={canonical}
       />
 
-      {seo.image && (
+      {imageUrl && (
         <meta
           property="og:image"
-          content={seo.image}
+          content={imageUrl}
         />
       )}
 
@@ -90,10 +116,10 @@ export default function SEO({ data }: SEOProps) {
         content={seo.description}
       />
 
-      {seo.image && (
+      {imageUrl && (
         <meta
           name="twitter:image"
-          content={seo.image}
+          content={imageUrl}
         />
       )}
     </Helmet>

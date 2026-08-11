@@ -51,7 +51,7 @@ export default function DownloadCard({
       <a
         href={href}
         download
-        aria-label={`Download PDF: ${title}`}
+        aria-label={`Download ${title} PDF`}
         className="
           inline-flex
           w-36
@@ -72,7 +72,7 @@ export default function DownloadCard({
           focus-visible:ring-offset-2
         "
       >
-        Download PDF
+        Download {title} PDF
       </a>
     </article>
   )

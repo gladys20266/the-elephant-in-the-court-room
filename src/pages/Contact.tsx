@@ -121,20 +121,22 @@ export default function Contact() {
     switch (platform.label) {
       case 'Facebook':
         window.open(
-          `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
-          '_blank'
-        )
+  `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
+  '_blank',
+  'noopener,noreferrer'
+)
         break
 
       case 'TikTok':
-        window.open('https://www.tiktok.com', '_blank')
+        window.open('https://www.tiktok.com', '_blank', 'noopener,noreferrer')
         break
 
       case 'WhatsApp':
         window.open(
-          `https://wa.me/?text=${message}%20${pageUrl}`,
-          '_blank'
-        )
+  `https://wa.me/?text=${message}%20${pageUrl}`,
+  '_blank',
+  'noopener,noreferrer'
+)
         break
 
       case 'Email':
@@ -168,27 +170,27 @@ export default function Contact() {
       />
 
       <section
-        id="contact-content"
-        ref={sectionRef}
-        aria-labelledby="contact-content-title"
-        aria-describedby="contact-content-description"
-        className="bg-white pb-16 pt-8 md:pb-20 md:pt-10"
-      >
-        <div className="content-container mx-auto max-w-[1280px]">
-          <h1
-            id="contact-content-title"
-            className="sr-only"
-          >
-            Contact The Elephant In The Court Room
-          </h1>
+  id="contact-content"
+  ref={sectionRef}
+  aria-labelledby="contact-content-title"
+  aria-describedby="contact-content-description"
+  className="bg-white pb-16 pt-8 md:pb-20 md:pt-10"
+>
+  <div className="content-container mx-auto max-w-[1280px]">
+    <h2
+      id="contact-content-title"
+      className="sr-only"
+    >
+      Contact Information and Campaign Support
+    </h2>
 
-          <p
-            id="contact-content-description"
-            className="sr-only"
-          >
-            Contact information, campaign support options, case documents,
-            and ways to share this campaign.
-          </p>
+    <p
+      id="contact-content-description"
+      className="sr-only"
+    >
+      Contact information, campaign support options, case documents,
+      and ways to share The Elephant In The Court Room campaign.
+    </p>
 
           <div className="grid grid-cols-1 items-start gap-4 xl:grid-cols-[54%,46%] xl:gap-6">
             {/* Left: Form Card */}

@@ -63,12 +63,15 @@ export default function Hero({
     >
       {/* Banner Image */}
       <img
-        src="/assets/banner.webp"
-        alt="The Elephant In The Court Room campaign banner"
-        className="w-full h-auto object-cover"
-        fetchPriority="high"
-        decoding="async"
-      />
+  src="/assets/banner.webp"
+  alt="The Elephant In The Court Room campaign banner"
+  width={1920}
+  height={960}
+  className="w-full h-auto object-cover"
+  loading="eager"
+  fetchPriority="high"
+  decoding="async"
+/>
 
       {(section || title || subtitle) && (
         <div className="content-container py-8 md:py-16 text-center">

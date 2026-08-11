@@ -108,25 +108,31 @@ export default function StorySnapshot() {
 
           {/* Right: Campaign Property Photograph */}
           <div className="reveal-child">
-            <div
-              className="
-                rounded-xl
+            <Link
+              to="/photos"
+              aria-label="View the campaign photographs in the Photos gallery"
+              className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2"
+            >
+              <div
+                className="
+                  rounded-xl
                 overflow-hidden
                 aspect-[4/5]
                 sm:aspect-[3/4]
                 max-w-sm
                 mx-auto
-                lg:max-w-none
-              "
-            >
-              <img
+                  lg:max-w-none
+                "
+              >
+                <img
                 src="/photos/after/after-0006.webp"
                 alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                decoding="async"
-              />
-            </div>
+                  decoding="async"
+                />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

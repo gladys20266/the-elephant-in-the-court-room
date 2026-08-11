@@ -11,12 +11,14 @@ export function webPageSchema({
   description,
   path,
 }: PageSchemaOptions) {
+  const url = `${siteConfig.siteUrl}${path}`;
+
   return {
     "@type": "WebPage",
 
-    "@id": `${siteConfig.siteUrl}${path}`,
+    "@id": `${url}#webpage`,
 
-    url: `${siteConfig.siteUrl}${path}`,
+    url,
 
     name: title,
 

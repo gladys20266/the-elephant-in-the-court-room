@@ -61,13 +61,14 @@ export default function Videos() {
             className="reveal-child bg-white rounded-3xl shadow-2xl border border-gray-200 my-16 p-6"
           >
             <video
-              src="/videos/welcome.mp4"
-              controls
-              preload="metadata"
-              playsInline
-              aria-label="Introduction documentary about The Death of the Contract"
-              className="w-full aspect-video bg-black rounded-3xl"
-            />
+  src="/videos/welcome.mp4"
+  poster="/assets/welcome-poster.webp"
+  controls
+  preload="metadata"
+  playsInline
+  aria-label="Introduction documentary about The Death of the Contract"
+  className="w-full aspect-video bg-black rounded-3xl"
+/>
 
             <div className="p-8">
               <h2

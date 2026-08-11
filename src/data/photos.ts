@@ -5,16 +5,26 @@ export interface Photo {
   category: "before" | "after" | "food";
 }
 
-export const beforePhotos: Photo[] = Array.from({ length: 11 }, (_, i) => {
-  const number = String(i + 1).padStart(4, "0");
-
-  return {
-    id: `before-${number}`,
-    src: `/photos/before/before-${number}.webp`,
-    thumbnail: `/photos/before-thumbs/before-${number}.webp`,
+export const beforePhotos: Photo[] = [
+  {
+    id: "before-0001",
+    src: "/photos/before/before-0001.webp",
+    thumbnail: "/photos/before-thumbs/before-0001.webp",
     category: "before",
-  };
-});
+  },
+  {
+    id: "before-0003",
+    src: "/photos/before/before-0003.webp",
+    thumbnail: "/photos/before-thumbs/before-0003.webp",
+    category: "before",
+  },
+  {
+    id: "before-0009",
+    src: "/photos/before/before-0009.webp",
+    thumbnail: "/photos/before-thumbs/before-0009.webp",
+    category: "before",
+  },
+];
 
 export const afterPhotos: Photo[] = Array.from({ length: 42 }, (_, i) => {
   const number = String(i + 1).padStart(4, "0");

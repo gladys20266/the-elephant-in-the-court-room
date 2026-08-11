@@ -115,19 +115,23 @@ export default function Navbar() {
 </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden 2xl:flex flex-1 items-center justify-center gap-5 px-2 min-w-0">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className={`text-label transition-colors duration-150 hover:text-purple ${
-                  pathname === link.href ? 'text-purple' : 'text-charcoal'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <nav
+  aria-label="Primary navigation"
+  className="hidden 2xl:flex flex-1 items-center justify-center gap-5 px-2 min-w-0"
+>
+  {navLinks.map((link) => (
+    <Link
+      key={link.label}
+      to={link.href}
+      aria-current={pathname === link.href ? 'page' : undefined}
+      className={`text-label transition-colors duration-150 hover:text-purple ${
+        pathname === link.href ? 'text-purple' : 'text-charcoal'
+      }`}
+    >
+      {link.label}
+    </Link>
+  ))}
+</nav>
 
           {/* Desktop Actions */}
           <div className="hidden xl:flex items-center gap-2 ml-3 shrink-0">
@@ -162,10 +166,13 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button
-            className="2xl:hidden p-2"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
+  type="button"
+  className="2xl:hidden p-2"
+  onClick={() => setMobileOpen(true)}
+  aria-label="Open menu"
+  aria-expanded={mobileOpen}
+  aria-controls="mobile-navigation"
+>
             <Menu className="w-6 h-6 text-charcoal" />
           </button>
         </div>
@@ -173,10 +180,11 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[60] bg-white transition-opacity duration-300 2xl:hidden ${
-          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
+  id="mobile-navigation"
+  className={`fixed inset-0 z-[60] bg-white transition-opacity duration-300 2xl:hidden ${
+    mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+  }`}
+>
         <div className="h-full flex flex-col items-center justify-center px-8">
           <button
             className="absolute top-5 right-5 p-2"
@@ -186,16 +194,20 @@ export default function Navbar() {
             <X className="w-6 h-6 text-charcoal" />
           </button>
 
-          <nav className="flex flex-col items-center gap-6">
+          <nav
+  aria-label="Mobile navigation"
+  className="flex flex-col items-center gap-6"
+>
             {navLinks.map((link) => (
               <Link
-                key={link.label}
-                to={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={`font-display text-3xl uppercase tracking-tight transition-colors duration-150 hover:text-purple ${
-                  pathname === link.href ? 'text-purple' : 'text-charcoal'
-                }`}
-              >
+  key={link.label}
+  to={link.href}
+  onClick={() => setMobileOpen(false)}
+  aria-current={pathname === link.href ? 'page' : undefined}
+  className={`font-display text-3xl uppercase tracking-tight transition-colors duration-150 hover:text-purple ${
+    pathname === link.href ? 'text-purple' : 'text-charcoal'
+  }`}
+>
                 {link.label}
               </Link>
             ))}
@@ -224,10 +236,11 @@ export default function Navbar() {
 
 </div>
             </a>
-            <button
-              onClick={() => { handleShare(); setMobileOpen(false); }}
-              className="flex items-center gap-2 bg-forest text-lime rounded-md px-7 py-4 hover:bg-[#2A4F3B] transition-colors duration-150"
-            >
+           <button
+  type="button"
+  onClick={() => { handleShare(); setMobileOpen(false); }}
+  className="flex items-center gap-2 bg-forest text-lime rounded-md px-7 py-4 hover:bg-[#2A4F3B] transition-colors duration-150"
+>
               <Share2 className="w-5 h-5" />
 <span
   className="text-sm font-black tracking-wide uppercase"

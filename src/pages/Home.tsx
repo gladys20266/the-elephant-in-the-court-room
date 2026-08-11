@@ -14,7 +14,7 @@ import VideosPreview from '@/sections/VideosPreview'
 import PhotosPreview from "@/sections/PhotosPreview";
 import DocumentsPreview from "@/sections/DocumentsPreview";
 import DownloadsPreview from "@/sections/DownloadsPreview";
-import WhySupportMatters from "@/sections/WhySupportMatters";
+
 import StructuredData from "@/components/seo/StructuredData";
 import { websiteSchema } from "../seo/schemas";
 import { webPageSchema } from "../seo/pageSchemas";
@@ -94,7 +94,7 @@ return (
   subtitle="Two siblings. One lease-to-own agreement. More than eleven years seeking to enforce their contractual rights."
 />
 
-<WhySupportMatters />
+
 
 <StorySnapshot />
       <CaseDetails />

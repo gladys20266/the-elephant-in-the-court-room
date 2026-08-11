@@ -120,7 +120,7 @@ export default function StorySnapshot() {
               "
             >
               <img
-                src="/photos/archive/story-portrait.jpg"
+                src="/photos/after/after-0006.webp"
                 alt="Leo and Olga, the siblings behind The Death of the Contract campaign"
                 className="w-full h-full object-cover"
                 loading="lazy"
