@@ -42,20 +42,25 @@ export default function ContactSection() {
             <ContactForm />
 
             <div className="reveal-child mt-6 pt-5 border-t border-lime/20">
-              <p className="text-body-small text-charcoal/70">
-                Prefer email? Reach us at{' '}
+              <p className="text-base sm:text-lg leading-7 text-charcoal/80">
+  <span className="font-bold text-charcoal">
+  Prefer email?
+</span>{" "}
+<span className="font-bold text-charcoal">
+  Reach us at
+</span>{" "}
                 <a
                   href="mailto:contact@theelephantinthecourtroom.com"
                   className="
-                    text-purple
-                    link-underline
-                    font-medium
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-purple
-                    focus-visible:ring-offset-2
-                    rounded-sm
-                  "
+  text-purple
+  link-underline
+  font-semibold
+  focus-visible:outline-none
+  focus-visible:ring-2
+  focus-visible:ring-purple
+  focus-visible:ring-offset-2
+  rounded-sm
+"
                   aria-label="Send an email to The Elephant In The Court Room campaign"
                 >
                   contact@theelephantinthecourtroom.com

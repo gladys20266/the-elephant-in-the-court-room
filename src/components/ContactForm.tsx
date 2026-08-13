@@ -241,19 +241,18 @@ export default function ContactForm() {
 
             {/* Privacy Notice */}
             <div
-              className="flex items-start gap-2 text-body-small text-charcoal/50"
-              role="note"
-            >
-              <Lock
-                className="mt-0.5 h-4 w-4 flex-shrink-0"
-                aria-hidden="true"
-              />
+  className="flex items-start gap-2"
+  role="note"
+>
+  <Lock
+    className="mt-0.5 h-4 w-4 flex-shrink-0 text-charcoal/70"
+    aria-hidden="true"
+  />
 
-              <p>
-                Your information is secure and will only be used to respond to
-                your inquiry.
-              </p>
-            </div>
+  <p className="font-sans text-[16px] font-semibold leading-6 text-charcoal">
+    Your information is secure and will only be used to respond to your inquiry.
+  </p>
+</div>
           </form>
         ) : (
           <div
