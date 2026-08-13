@@ -18,26 +18,69 @@ export default function Lightbox({
   onNext,
 }: LightboxProps) {
   const photo = photos[currentIndex]
+
   const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const previousButtonRef = useRef<HTMLButtonElement>(null)
+  const nextButtonRef = useRef<HTMLButtonElement>(null)
+  const previouslyFocusedElement = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
+    if (!photo) return
+
+    previouslyFocusedElement.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null
+
+    document.body.style.overflow = 'hidden'
+
     closeButtonRef.current?.focus()
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault()
         onClose()
+        return
       }
 
       if (event.key === 'ArrowLeft') {
         event.preventDefault()
         onPrevious()
+        return
       }
 
       if (event.key === 'ArrowRight') {
         event.preventDefault()
         onNext()
+        return
+      }
+
+      if (event.key === 'Tab') {
+        const focusableElements = [
+          closeButtonRef.current,
+          previousButtonRef.current,
+          nextButtonRef.current,
+        ].filter(
+          (element): element is HTMLButtonElement => element !== null
+        )
+
+        if (focusableElements.length === 0) return
+
+        const firstElement = focusableElements[0]
+        const lastElement =
+          focusableElements[focusableElements.length - 1]
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault()
+          lastElement.focus()
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === lastElement
+        ) {
+          event.preventDefault()
+          firstElement.focus()
+        }
       }
     }
 
@@ -45,8 +88,11 @@ export default function Lightbox({
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+
+      previouslyFocusedElement.current?.focus()
     }
-  }, [onClose, onPrevious, onNext])
+  }, [photo, onClose, onPrevious, onNext])
 
   if (!photo) return null
 
@@ -56,8 +102,20 @@ export default function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={`Photo viewer: ${photo.id}`}
-      className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+      className="
+        fixed
+        inset-0
+        z-50
+        flex
+        items-center
+        justify-center
+        bg-black/95
+        p-4
+        sm:p-6
+      "
+      onClick={onClose}
     >
+      {/* Close */}
       <button
         ref={closeButtonRef}
         type="button"
@@ -65,78 +123,122 @@ export default function Lightbox({
         aria-label="Close photo viewer"
         className="
           absolute
-          top-6
-          right-6
+          right-4
+          top-4
+          z-10
+          rounded-full
+          p-2
           text-white
-          hover:text-charcoal
+          transition-colors
+          hover:bg-white/10
+          hover:text-lime
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-white
           focus-visible:ring-offset-2
           focus-visible:ring-offset-black
-          rounded-sm
+          sm:right-6
+          sm:top-6
         "
       >
         <X
           aria-hidden="true"
           focusable="false"
-          size={34}
+          size={30}
         />
       </button>
 
+      {/* Previous */}
       <button
+        ref={previousButtonRef}
         type="button"
-        onClick={onPrevious}
+        onClick={(event) => {
+          event.stopPropagation()
+          onPrevious()
+        }}
         aria-label="View previous photo"
         className="
           absolute
-          left-6
+          left-2
+          top-1/2
+          z-10
+          -translate-y-1/2
+          rounded-full
+          p-2
           text-white
-          hover:text-charcoal
+          transition-colors
+          hover:bg-white/10
+          hover:text-lime
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-white
           focus-visible:ring-offset-2
           focus-visible:ring-offset-black
-          rounded-sm
+          sm:left-6
+          sm:p-3
         "
       >
         <ChevronLeft
           aria-hidden="true"
           focusable="false"
-          size={44}
+          size={38}
         />
       </button>
 
+      {/* Full-size image */}
       <img
         src={photo.src}
         alt={photo.id}
         loading="eager"
         decoding="async"
-        className="max-w-[90vw] max-h-[88vh] rounded-lg shadow-2xl"
+        draggable={false}
+        onClick={(event) => event.stopPropagation()}
+        className="
+          max-h-[85vh]
+          max-w-[92vw]
+          rounded-lg
+          object-contain
+          shadow-2xl
+          select-none
+          sm:max-h-[88vh]
+          sm:max-w-[90vw]
+        "
       />
 
+      {/* Next */}
       <button
+        ref={nextButtonRef}
         type="button"
-        onClick={onNext}
+        onClick={(event) => {
+          event.stopPropagation()
+          onNext()
+        }}
         aria-label="View next photo"
         className="
           absolute
-          right-6
+          right-2
+          top-1/2
+          z-10
+          -translate-y-1/2
+          rounded-full
+          p-2
           text-white
-          hover:text-charcoal
+          transition-colors
+          hover:bg-white/10
+          hover:text-lime
           focus-visible:outline-none
           focus-visible:ring-2
           focus-visible:ring-white
           focus-visible:ring-offset-2
           focus-visible:ring-offset-black
-          rounded-sm
+          sm:right-6
+          sm:p-3
         "
       >
         <ChevronRight
           aria-hidden="true"
           focusable="false"
-          size={44}
+          size={38}
         />
       </button>
     </div>
