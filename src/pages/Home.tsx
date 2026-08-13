@@ -20,7 +20,9 @@ import { websiteSchema } from "../seo/schemas";
 import { webPageSchema } from "../seo/pageSchemas";
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
+  const siteSchema = websiteSchema()
   useEffect(() => {
+    
   const hasSeenWelcome = localStorage.getItem("hasSeenWelcome");
 
   if (!hasSeenWelcome) {
@@ -67,9 +69,9 @@ return (
 
     <StructuredData
   data={{
-    ...websiteSchema(),
+    ...siteSchema,
     "@graph": [
-      ...websiteSchema()["@graph"],
+      ...siteSchema["@graph"],
       webPageSchema({
         title: "The Elephant In The Court Room",
         description:

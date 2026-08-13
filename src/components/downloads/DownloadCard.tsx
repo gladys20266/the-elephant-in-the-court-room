@@ -54,7 +54,7 @@ export default function DownloadCard({
         aria-label={`Download ${title} PDF`}
         className="
           inline-flex
-          w-36
+          w-full
           items-center
           justify-center
           rounded-xl

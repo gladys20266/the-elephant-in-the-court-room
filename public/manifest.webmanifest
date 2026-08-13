@@ -3,7 +3,7 @@
   "short_name": "Elephant Court",
   "id": "/",
   "description": "Official website documenting The Elephant In The Court Room campaign, including court documents, videos, updates, photographs and crowdfunding information.",
-  "start_url": "/#/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4D82E2",
@@ -15,7 +15,7 @@
       "type": "image/png"
     },
     {
-      "src": "/logo.png",
+      "src": "/assets/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }

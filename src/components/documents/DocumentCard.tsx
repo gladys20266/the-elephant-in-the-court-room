@@ -105,12 +105,9 @@ export default function DocumentCard({
             </h3>
 
             {/* Date */}
-            <time
-              className="block text-sm text-charcoal mb-4"
-              dateTime={date}
-            >
-              {date}
-            </time>
+            <time className="block text-sm text-charcoal mb-4">
+  {date}
+</time>
 
             {/* Description */}
             <p

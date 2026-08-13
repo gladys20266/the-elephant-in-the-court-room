@@ -50,7 +50,7 @@ export const siteConfig = {
 
     email: "",
 
-    logo: "/logo.png",
+    logo: "/assets/logo.png",
   },
 
   // ==========================================================
@@ -75,7 +75,7 @@ export const siteConfig = {
     defaultDescription:
       "Learn about The Elephant In The Court Room campaign through official documents, videos, photographs, timeline, updates and educational resources.",
 
-    defaultImage: "/og-image.jpg",
+    defaultImage: "/assets/banner.webp",
 
     robots: "index,follow",
   },
