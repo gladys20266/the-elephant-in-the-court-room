@@ -3,6 +3,7 @@ import LegalPage from '@/components/LegalPage'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import { webPageSchema } from '@/seo/pageSchemas'
+
 const termsSeo = {
   title: 'Terms of Service | The Elephant In The Court Room',
   description:
@@ -10,6 +11,7 @@ const termsSeo = {
   canonical: '/terms',
   type: 'website' as const,
 }
+
 const sections = [
   {
     id: 'acceptance-of-the-terms',
@@ -61,7 +63,8 @@ const sections = [
       '"Third-Party Services" means services, software, payment processors, hosting providers, analytics providers, social media platforms, or other external services that interact with or support the Website.',
     ],
   },
-    {
+
+  {
     id: 'scope-of-the-website',
     title: '5. Scope of the Website',
     content: [
@@ -112,7 +115,8 @@ const sections = [
       'Nothing contained in these Terms shall be construed as granting any ownership interest, license, or intellectual property rights except as expressly stated.',
     ],
   },
-    {
+
+  {
     id: 'user-accounts',
     title: '9. User Accounts',
     content: [
@@ -194,7 +198,8 @@ const sections = [
       'Campaign Creators remain solely responsible for their own legal obligations arising from fundraising activities.',
     ],
   },
-    {
+
+  {
     id: 'donations',
     title: '14. Donations',
     content: [
@@ -268,7 +273,8 @@ const sections = [
       'Unauthorized use of payment methods is strictly prohibited.',
     ],
   },
-    {
+
+  {
     id: 'refund-policy',
     title: '19. Refund Policy',
     content: [
@@ -286,7 +292,7 @@ const sections = [
 
   {
     id: 'purpose-of-the-website',
-    title: '21. Purpose of the Website',
+    title: '20. Purpose of the Website',
     content: [
       'The Elephant In The Court Room is a privately operated informational website established to present information regarding a specific legal matter, provide updates concerning that matter, and facilitate voluntary financial support for a designated fundraising campaign.',
       'The Website is not a public crowdfunding marketplace and does not permit members of the public to create, publish, manage, or solicit fundraising campaigns.',
@@ -297,7 +303,7 @@ const sections = [
 
   {
     id: 'user-conduct',
-    title: '22. User Conduct',
+    title: '21. User Conduct',
     content: [
       'By accessing or using the Website, you agree to use it lawfully, responsibly, and in a manner consistent with these Terms.',
       'You agree that you will not:',
@@ -318,7 +324,7 @@ const sections = [
 
   {
     id: 'fraud-prevention',
-    title: '23. Fraud Prevention',
+    title: '22. Fraud Prevention',
     content: [
       'We are committed to protecting the integrity of the Website and its fundraising activities.',
       'If we reasonably believe that fraudulent, deceptive, unlawful, or unauthorized activity has occurred or may occur, we reserve the right, to the extent permitted by applicable law, to:',
@@ -334,7 +340,7 @@ const sections = [
 
   {
     id: 'accuracy-of-website-information',
-    title: '24. Accuracy of Website Information',
+    title: '23. Accuracy of Website Information',
     content: [
       'We strive to ensure that the information published on the Website is accurate and current.',
       'However, legal proceedings, court filings, litigation strategies, and factual developments may change over time.',
@@ -348,7 +354,7 @@ const sections = [
 
   {
     id: 'intellectual-property-rights',
-    title: '25. Intellectual Property Rights',
+    title: '24. Intellectual Property Rights',
     content: [
       'Unless otherwise indicated, the Website and all content made available through it—including text, graphics, logos, page layouts, photographs, videos, audio recordings, illustrations, designs, icons, software, compilations, and other materials—are owned by or licensed to The Elephant In The Court Room and are protected by applicable United States and international intellectual property laws.',
       'These Terms do not transfer any ownership rights to users.',
@@ -358,7 +364,7 @@ const sections = [
 
   {
     id: 'limited-license',
-    title: '26. Limited License',
+    title: '25. Limited License',
     content: [
       'Subject to these Terms, we grant you a limited, revocable, non-exclusive, non-transferable license to access and use the Website solely for personal, informational, and lawful purposes.',
       'This license does not permit you to:',
@@ -374,7 +380,7 @@ const sections = [
 
   {
     id: 'user-submissions',
-    title: '27. User Submissions',
+    title: '26. User Submissions',
     content: [
       'If you voluntarily submit communications through contact forms, email, comments (if enabled), or other available features, you represent that:',
       '• you own or have the necessary rights to submit the content;',
@@ -384,9 +390,10 @@ const sections = [
       'However, by voluntarily submitting content to us, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, display, store, and process that content solely as reasonably necessary to operate, administer, maintain, improve, or respond through the Website, unless otherwise agreed.',
     ],
   },
-    {
+
+  {
     id: 'copyright-policy-dmca',
-    title: '28. Copyright Policy (DMCA)',
+    title: '27. Copyright Policy (DMCA)',
     content: [
       'We respect the intellectual property rights of others and expect users to do the same.',
       'If you believe that material available on the Website infringes your copyright, you may submit a written notification containing substantially the information required under the U.S. Digital Millennium Copyright Act ("DMCA"), including:',
@@ -402,7 +409,7 @@ const sections = [
 
   {
     id: 'third-party-services',
-    title: '29. Third-Party Services',
+    title: '28. Third-Party Services',
     content: [
       'The Website may integrate with or provide access to third-party services, including payment processors, video hosting platforms, mapping services, analytics providers, or social media platforms.',
       'These services operate independently from the Website.',
@@ -418,7 +425,7 @@ const sections = [
 
   {
     id: 'external-links',
-    title: '30. External Links',
+    title: '29. External Links',
     content: [
       'The Website may contain links to third-party websites for informational convenience.',
       'The inclusion of any external link does not constitute:',

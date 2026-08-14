@@ -20,5 +20,5 @@ warning: in the working copy of 'src/sections/StorySnapshot.tsx', LF will be rep
 [32m+[m[32m  distressed commercial property in Delray Beach, Florida.[m
 [32m+[m[32m</p>[m
              <Link[m
-               to="/about"[m
+               to="/our-story"[m
                className="reveal-child inline-block mt-6 text-body font-medium text-purple link-underline"[m

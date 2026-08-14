@@ -38,7 +38,7 @@ hover:shadow-md
       <ChevronRight
   aria-hidden="true"
   focusable="false"
-  size={2}3
+  size={23}
   strokeWidth={6}
   className="
     flex-shrink-0

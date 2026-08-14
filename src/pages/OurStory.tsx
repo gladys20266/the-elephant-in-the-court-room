@@ -8,7 +8,7 @@ const aboutSeo = {
   title: 'About | The Elephant In The Court Room',
   description:
     'Learn about The Elephant In The Court Room campaign, its purpose, and the story presented through this website.',
-  canonical: '/about',
+  canonical: '/our-story',
   type: 'website' as const,
 }
 

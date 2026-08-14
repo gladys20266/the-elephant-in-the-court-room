@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
 import { Download } from 'lucide-react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import FeatureCard from '@/components/FeatureCard'
 import SectionBadge from '@/components/SectionBadge'
+import SectionButton from '@/components/SectionButton'
 
 export default function DownloadsPreview() {
   const sectionRef = useSectionReveal<HTMLElement>()
@@ -17,6 +17,7 @@ export default function DownloadsPreview() {
     >
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8 lg:gap-14 items-center">
+
           {/* Left Content */}
           <div>
             <SectionBadge
@@ -44,28 +45,13 @@ export default function DownloadsPreview() {
               className="reveal-child w-20 h-px bg-gray-300 my-8"
             />
 
-            <Link
-              to="/downloads"
-              aria-label="Browse downloadable case files and resources"
-              className="
-                reveal-child
-                inline-block
-                text-body
-                font-semibold
-                text-purple
-                link-underline
-                transition-colors
-                duration-200
-                hover:text-magenta
-                focus-visible:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-purple
-                focus-visible:ring-offset-2
-                rounded-sm
-              "
-            >
-              Explore downloads &rarr;
-            </Link>
+            {/* CTA */}
+            <div className="mt-4">
+              <SectionButton
+                text="Explore downloads"
+                to="/downloads"
+              />
+            </div>
           </div>
 
           {/* Right Card */}
@@ -84,6 +70,7 @@ export default function DownloadsPreview() {
               link="/downloads"
             />
           </div>
+
         </div>
       </div>
     </section>

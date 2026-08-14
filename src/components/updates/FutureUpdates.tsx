@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import SectionButton from "@/components/SectionButton";
 
 export default function FutureUpdates() {
   return (
@@ -30,9 +30,24 @@ export default function FutureUpdates() {
 
         {/* Documents */}
 
-        <Link
-          to="/documents"
-          className="group flex h-full flex-col rounded-3xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#6B3A8F] hover:shadow-2xl"
+        <div
+          className="
+            group
+            flex
+            h-full
+            flex-col
+            rounded-3xl
+            border
+            border-gray-200
+            bg-white
+            p-8
+            shadow-lg
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-[#6B3A8F]
+            hover:shadow-2xl
+          "
         >
 
           <h3 className="text-2xl font-bold text-purple">
@@ -44,17 +59,35 @@ export default function FutureUpdates() {
             evidence related to the case.
           </p>
 
-          <div className="mt-auto pt-10 font-bold text-[#6B3A8F] group-hover:text-[#D94B8A]">
-            View Documents →
+          <div className="mt-auto pt-10">
+            <SectionButton
+              text="View Documents"
+              to="/documents"
+            />
           </div>
 
-        </Link>
+        </div>
 
         {/* Videos */}
 
-        <Link
-          to="/videos"
-          className="group flex h-full flex-col rounded-3xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#6B3A8F] hover:shadow-2xl"
+        <div
+          className="
+            group
+            flex
+            h-full
+            flex-col
+            rounded-3xl
+            border
+            border-gray-200
+            bg-white
+            p-8
+            shadow-lg
+            transition-all
+            duration-300
+            hover:-translate-y-1
+            hover:border-[#6B3A8F]
+            hover:shadow-2xl
+          "
         >
 
           <h3 className="text-2xl font-bold text-purple">
@@ -66,11 +99,14 @@ export default function FutureUpdates() {
             presentations.
           </p>
 
-          <div className="mt-auto pt-10 font-bold text-[#6B3A8F] group-hover:text-[#D94B8A]">
-            Watch Videos →
+          <div className="mt-auto pt-10">
+            <SectionButton
+              text="Watch Videos"
+              to="/videos"
+            />
           </div>
 
-        </Link>
+        </div>
 
         {/* Support */}
 
@@ -88,13 +124,26 @@ export default function FutureUpdates() {
           <div className="mt-auto pt-10">
 
             <a
-  href="https://www.gofundme.com/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-block rounded-xl bg-[#CFEA8B] px-8 py-4 font-bold text-[#24331B] transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
->
-  Support on GoFundMe
-</a>
+              href="https://www.gofundme.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                inline-block
+                rounded-xl
+                bg-[#CFEA8B]
+                px-8
+                py-4
+                font-bold
+                text-[#24331B]
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-lg
+                cursor-pointer
+              "
+            >
+              Support on GoFundMe
+            </a>
 
           </div>
 

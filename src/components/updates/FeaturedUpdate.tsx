@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+
+import SectionButton from "@/components/SectionButton";
 
 interface FeaturedUpdateProps {
   title: string;
@@ -43,18 +44,18 @@ export default function FeaturedUpdate({
 
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <span
-  className={`rounded-full px-4 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white ${
-    categoryColors[
-      category as keyof typeof categoryColors
-    ]
-  }`}
->
-  {category}
-</span>
+            className={`rounded-full px-4 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white ${
+              categoryColors[
+                category as keyof typeof categoryColors
+              ]
+            }`}
+          >
+            {category}
+          </span>
 
-<span className="rounded-full bg-[#87CB28] px-5 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white">
-  Active
-</span>
+          <span className="rounded-full bg-[#87CB28] px-5 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white">
+            Active
+          </span>
         </div>
 
         {/* Title */}
@@ -80,12 +81,12 @@ export default function FeaturedUpdate({
         {/* Footer */}
 
         <div className="mt-8 border-t border-gray-200 pt-6">
-          <Link
-            to="/updates/website-campaign-launched"
-            className="font-semibold text-[#6B3A8F] transition hover:text-[#D94B8A]"
-          >
-            Read Full Story →
-          </Link>
+          <div className="mt-4">
+            <SectionButton
+              text="Read Full Story"
+              to="/updates/website-campaign-launched"
+            />
+          </div>
         </div>
       </div>
     </section>

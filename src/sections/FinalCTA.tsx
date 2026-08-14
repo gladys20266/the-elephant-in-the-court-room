@@ -111,11 +111,11 @@ export default function FinalCTA() {
           </button>
         </div>
 
-        <p className="reveal-child text-body-small text-charcoal/70 mt-6">
-          You can support the campaign by contributing to the legal effort,
-          sharing the campaign, supporting Eclectic Eats, or reviewing the
-          public record and contributing ideas.
-        </p>
+        <p className="reveal-child text-[0.9rem] font-black text-charcoal mt-6">
+  You can support the campaign by contributing to the legal effort,
+  sharing the campaign, supporting Eclectic Eats, or reviewing the
+  public record and contributing ideas.
+</p>
       </div>
     </section>
   )

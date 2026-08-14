@@ -1,7 +1,8 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
-import SectionBadge from '@/components/SectionBadge'
 
+import SectionBadge from '@/components/SectionBadge'
+import SectionButton from '@/components/SectionButton'
 export default function StorySnapshot() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
@@ -19,7 +20,7 @@ export default function StorySnapshot() {
           <div className="text-center lg:text-left">
             <SectionBadge
               text="THE STORY"
-              to="/about"
+              to="/our-story"
             />
 
             <h2
@@ -83,27 +84,14 @@ export default function StorySnapshot() {
               and pursuit of the claims described in the public record.
             </p>
 
-            <Link
-              to="/about"
-              aria-label="Read the full story of Leo and Olga"
-              className="
-                reveal-child
-                inline-block
-                mt-8
-                text-base
-                sm:text-lg
-                font-semibold
-                text-purple
-                link-underline
-                focus-visible:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-purple
-                focus-visible:ring-offset-2
-                rounded-sm
-              "
-            >
-              Read the full story &rarr;
-            </Link>
+            <div className="mt-4">
+  <SectionButton
+    text="Read the full story"
+    to="/our-story"
+  />
+</div>
+              
+           
           </div>
 
           {/* Right: Campaign Property Photograph */}

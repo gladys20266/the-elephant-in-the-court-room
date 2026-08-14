@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
 import { FileText } from 'lucide-react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import FeatureCard from '@/components/FeatureCard'
 import SectionBadge from '@/components/SectionBadge'
+import SectionButton from '@/components/SectionButton'
 
 export default function DocumentsPreview() {
   const sectionRef = useSectionReveal<HTMLElement>()
@@ -17,6 +17,7 @@ export default function DocumentsPreview() {
     >
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-10 lg:gap-14 items-center">
+
           {/* Left Content */}
           <div className="text-center lg:text-left">
             <SectionBadge
@@ -55,8 +56,8 @@ export default function DocumentsPreview() {
               "
             >
               Review the lease-to-own agreement, court filings, legal motions,
-and supporting materials that provide the documented record of the
-dispute and the legal proceedings described in this campaign.
+              and supporting materials that provide the documented record of the
+              dispute and the legal proceedings described in this campaign.
             </p>
 
             <div
@@ -64,29 +65,13 @@ dispute and the legal proceedings described in this campaign.
               className="reveal-child w-20 h-px bg-gray-300 my-8 mx-auto lg:mx-0"
             />
 
-            <Link
-              to="/documents"
-              aria-label="View all public court documents"
-              className="
-                reveal-child
-                inline-block
-                text-base
-                sm:text-lg
-                font-semibold
-                text-purple
-                link-underline
-                transition-colors
-                duration-200
-                hover:text-magenta
-                focus-visible:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-purple
-                focus-visible:ring-offset-2
-                rounded-sm
-              "
-            >
-              Explore documents &rarr;
-            </Link>
+            {/* CTA */}
+            <div className="mt-4">
+              <SectionButton
+                text="Explore documents"
+                to="/documents"
+              />
+            </div>
           </div>
 
           {/* Right Card */}
@@ -105,6 +90,7 @@ dispute and the legal proceedings described in this campaign.
               link="/documents"
             />
           </div>
+
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import BackToTop from "@/components/BackToTop";
 
 import Home from "./pages/Home";
-import About from "./pages/About";
+import OurStory from "./pages/OurStory";
 import Case from "./pages/Case";
 import Updates from "./pages/Updates";
 import UpdateDetail from "./pages/UpdateDetail";
@@ -23,7 +23,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
 
-          <Route path="/about" element={<About />} />
+          <Route path="/our-story" element={<OurStory />} />
 
           <Route path="/case" element={<Case />} />
 

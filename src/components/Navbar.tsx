@@ -6,7 +6,7 @@ import { SITE_NAME } from '@/lib/brand'
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  { label: 'Our Story', href: '/our-story' },
   { label: 'Case', href: '/case' },
   { label: 'Updates', href: '/updates' },
   { label: 'Videos', href: '/videos' },

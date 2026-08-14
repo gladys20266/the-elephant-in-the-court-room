@@ -19,7 +19,7 @@ export default function StorySnapshot() {
           <div className="text-center lg:text-left">
             <SectionBadge
               text="THE STORY"
-              to="/about"
+              to="/our-story"
             />
 
             <h2
@@ -84,7 +84,7 @@ export default function StorySnapshot() {
             </p>
 
             <Link
-              to="/about"
+              to="/our-story"
               aria-label="Read the full story of Leo and Olga"
               className="
                 reveal-child

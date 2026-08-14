@@ -96,10 +96,10 @@ export default function LegalPage({ title, lastUpdated, sections }: LegalPagePro
 </Link>
 
 <Link
-  to="/about"
+  to="/our-story"
   className="text-base font-medium text-charcoal hover:text-purple hover:bg-white rounded-md px-3 py-1 transition-all duration-200"
 >
-  About
+  Our Story
 </Link>
 
 <Link

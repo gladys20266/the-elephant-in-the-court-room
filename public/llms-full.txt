@@ -41,7 +41,7 @@ URL: /
 Introduces the campaign and explains its objectives.
 
 ### About
-URL: /about
+URL: /our-story
 
 Provides background information about the campaign.
 

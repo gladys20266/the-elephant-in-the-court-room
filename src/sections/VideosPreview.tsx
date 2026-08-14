@@ -1,21 +1,20 @@
-import { Link } from 'react-router-dom'
-import { useSectionReveal } from '@/hooks/useSectionReveal'
-import FeatureImage from '@/components/FeatureImage'
-import SectionBadge from '@/components/SectionBadge'
+import { useSectionReveal } from "@/hooks/useSectionReveal";
+import FeatureImage from "@/components/FeatureImage";
+import SectionBadge from "@/components/SectionBadge";
+import SectionButton from "@/components/SectionButton";
 
 export default function VideosPreview() {
-  const sectionRef = useSectionReveal<HTMLElement>()
+  const sectionRef = useSectionReveal<HTMLElement>();
 
   return (
     <section
       ref={sectionRef}
-      id="videos-preview"
       aria-labelledby="videos-preview-heading"
-      aria-describedby="videos-preview-description"
       className="section-padding bg-off-white"
     >
       <div className="content-container">
         <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-6 lg:gap-8 items-center">
+
           {/* Left Content */}
           <div>
             <SectionBadge
@@ -30,40 +29,21 @@ export default function VideosPreview() {
               Watch The Case Unfold
             </h2>
 
-            <p
-              id="videos-preview-description"
-              className="reveal-child text-body text-charcoal max-w-2xl"
-            >
-              Watch the introduction and follow the story of the lease-to-own
-agreement, the years of litigation that followed, and the campaign
-for continued legal representation and enforcement of the claimed
-contractual rights.
+            <p className="reveal-child text-body text-charcoal max-w-2xl">
+              Watch the introduction and follow the legal journey through
+              videos documenting the broken promise, the evidence, and the
+              pursuit of justice.
             </p>
 
-            <div
-              aria-hidden="true"
-              className="reveal-child w-20 h-px bg-gray-300 my-8"
-            />
+            <div className="reveal-child w-20 h-px bg-gray-300 my-8"></div>
 
-            <Link
-              to="/videos"
-              aria-label="View all campaign videos"
-              className="
-                reveal-child
-                inline-block
-                text-body
-                font-medium
-                text-purple
-                link-underline
-                focus-visible:outline-none
-                focus-visible:ring-2
-                focus-visible:ring-purple
-                focus-visible:ring-offset-2
-                rounded-sm
-              "
-            >
-              Watch all videos &rarr;
-            </Link>
+            {/* CTA */}
+            <div className="mt-4">
+              <SectionButton
+                text="Watch all videos"
+                to="/videos"
+              />
+            </div>
           </div>
 
           {/* Right Image */}
@@ -75,8 +55,9 @@ contractual rights.
               showPlayButton
             />
           </div>
+
         </div>
       </div>
     </section>
-  )
+  );
 }

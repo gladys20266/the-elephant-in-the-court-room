@@ -1,6 +1,7 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { Link } from 'react-router-dom'
 import SectionBadge from '@/components/SectionBadge'
+import SectionButton from '@/components/SectionButton'
 
 const updateCards = [
   {
@@ -138,26 +139,14 @@ export default function Updates() {
           ))}
         </div>
 
-        {/* Bottom Link */}
+        {/* Bottom CTA */}
         <div className="reveal-child text-center">
-          <Link
-            to="/updates"
-            aria-label="See all campaign updates"
-            className="
-              inline-block
-              text-body
-              font-medium
-              text-purple
-              link-underline
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-purple
-              focus-visible:ring-offset-2
-              rounded-sm
-            "
-          >
-            See all updates &rarr;
-          </Link>
+          <div className="mt-4">
+            <SectionButton
+              text="See all updates"
+              to="/updates"
+            />
+          </div>
         </div>
       </div>
     </section>
