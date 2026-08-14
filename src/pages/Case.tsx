@@ -1,20 +1,16 @@
 import Hero from '@/components/Hero'
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import { webPageSchema } from '@/seo/pageSchemas'
-import {
-  X,
-  ChevronLeft,
-  ChevronRight,
-  FileDown,
-} from 'lucide-react'
+import { FileDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 gsap.registerPlugin(ScrollTrigger)
+
 const caseSeo = {
   title: 'Case | The Elephant In The Court Room',
   description:
@@ -22,6 +18,7 @@ const caseSeo = {
   canonical: '/case',
   type: 'website' as const,
 }
+
 const timelineItems = [
   {
     date: 'MARCH 15, 2023',
@@ -61,60 +58,9 @@ const timelineItems = [
   },
 ]
 
-const galleryItems = [
-  {
-    src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80',
-    caption:
-      'The Elephant In The Court Room volunteering at the Annual Community Food Drive — Riverside Community Center, 2022',
-    type: 'PHOTO' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80',
-    caption: 'Certificate of Appreciation for 5+ years of volunteer service',
-    type: 'DOCUMENT' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-    caption: 'Celebrating 15 years of service with colleagues',
-    type: 'PHOTO' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80',
-    caption: 'Youth Soccer Coaching — Seasons 2019 through 2023',
-    type: 'VIDEO' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
-    caption: 'Letters of support from 40+ community members',
-    type: 'DOCUMENT' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
-    caption: 'Family at the Annual Summer Festival',
-    type: 'PHOTO' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
-    caption: 'Employment and tax records documenting 16 years of continuous work',
-    type: 'DOCUMENT' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
-    caption: 'Mentoring a junior technician at the dealership',
-    type: 'PHOTO' as const,
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800&q=80',
-    caption: 'Community petition with 500+ signatures of support',
-    type: 'DOCUMENT' as const,
-  },
-]
-
 export default function Case() {
   const sectionRef = useSectionReveal<HTMLElement>()
   const timelineRef = useRef<HTMLDivElement>(null)
-  const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     if (!timelineRef.current) return
@@ -145,70 +91,19 @@ export default function Case() {
     }
   }, [])
 
-  const openLightbox = (index: number) => {
-    setActiveIndex(index)
-    setLightboxOpen(true)
-    document.body.style.overflow = 'hidden'
-  }
+  return (
+    <>
+      <SEO data={caseSeo} />
 
-  const closeLightbox = () => {
-    setLightboxOpen(false)
-    document.body.style.overflow = ''
-  }
+      <StructuredData
+        data={webPageSchema({
+          title: caseSeo.title,
+          description: caseSeo.description,
+          path: caseSeo.canonical,
+        })}
+      />
 
-  const goNext = () =>
-    setActiveIndex((prev) => (prev + 1) % galleryItems.length)
-
-  const goPrev = () =>
-    setActiveIndex(
-      (prev) => (prev - 1 + galleryItems.length) % galleryItems.length
-    )
-
-  const handleGalleryKeyDown = (
-    event: React.KeyboardEvent<HTMLDivElement>,
-    index: number
-  ) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      openLightbox(index)
-    }
-  }
-
-  const handleLightboxKeyDown = (
-    event: React.KeyboardEvent<HTMLDivElement>
-  ) => {
-    if (event.key === 'Escape') {
-      closeLightbox()
-      return
-    }
-
-    if (event.key === 'ArrowRight') {
-      event.preventDefault()
-      goNext()
-      return
-    }
-
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault()
-      goPrev()
-    }
-  }
-
-  
-   
-      return (
-  <>
-    <SEO data={caseSeo} />
-
-    <StructuredData
-      data={webPageSchema({
-        title: caseSeo.title,
-        description: caseSeo.description,
-        path: caseSeo.canonical,
-      })}
-    />
-
-    <Hero subtitle="The facts, the evidence, and the fight for due process." />
+      <Hero subtitle="The facts, the evidence, and the fight for due process." />
 
       {/* Case Overview */}
       <section
@@ -270,9 +165,7 @@ export default function Case() {
                   />
 
                   <div>
-                    <time
-                      className="text-body-small font-medium text-charcoal uppercase tracking-wider"
-                    >
+                    <time className="text-body-small font-medium text-charcoal uppercase tracking-wider">
                       {item.date}
                     </time>
 
@@ -373,7 +266,7 @@ export default function Case() {
         </div>
       </section>
 
-      {/* Full Evidence Gallery */}
+      {/* Evidence & Documentation */}
       <section
         id="case-evidence"
         aria-labelledby="case-evidence-heading"
@@ -381,6 +274,7 @@ export default function Case() {
         className="section-padding bg-white"
       >
         <div className="content-container">
+          {/* Header */}
           <div className="mb-10">
             <span
               aria-hidden="true"
@@ -393,17 +287,16 @@ export default function Case() {
               id="case-evidence-heading"
               className="reveal-child text-section-title text-purple mb-4"
             >
-              Evidence & Documentation
+              Evidence &amp; Documentation
             </h2>
 
             <p
               id="case-evidence-description"
               className="reveal-child text-body text-charcoal/80 max-w-xl mb-4"
             >
-              Below is a collection of documents, photographs, and videos that
-              support The Elephant In The Court Room's case. All materials have
-              been reviewed and approved for public sharing by The Elephant In
-              The Court Room's legal team.
+              Explore the videos, photographs, and documents that help tell
+              the story of the property, the transformation, and the legal
+              case.
             </p>
 
             <div className="reveal-child inline-block bg-lime/20 rounded px-4 py-2.5">
@@ -415,190 +308,266 @@ export default function Case() {
             </div>
           </div>
 
-          <div
-            role="list"
-            aria-label="Case evidence gallery"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[220px]"
-          >
-            {galleryItems.map((item, index) => (
-              <div
-                key={index}
-                role="listitem"
-                tabIndex={0}
-                aria-label={`Open ${item.type.toLowerCase()}: ${item.caption}`}
-                onClick={() => openLightbox(index)}
-                onKeyDown={(event) =>
-                  handleGalleryKeyDown(event, index)
-                }
-                className={`group relative rounded-xl overflow-hidden cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2 ${
-                  index === 0
-                    ? 'md:col-span-2 md:row-span-2'
-                    : ''
-                }`}
-              >
+          {/* Media Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            {/* VIDEO */}
+            <Link
+              to="/videos"
+              className="
+                reveal-child
+                group
+                block
+                overflow-hidden
+                rounded-xl
+                bg-white
+                shadow-card
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:shadow-card-hover
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-purple
+                focus-visible:ring-offset-2
+              "
+              aria-label="Go to Videos page"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <img
-                  src={item.src}
-                  alt={item.caption}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  src="/assets/welcome-poster.webp"
+                  alt="Preview of The Elephant In The Court Room campaign video"
+                  className="
+                    w-full
+                    h-full
+                    object-cover
+                    transition-transform
+                    duration-500
+                    group-hover:scale-105
+                  "
                   loading="lazy"
                   decoding="async"
                 />
 
+                {/* Play Button */}
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    items-center
+                    justify-center
+                    bg-black/10
+                    group-hover:bg-black/20
+                    transition-colors
+                    duration-300
+                  "
                 >
-                  <span className="text-label text-lime mb-1">
-                    {item.type}
-                  </span>
-
-                  <p className="text-white text-sm font-medium translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    {item.caption}
-                  </p>
+                  <div
+                    className="
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-white/90
+                      text-purple
+                      shadow-lg
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  >
+                    <span className="text-3xl ml-1">
+                      ▶
+                    </span>
+                  </div>
                 </div>
 
-                <div
-                  aria-hidden="true"
-                  className="absolute top-3 right-3 bg-charcoal/70 text-white text-label px-2 py-0.5 rounded-sm"
+                {/* Navigation Badge */}
+                <span
+                  className="
+                    absolute
+                    top-3
+                    right-3
+                    rounded-md
+                    bg-[#241A2B]/90
+                    px-3
+                    py-1
+                    text-label
+                    shadow-sm
+                  "
                 >
-                  {item.type}
-                </div>
+                  <span className="text-[#B7D63A]">GO TO</span>{' '}
+                  <span className="text-white">VIDEOS</span>
+                </span>
               </div>
-            ))}
+
+              <div className="p-5">
+                <h3 className="text-xl font-semibold text-purple">
+                  Watch The Case Unfold
+                </h3>
+
+                <p className="mt-2 text-body-small text-charcoal/70">
+                  Watch the campaign introduction and follow the legal journey.
+                </p>
+              </div>
+            </Link>
+
+            {/* PHOTO */}
+            <Link
+              to="/photos"
+              className="
+                reveal-child
+                group
+                block
+                overflow-hidden
+                rounded-xl
+                bg-white
+                shadow-card
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:shadow-card-hover
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-purple
+                focus-visible:ring-offset-2
+              "
+              aria-label="Go to Photos page"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <img
+                  src="/photos/after/after-0006.webp"
+                  alt="Photograph of the property and outdoor grounds following the transformation"
+                  className="
+                    w-full
+                    h-full
+                    object-cover
+                    transition-transform
+                    duration-500
+                    group-hover:scale-105
+                  "
+                  loading="lazy"
+                  decoding="async"
+                />
+
+                {/* Navigation Badge */}
+                <span
+                  className="
+                    absolute
+                    top-3
+                    right-3
+                    rounded-md
+                    bg-[#241A2B]/90
+                    px-3
+                    py-1
+                    text-label
+                    shadow-sm
+                  "
+                >
+                  <span className="text-[#B7D63A]">GO TO</span>{' '}
+                  <span className="text-white">PHOTOS</span>
+                </span>
+              </div>
+
+              <div className="p-5">
+                <h3 className="text-xl font-semibold text-purple">
+                  See The Transformation
+                </h3>
+
+                <p className="mt-2 text-body-small text-charcoal/70">
+                  Explore the before-and-after photographic record of the
+                  property.
+                </p>
+              </div>
+            </Link>
+
+            {/* DOCUMENT */}
+            <Link
+              to="/documents"
+              className="
+                reveal-child
+                group
+                flex
+                flex-col
+                overflow-hidden
+                rounded-xl
+                bg-white
+                shadow-card
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:shadow-card-hover
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-purple
+                focus-visible:ring-offset-2
+              "
+              aria-label="Go to Documents page"
+            >
+              <div
+                className="
+                  relative
+                  aspect-[4/3]
+                  flex
+                  items-center
+                  justify-center
+                  bg-purple
+                  text-white
+                  transition-colors
+                  duration-300
+                  group-hover:bg-[#5B3079]
+                "
+              >
+                <FileDown
+                  aria-hidden="true"
+                  focusable="false"
+                  className="
+                    h-20
+                    w-20
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
+                  "
+                />
+
+                {/* Navigation Badge */}
+                <span
+                  className="
+                    absolute
+                    top-3
+                    right-3
+                    rounded-md
+                    bg-[#241A2B]/90
+                    px-3
+                    py-1
+                    text-label
+                    shadow-sm
+                  "
+                >
+                  <span className="text-[#B7D63A]">GO TO</span>{' '}
+                  <span className="text-white">DOCUMENTS</span>
+                </span>
+              </div>
+
+              <div className="p-5">
+                <h3 className="text-xl font-semibold text-purple">
+                  Review The Court Record
+                </h3>
+
+                <p className="mt-2 text-body-small text-charcoal/70">
+                  Review the agreements, filings, motions, and supporting
+                  materials.
+                </p>
+              </div>
+            </Link>
+
           </div>
         </div>
       </section>
-
-      {/* Lightbox */}
-      {lightboxOpen && (
-        <div
-          className="fixed inset-0 z-[70] bg-black/90 flex items-center justify-center"
-          onClick={closeLightbox}
-          onKeyDown={handleLightboxKeyDown}
-          tabIndex={-1}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`Viewing ${galleryItems[activeIndex].type.toLowerCase()}: ${galleryItems[activeIndex].caption}`}
-        >
-          <button
-            type="button"
-            onClick={closeLightbox}
-            className="
-              absolute
-              top-5
-              right-5
-              text-white/70
-              hover:text-white
-              z-10
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-white
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-black
-              rounded-sm
-            "
-            aria-label="Close evidence viewer"
-          >
-            <X
-              aria-hidden="true"
-              focusable="false"
-              className="w-8 h-8"
-            />
-          </button>
-
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation()
-              goPrev()
-            }}
-            className="
-              absolute
-              left-4
-              top-1/2
-              -translate-y-1/2
-              w-12
-              h-12
-              rounded-full
-              bg-white/10
-              hover:bg-white/20
-              flex
-              items-center
-              justify-center
-              text-white
-              z-10
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-white
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-black
-            "
-            aria-label="Previous evidence item"
-          >
-            <ChevronLeft
-              aria-hidden="true"
-              focusable="false"
-              className="w-6 h-6"
-            />
-          </button>
-
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation()
-              goNext()
-            }}
-            className="
-              absolute
-              right-4
-              top-1/2
-              -translate-y-1/2
-              w-12
-              h-12
-              rounded-full
-              bg-white/10
-              hover:bg-white/20
-              flex
-              items-center
-              justify-center
-              text-white
-              z-10
-              focus-visible:outline-none
-              focus-visible:ring-2
-              focus-visible:ring-white
-              focus-visible:ring-offset-2
-              focus-visible:ring-offset-black
-            "
-            aria-label="Next evidence item"
-          >
-            <ChevronRight
-              aria-hidden="true"
-              focusable="false"
-              className="w-6 h-6"
-            />
-          </button>
-
-          <div
-            className="max-w-4xl max-h-[80vh] mx-8"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <img
-              src={galleryItems[activeIndex].src}
-              alt={galleryItems[activeIndex].caption}
-              className="max-w-full max-h-[70vh] object-contain rounded-lg"
-              loading="eager"
-              decoding="async"
-            />
-
-            <p
-              className="text-white/80 text-body-small text-center mt-4"
-              aria-live="polite"
-            >
-              {galleryItems[activeIndex].caption}
-            </p>
-          </div>
-        </div>
-      )}
     </>
   )
 }

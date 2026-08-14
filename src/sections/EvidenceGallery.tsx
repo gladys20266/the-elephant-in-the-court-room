@@ -9,9 +9,9 @@ export default function EvidenceGallery() {
   return (
     <section
       ref={sectionRef}
-      id="photos"
-      aria-labelledby="photos-heading"
-      aria-describedby="photos-description"
+      id="evidence"
+      aria-labelledby="evidence-heading"
+      aria-describedby="evidence-description"
       className="section-padding bg-off-white"
     >
       <div className="content-container">
@@ -19,22 +19,22 @@ export default function EvidenceGallery() {
         {/* Header */}
         <div className="mb-10">
           <SectionBadge
-            text="PHOTOS"
-            to="/photos"
+            text="EVIDENCE"
+            to="/documents"
           />
 
           <h2
-            id="photos-heading"
+            id="evidence-heading"
             className="reveal-child text-section-title text-purple mb-4"
           >
-            The Property &amp; Its Story
+            Evidence &amp; Documentation
           </h2>
 
           <p
-            id="photos-description"
+            id="evidence-description"
             className="reveal-child text-body text-charcoal/80 max-w-xl"
           >
-            Explore the video, photographs, and documents that help tell the
+            Explore the videos, photographs, and documents that help tell the
             story of the property, the transformation, and the legal case.
           </p>
         </div>
@@ -65,6 +65,7 @@ export default function EvidenceGallery() {
             aria-label="Go to Videos page"
           >
             <div className="relative aspect-[4/3] overflow-hidden">
+
               <img
                 src="/assets/welcome-poster.webp"
                 alt="Preview of The Elephant In The Court Room campaign video"
@@ -133,9 +134,10 @@ export default function EvidenceGallery() {
                   shadow-sm
                 "
               >
-                <span className="text-[#9ACD32]">GO TO</span>{' '}
+                <span className="text-[#B7D63A]">GO TO</span>{' '}
                 <span className="text-white">VIDEOS</span>
               </span>
+
             </div>
 
             <div className="p-5">
@@ -172,6 +174,7 @@ export default function EvidenceGallery() {
             aria-label="Go to Photos page"
           >
             <div className="relative aspect-[4/3] overflow-hidden">
+
               <img
                 src="/photos/after/after-0006.webp"
                 alt="Photograph of the property and outdoor grounds following the transformation"
@@ -201,9 +204,10 @@ export default function EvidenceGallery() {
                   shadow-sm
                 "
               >
-                <span className="text-[#9ACD32]">GO TO</span>{' '}
+                <span className="text-[#B7D63A]">GO TO</span>{' '}
                 <span className="text-white">PHOTOS</span>
               </span>
+
             </div>
 
             <div className="p-5">
@@ -280,9 +284,10 @@ export default function EvidenceGallery() {
                   shadow-sm
                 "
               >
-                <span className="text-[#9ACD32]">GO TO</span>{' '}
+                <span className="text-[#B7D63A]">GO TO</span>{' '}
                 <span className="text-white">DOCUMENTS</span>
               </span>
+
             </div>
 
             <div className="p-5">
