@@ -22,15 +22,17 @@ export default function Footer() {
     />
 
     <div className="flex flex-col leading-tight">
-      <span className="text-[18px] font-bold text-white group-hover:text-lime transition-colors duration-200">
-        The Elephant
-      </span>
+  <span className="text-[18px] font-bold text-white group-hover:text-lime transition-colors duration-200">
+    The Elephant
+  </span>
 
-      <span className="text-[18px] font-bold text-white group-hover:text-lime transition-colors duration-200">
-        In The Court Room
-        <sup className="ml-0.5 text-[10px] align-super">™</sup>
-      </span>
-    </div>
+  <span className="relative text-[18px] font-bold text-white group-hover:text-lime transition-colors duration-200">
+    In The Court Room
+    <sup className="absolute -right-1 -top-0 text-[14px] font-bold">
+      ™
+    </sup>
+  </span>
+</div>
   </Link>
 
   <p className="mt-4 text-sm leading-7 text-white/90 max-w-[280px]">

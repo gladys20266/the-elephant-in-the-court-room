@@ -26,7 +26,7 @@ export const beforePhotos: Photo[] = [
   },
 ];
 
-export const afterPhotos: Photo[] = Array.from({ length: 42 }, (_, i) => {
+export const afterPhotos: Photo[] = Array.from({ length: 58 }, (_, i) => {
   const number = String(i + 1).padStart(4, "0");
 
   return {

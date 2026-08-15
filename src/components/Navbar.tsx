@@ -106,9 +106,9 @@ export default function Navbar() {
   In The Court{" "}
   <span className="relative inline-block">
     Room
-    <span className="absolute -top-1 -right-1 text-[7px] font-bold">
-      TM
-    </span>
+    <span className="absolute -top-1.5 -right-1.5 text-[9px] font-bold">
+  TM
+</span>
   </span>
 </span>
   </div>
