@@ -28,7 +28,7 @@ export interface SEOData {
   /**
    * Page type
    */
-  type?: "website" | "article" | "video.other";
+  type?: "website" | "article" | "video.other" | "CollectionPage";
 
   /**
    * Robots directive

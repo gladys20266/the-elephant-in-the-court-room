@@ -2,6 +2,7 @@ import Hero from '@/components/Hero'
 import LegalPage from '@/components/LegalPage'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
 
 const termsSeo = {
@@ -452,7 +453,18 @@ export default function Terms() {
           path: termsSeo.canonical,
         })}
       />
-
+<Breadcrumbs
+  items={[
+    {
+      name: 'Home',
+      path: '/',
+    },
+    {
+      name: 'Terms of Service',
+      path: '/terms',
+    },
+  ]}
+/>
       <Hero
         subtitle="Please read these Terms of Service carefully before accessing or using this Website, its content, fundraising campaign, or related services."
       />

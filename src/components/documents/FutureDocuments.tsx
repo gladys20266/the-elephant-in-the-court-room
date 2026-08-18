@@ -55,11 +55,11 @@ export default function FutureDocuments() {
             </h3>
 
             <p className="text-charcoal leading-8 text-lg">
-              Additional court filings, legal documents, correspondence, and
-              supporting records will be added here as they become available.
-              This document library will continue to expand as the case
-              progresses and new materials are released.
-            </p>
+  Additional court filings, legal documents, correspondence, and
+  supporting records will be added here as they become available.
+  The document library will be updated as additional materials are
+  publicly available and appropriate for publication.
+</p>
           </div>
         </div>
       </div>

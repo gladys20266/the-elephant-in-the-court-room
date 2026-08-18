@@ -1,167 +1,222 @@
-import Hero from '@/components/Hero'
-import { useSectionReveal } from '@/hooks/useSectionReveal'
-import SEO from '@/components/seo/SEO'
-import StructuredData from '@/components/seo/StructuredData'
-import { webPageSchema } from '@/seo/pageSchemas'
+import Hero from "@/components/Hero";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
+import SEO from "@/components/seo/SEO";
+import StructuredData from "@/components/seo/StructuredData";
+import Breadcrumbs from "@/components/seo/Breadcrumbs";
+import { webPageSchema } from "@/seo/pageSchemas";
 
-const aboutSeo = {
-  title: 'About | The Elephant In The Court Room',
+const ourStorySeo = {
+  title: "Our Story | The Elephant In The Court Room",
   description:
-    'Learn about The Elephant In The Court Room campaign, its purpose, and the story presented through this website.',
-  canonical: '/our-story',
-  type: 'website' as const,
-}
+    "Learn the story behind The Elephant In The Court Room campaign: a 2010 lease-to-own agreement, the investment in a Delray Beach, Florida property, the 2014 lawsuit, and more than eleven years of litigation seeking enforcement of the contract.",
+  canonical: "/our-story",
+  type: "website" as const,
+  keywords: [
+    "The Elephant In The Court Room",
+    "Leo and Olga",
+    "Delray Beach Florida",
+    "lease-to-own agreement",
+    "lease-to-own dispute",
+    "2010 contract",
+    "specific performance",
+    "Florida contract dispute",
+    "civil litigation",
+    "Eclectic Eats",
+    "Eclectic Synergy LLC",
+    "contract enforcement",
+    "legal advocacy",
+  ],
+};
 
 const chapters = [
   {
-    heading: 'A Broken Promise',
+    heading: "The Beginning — A Lease-to-Own Agreement",
     paragraphs: [
-      'In America, a signed contract is meant to protect honest work, investment, and property rights. But what happens when enforcing that contract becomes a years-long legal battle instead of a straightforward process? This is the story of Leo and Olga, two siblings who invested their savings and expertise into restoring a distressed commercial property in Delray Beach, Florida.',
-
-      'In 2010, they signed a lease-to-own agreement with a fixed purchase price and a defined option period. They rebuilt the property, operated a community restaurant, and expected to purchase it under the agreement. When they exercised their purchase option, they allege that the sale was refused and they were told to accept a higher rent or lose what they had built. Believing the contract had been breached, they filed suit in Florida in 2014 seeking to enforce their rights. They contend that what they expected to be a timely legal resolution became a protracted process of more than eleven years of litigation and delay.',
-
-      'After hundreds of docket entries and numerous procedural developments, they say the dispute remains unresolved. Their experience has led them to question whether contractual rights can always be effectively enforced through the legal system. They are now seeking public support to retain a nationally recognized law firm and continue pursuing their claims. Their message is simple: review the public record, reach your own conclusions, and, if you believe in their cause, consider supporting their campaign to help defend the principle that contracts should be honored and enforced.',
+      "In 2010, siblings Leo and Olga entered into a lease-to-own agreement concerning a commercial property in Delray Beach, Florida. The agreement established a fixed purchase price and provided a defined period in which they could exercise their right to purchase the property.",
+      "They understood the agreement as a path toward ownership. Their rent payments, work, investment, and commitment were made with the expectation that they would ultimately be able to purchase the property according to the terms they had agreed to.",
+      "The siblings formed Eclectic Synergy LLC and began building their vision for the property. What started as a contractual arrangement became a substantial personal and financial investment in the property and the business they were developing there.",
     ],
-    image:
-      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+    image: "/photos/after/after-0001.webp",
     imageAlt:
-      'Illustrative image representing the people behind The Elephant In The Court Room campaign',
+      "Exterior of the Delray Beach property after its transformation",
   },
   {
-    heading: 'Putting Down Roots',
+    heading: "Building the Dream",
     paragraphs: [
-      'By 2012, The Elephant In The Court Room had advanced to a senior technician role at a larger dealership. They had moved into a small apartment of their own. And they had met Maria — a nurse at the local clinic who would become their wife two years later.',
-      'The Elephant In The Court Room and Maria bought their first home in 2015, a modest bungalow in a quiet neighborhood where children played in the streets and neighbors chatted over fences. Their daughter Amara was born that same year. Their son Kofi followed in 2018.',
-      'The Elephant In The Court Room became a fixture in the community. They coached the neighborhood youth soccer team. They volunteered at the annual food drive. They helped neighbors with car trouble, home repairs, and moving days. They were the kind of person who remembered your birthday and showed up when you needed help.',
-      'At work, The Elephant In The Court Room mentored younger technicians, many of whom were immigrants themselves. They told them what others had told them: that this country rewards those who show up, work hard, and treat people with respect. They believed it because they had lived it.',
+      "The property they took on was not simply a finished commercial space. Leo and Olga invested their time, resources, expertise, and savings into improving and transforming it.",
+      "Their work helped turn the property into a functioning community restaurant known as Eclectic Eats. The investment represented more than construction and improvements. It represented years of work directed toward a future they believed was protected by their lease-to-own agreement.",
+      "The photographs presented throughout this website document the condition of the property and the transformation that followed. They provide visual context for the scale of the investment made during the years surrounding the agreement.",
     ],
-    image:
-      'https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80',
+    image: "/photos/after/after-0032.webp",
     imageAlt:
-      'Illustrative family image representing the personal story behind the campaign',
+      "Interior of the transformed restaurant property",
   },
   {
-    heading: 'When Everything Changed',
+    heading: "The Contract Was Exercised",
     paragraphs: [
-      'In March 2023, The Elephant In The Court Room received a notice that would turn their world upside down. After fifteen years of living, working, and raising a family in this country, they were being asked to prove that they belonged here — in a system that offers few guarantees and even fewer second chances.',
-      "The legal process began quickly and confusingly. The Elephant In The Court Room found themselves navigating a maze of court dates, documentation requests, and legal terminology they didn't fully understand. The stakes could not have been higher: the possibility of being separated from their wife, their children, and the only home they had ever known as a family.",
-      'The cost of quality legal representation was staggering — far beyond what The Elephant In The Court Room and Maria could afford while maintaining their mortgage, supporting their children, and keeping up with daily expenses. They faced an impossible choice between financial ruin and inadequate representation.',
-      "But The Elephant In The Court Room was not alone. When word spread through the community, something remarkable happened. Neighbors started asking how they could help. Coworkers organized a fundraiser. The youth soccer team they coached made them a poster that read 'We Need Our Coach.' The response was immediate and overwhelming.",
+      "Under the lease-to-own agreement, Leo and Olga had a defined period in which they could exercise their purchase option. They exercised that right and expected the transaction to proceed according to the agreement.",
+      "According to their account, the purchase was not completed as they expected. Instead, they say they were refused the deed and faced an ultimatum: continue occupying the property as tenants under substantially higher rent or lose what they had built.",
+      "For Leo and Olga, this was the point at which a contractual disagreement became a legal dispute. They believed they had fulfilled their obligations and were seeking enforcement of the agreement they had signed.",
     ],
-    image:
-      'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+    image: "/photos/after/after-0014.webp",
     imageAlt:
-      'Illustrative image representing community support for the campaign',
+      "Photograph documenting the restaurant property and its business signage",
   },
   {
-    heading: 'Standing Together',
+    heading: "The 2014 Lawsuit",
     paragraphs: [
-      "Today, The Elephant In The Court Room's case is ongoing. Their legal team is building a comprehensive defense that documents their community ties, their work history, their family relationships, and the contributions they have made over fifteen years. The process is slow, expensive, and emotionally draining.",
-      "But what keeps The Elephant In The Court Room going is the community standing beside them. The neighbors who write letters of support. The coworkers who show up to court dates. The strangers who donate to their legal fund. The children on their soccer team who tell them every practice, 'We got you, Coach.'",
-      "The Elephant In The Court Room's story is not unique. Thousands of immigrants face similar challenges every year — people who have built lives, raised families, and contributed to their communities, only to find themselves in a legal system that doesn't account for the human reality of their situations.",
-      'What makes The Elephant In The Court Room\'s story different is that you are reading it. You now know who they are. You know about the lives they have touched, the family they have raised, and the community they have helped build. And you have the opportunity to be part of what happens next.',
+      "In 2014, Leo and Olga filed suit in Palm Beach County Circuit Court seeking to enforce their rights under the agreement.",
+      "The case is Palm Beach County Circuit Court Case No. 50-2014-CA-013268. The central objective of the campaign is to pursue specific performance of the 2010 agreement and continue the legal effort to obtain the contractual remedy they believe they are entitled to.",
+      "What they expected to be a legal process capable of resolving the dispute became a prolonged litigation journey involving filings, hearings, procedural developments, legal expenses, and years of waiting.",
     ],
-    image:
-      'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80',
+    image: "/photos/after/after-0041.webp",
     imageAlt:
-      'Illustrative image representing community support at a community event',
+      "Photograph of the property involved in the legal dispute",
   },
-]
+  {
+    heading: "More Than Eleven Years of Litigation",
+    paragraphs: [
+      "The dispute has continued for more than eleven years. During that period, Leo and Olga have continued to face the financial and practical consequences of a case that has not reached the resolution they have been seeking.",
+      "The campaign is built around a simple concern: when a contract is signed, performed, and relied upon, what happens when the parties cannot obtain the enforcement they believe the agreement requires?",
+      "This website does not ask visitors to accept the story without examination. The goal is to make the underlying case easier to understand by bringing together the history, court documents, photographs, videos, updates, and other materials connected to the dispute.",
+    ],
+    image: "/photos/after/after-0025.webp",
+    imageAlt:
+      "Photograph documenting part of the property involved in the case",
+  },
+  {
+    heading: "Where the Case Stands",
+    paragraphs: [
+      "The legal dispute remains ongoing. Leo and Olga are continuing their effort to enforce the 2010 agreement and pursue the relief they believe the contract provides.",
+      "The campaign exists because continuing a complex civil case requires significant legal resources. After years of litigation and legal expense, additional support is needed to continue the legal effort and retain specialized representation.",
+      "The public record, including court filings and other case materials presented on this website, provides an opportunity for visitors to examine the history of the dispute for themselves.",
+    ],
+    image: "/photos/after/after-0058.webp",
+    imageAlt:
+      "Photograph showing the property and surrounding grounds",
+  },
+  {
+    heading: "Why This Campaign Exists",
+    paragraphs: [
+      "The Elephant In The Court Room campaign was created to bring public attention to the story behind this long-running contractual dispute and to help fund the legal effort needed to continue pursuing the case.",
+      "The campaign's purpose is not simply to tell a story. It is to preserve and present the underlying record: the agreement, the investment, the litigation history, the photographs, the court documents, and the developments that have taken place over the years.",
+      "Visitors are encouraged to review the available materials, understand the dispute, and reach their own conclusions. Those who believe in the importance of contractual rights and continued legal advocacy can choose to support the campaign.",
+    ],
+    image: "/photos/after/after-0037.webp",
+    imageAlt:
+      "Photograph showing the transformed property and outdoor area",
+  },
+];
 
-export default function About() {
-  const titleRef = useSectionReveal<HTMLDivElement>()
+export default function OurStory() {
+  const titleRef = useSectionReveal<HTMLDivElement>();
 
   return (
     <>
-      <SEO data={aboutSeo} />
+      <SEO data={ourStorySeo} />
 
       <StructuredData
         data={webPageSchema({
-          title: aboutSeo.title,
-          description: aboutSeo.description,
-          path: aboutSeo.canonical,
+          title: ourStorySeo.title,
+          description: ourStorySeo.description,
+          path: ourStorySeo.canonical,
+          type: "AboutPage",
         })}
       />
 
-      <Hero subtitle="Fifteen years. One community. A story worth fighting for." />
-
-      <section
-        id="about-story"
-        aria-labelledby="about-heading"
-        aria-describedby="about-description"
-        className="section-padding bg-off-white pb-0"
+      <main
+        id="our-story-page"
+        aria-label="Our Story page"
       >
-        <div className="mx-auto max-w-reading px-5 md:px-8">
-          {/* Title */}
-          <div
-            ref={titleRef}
-            className="mb-12 text-center"
-          >
-            <span
-              aria-hidden="true"
-              className="reveal-child mb-4 inline-block rounded-sm bg-magenta px-2.5 py-1 text-label text-white"
+        <Breadcrumbs
+          items={[
+            {
+              name: "Home",
+              path: "/",
+            },
+            {
+              name: "Our Story",
+              path: "/our-story",
+            },
+          ]}
+        />
+
+        <Hero
+          title="Our Story"
+          subtitle="A 2010 lease-to-own agreement. A major investment. More than eleven years seeking enforcement of a contract."
+        />
+
+        <section
+          id="our-story"
+          aria-labelledby="our-story-heading"
+          aria-describedby="our-story-description"
+          className="section-padding bg-off-white pb-0"
+        >
+          <div className="mx-auto max-w-reading px-5 md:px-8">
+            <div
+              ref={titleRef}
+              className="mb-12 text-center"
             >
-              OUR STORY
-            </span>
+              <span
+                aria-hidden="true"
+                className="reveal-child mb-4 inline-block rounded-sm bg-magenta px-2.5 py-1 text-label text-white"
+              >
+                OUR STORY
+              </span>
 
-            <h1
-              id="about-heading"
-              className="reveal-child text-section-title text-purple"
-            >
-              The Story of The Elephant In The Court Room
-            </h1>
+              <h1
+                id="our-story-heading"
+                className="reveal-child text-section-title text-purple"
+              >
+                The Story Behind The Elephant In The Court Room
+              </h1>
 
-            <p
-              id="about-description"
-              className="reveal-child mt-6 text-subheading italic text-charcoal"
-            >
-              This is the story of a man who came to this country with little
-              more than hope and a willingness to work hard. It&apos;s a story
-              about building a life, raising a family, and becoming part of a
-              community. And it&apos;s a story about what happens when that
-              life is threatened — and how a community responds.
-            </p>
-          </div>
-
-          {/* Chapters */}
-          {chapters.map((chapter, index) => (
-            <div key={index}>
-              {index > 0 && (
-                <hr
-                  aria-hidden="true"
-                  className="my-12 border-lime/20"
-                />
-              )}
-
-              <ChapterSection
-                {...chapter}
-                index={index}
-              />
+              <p
+                id="our-story-description"
+                className="reveal-child mt-6 text-subheading italic text-charcoal"
+              >
+                This is the story of a contract, an investment, a business, and
+                more than eleven years of litigation. It is the story of Leo and
+                Olga and their continuing effort to enforce the agreement they
+                signed in 2010.
+              </p>
             </div>
-          ))}
 
-          {/* Closing Callout */}
-          <div
-            className="mt-12 rounded-xl bg-lime/20 p-8 text-center"
-            aria-label="Closing statement from Maria"
-          >
-            <blockquote className="text-quote text-lg text-purple">
-              &ldquo;The Elephant In The Court Room always says that this
-              country gave them a chance when they had nothing. Now they&apos;re
-              asking for one more chance — and they&apos;re asking with the
-              support of everyone whose life they have touched.&rdquo;
-            </blockquote>
+            {chapters.map((chapter, index) => (
+              <div key={chapter.heading}>
+                {index > 0 && (
+                  <hr
+                    aria-hidden="true"
+                    className="my-12 border-lime/20"
+                  />
+                )}
 
-            <footer className="mt-4 text-body-small text-charcoal/70">
-              <cite className="not-italic">
-                — Maria, The Elephant In The Court Room&apos;s wife
-              </cite>
-            </footer>
+                <ChapterSection
+                  {...chapter}
+                  index={index}
+                />
+              </div>
+            ))}
+
+            <div
+              className="mt-12 rounded-xl bg-lime/20 p-8 text-center"
+              aria-label="Closing statement"
+            >
+              <blockquote className="text-quote text-lg text-purple">
+                A contract is a promise in writing. This campaign exists because
+                Leo and Olga continue to seek enforcement of the promise they
+                believe was made to them in 2010.
+              </blockquote>
+
+              <p className="mt-4 text-body-small text-charcoal/70">
+                Review the record. Understand the case. Decide for yourself.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </>
-  )
+  );
 }
 
 function ChapterSection({
@@ -171,15 +226,15 @@ function ChapterSection({
   imageAlt,
   index,
 }: {
-  heading: string
-  paragraphs: string[]
-  image: string
-  imageAlt: string
-  index: number
+  heading: string;
+  paragraphs: string[];
+  image: string;
+  imageAlt: string;
+  index: number;
 }) {
-  const ref = useSectionReveal<HTMLDivElement>()
+  const ref = useSectionReveal<HTMLDivElement>();
 
-  const headingId = `about-chapter-${index + 1}`
+  const headingId = `our-story-chapter-${index + 1}`;
 
   return (
     <article
@@ -195,12 +250,12 @@ function ChapterSection({
       </h2>
 
       <div className="space-y-4">
-        {paragraphs.map((p, i) => (
+        {paragraphs.map((paragraph, paragraphIndex) => (
           <p
-            key={i}
+            key={paragraphIndex}
             className="reveal-child text-body text-charcoal"
           >
-            {p}
+            {paragraph}
           </p>
         ))}
       </div>
@@ -215,5 +270,5 @@ function ChapterSection({
         />
       </div>
     </article>
-  )
+  );
 }

@@ -78,12 +78,12 @@ export default function ContactSection() {
             >
               <div className="rounded-xl overflow-hidden aspect-[4/3]">
                 <img
-                src="/photos/after/after-0006.webp"
-                alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                  decoding="async"
-                />
+  src="/assets/contact-elephant.webp"
+  alt="Decorative floral elephant with a message calling for support to Restore Justice"
+  className="w-full h-full object-contain"
+  loading="lazy"
+  decoding="async"
+/>
               </div>
             </Link>
           </div>

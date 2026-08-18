@@ -2,6 +2,7 @@ import Hero from '@/components/Hero'
 import DownloadSection from '@/components/downloads/DownloadSection'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
 import {
   Scale,
@@ -24,7 +25,7 @@ import {
 const downloadsSeo = {
   title: 'Downloads | The Elephant In The Court Room',
   description:
-    'Download case documents, contracts, supporting evidence, campaign resources, letters, and other materials related to The Elephant In The Court Room.',
+    'Access downloadable case documents, contracts, supporting evidence, and campaign resources related to The Elephant In The Court Room and The Death of the Contract.',
   canonical: '/downloads',
   type: 'website' as const,
 }
@@ -32,23 +33,21 @@ const downloadsSeo = {
 const courtDocuments = [
   {
     title: 'Complaint',
-    description: 'The original complaint filed in Palm Beach County.',
+    description:
+      'The original complaint filed in Palm Beach County. A downloadable copy will be published when available.',
     icon: Scale,
-    href: '/downloads/complaint.pdf',
   },
   {
     title: 'Court Orders',
     description:
-      'Important court orders and rulings issued throughout the case.',
+      'Important court orders and rulings issued throughout the case. Downloadable copies will be published when available.',
     icon: FileText,
-    href: '/downloads/court-orders.pdf',
   },
   {
     title: 'Docket History',
     description:
-      'A chronological record of filings, hearings, and court activity.',
+      'A chronological record of filings, hearings, and court activity. A downloadable copy will be published when available.',
     icon: History,
-    href: '/downloads/docket-history.pdf',
   },
 ]
 
@@ -56,90 +55,83 @@ const contractDocuments = [
   {
     title: 'Lease-to-Own Agreement',
     description:
-      'The original Lease-to-Own Agreement signed by both parties.',
+      'The original Lease-to-Own Agreement signed by the parties. A downloadable copy will be published when available.',
     icon: ScrollText,
-    href: '/downloads/lease-to-own-agreement.pdf',
   },
   {
     title: 'Supporting Agreements',
     description:
-      'Additional agreements and related legal documents supporting the case.',
+      'Additional agreements and related legal documents supporting the case. Downloadable copies will be published when available.',
     icon: Handshake,
-    href: '/downloads/supporting-agreements.pdf',
   },
   {
     title: 'Contract Amendments',
     description:
-      'Amendments or modifications made to the original agreement.',
+      'Amendments or modifications to the original agreement, if applicable. Downloadable copies will be published when available.',
     icon: FileSignature,
-    href: '/downloads/contract-amendments.pdf',
   },
 ]
 
 const evidenceDocuments = [
   {
     title: 'Before & After Photos',
-    description: 'Evidence documenting the property transformation.',
+    description:
+      'A downloadable collection of photographs documenting the property and its transformation will be published when available.',
     icon: Camera,
-    href: '/downloads/before-after-photos.pdf',
   },
   {
     title: 'Financial Records',
     description:
-      'Financial documents supporting the investment made into the property.',
+      'Financial records supporting the documented investment in the property. Downloadable materials will be published when available.',
     icon: Receipt,
-    href: '/downloads/financial-records.pdf',
   },
   {
     title: 'Supporting Evidence',
     description:
-      'Additional evidence supporting the facts presented in this case.',
+      'Additional evidence supporting the facts presented in the case. Downloadable materials will be published when available.',
     icon: Archive,
-    href: '/downloads/supporting-evidence.pdf',
   },
 ]
 
 const petitionDocuments = [
   {
     title: 'Official Petition',
-    description: 'Official petition supporting this campaign.',
+    description:
+      'Petition materials supporting the campaign. A downloadable copy will be published when available.',
     icon: Megaphone,
-    href: '/downloads/official-petition.pdf',
   },
   {
     title: 'Signature Campaign',
-    description: 'Public signature campaign documents.',
+    description:
+      'Materials relating to the public signature campaign. Downloadable materials will be published when available.',
     icon: PenTool,
-    href: '/downloads/signature-campaign.pdf',
   },
   {
     title: 'Public Statements',
-    description: 'Official public statements related to this campaign.',
+    description:
+      'Public statements related to the campaign. Downloadable materials will be published when available.',
     icon: Globe,
-    href: '/downloads/public-statements.pdf',
   },
 ]
 
 const letterDocuments = [
   {
     title: 'Demand Letters',
-    description: 'Formal demand letters related to the dispute.',
+    description:
+      'Formal demand letters related to the dispute. Downloadable copies will be published when available and appropriate for publication.',
     icon: Mail,
-    href: '/downloads/demand-letters.pdf',
   },
   {
     title: 'Legal Correspondence',
     description:
-      'Correspondence between the parties and legal representatives.',
+      'Legal correspondence related to the case. Downloadable materials will be published when available and appropriate for publication.',
     icon: Send,
-    href: '/downloads/legal-correspondence.pdf',
   },
   {
     title: 'Public Communications',
     description:
-      'Public communications and related campaign materials.',
+      'Public communications and related campaign materials. Downloadable copies will be published when available.',
     icon: Mailbox,
-    href: '/downloads/public-communications.pdf',
   },
 ]
 
@@ -153,13 +145,30 @@ export default function Downloads() {
           title: downloadsSeo.title,
           description: downloadsSeo.description,
           path: downloadsSeo.canonical,
+          type: 'CollectionPage',
         })}
       />
 
-      <main aria-label="Downloads page">
+      <main
+        id="downloads-page"
+        aria-label="Downloads page"
+      >
+        <Breadcrumbs
+          items={[
+            {
+              name: 'Home',
+              path: '/',
+            },
+            {
+              name: 'Downloads',
+              path: '/downloads',
+            },
+          ]}
+        />
+
         <Hero
           title="Downloads"
-          subtitle="Download important case documents, campaign resources, and supporting materials."
+          subtitle="Download important case documents, campaign resources, and supporting materials as they become available."
         />
 
         <div
@@ -167,14 +176,14 @@ export default function Downloads() {
           aria-label="Download resources"
           className="mx-auto max-w-7xl px-6 py-20"
         >
-          {/* Featured Download */}
+          {/* Featured Resource */}
           <section
             aria-labelledby="featured-download-title"
             className="mb-20"
           >
             <div className="rounded-3xl border border-lime-300 bg-gradient-to-r from-lime-50 to-white p-8 shadow-xl">
               <div className="mb-4 inline-flex items-center rounded-full bg-purple-700 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white">
-                Featured Download
+                Featured Resource
               </div>
 
               <h2
@@ -186,26 +195,23 @@ export default function Downloads() {
 
               <p className="max-w-3xl text-lg leading-8 text-gray-600">
                 A concise overview of the legal dispute, timeline, court
-                proceedings, and supporting evidence. This document is
-                recommended for anyone who wants to understand the case before
+                proceedings, and supporting evidence. This resource is being
+                prepared for visitors who want to understand the case before
                 reviewing the complete record.
               </p>
 
               <div className="mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
                 <div
                   className="flex flex-wrap items-center gap-3"
-                  aria-label="Document information"
+                  aria-label="Resource information"
                 >
                   <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700">
                     PDF
                   </span>
 
-                  <time
-                    dateTime="2026-07"
-                    className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700"
-                  >
-                    Updated July 2026
-                  </time>
+                  <span className="rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700">
+                    Coming Soon
+                  </span>
                 </div>
 
                 <button
@@ -234,37 +240,42 @@ export default function Downloads() {
             </div>
           </section>
 
+          {/* Court Documents */}
           <DownloadSection
             title="Court Documents"
-            description="Official court filings and legal records related to this case."
+            description="Official court filings and legal records related to this case. Downloadable copies will be published as they become available."
             documents={courtDocuments}
             className="mt-20"
           />
 
+          {/* Contracts & Agreements */}
           <DownloadSection
             title="Contracts & Agreements"
-            description="The legal agreements and contracts that form the foundation of this case."
+            description="Legal agreements and contracts relevant to the case. Downloadable copies will be published as they become available."
             documents={contractDocuments}
             className="mt-24"
           />
 
+          {/* Evidence */}
           <DownloadSection
             title="Evidence"
-            description="Evidence documenting the investments, property transformation, and facts supporting this case."
+            description="Materials documenting the property, investment, transformation, and other evidence relevant to the case."
             documents={evidenceDocuments}
             className="mt-24"
           />
 
+          {/* Petition */}
           <DownloadSection
             title="Petition"
-            description="Public petitions, requests for support, and advocacy documents related to this campaign."
+            description="Public petitions, requests for support, and advocacy materials related to the campaign."
             documents={petitionDocuments}
             className="mt-24"
           />
 
+          {/* Letters & Communications */}
           <DownloadSection
-            title="Letters"
-            description="Letters, legal correspondence, and public communications related to this case."
+            title="Letters & Communications"
+            description="Letters, legal correspondence, and public communications that may be published when available and appropriate."
             documents={letterDocuments}
             className="mt-24"
           />

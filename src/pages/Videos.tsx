@@ -1,7 +1,8 @@
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
-import { webPageSchema } from '@/seo/pageSchemas'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import { webPageSchema, videoSchema } from '@/seo/pageSchemas'
 
 const videosSeo = {
   title: 'Videos | The Elephant In The Court Room',
@@ -16,14 +17,48 @@ export default function Videos() {
 
   return (
     <>
-      <SEO data={videosSeo} />
+      <SEO
+        data={{
+          ...videosSeo,
+          image: '/assets/welcome-poster.webp',
+        }}
+      />
 
       <StructuredData
-        data={webPageSchema({
-          title: videosSeo.title,
-          description: videosSeo.description,
-          path: videosSeo.canonical,
-        })}
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            webPageSchema({
+              title: videosSeo.title,
+              description: videosSeo.description,
+              path: videosSeo.canonical,
+              type: 'CollectionPage',
+            }),
+
+            videoSchema({
+  name: 'The Death of the Contract — Introduction',
+  description:
+    'An introductory documentary about The Death of the Contract, explaining the lease-to-own agreement, the years of litigation that followed, and the continuing effort to seek specific performance of the original contract.',
+  path: '/videos',
+  contentUrl: '/videos/welcome.mp4',
+  thumbnailUrl: '/assets/welcome-poster.webp',
+  duration: 'PT1M46S',
+}),
+          ],
+        }}
+      />
+
+      <Breadcrumbs
+        items={[
+          {
+            name: 'Home',
+            path: '/',
+          },
+          {
+            name: 'Videos',
+            path: '/videos',
+          },
+        ]}
       />
 
       <section
@@ -61,14 +96,14 @@ export default function Videos() {
             className="reveal-child bg-white rounded-3xl shadow-2xl border border-gray-200 my-16 p-6"
           >
             <video
-  src="/videos/welcome.mp4"
-  poster="/assets/welcome-poster.webp"
-  controls
-  preload="metadata"
-  playsInline
-  aria-label="Introduction documentary about The Death of the Contract"
-  className="w-full aspect-video bg-black rounded-3xl"
-/>
+              src="/videos/welcome.mp4"
+              poster="/assets/welcome-poster.webp"
+              controls
+              preload="metadata"
+              playsInline
+              aria-label="Introduction documentary about The Death of the Contract"
+              className="w-full aspect-video bg-black rounded-3xl"
+            />
 
             <div className="p-8">
               <h2

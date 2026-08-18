@@ -5,7 +5,6 @@ interface DownloadItem {
   title: string
   description: string
   icon: LucideIcon
-  href: string
 }
 
 interface DownloadSectionProps {
@@ -62,7 +61,6 @@ export default function DownloadSection({
               title={document.title}
               description={document.description}
               icon={document.icon}
-              href={document.href}
             />
           </li>
         ))}

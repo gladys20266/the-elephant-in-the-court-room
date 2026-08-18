@@ -5,12 +5,13 @@ import AfterSection from '@/components/photos/AfterSection'
 import FoodSection from '@/components/photos/FoodSection'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
 
 const photosSeo = {
   title: 'Photos | The Elephant In The Court Room',
   description:
-    'View photos documenting the property, its transformation, and the story presented by The Elephant In The Court Room campaign.',
+    'View before-and-after photographs documenting the Delray Beach property, its transformation, and the investment presented in The Elephant In The Court Room case.',
   canonical: '/photos',
   type: 'website' as const,
 }
@@ -25,6 +26,7 @@ export default function Photos() {
           title: photosSeo.title,
           description: photosSeo.description,
           path: photosSeo.canonical,
+          type: 'CollectionPage',
         })}
       />
 
@@ -32,6 +34,19 @@ export default function Photos() {
         id="photos-page"
         aria-labelledby="photos-heading"
       >
+        <Breadcrumbs
+          items={[
+            {
+              name: 'Home',
+              path: '/',
+            },
+            {
+              name: 'Photos',
+              path: '/photos',
+            },
+          ]}
+        />
+
         <h1
           id="photos-heading"
           className="sr-only"

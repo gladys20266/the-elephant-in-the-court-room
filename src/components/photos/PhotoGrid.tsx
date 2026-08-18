@@ -41,7 +41,13 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
           <PhotoCard
             key={photo.id}
             src={photo.thumbnail}
-            alt={photo.id}
+            alt={
+  photo.category === "before"
+    ? "Photograph documenting the property before its transformation"
+    : photo.category === "after"
+      ? "Photograph documenting the transformed property"
+      : "Photograph of food associated with Eclectic Eats"
+}
             onClick={() => openLightbox(index)}
           />
         ))}

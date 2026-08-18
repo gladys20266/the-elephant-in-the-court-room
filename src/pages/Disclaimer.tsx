@@ -2,7 +2,9 @@ import Hero from '@/components/Hero'
 import LegalPage from '@/components/LegalPage'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
+
 const disclaimerSeo = {
   title: 'Disclaimer | The Elephant In The Court Room',
   description:
@@ -10,6 +12,7 @@ const disclaimerSeo = {
   canonical: '/disclaimer',
   type: 'website' as const,
 }
+
 const sections = [
   {
     id: 'informational-purposes',
@@ -32,6 +35,7 @@ const sections = [
       'If you require legal advice regarding your rights or obligations, you should consult a qualified attorney licensed in the appropriate jurisdiction.',
     ],
   },
+
   {
     id: 'no-financial-advice',
     title: '3. No Financial, Tax, or Investment Advice',
@@ -61,7 +65,8 @@ const sections = [
       'Nothing on this Website should be interpreted as an endorsement of any person, organization, product, service, or activity other than the Campaign presented on this Website.',
     ],
   },
-    {
+
+  {
     id: 'purpose-of-campaign',
     title: '5. Purpose of the Campaign',
     content: [
@@ -87,7 +92,8 @@ const sections = [
       'Except where required by applicable law or expressly stated in our Terms of Service, donations are generally considered final.',
     ],
   },
-    {
+
+  {
     id: 'no-guarantee',
     title: '7. No Guarantee Regarding Donations or Outcomes',
     content: [
@@ -115,7 +121,8 @@ const sections = [
       'The Website may be updated periodically without prior notice.',
     ],
   },
-    {
+
+  {
     id: 'third-party-websites',
     title: '9. Third-Party Websites and Services',
     content: [
@@ -138,6 +145,7 @@ const sections = [
     ],
   },
 ]
+
 export default function Disclaimer() {
   return (
     <>
@@ -149,6 +157,19 @@ export default function Disclaimer() {
           description: disclaimerSeo.description,
           path: disclaimerSeo.canonical,
         })}
+      />
+
+      <Breadcrumbs
+        items={[
+          {
+            name: 'Home',
+            path: '/',
+          },
+          {
+            name: 'Disclaimer',
+            path: '/disclaimer',
+          },
+        ]}
       />
 
       <Hero subtitle="Important information regarding the use of this Website, the Campaign, fundraising activities, and your responsibilities as a visitor or donor." />

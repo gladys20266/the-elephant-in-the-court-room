@@ -23,13 +23,11 @@ export default function SEO({ data }: SEOProps) {
         }`
     : `${siteConfig.siteUrl}${window.location.pathname}`;
 
-  const imageUrl = seo.image
+  const image = seo.image
     ? seo.image.startsWith("http")
       ? seo.image
       : `${siteConfig.siteUrl}${
-          seo.image.startsWith("/")
-            ? seo.image
-            : `/${seo.image}`
+          seo.image.startsWith("/") ? seo.image : `/${seo.image}`
         }`
     : undefined;
 
@@ -64,16 +62,6 @@ export default function SEO({ data }: SEOProps) {
 
       {/* Open Graph */}
       <meta
-        property="og:site_name"
-        content={siteConfig.siteName}
-      />
-
-      <meta
-        property="og:locale"
-        content={siteConfig.locale}
-      />
-
-      <meta
         property="og:title"
         content={seo.title}
       />
@@ -93,10 +81,15 @@ export default function SEO({ data }: SEOProps) {
         content={canonical}
       />
 
-      {imageUrl && (
+      <meta
+        property="og:site_name"
+        content={siteConfig.siteName}
+      />
+
+      {image && (
         <meta
           property="og:image"
-          content={imageUrl}
+          content={image}
         />
       )}
 
@@ -116,10 +109,15 @@ export default function SEO({ data }: SEOProps) {
         content={seo.description}
       />
 
-      {imageUrl && (
+      <meta
+        name="twitter:url"
+        content={canonical}
+      />
+
+      {image && (
         <meta
           name="twitter:image"
-          content={imageUrl}
+          content={image}
         />
       )}
     </Helmet>

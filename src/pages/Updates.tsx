@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
 
 import SearchBar from '@/components/updates/SearchBar'
@@ -16,7 +17,7 @@ import { updates } from '@/data/updates'
 const updatesSeo = {
   title: 'Updates | The Elephant In The Court Room',
   description:
-    'Follow updates, case developments, campaign progress, media coverage, and announcements from The Elephant In The Court Room.',
+    'Follow developments in The Elephant In The Court Room case, including court filings, legal milestones, litigation updates, campaign progress, media coverage, and important announcements.',
   canonical: '/updates',
   type: 'website' as const,
 }
@@ -36,120 +37,138 @@ export default function Updates() {
           title: updatesSeo.title,
           description: updatesSeo.description,
           path: updatesSeo.canonical,
+          type: 'CollectionPage',
         })}
       />
 
-      <section
-        ref={sectionRef}
+      <main
         id="updates-page"
-        aria-labelledby="updates-heading"
-        aria-describedby="updates-description"
-        className="container mx-auto px-6 py-20"
+        aria-label="Updates page"
       >
-        {/* Page Title */}
-        <header className="mb-16">
-          <h1
-            id="updates-heading"
-            className="mb-6 text-center text-5xl font-bold text-purple"
-          >
-            Updates
-          </h1>
+        <Breadcrumbs
+          items={[
+            {
+              name: 'Home',
+              path: '/',
+            },
+            {
+              name: 'Updates',
+              path: '/updates',
+            },
+          ]}
+        />
 
-          <p
-            id="updates-description"
-            className="mx-auto max-w-3xl text-center text-lg leading-8 text-charcoal"
-          >
-            Follow the latest developments in the case, including court
-            filings, legal milestones, campaign progress, media coverage,
-            and important announcements.
-          </p>
-        </header>
-
-        {/* Featured Update */}
-        <section aria-labelledby="featured-update-heading">
-          <h2
-            id="featured-update-heading"
-            className="sr-only"
-          >
-            Featured Update
-          </h2>
-
-          <FeaturedUpdate
-            title={updates[0].title}
-            summary={updates[0].summary}
-            category={updates[0].category}
-            date={updates[0].date}
-          />
-        </section>
-
-        {/* Case Progress */}
-        <section aria-labelledby="case-progress-heading">
-          <h2
-            id="case-progress-heading"
-            className="sr-only"
-          >
-            Case Progress
-          </h2>
-
-          <CaseProgress />
-        </section>
-
-        {/* Search and Filtering */}
         <section
-          aria-labelledby="updates-filter-heading"
-          className="mt-10"
+          ref={sectionRef}
+          aria-labelledby="updates-heading"
+          aria-describedby="updates-description"
+          className="container mx-auto px-6 py-20"
         >
-          <h2
-            id="updates-filter-heading"
-            className="sr-only"
+          {/* Page Title */}
+          <header className="mb-16">
+            <h1
+              id="updates-heading"
+              className="mb-6 text-center text-5xl font-bold text-purple"
+            >
+              Updates
+            </h1>
+
+            <p
+              id="updates-description"
+              className="mx-auto max-w-3xl text-center text-lg leading-8 text-charcoal"
+            >
+              Follow the latest developments in the case, including court
+              filings, legal milestones, campaign progress, media coverage,
+              and important announcements.
+            </p>
+          </header>
+
+          {/* Featured Update */}
+          <section aria-labelledby="featured-update-heading">
+            <h2
+              id="featured-update-heading"
+              className="sr-only"
+            >
+              Featured Update
+            </h2>
+
+            <FeaturedUpdate
+              title={updates[0].title}
+              summary={updates[0].summary}
+              category={updates[0].category}
+              date={updates[0].date}
+            />
+          </section>
+
+          {/* Case Progress */}
+          <section aria-labelledby="case-progress-heading">
+            <h2
+              id="case-progress-heading"
+              className="sr-only"
+            >
+              Case Progress
+            </h2>
+
+            <CaseProgress />
+          </section>
+
+          {/* Search and Filtering */}
+          <section
+            aria-labelledby="updates-filter-heading"
+            className="mt-10"
           >
-            Search and Filter Updates
-          </h2>
+            <h2
+              id="updates-filter-heading"
+              className="sr-only"
+            >
+              Search and Filter Updates
+            </h2>
 
-          <SearchBar
-            search={search}
-            onSearchChange={setSearch}
-          />
+            <SearchBar
+              search={search}
+              onSearchChange={setSearch}
+            />
 
-          <CategoryFilter
-            category={category}
-            onCategoryChange={setCategory}
-          />
-        </section>
+            <CategoryFilter
+              category={category}
+              onCategoryChange={setCategory}
+            />
+          </section>
 
-        {/* Timeline */}
-        <section
-          aria-labelledby="updates-list-heading"
-          className="mt-10"
-        >
-          <h2
-            id="updates-list-heading"
-            className="sr-only"
+          {/* Timeline */}
+          <section
+            aria-labelledby="updates-list-heading"
+            className="mt-10"
           >
-            All Updates
-          </h2>
+            <h2
+              id="updates-list-heading"
+              className="sr-only"
+            >
+              All Updates
+            </h2>
 
-          <UpdateGrid
-            search={search}
-            category={category}
-          />
-        </section>
+            <UpdateGrid
+              search={search}
+              category={category}
+            />
+          </section>
 
-        {/* Future Updates */}
-        <section
-          aria-labelledby="future-updates-heading"
-          className="mt-10"
-        >
-          <h2
-            id="future-updates-heading"
-            className="sr-only"
+          {/* Future Updates */}
+          <section
+            aria-labelledby="future-updates-heading"
+            className="mt-10"
           >
-            Future Updates
-          </h2>
+            <h2
+              id="future-updates-heading"
+              className="sr-only"
+            >
+              Future Updates
+            </h2>
 
-          <FutureUpdates />
+            <FutureUpdates />
+          </section>
         </section>
-      </section>
+      </main>
     </>
   )
 }

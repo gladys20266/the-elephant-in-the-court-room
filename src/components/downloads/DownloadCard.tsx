@@ -4,14 +4,12 @@ interface DownloadCardProps {
   title: string
   description: string
   icon: LucideIcon
-  href: string
 }
 
 export default function DownloadCard({
   title,
   description,
   icon: Icon,
-  href,
 }: DownloadCardProps) {
   const cardId = `download-card-${title
     .toLowerCase()
@@ -25,7 +23,17 @@ export default function DownloadCard({
     <article
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
-      className="h-full rounded-3xl bg-white p-6 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+      className="
+        h-full
+        rounded-3xl
+        bg-white
+        p-6
+        shadow-lg
+        transition
+        duration-300
+        hover:-translate-y-1
+        hover:shadow-xl
+      "
     >
       <div className="mb-6">
         <Icon
@@ -48,32 +56,25 @@ export default function DownloadCard({
         {description}
       </p>
 
-      <a
-        href={href}
-        download
-        aria-label={`Download ${title} PDF`}
+      <div
         className="
           inline-flex
           w-full
+          cursor-not-allowed
           items-center
           justify-center
           rounded-xl
           border
-          border-forest
-          bg-pale-lime
+          border-gray-300
+          bg-gray-100
           py-3
           font-bold
-          text-charcoal
-          transition-all
-          hover:bg-[#E0F0B0]
-          focus-visible:outline-none
-          focus-visible:ring-2
-          focus-visible:ring-purple
-          focus-visible:ring-offset-2
+          text-gray-500
         "
+        aria-label={`${title} PDF coming soon`}
       >
-        Download {title} PDF
-      </a>
+        PDF COMING SOON
+      </div>
     </article>
   )
 }

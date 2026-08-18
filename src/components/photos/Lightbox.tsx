@@ -101,7 +101,13 @@ export default function Lightbox({
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label={`Photo viewer: ${photo.id}`}
+      aria-label={`Photo viewer: ${
+  photo.category === "before"
+    ? "property before transformation"
+    : photo.category === "after"
+      ? "transformed property"
+      : "food associated with Eclectic Eats"
+}`}
       className="
         fixed
         inset-0
@@ -188,7 +194,13 @@ export default function Lightbox({
       {/* Full-size image */}
       <img
         src={photo.src}
-        alt={photo.id}
+        alt={
+  photo.category === "before"
+    ? "Photograph documenting the property before its transformation"
+    : photo.category === "after"
+      ? "Photograph documenting the transformed property"
+      : "Photograph of food associated with Eclectic Eats"
+}
         loading="eager"
         decoding="async"
         draggable={false}

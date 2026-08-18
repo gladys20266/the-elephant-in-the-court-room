@@ -2,6 +2,7 @@ import Hero from '@/components/Hero'
 import LegalPage from '@/components/LegalPage'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
 const privacySeo = {
   title: 'Privacy Policy | The Elephant In The Court Room',
@@ -568,9 +569,9 @@ const sections = [
     ],
   },
     {
-    id: 'communications',
-    title: '13. Communications',
-    content: [
+  id: 'communications-13',
+  title: '13. Communications',
+  content: [
       'If you contact us through the Website or by email, we may use your information to:',
       '• Respond to your inquiry;',
       '• Provide requested information;',
@@ -939,12 +940,25 @@ export default function Privacy() {
     <>
       <SEO data={privacySeo} />
 
-      <StructuredData
+            <StructuredData
         data={webPageSchema({
           title: privacySeo.title,
           description: privacySeo.description,
           path: privacySeo.canonical,
         })}
+      />
+
+      <Breadcrumbs
+        items={[
+          {
+            name: 'Home',
+            path: '/',
+          },
+          {
+            name: 'Privacy',
+            path: '/privacy',
+          },
+        ]}
       />
 
       <Hero

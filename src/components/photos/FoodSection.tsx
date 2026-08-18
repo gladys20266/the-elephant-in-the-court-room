@@ -18,10 +18,8 @@ export default function FoodSection() {
 
   <p className="max-w-3xl mx-auto text-body text-charcoal leading-8">
   These photographs showcase a selection of meals prepared and served
-  at Eclectic Eats, illustrating the successful restaurant Leo and
-  Olga built through years of restoration, investment, and dedication.
-  They reflect the quality of the dining experience and the business
-  that welcomed and served its customers.
+  at Eclectic Eats, providing a visual record of the restaurant and the
+  dining experience associated with the property.
 </p>
         </div>
 
