@@ -262,11 +262,11 @@ export default function Contact() {
                           </p>
 
                           <a
-                            href="mailto:contact@theelephantinthecourtroom.com"
-                            aria-label="Email contact@theelephantinthecourtroom.com"
+                            href="mailto:ElephantFiles@proton.me"
+                            aria-label="Email contact@ElephantFiles@proton.me"
                             className="text-[16px] font-semibold text-charcoal transition-colors hover:text-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2"
                           >
-                            contact@theelephantinthecourtroom.com
+                            contact@ElephantFiles@proton.me
                           </a>
                         </div>
                       </div>

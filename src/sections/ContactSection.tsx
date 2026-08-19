@@ -31,13 +31,15 @@ export default function ContactSection() {
             </h2>
 
             <p
-              id="contact-description"
-              className="reveal-child text-body text-charcoal/80 mb-8"
-            >
-              Have questions about the case or the crowdfunding campaign?
-              Want to support Leo and Olga, support Eclectic Eats, or
-              contribute ideas? We&apos;d like to hear from you.
-            </p>
+  id="contact-description"
+  className="reveal-child text-body text-charcoal/80 mb-8 leading-6"
+>
+  Have questions about the case or the crowdfunding campaign?
+  Want to support Leo and Olga, support Eclectic Eats, or
+  contribute ideas?
+  <br />
+  We&apos;d like to hear from <span className="font-bold">you.</span>
+</p>
 
             <ContactForm />
 
@@ -50,7 +52,7 @@ export default function ContactSection() {
   Reach us at
 </span>{" "}
                 <a
-                  href="mailto:contact@theelephantinthecourtroom.com"
+                  href="mailto:ElephantFiles@proton.me"
                   className="
   text-purple
   link-underline
@@ -63,20 +65,20 @@ export default function ContactSection() {
 "
                   aria-label="Send an email to The Elephant In The Court Room campaign"
                 >
-                  contact@theelephantinthecourtroom.com
+                  ElephantFiles@proton.me
                 </a>
               </p>
             </div>
           </div>
 
           {/* Right: Campaign Photograph */}
-          <div className="reveal-child">
-            <Link
+          <div className="reveal-child lg:mt-40 lg:w-[168%]">
+  <Link
               to="/photos"
               aria-label="View the campaign photographs in the Photos gallery"
               className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2"
             >
-              <div className="rounded-xl overflow-hidden aspect-[4/3]">
+              <div className="rounded-xl overflow-hidden aspect-square">
                 <img
   src="/assets/contact-elephant.webp"
   alt="Decorative floral elephant with a message calling for support to Restore Justice"

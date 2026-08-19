@@ -888,7 +888,7 @@ const sections = [
     title: '26. Contact Information',
     content: [
       'If you have questions regarding this Privacy Policy or our privacy practices, you may contact us at:',
-      'Email: contact@theelephantinthecourtroom.com',
+      'Email: contact@ElephantFiles@proton.me',
       'Website: The Elephant In The Court Room',
     ],
   },
