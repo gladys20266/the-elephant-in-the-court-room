@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
@@ -79,7 +80,23 @@ export default function Updates() {
             >
               Follow the latest developments in the case, including court
               filings, legal milestones, campaign progress, media coverage,
-              and important announcements.
+              and important announcements.{' '}
+              <Link
+                to="/case"
+                className="
+                  font-medium
+                  text-purple
+                  underline
+                  decoration-lime
+                  decoration-2
+                  underline-offset-4
+                  hover:text-magenta
+                  transition-colors
+                "
+              >
+                Review the full case
+              </Link>{' '}
+              for the broader legal history and timeline.
             </p>
           </header>
 
@@ -151,6 +168,168 @@ export default function Updates() {
               search={search}
               category={category}
             />
+          </section>
+
+          {/* Related Case Resources */}
+          <section
+            aria-labelledby="related-case-resources-heading"
+            className="mt-14"
+          >
+            <h2
+              id="related-case-resources-heading"
+              className="sr-only"
+            >
+              Related Case Resources
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Case */}
+              <Link
+                to="/case"
+                className="
+                  group
+                  rounded-xl
+                  bg-white
+                  border
+                  border-charcoal/10
+                  p-6
+                  shadow-card
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-card-hover
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  CASE CONTEXT
+                </p>
+
+                <h3 className="text-xl font-semibold text-purple">
+                  Review the Case
+                </h3>
+
+                <p className="mt-2 text-body-small text-charcoal/70 leading-7">
+                  Read the full case history, contractual dispute, timeline,
+                  and legal context behind these developments.
+                </p>
+
+                <span
+                  className="
+                    mt-4
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Case →
+                </span>
+              </Link>
+
+              {/* Documents */}
+              <Link
+                to="/documents"
+                className="
+                  group
+                  rounded-xl
+                  bg-white
+                  border
+                  border-charcoal/10
+                  p-6
+                  shadow-card
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-card-hover
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  PUBLIC RECORD
+                </p>
+
+                <h3 className="text-xl font-semibold text-purple">
+                  Review Case Documents
+                </h3>
+
+                <p className="mt-2 text-body-small text-charcoal/70 leading-7">
+                  Review publicly available filings, agreements, motions, and
+                  other materials connected to the case.
+                </p>
+
+                <span
+                  className="
+                    mt-4
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Documents →
+                </span>
+              </Link>
+
+              {/* Photos */}
+              <Link
+                to="/photos"
+                className="
+                  group
+                  rounded-xl
+                  bg-white
+                  border
+                  border-charcoal/10
+                  p-6
+                  shadow-card
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-card-hover
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  VISUAL RECORD
+                </p>
+
+                <h3 className="text-xl font-semibold text-purple">
+                  See the Property Record
+                </h3>
+
+                <p className="mt-2 text-body-small text-charcoal/70 leading-7">
+                  Explore photographs documenting the property and its
+                  transformation alongside the case history.
+                </p>
+
+                <span
+                  className="
+                    mt-4
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Photos →
+                </span>
+              </Link>
+            </div>
           </section>
 
           {/* Future Updates */}

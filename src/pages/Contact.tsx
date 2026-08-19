@@ -107,7 +107,9 @@ export default function Contact() {
     }
   }
 
-  const handleShareClick = (platform: typeof SHARE_PLATFORMS[0]) => {
+  const handleShareClick = (
+    platform: (typeof SHARE_PLATFORMS)[0],
+  ) => {
     if (platform.isCopy) {
       handleCopyLink()
       return
@@ -119,7 +121,7 @@ export default function Contact() {
     const pageUrl = encodeURIComponent(WEBSITE_URL)
 
     const message = encodeURIComponent(
-      'Help expose an 11-year legal injustice. Learn more:'
+      'Help expose an 11-year legal injustice. Learn more:',
     )
 
     switch (platform.label) {
@@ -127,7 +129,7 @@ export default function Contact() {
         window.open(
           `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
           '_blank',
-          'noopener,noreferrer'
+          'noopener,noreferrer',
         )
         break
 
@@ -135,7 +137,7 @@ export default function Contact() {
         window.open(
           'https://www.tiktok.com',
           '_blank',
-          'noopener,noreferrer'
+          'noopener,noreferrer',
         )
         break
 
@@ -143,14 +145,14 @@ export default function Contact() {
         window.open(
           `https://wa.me/?text=${message}%20${pageUrl}`,
           '_blank',
-          'noopener,noreferrer'
+          'noopener,noreferrer',
         )
         break
 
       case 'Email':
         window.location.href =
           `mailto:?subject=${encodeURIComponent(
-            'The Elephant In The Court Room'
+            'The Elephant In The Court Room',
           )}&body=${message}%20${WEBSITE_URL}`
         break
 
@@ -463,6 +465,152 @@ export default function Contact() {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Related Case Resources */}
+        <section
+          aria-labelledby="contact-resources-heading"
+          className="bg-off-white py-16 md:py-20"
+        >
+          <div className="content-container mx-auto max-w-[1280px] px-5">
+            <div className="mb-10 text-center">
+              <p className="mb-2 text-sm font-black uppercase tracking-[0.18em] text-[#D94B8A]">
+                LEARN MORE
+              </p>
+
+              <h2
+                id="contact-resources-heading"
+                className="text-3xl font-bold text-purple md:text-4xl"
+              >
+                Explore the Campaign
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-3xl text-body leading-8 text-charcoal/80">
+                Before reaching out, you can learn more about the case,
+                review recent developments, and watch the documentary
+                introduction.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              {/* Case */}
+              <Link
+                to="/case"
+                className="
+                  group
+                  rounded-2xl
+                  border
+                  border-charcoal/5
+                  bg-white
+                  p-7
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
+                  LEGAL CONTEXT
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Explore the Case
+                </h3>
+
+                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                  Learn about the 2010 lease-to-own agreement, the dispute,
+                  the litigation history, and the continuing legal effort.
+                </p>
+
+                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
+                  View Case →
+                </span>
+              </Link>
+
+              {/* Updates */}
+              <Link
+                to="/updates"
+                className="
+                  group
+                  rounded-2xl
+                  border
+                  border-charcoal/5
+                  bg-white
+                  p-7
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
+                  DEVELOPMENTS
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Follow Updates
+                </h3>
+
+                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                  Follow court developments, campaign progress, legal
+                  milestones, and future announcements.
+                </p>
+
+                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
+                  View Updates →
+                </span>
+              </Link>
+
+              {/* Videos */}
+              <Link
+                to="/videos"
+                className="
+                  group
+                  rounded-2xl
+                  border
+                  border-charcoal/5
+                  bg-white
+                  p-7
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
+                  DOCUMENTARY
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Watch the Videos
+                </h3>
+
+                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                  Watch the introduction to The Death of the Contract and
+                  learn about the story behind the campaign.
+                </p>
+
+                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
+                  View Videos →
+                </span>
+              </Link>
             </div>
           </div>
         </section>

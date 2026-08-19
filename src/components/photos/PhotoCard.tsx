@@ -3,12 +3,16 @@ import React from 'react'
 export interface PhotoCardProps {
   src: string
   alt?: string
+  width?: number
+  height?: number
   onClick?: () => void
 }
 
 const PhotoCard: React.FC<PhotoCardProps> = ({
   src,
   alt = 'Photo',
+  width,
+  height,
   onClick,
 }) => {
   return (
@@ -37,8 +41,8 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
         alt={alt}
         loading="lazy"
         decoding="async"
-        width={600}
-        height={400}
+        {...(width ? { width } : {})}
+        {...(height ? { height } : {})}
         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
     </button>

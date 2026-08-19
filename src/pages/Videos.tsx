@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
@@ -36,14 +37,14 @@ export default function Videos() {
             }),
 
             videoSchema({
-  name: 'The Death of the Contract — Introduction',
-  description:
-    'An introductory documentary about The Death of the Contract, explaining the lease-to-own agreement, the years of litigation that followed, and the continuing effort to seek specific performance of the original contract.',
-  path: '/videos',
-  contentUrl: '/videos/welcome.mp4',
-  thumbnailUrl: '/assets/welcome-poster.webp',
-  duration: 'PT1M46S',
-}),
+              name: 'The Death of the Contract — Introduction',
+              description:
+                'An introductory documentary about The Death of the Contract, explaining the lease-to-own agreement, the years of litigation that followed, and the continuing effort to seek specific performance of the original contract.',
+              path: '/videos',
+              contentUrl: '/videos/welcome.mp4',
+              thumbnailUrl: '/assets/welcome-poster.webp',
+              duration: 'PT1M46S',
+            }),
           ],
         }}
       />
@@ -80,7 +81,7 @@ export default function Videos() {
 
             <p
               id="videos-description"
-              className="text-body text-charcoal max-w-3xl mb-12 leading-8"
+              className="text-body text-charcoal max-w-3xl mb-6 leading-8"
             >
               This documentary introduces the story behind{' '}
               <strong>The Death of the Contract</strong>. It explains the events
@@ -88,6 +89,56 @@ export default function Videos() {
               that followed, and why Leo and Olga continue to seek specific
               performance of the original contract.
             </p>
+
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-body-small">
+              <Link
+                to="/case"
+                className="
+                  font-semibold
+                  text-purple
+                  underline
+                  decoration-lime
+                  decoration-2
+                  underline-offset-4
+                  hover:text-magenta
+                  transition-colors
+                "
+              >
+                Explore the Case
+              </Link>
+
+              <Link
+                to="/documents"
+                className="
+                  font-semibold
+                  text-purple
+                  underline
+                  decoration-lime
+                  decoration-2
+                  underline-offset-4
+                  hover:text-magenta
+                  transition-colors
+                "
+              >
+                Review Documents
+              </Link>
+
+              <Link
+                to="/photos"
+                className="
+                  font-semibold
+                  text-purple
+                  underline
+                  decoration-lime
+                  decoration-2
+                  underline-offset-4
+                  hover:text-magenta
+                  transition-colors
+                "
+              >
+                View Photos
+              </Link>
+            </div>
           </header>
 
           {/* Featured Documentary */}
@@ -122,6 +173,168 @@ export default function Videos() {
               </p>
             </div>
           </article>
+
+          {/* Related Case Resources */}
+          <section
+            aria-labelledby="related-resources-heading"
+            className="reveal-child mt-20"
+          >
+            <h2
+              id="related-resources-heading"
+              className="mb-8 text-center text-3xl font-bold text-purple"
+            >
+              Explore the Story Behind the Videos
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Case */}
+              <Link
+                to="/case"
+                className="
+                  group
+                  rounded-3xl
+                  bg-white
+                  border
+                  border-gray-200
+                  p-7
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  LEGAL CONTEXT
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Understand the Case
+                </h3>
+
+                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
+                  Explore the contract, legal dispute, timeline, and ongoing
+                  effort described by the campaign.
+                </p>
+
+                <span
+                  className="
+                    mt-5
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Case →
+                </span>
+              </Link>
+
+              {/* Documents */}
+              <Link
+                to="/documents"
+                className="
+                  group
+                  rounded-3xl
+                  bg-white
+                  border
+                  border-gray-200
+                  p-7
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  SUPPORTING RECORD
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Review Documents
+                </h3>
+
+                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
+                  Examine publicly available agreements, filings, motions, and
+                  other materials connected to the case.
+                </p>
+
+                <span
+                  className="
+                    mt-5
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Documents →
+                </span>
+              </Link>
+
+              {/* Photos */}
+              <Link
+                to="/photos"
+                className="
+                  group
+                  rounded-3xl
+                  bg-white
+                  border
+                  border-gray-200
+                  p-7
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  VISUAL RECORD
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Explore the Photos
+                </h3>
+
+                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
+                  View photographs documenting the property, its condition, and
+                  the transformation described in the campaign.
+                </p>
+
+                <span
+                  className="
+                    mt-5
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Photos →
+                </span>
+              </Link>
+            </div>
+          </section>
 
           {/* Future Videos */}
           <section

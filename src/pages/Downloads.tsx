@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Hero from '@/components/Hero'
 import DownloadSection from '@/components/downloads/DownloadSection'
 import SEO from '@/components/seo/SEO'
@@ -171,6 +172,65 @@ export default function Downloads() {
           subtitle="Download important case documents, campaign resources, and supporting materials as they become available."
         />
 
+        {/* Contextual Introduction */}
+        <section
+          aria-labelledby="downloads-context-heading"
+          className="section-padding bg-off-white"
+        >
+          <div className="content-container">
+            <div className="mx-auto max-w-4xl text-center">
+              <p className="text-label text-magenta mb-3">
+                CASE RESOURCES
+              </p>
+
+              <h2
+                id="downloads-context-heading"
+                className="text-section-title text-purple"
+              >
+                Supporting the Public Record
+              </h2>
+
+              <p className="mt-5 text-body text-charcoal leading-8">
+                This section brings together downloadable materials connected
+                to The Death of the Contract, including court records,
+                contracts, supporting evidence, and campaign resources.{' '}
+                <Link
+                  to="/documents"
+                  className="
+                    font-semibold
+                    text-purple
+                    underline
+                    decoration-lime
+                    decoration-2
+                    underline-offset-4
+                    hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  Review the Documents library
+                </Link>{' '}
+                for materials available directly through the website, or{' '}
+                <Link
+                  to="/case"
+                  className="
+                    font-semibold
+                    text-purple
+                    underline
+                    decoration-lime
+                    decoration-2
+                    underline-offset-4
+                    hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  explore the Case
+                </Link>{' '}
+                for the broader legal history and timeline.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <div
           id="downloads-content"
           aria-label="Download resources"
@@ -279,6 +339,180 @@ export default function Downloads() {
             documents={letterDocuments}
             className="mt-24"
           />
+
+          {/* Related Case Resources */}
+          <section
+            aria-labelledby="related-download-resources-heading"
+            className="mt-24"
+          >
+            <div className="mb-10 text-center">
+              <p className="text-label text-magenta mb-3">
+                CONTINUE EXPLORING
+              </p>
+
+              <h2
+                id="related-download-resources-heading"
+                className="text-section-title text-purple"
+              >
+                Explore the Case Record
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-3xl text-body text-charcoal leading-8">
+                Downloadable materials are part of a larger record. Explore
+                the case, review the document library, or examine the
+                photographs documenting the property and its transformation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Case */}
+              <Link
+                to="/case"
+                className="
+                  group
+                  rounded-3xl
+                  border
+                  border-gray-200
+                  bg-white
+                  p-7
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  LEGAL CONTEXT
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Explore the Case
+                </h3>
+
+                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
+                  Review the contract dispute, litigation history, timeline,
+                  and continuing legal effort.
+                </p>
+
+                <span
+                  className="
+                    mt-5
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Case →
+                </span>
+              </Link>
+
+              {/* Documents */}
+              <Link
+                to="/documents"
+                className="
+                  group
+                  rounded-3xl
+                  border
+                  border-gray-200
+                  bg-white
+                  p-7
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  PUBLIC RECORD
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Review Documents
+                </h3>
+
+                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
+                  Search the document library for publicly available case
+                  records and supporting materials.
+                </p>
+
+                <span
+                  className="
+                    mt-5
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Documents →
+                </span>
+              </Link>
+
+              {/* Photos */}
+              <Link
+                to="/photos"
+                className="
+                  group
+                  rounded-3xl
+                  border
+                  border-gray-200
+                  bg-white
+                  p-7
+                  shadow-xl
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="text-label text-magenta mb-2">
+                  VISUAL EVIDENCE
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  View Property Photos
+                </h3>
+
+                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
+                  Examine photographs documenting the property, investment,
+                  condition, and transformation described in the campaign.
+                </p>
+
+                <span
+                  className="
+                    mt-5
+                    inline-block
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    group-hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Photos →
+                </span>
+              </Link>
+            </div>
+          </section>
         </div>
       </main>
     </>

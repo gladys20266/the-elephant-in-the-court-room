@@ -96,18 +96,20 @@ export default function Lightbox({
 
   if (!photo) return null
 
+  const photoAlt =
+    photo.alt ??
+    (photo.category === 'before'
+      ? 'Photograph documenting the property before its transformation'
+      : photo.category === 'after'
+        ? 'Photograph documenting the transformed property'
+        : 'Photograph of food associated with Eclectic Eats')
+
   return (
     <div
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
-      aria-label={`Photo viewer: ${
-  photo.category === "before"
-    ? "property before transformation"
-    : photo.category === "after"
-      ? "transformed property"
-      : "food associated with Eclectic Eats"
-}`}
+      aria-label={`Photo viewer: ${photoAlt}`}
       className="
         fixed
         inset-0
@@ -194,16 +196,12 @@ export default function Lightbox({
       {/* Full-size image */}
       <img
         src={photo.src}
-        alt={
-  photo.category === "before"
-    ? "Photograph documenting the property before its transformation"
-    : photo.category === "after"
-      ? "Photograph documenting the transformed property"
-      : "Photograph of food associated with Eclectic Eats"
-}
+        alt={photoAlt}
         loading="eager"
         decoding="async"
         draggable={false}
+        {...(photo.width ? { width: photo.width } : {})}
+        {...(photo.height ? { height: photo.height } : {})}
         onClick={(event) => event.stopPropagation()}
         className="
           max-h-[85vh]
@@ -216,6 +214,33 @@ export default function Lightbox({
           sm:max-w-[90vw]
         "
       />
+
+      {/* Caption */}
+      {photo.caption && (
+        <div
+          className="
+            absolute
+            bottom-4
+            left-1/2
+            z-10
+            w-[calc(100%-2rem)]
+            max-w-3xl
+            -translate-x-1/2
+            rounded-lg
+            bg-black/75
+            px-4
+            py-3
+            text-center
+            text-sm
+            leading-6
+            text-white
+            sm:bottom-6
+            sm:px-6
+          "
+        >
+          {photo.caption}
+        </div>
+      )}
 
       {/* Next */}
       <button

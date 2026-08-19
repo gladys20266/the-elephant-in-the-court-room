@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import SectionBadge from '@/components/SectionBadge'
 import SectionButton from '@/components/SectionButton'
+
 export default function StorySnapshot() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
@@ -85,13 +86,11 @@ export default function StorySnapshot() {
             </p>
 
             <div className="mt-4">
-  <SectionButton
-    text="Read the full story"
-    to="/our-story"
-  />
-</div>
-              
-           
+              <SectionButton
+                text="Read the full story"
+                to="/our-story"
+              />
+            </div>
           </div>
 
           {/* Right: Campaign Property Photograph */}
@@ -104,20 +103,22 @@ export default function StorySnapshot() {
               <div
                 className="
                   rounded-xl
-                overflow-hidden
-                aspect-[4/5]
-                sm:aspect-[3/4]
-                max-w-sm
-                mx-auto
+                  overflow-hidden
+                  aspect-[4/5]
+                  sm:aspect-[3/4]
+                  max-w-sm
+                  mx-auto
                   lg:max-w-none
                 "
               >
                 <img
-                src="/photos/after/after-0006.webp"
-                alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
-                className="w-full h-full object-cover"
-                loading="lazy"
+                  src="/photos/after/after-0006.webp"
+                  alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
                   decoding="async"
+                  width={960}
+                  height={1200}
                 />
               </div>
             </Link>

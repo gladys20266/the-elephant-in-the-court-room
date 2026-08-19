@@ -4,6 +4,7 @@ import SEO from "@/components/seo/SEO";
 import StructuredData from "@/components/seo/StructuredData";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { webPageSchema } from "@/seo/pageSchemas";
+import { Link } from "react-router-dom";
 
 const ourStorySeo = {
   title: "Our Story | The Elephant In The Court Room",
@@ -180,6 +181,71 @@ export default function OurStory() {
                 Olga and their continuing effort to enforce the agreement they
                 signed in 2010.
               </p>
+
+              <div className="reveal-child mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-body-small">
+                <Link
+                  to="/case"
+                  className="
+                    font-semibold
+                    text-purple
+                    underline
+                    decoration-lime
+                    decoration-2
+                    underline-offset-4
+                    hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  Explore the Case
+                </Link>
+
+                <Link
+                  to="/photos"
+                  className="
+                    font-semibold
+                    text-purple
+                    underline
+                    decoration-lime
+                    decoration-2
+                    underline-offset-4
+                    hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  View Property Photos
+                </Link>
+
+                <Link
+                  to="/documents"
+                  className="
+                    font-semibold
+                    text-purple
+                    underline
+                    decoration-lime
+                    decoration-2
+                    underline-offset-4
+                    hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  Review Documents
+                </Link>
+                <Link
+  to="/videos"
+  className="
+    font-semibold
+    text-purple
+    underline
+    decoration-lime
+    decoration-2
+    underline-offset-4
+    hover:text-magenta
+    transition-colors
+  "
+>
+  Watch the Introduction
+</Link>
+              </div>
             </div>
 
             {chapters.map((chapter, index) => (
@@ -211,6 +277,75 @@ export default function OurStory() {
               <p className="mt-4 text-body-small text-charcoal/70">
                 Review the record. Understand the case. Decide for yourself.
               </p>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  to="/case"
+                  className="
+                    rounded-md
+                    bg-purple
+                    px-5
+                    py-3
+                    text-body-small
+                    font-semibold
+                    text-white
+                    transition-colors
+                    hover:bg-[#5B3079]
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-purple
+                    focus-visible:ring-offset-2
+                  "
+                >
+                  Explore the Case
+                </Link>
+
+                <Link
+                  to="/documents"
+                  className="
+                    rounded-md
+                    border
+                    border-purple
+                    px-5
+                    py-3
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    transition-colors
+                    hover:bg-purple
+                    hover:text-white
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-purple
+                    focus-visible:ring-offset-2
+                  "
+                >
+                  Review Documents
+                </Link>
+
+                <Link
+                  to="/photos"
+                  className="
+                    rounded-md
+                    border
+                    border-purple
+                    px-5
+                    py-3
+                    text-body-small
+                    font-semibold
+                    text-purple
+                    transition-colors
+                    hover:bg-purple
+                    hover:text-white
+                    focus-visible:outline-none
+                    focus-visible:ring-2
+                    focus-visible:ring-purple
+                    focus-visible:ring-offset-2
+                  "
+                >
+                  View Photos
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -261,13 +396,26 @@ function ChapterSection({
       </div>
 
       <div className="reveal-child mt-6 overflow-hidden rounded-xl">
-        <img
-          src={image}
-          alt={imageAlt}
-          className="h-auto w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
+        <Link
+          to="/photos"
+          aria-label={`View property photographs related to ${heading}`}
+          className="
+            block
+            rounded-xl
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-purple
+            focus-visible:ring-offset-2
+          "
+        >
+          <img
+            src={image}
+            alt={imageAlt}
+            className="h-auto w-full object-cover transition-transform duration-300 hover:scale-[1.01]"
+            loading="lazy"
+            decoding="async"
+          />
+        </Link>
       </div>
     </article>
   );

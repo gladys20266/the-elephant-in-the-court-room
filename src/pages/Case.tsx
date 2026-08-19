@@ -179,7 +179,15 @@ export default function Case() {
                 commercial property in Delray Beach, Florida. Leo and Olga
                 invested in the property, exercised their purchase option, and
                 later sought judicial enforcement of the agreement. The legal
-                dispute has continued for more than eleven years.
+                dispute has continued for more than eleven years.{' '}
+                <Link
+                  to="/our-story"
+                  className="font-medium text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                >
+                  Read the full story
+                </Link>{' '}
+                to understand the people, agreement, investment, and events
+                that led to the litigation.
               </p>
             </div>
 
@@ -237,7 +245,15 @@ export default function Case() {
                       agreement concerning the Delray Beach property.
                       According to the campaign record, the agreement
                       established a fixed purchase price and a defined period
-                      for exercising the purchase option.
+                      for exercising the purchase option.{' '}
+                      <Link
+                        to="/our-story"
+                        className="font-medium text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                      >
+                        The full story
+                      </Link>{' '}
+                      provides additional background on the agreement and the
+                      people involved.
                     </p>
 
                     <p>
@@ -253,7 +269,15 @@ export default function Case() {
                       Leo and Olga sought judicial enforcement of the
                       agreement. They filed suit in Florida on October 30,
                       2014. The case has since involved years of filings,
-                      hearings, and procedural developments.
+                      hearings, and procedural developments.{' '}
+                      <Link
+                        to="/updates"
+                        className="font-medium text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                      >
+                        Follow the Updates
+                      </Link>{' '}
+                      section for later developments and campaign
+                      announcements.
                     </p>
 
                     <p>
@@ -337,9 +361,29 @@ export default function Case() {
                 id="case-evidence-description"
                 className="reveal-child text-body text-charcoal/80 max-w-xl mb-4"
               >
-                Explore the videos, photographs, and documents that help
-                illustrate the property, the investment, the transformation,
-                and the legal history of the case.
+                Explore the{' '}
+                <Link
+                  to="/videos"
+                  className="font-medium text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                >
+                  videos
+                </Link>
+                ,{' '}
+                <Link
+                  to="/photos"
+                  className="font-medium text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                >
+                  photographs
+                </Link>
+                , and{' '}
+                <Link
+                  to="/documents"
+                  className="font-medium text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                >
+                  court documents
+                </Link>{' '}
+                that help illustrate the property, the investment, the
+                transformation, and the legal history of the case.
               </p>
 
               <div className="reveal-child inline-block bg-lime/20 rounded px-4 py-2.5">
@@ -352,7 +396,7 @@ export default function Case() {
             </div>
 
             {/* Media Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* VIDEO */}
               <Link
                 to="/videos"
@@ -604,6 +648,92 @@ export default function Case() {
                   <p className="mt-2 text-body-small text-charcoal/70">
                     Review the agreements, filings, motions, and supporting
                     materials.
+                  </p>
+                </div>
+              </Link>
+
+              {/* UPDATES */}
+              <Link
+                to="/updates"
+                className="
+                  reveal-child
+                  group
+                  flex
+                  flex-col
+                  overflow-hidden
+                  rounded-xl
+                  bg-white
+                  shadow-card
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-card-hover
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+                aria-label="Go to Updates page"
+              >
+                <div
+                  className="
+                    relative
+                    aspect-[4/3]
+                    flex
+                    items-center
+                    justify-center
+                    bg-[#D94B8A]
+                    text-white
+                    transition-colors
+                    duration-300
+                    group-hover:bg-[#C43E7B]
+                  "
+                >
+                  <div
+                    aria-hidden="true"
+                    className="
+                      text-center
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                  >
+                    <div className="text-5xl font-bold">
+                      →
+                    </div>
+
+                    <div className="mt-2 text-label">
+                      CASE UPDATES
+                    </div>
+                  </div>
+
+                  {/* Navigation Badge */}
+                  <span
+                    className="
+                      absolute
+                      top-3
+                      right-3
+                      rounded-md
+                      bg-[#241A2B]/90
+                      px-3
+                      py-1
+                      text-label
+                      shadow-sm
+                    "
+                  >
+                    <span className="text-[#B7D63A]">GO TO</span>{' '}
+                    <span className="text-white">UPDATES</span>
+                  </span>
+                </div>
+
+                <div className="p-5">
+                  <h3 className="text-xl font-semibold text-purple">
+                    Follow The Case
+                  </h3>
+
+                  <p className="mt-2 text-body-small text-charcoal/70">
+                    Follow litigation developments, campaign milestones, and
+                    important announcements.
                   </p>
                 </div>
               </Link>

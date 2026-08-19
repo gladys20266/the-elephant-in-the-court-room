@@ -1,8 +1,14 @@
+import { afterImageMetadata } from "./afterImageMetadata";
+
 export interface Photo {
   id: string;
   src: string;        // Full-size image
   thumbnail: string;  // Thumbnail image
   category: "before" | "after" | "food";
+  alt?: string;
+  caption?: string;
+  width?: number;
+  height?: number;
 }
 
 export const beforePhotos: Photo[] = [
@@ -26,16 +32,16 @@ export const beforePhotos: Photo[] = [
   },
 ];
 
-export const afterPhotos: Photo[] = Array.from({ length: 58 }, (_, i) => {
-  const number = String(i + 1).padStart(4, "0");
-
-  return {
-    id: `after-${number}`,
-    src: `/photos/after/after-${number}.webp`,
-    thumbnail: `/photos/after-thumbs/after-${number}.webp`,
-    category: "after",
-  };
-});
+export const afterPhotos: Photo[] = afterImageMetadata.map((image) => ({
+  id: image.id,
+  src: image.src,
+  thumbnail: image.thumbnail,
+  category: "after",
+  alt: image.alt,
+  caption: image.caption,
+  width: image.width,
+  height: image.height,
+}));
 
 export const foodPhotos: Photo[] = Array.from({ length: 41 }, (_, i) => {
   const number = String(i + 1).padStart(4, "0");
