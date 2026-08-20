@@ -46,12 +46,12 @@ export const siteConfig = {
   // ORGANIZATION
   // ==========================================================
   organization: {
-    name: "The Elephant In The Court Room",
+  name: "The Elephant In The Court Room",
 
-    email: "",
+  email: "",
 
-    "src": "/assets/logo.webp"
-  },
+  logo: "/assets/logo.webp",
+},
 
   // ==========================================================
   // SOCIAL LINKS
