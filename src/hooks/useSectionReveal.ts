@@ -1,34 +1,52 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 export function useSectionReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null)
 
   useEffect(() => {
-    if (!ref.current) return
+    const element = ref.current
 
-    const children = ref.current.querySelectorAll('.reveal-child')
+    if (!element) return
+
+    const children = element.querySelectorAll('.reveal-child')
+
     if (children.length === 0) return
 
     const ctx = gsap.context(() => {
-      gsap.to(children, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: ref.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      })
-    }, ref)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return
 
-    return () => ctx.revert()
+            gsap.to(entry.target, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: 'power2.out',
+            })
+
+            observer.unobserve(entry.target)
+          })
+        },
+        {
+          threshold: 0.15,
+          rootMargin: '0px 0px -10% 0px',
+        }
+      )
+
+      children.forEach((child) => {
+        observer.observe(child)
+      })
+
+      return () => {
+        observer.disconnect()
+      }
+    }, element)
+
+    return () => {
+      ctx.revert()
+    }
   }, [])
 
   return ref

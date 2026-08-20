@@ -50,7 +50,7 @@ export const siteConfig = {
 
     email: "",
 
-    logo: "/assets/logo.png",
+    "src": "/assets/logo.webp"
   },
 
   // ==========================================================

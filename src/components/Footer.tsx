@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Facebook, Twitter, Instagram, ExternalLink } from 'lucide-react'
-import logoUrl from '@/assets/logo.png'
+import logoUrl from "@/assets/logo.webp";
 import { SITE_NAME } from '@/lib/brand'
 
 export default function Footer() {

@@ -4,8 +4,9 @@ import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import BackToTop from '@/components/BackToTop'
 
-const Home = lazy(() => import('./pages/Home'))
-const About = lazy(() => import('./pages/OurStory'))
+import Home from './pages/Home'
+
+const OurStory = lazy(() => import('./pages/OurStory'))
 const Case = lazy(() => import('./pages/Case'))
 const Updates = lazy(() => import('./pages/Updates'))
 const UpdateDetail = lazy(() => import('./pages/UpdateDetail'))
@@ -41,9 +42,11 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
 
-            <Route path="/about" element={<About />} />
+           
 
-            <Route path="/case" element={<Case />} />
+<Route path="/our-story" element={<OurStory />} />
+
+<Route path="/case" element={<Case />} />
 
             <Route path="/updates" element={<Updates />} />
             <Route

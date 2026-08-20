@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Share2 } from 'lucide-react'
-import logoUrl from '@/assets/logo.png'
+import logoUrl from "@/assets/logo.webp";
 import { SITE_NAME } from '@/lib/brand'
 
 const navLinks = [

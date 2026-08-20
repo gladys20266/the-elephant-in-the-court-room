@@ -7,7 +7,7 @@ import '@fontsource/instrument-serif/400-italic.css'
 import '@fontsource/dm-sans/400.css'
 import '@fontsource/dm-sans/500.css'
 import '@fontsource/dm-sans/700.css'
-import logoUrl from '@/assets/logo.png'
+import logoUrl from "@/assets/logo.webp";
 import './index.css'
 import App from './App.tsx'
 
