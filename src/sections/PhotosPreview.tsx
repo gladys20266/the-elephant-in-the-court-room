@@ -49,7 +49,7 @@ export default function PhotosPreview() {
           {/* Right Image */}
           <div className="reveal-child flex items-center justify-center lg:justify-end">
             <FeatureImage
-              image="/photos/after/after-0006.webp"
+              image="/photos/after-thumbs/after-0006.webp"
               alt="Photograph showing the transformed Eclectic Eats property"
               link="/photos"
             />

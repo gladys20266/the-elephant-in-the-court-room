@@ -112,7 +112,7 @@ export default function StorySnapshot() {
                 "
               >
                 <img
-                  src="/photos/after/after-0006.webp"
+                  src="/photos/after-thumbs/after-0006.webp"
                   alt="Photograph of the restored commercial property and outdoor grounds in Delray Beach, Florida"
                   className="w-full h-full object-cover"
                   loading="lazy"

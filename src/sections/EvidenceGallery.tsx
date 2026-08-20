@@ -176,7 +176,7 @@ export default function EvidenceGallery() {
             <div className="relative aspect-[4/3] overflow-hidden">
 
               <img
-                src="/photos/after/after-0006.webp"
+                src="/photos/after-thumbs/after-0006.webp"
                 alt="Photograph of the property and outdoor grounds following the transformation"
                 className="
                   w-full
