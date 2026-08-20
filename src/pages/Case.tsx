@@ -1,16 +1,11 @@
 import Hero from '@/components/Hero'
-import { useEffect, useRef } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
 import { FileDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const caseSeo = {
   title: 'The Case | 2010 Lease-to-Own Dispute | The Elephant In The Court Room',
@@ -82,36 +77,6 @@ const timelineItems = [
 
 export default function Case() {
   const sectionRef = useSectionReveal<HTMLElement>()
-  const timelineRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!timelineRef.current) return
-
-    const items = timelineRef.current.querySelectorAll('.timeline-item')
-
-    const ctx = gsap.context(() => {
-      gsap.to(items, {
-        opacity: 1,
-        x: 0,
-        duration: 0.5,
-        stagger: 0.12,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: timelineRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      })
-    }, timelineRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [])
 
   return (
     <>
@@ -194,7 +159,6 @@ export default function Case() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
               {/* Timeline */}
               <div
-                ref={timelineRef}
                 role="list"
                 aria-label="Case timeline"
                 className="relative pl-8"
@@ -208,7 +172,7 @@ export default function Case() {
                   <div
                     key={index}
                     role="listitem"
-                    className="timeline-item relative flex gap-5 py-4 opacity-0 -translate-x-5"
+                    className="timeline-item relative flex gap-5 py-4"
                   >
                     <div
                       aria-hidden="true"
