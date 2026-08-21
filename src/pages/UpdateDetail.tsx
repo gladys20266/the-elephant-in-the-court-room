@@ -87,7 +87,7 @@ export default function UpdateDetail() {
 
       <StructuredData
         data={webPageSchema({
-          title: updateSeo.title,
+          title: update.title,
           description: updateSeo.description,
           path: updateSeo.canonical,
           type: 'Article',

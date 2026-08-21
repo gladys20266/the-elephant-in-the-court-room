@@ -7,6 +7,7 @@ export interface PageSchemaOptions {
   type?: "WebPage" | "AboutPage" | "Article" | "CollectionPage";
   datePublished?: string;
   articleSection?: string;
+  image?: string;
 }
 
 export function webPageSchema({
@@ -16,6 +17,7 @@ export function webPageSchema({
   type = "WebPage",
   datePublished,
   articleSection,
+  image,
 }: PageSchemaOptions) {
   const schema: Record<string, unknown> = {
     "@type": type,
@@ -40,6 +42,23 @@ export function webPageSchema({
   };
 
   if (type === "Article") {
+    schema.headline = title;
+
+    schema.author = {
+      "@type": "Organization",
+      "@id": `${siteConfig.siteUrl}#organization`,
+      name: siteConfig.organization.name,
+      url: siteConfig.siteUrl,
+    };
+
+    schema.publisher = {
+      "@id": `${siteConfig.siteUrl}#organization`,
+    };
+
+    schema.mainEntityOfPage = {
+      "@id": `${siteConfig.siteUrl}${path}`,
+    };
+
     if (datePublished) {
       schema.datePublished = datePublished;
     }
@@ -48,9 +67,9 @@ export function webPageSchema({
       schema.articleSection = articleSection;
     }
 
-    schema.mainEntityOfPage = {
-      "@id": `${siteConfig.siteUrl}${path}`,
-    };
+    if (image) {
+      schema.image = `${siteConfig.siteUrl}${image}`;
+    }
   }
 
   return schema;

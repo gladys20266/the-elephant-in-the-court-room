@@ -15,6 +15,7 @@ const Photos = lazy(() => import('./pages/Photos'))
 const Documents = lazy(() => import('./pages/Documents'))
 const Downloads = lazy(() => import('./pages/Downloads'))
 const Contact = lazy(() => import('./pages/Contact'))
+const Press = lazy(() => import('./pages/Press'))
 const Privacy = lazy(() => import('./pages/Privacy'))
 const Terms = lazy(() => import('./pages/Terms'))
 const Disclaimer = lazy(() => import('./pages/Disclaimer'))
@@ -42,13 +43,12 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
 
-           
+            <Route path="/our-story" element={<OurStory />} />
 
-<Route path="/our-story" element={<OurStory />} />
-
-<Route path="/case" element={<Case />} />
+            <Route path="/case" element={<Case />} />
 
             <Route path="/updates" element={<Updates />} />
+
             <Route
               path="/updates/:slug"
               element={<UpdateDetail />}
@@ -63,6 +63,8 @@ export default function App() {
             <Route path="/downloads" element={<Downloads />} />
 
             <Route path="/contact" element={<Contact />} />
+
+            <Route path="/press" element={<Press />} />
 
             <Route path="/privacy" element={<Privacy />} />
 

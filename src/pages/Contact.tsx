@@ -494,7 +494,7 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
               {/* Case */}
               <Link
                 to="/case"
@@ -609,6 +609,45 @@ export default function Contact() {
 
                 <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
                   View Videos →
+                </span>
+              </Link>
+
+              {/* Press & Media */}
+              <Link
+                to="/press"
+                className="
+                  group
+                  rounded-2xl
+                  border
+                  border-charcoal/5
+                  bg-white
+                  p-7
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-xl
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-purple
+                  focus-visible:ring-offset-2
+                "
+              >
+                <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
+                  MEDIA RESOURCE
+                </p>
+
+                <h3 className="text-2xl font-bold text-purple">
+                  Press & Media
+                </h3>
+
+                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                  Journalists and researchers can review case information,
+                  available resources, and media reference materials.
+                </p>
+
+                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
+                  View Press & Media →
                 </span>
               </Link>
             </div>
