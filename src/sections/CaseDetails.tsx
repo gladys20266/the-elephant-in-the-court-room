@@ -82,20 +82,18 @@ export default function CaseDetails() {
             to="/case"
           />
 
-          <h2
-            id="case-heading"
-            className="
-              reveal-child
-              text-3xl
-              sm:text-4xl
-              lg:text-section-title
-              text-purple
-              leading-tight
-              mb-5
-            "
-          >
-            What Happened
-          </h2>
+         <h2
+  id="case-heading"
+  className="
+    reveal-child
+    text-section-title
+    text-purple
+    leading-tight
+    mb-5
+  "
+>
+  What Happened
+</h2>
 
           <p
             id="case-description"

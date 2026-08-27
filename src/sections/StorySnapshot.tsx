@@ -27,14 +27,12 @@ export default function StorySnapshot() {
             <h2
               id="story-heading"
               className="
-                reveal-child
-                text-3xl
-                sm:text-4xl
-                lg:text-section-title
-                text-purple
-                leading-tight
-                mb-5
-              "
+  reveal-child
+  text-section-title
+  text-purple
+  leading-tight
+  mb-5
+"
             >
               The Death of the Contract
             </h2>

@@ -165,12 +165,30 @@ export default function OurStory() {
                 OUR STORY
               </span>
 
-              <h1
-                id="our-story-heading"
-                className="reveal-child text-section-title text-purple"
-              >
-                The Story Behind The Elephant In The Court Room
-              </h1>
+            <h1
+  id="our-story-heading"
+  className="
+    reveal-child
+    flex
+    w-full
+    flex-col
+    items-center
+    text-center
+    text-4xl
+    sm:text-5xl
+    lg:text-6xl
+    text-purple
+    leading-[1.05]
+  "
+>
+  <span className="block whitespace-nowrap">
+    The Story Behind
+  </span>
+
+  <span className="block whitespace-nowrap">
+    The Elephant In The Court ROOM
+  </span>
+</h1>
 
               <p
                 id="our-story-description"

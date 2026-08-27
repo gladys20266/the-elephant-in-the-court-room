@@ -26,19 +26,17 @@ export default function DocumentsPreview() {
             />
 
             <h2
-              id="documents-preview-heading"
-              className="
-                reveal-child
-                text-3xl
-                sm:text-4xl
-                lg:text-section-title
-                text-purple
-                leading-tight
-                mb-5
-              "
-            >
-              THE COURT RECORD
-            </h2>
+  id="documents-preview-heading"
+  className="
+    reveal-child
+    text-section-title
+    text-purple
+    leading-tight
+    mb-5
+  "
+>
+  THE COURT RECORD
+</h2>
 
             <p
               id="documents-preview-description"
