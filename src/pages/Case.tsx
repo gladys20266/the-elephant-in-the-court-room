@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import SectionButton from '@/components/SectionButton'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
@@ -130,11 +131,19 @@ export default function Case() {
               </span>
 
               <h1
-                id="case-heading"
-                className="reveal-child text-section-title text-purple mb-4"
-              >
-                Understanding the Legal Dispute
-              </h1>
+  id="case-heading"
+  className="
+    reveal-child
+    text-section-title
+    text-purple
+    mb-4
+    whitespace-normal
+    lg:whitespace-nowrap
+    lg:text-[3.5rem]
+  "
+>
+  Understanding the Legal Dispute
+</h1>
 
               <p
                 id="case-description"
@@ -154,6 +163,12 @@ export default function Case() {
                 to understand the people, agreement, investment, and events
                 that led to the litigation.
               </p>
+              <div className="mt-6">
+                <SectionButton
+                  text="Read the full story"
+                  to="/our-story"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">

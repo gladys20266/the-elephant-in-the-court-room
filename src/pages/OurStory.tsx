@@ -5,6 +5,7 @@ import StructuredData from "@/components/seo/StructuredData";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { webPageSchema } from "@/seo/pageSchemas";
 import { Link } from "react-router-dom";
+import SectionButton from "@/components/SectionButton";
 
 const ourStorySeo = {
   title: "Our Story | The Elephant In The Court Room",
@@ -144,7 +145,8 @@ export default function OurStory() {
 
         <Hero
           title="Our Story"
-          subtitle="A 2010 lease-to-own agreement. A major investment. More than eleven years seeking enforcement of a contract."
+          subtitle="A 2010 lease-to-own agreement. A major investment. 
+          More than eleven years seeking enforcement of a contract."
         />
 
         <section
@@ -153,7 +155,7 @@ export default function OurStory() {
           aria-describedby="our-story-description"
           className="section-padding bg-off-white pb-0"
         >
-          <div className="mx-auto max-w-reading px-5 md:px-8">
+          <div className="mx-auto w-full px-5 md:px-8">
             <div
               ref={titleRef}
               className="mb-12 text-center"
@@ -165,14 +167,12 @@ export default function OurStory() {
                 OUR STORY
               </span>
 
-            <h1
+              {/* Main page title */}
+              <h1
   id="our-story-heading"
   className="
     reveal-child
-    flex
     w-full
-    flex-col
-    items-center
     text-center
     text-4xl
     sm:text-5xl
@@ -181,11 +181,11 @@ export default function OurStory() {
     leading-[1.05]
   "
 >
-  <span className="block whitespace-nowrap">
+  <span className="block text-center whitespace-nowrap">
     The Story Behind
   </span>
 
-  <span className="block whitespace-nowrap">
+  <span className="mt-1 block text-center whitespace-nowrap">
     The Elephant In The Court ROOM
   </span>
 </h1>
@@ -195,11 +195,13 @@ export default function OurStory() {
                 className="reveal-child mt-6 text-subheading italic text-charcoal"
               >
                 This is the story of a contract, an investment, a business, and
-                more than eleven years of litigation. It is the story of Leo and
+                more than eleven years of litigation. 
+                It is the story of Leo and
                 Olga and their continuing effort to enforce the agreement they
                 signed in 2010.
               </p>
 
+              {/* Introductory links */}
               <div className="reveal-child mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-body-small">
                 <Link
                   to="/case"
@@ -248,21 +250,22 @@ export default function OurStory() {
                 >
                   Review Documents
                 </Link>
+
                 <Link
-  to="/videos"
-  className="
-    font-semibold
-    text-purple
-    underline
-    decoration-lime
-    decoration-2
-    underline-offset-4
-    hover:text-magenta
-    transition-colors
-  "
->
-  Watch the Introduction
-</Link>
+                  to="/videos"
+                  className="
+                    font-semibold
+                    text-purple
+                    underline
+                    decoration-lime
+                    decoration-2
+                    underline-offset-4
+                    hover:text-magenta
+                    transition-colors
+                  "
+                >
+                  Watch the Introduction
+                </Link>
               </div>
             </div>
 
@@ -296,73 +299,22 @@ export default function OurStory() {
                 Review the record. Understand the case. Decide for yourself.
               </p>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <Link
+              {/* Closing CTA buttons */}
+              <div className="reveal-child mt-6 flex flex-nowrap items-center justify-center gap-4">
+                <SectionButton
+                  text="Explore the Case"
                   to="/case"
-                  className="
-                    rounded-md
-                    bg-purple
-                    px-5
-                    py-3
-                    text-body-small
-                    font-semibold
-                    text-white
-                    transition-colors
-                    hover:bg-[#5B3079]
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-purple
-                    focus-visible:ring-offset-2
-                  "
-                >
-                  Explore the Case
-                </Link>
+                />
 
-                <Link
+                <SectionButton
+                  text="Review Documents"
                   to="/documents"
-                  className="
-                    rounded-md
-                    border
-                    border-purple
-                    px-5
-                    py-3
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    transition-colors
-                    hover:bg-purple
-                    hover:text-white
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-purple
-                    focus-visible:ring-offset-2
-                  "
-                >
-                  Review Documents
-                </Link>
+                />
 
-                <Link
+                <SectionButton
+                  text="View Photos"
                   to="/photos"
-                  className="
-                    rounded-md
-                    border
-                    border-purple
-                    px-5
-                    py-3
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    transition-colors
-                    hover:bg-purple
-                    hover:text-white
-                    focus-visible:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-purple
-                    focus-visible:ring-offset-2
-                  "
-                >
-                  View Photos
-                </Link>
+                />
               </div>
             </div>
           </div>

@@ -92,29 +92,29 @@ export default function Hero({
 
           {subtitle && (
             <p
-              id="hero-subtitle"
-              className="
-                w-full
-                max-w-5xl
-                mx-auto
-                px-4
-                text-base
-                sm:text-lg
-                md:text-[1.3rem]
-                lg:text-[1.45rem]
-                font-semibold
-                italic
-                text-charcoal/70
-                text-center
-                break-words
-                whitespace-normal
-                leading-relaxed
-                mt-6
-                mb-8
-              "
-            >
-              {subtitle}
-            </p>
+  id="hero-subtitle"
+  className="
+    w-full
+    max-w-none
+    mx-auto
+    px-4
+    text-base
+    sm:text-lg
+    md:text-[1.3rem]
+    lg:text-[1.45rem]
+    font-semibold
+    italic
+    text-charcoal/70
+    text-center
+    whitespace-normal
+    lg:whitespace-nowrap
+    leading-relaxed
+    mt-6
+    mb-8
+  "
+>
+  {subtitle}
+</p>
           )}
         </div>
       )}

@@ -2,42 +2,50 @@ import { Link } from "react-router-dom";
 
 interface SectionButtonProps {
   text: string;
-  to: string;
+  to?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export default function SectionButton({
   text,
   to,
+  href,
+  target,
+  rel,
 }: SectionButtonProps) {
-  return (
-    <Link
-      to={to}
-      className="
-        group
-        inline-flex
-        items-center
-        gap-3
-        rounded-xl
-         border-[3px]
-        border-purple
-        bg-white
-        px-6
-        py-3
-        font-semibold
-        text-purple
-        shadow-sm
-        transition-all
-        duration-200
-        hover:-translate-y-0.5
-        hover:bg-purple
-        hover:text-white
-        hover:shadow-lg
-        focus-visible:outline-none
-        focus-visible:ring-2
-        focus-visible:ring-purple
-        focus-visible:ring-offset-2
-      "
-    >
+  const className = `
+    group
+    inline-flex
+    min-h-[50px]
+    items-center
+    justify-center
+    gap-3
+    rounded-[9px]
+    border-[3px]
+    border-purple
+    bg-white
+    px-[18px]
+    py-2.5
+    text-[14px]
+    font-semibold
+    text-purple
+    shadow-sm
+    transition-all
+    duration-200
+    hover:-translate-y-0.5
+    hover:bg-purple
+    hover:text-white
+    hover:shadow-lg
+    focus-visible:outline-none
+    focus-visible:ring-2
+    focus-visible:ring-purple
+    focus-visible:ring-offset-2
+  `;
+
+  const content = (
+    <>
       <span>{text}</span>
 
       <span
@@ -50,12 +58,11 @@ export default function SectionButton({
           items-center
           justify-center
           rounded-full
-           border-[3px]
-          border-purple
+          border-[3px]
+          border-current
           text-purple
           transition-colors
           duration-200
-          group-hover:border-white
           group-hover:text-white
         "
       >
@@ -74,6 +81,28 @@ export default function SectionButton({
           />
         </svg>
       </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        className={className}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      to={to || "#"}
+      className={className}
+    >
+      {content}
     </Link>
   );
 }

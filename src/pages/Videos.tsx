@@ -3,6 +3,7 @@ import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import SectionButton from '@/components/SectionButton'
 import { webPageSchema, videoSchema } from '@/seo/pageSchemas'
 
 const videosSeo = {
@@ -70,6 +71,7 @@ export default function Videos() {
         className="section-padding bg-off-white min-h-screen"
       >
         <div className="max-w-6xl mx-auto px-5">
+
           {/* Page Introduction */}
           <header className="reveal-child">
             <h1
@@ -144,7 +146,16 @@ export default function Videos() {
           {/* Featured Documentary */}
           <article
             aria-labelledby="introduction-heading"
-            className="reveal-child bg-white rounded-3xl shadow-2xl border border-gray-200 my-16 p-6"
+            className="
+              reveal-child
+              bg-white
+              rounded-3xl
+              shadow-2xl
+              border
+              border-gray-200
+              my-16
+              p-6
+            "
           >
             <video
               src="/videos/welcome.mp4"
@@ -187,11 +198,13 @@ export default function Videos() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
               {/* Case */}
-              <Link
-                to="/case"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-3xl
                   bg-white
                   border
@@ -202,10 +215,6 @@ export default function Videos() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="text-label text-magenta mb-2">
@@ -221,26 +230,20 @@ export default function Videos() {
                   effort described by the campaign.
                 </p>
 
-                <span
-                  className="
-                    mt-5
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Case →
-                </span>
-              </Link>
+                <div className="mt-auto pt-6">
+                  <SectionButton
+                    text="View Case"
+                    to="/case"
+                  />
+                </div>
+              </div>
 
               {/* Documents */}
-              <Link
-                to="/documents"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-3xl
                   bg-white
                   border
@@ -251,10 +254,6 @@ export default function Videos() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="text-label text-magenta mb-2">
@@ -270,26 +269,20 @@ export default function Videos() {
                   other materials connected to the case.
                 </p>
 
-                <span
-                  className="
-                    mt-5
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Documents →
-                </span>
-              </Link>
+                <div className="mt-auto pt-6">
+                  <SectionButton
+                    text="View Documents"
+                    to="/documents"
+                  />
+                </div>
+              </div>
 
               {/* Photos */}
-              <Link
-                to="/photos"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-3xl
                   bg-white
                   border
@@ -300,10 +293,6 @@ export default function Videos() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="text-label text-magenta mb-2">
@@ -319,20 +308,14 @@ export default function Videos() {
                   the transformation described in the campaign.
                 </p>
 
-                <span
-                  className="
-                    mt-5
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Photos →
-                </span>
-              </Link>
+                <div className="mt-auto pt-6">
+                  <SectionButton
+                    text="View Photos"
+                    to="/photos"
+                  />
+                </div>
+              </div>
+
             </div>
           </section>
 
@@ -365,7 +348,16 @@ export default function Videos() {
               <div className="flex items-start gap-7">
                 <div
                   aria-hidden="true"
-                  className="flex h-20 w-20 items-center justify-center rounded-full bg-purple/5 flex-shrink-0"
+                  className="
+                    flex
+                    h-20
+                    w-20
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-purple/5
+                    flex-shrink-0
+                  "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -401,6 +393,7 @@ export default function Videos() {
               </div>
             </div>
           </section>
+
         </div>
       </section>
     </>

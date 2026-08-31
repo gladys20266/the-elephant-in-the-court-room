@@ -1,3 +1,5 @@
+import SectionButton from '@/components/SectionButton'
+
 interface DocumentCardProps {
   title: string
   description: string
@@ -106,8 +108,8 @@ export default function DocumentCard({
 
             {/* Date */}
             <time className="block text-sm text-charcoal mb-4">
-  {date}
-</time>
+              {date}
+            </time>
 
             {/* Description */}
             <p
@@ -126,38 +128,12 @@ export default function DocumentCard({
 
       {/* Button */}
       <div className="mt-8">
-        <a
+        <SectionButton
+          text="View Document"
           href={file}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`View document: ${title}`}
-          className="
-            flex
-            w-full
-            items-center
-            justify-center
-            bg-[#6b3a8f]
-            px-6
-            py-3.5
-            rounded-sm
-            text-white
-            text-sm
-            font-bold
-            uppercase
-            tracking-[0.08em]
-            transition-all
-            duration-300
-            hover:opacity-90
-            hover:-translate-y-0.5
-            hover:shadow-lg
-            focus-visible:outline-none
-            focus-visible:ring-2
-            focus-visible:ring-purple
-            focus-visible:ring-offset-2
-          "
-        >
-          View Document
-        </a>
+        />
       </div>
     </article>
   )

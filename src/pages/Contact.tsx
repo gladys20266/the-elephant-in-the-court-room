@@ -13,7 +13,6 @@ import {
   MapPin,
   Heart,
   Share2,
-  ExternalLink,
 } from 'lucide-react'
 import {
   FaFacebook,
@@ -24,6 +23,7 @@ import {
 import { MdEmail } from 'react-icons/md'
 import { HiOutlineLink } from 'react-icons/hi'
 import { Card, CardContent, CardTitle } from '@/components/ui/card'
+import SectionButton from '@/components/SectionButton'
 
 // Share platforms with brand colors
 const SHARE_PLATFORMS = [
@@ -225,6 +225,7 @@ export default function Contact() {
 
               {/* Right Sidebar Cards */}
               <div className="flex flex-col gap-4">
+
                 {/* Card 1: Contact Information */}
                 <Card
                   aria-labelledby="contact-information-title"
@@ -251,6 +252,7 @@ export default function Contact() {
                     </div>
 
                     <div className="space-y-6">
+
                       {/* Email */}
                       <div className="flex items-start gap-4 border-b border-gray-200 pb-5">
                         <Mail
@@ -295,7 +297,7 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Address */}
+                      {/* Campaign */}
                       <div className="flex items-start gap-4">
                         <MapPin
                           className="mt-0.5 h-6 w-6 flex-shrink-0 text-lime"
@@ -360,28 +362,52 @@ export default function Contact() {
                     />
 
                     <div className="mt-2 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div
-                        aria-label="GoFundMe campaign coming soon"
-                        className="flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-6 py-3 text-[15px] font-black tracking-tight text-gray-500"
-                      >
-                        <Heart
-                          className="h-4 w-4"
-                          aria-hidden="true"
-                        />
-                        GoFundMe Coming Soon
-                      </div>
 
-                      <Link
-                        to="/documents"
-                        aria-label="View case documents"
-                        className="flex items-center justify-center gap-2 rounded-lg border border-lime px-5 py-3 font-extrabold text-charcoal transition-colors hover:bg-lime/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple focus-visible:ring-offset-2"
-                      >
-                        <ExternalLink
-                          className="h-4 w-4"
-                          aria-hidden="true"
+                      {/* GoFundMe - Coming Soon */}
+                     <div
+  aria-label="GoFundMe campaign coming soon"
+  className="
+    flex
+    min-h-[50px]
+    items-center
+    justify-center
+    gap-3
+    rounded-lg
+    border
+    border-charcoal
+    bg-lime
+    px-6
+    py-3
+    text-center
+    text-[15px]
+    font-black
+    uppercase
+    tracking-[0.08em]
+    text-charcoal
+  "
+>
+  <Heart
+  className="h-6 w-6 shrink-0"
+  style={{
+    color: '#6B3A8F',
+    fill: '#6B3A8F',
+  }}
+  strokeWidth={2.5}
+  aria-hidden="true"
+/>
+
+  <span>
+    GoFundMe Coming Soon
+  </span>
+</div>
+
+                      {/* View Case Documents */}
+                      <div className="flex items-center">
+                        <SectionButton
+                          text="View Case Documents"
+                          to="/documents"
                         />
-                        View Case Documents
-                      </Link>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -475,6 +501,7 @@ export default function Contact() {
           className="bg-off-white py-16 md:py-20"
         >
           <div className="content-container mx-auto max-w-[1280px] px-5">
+
             <div className="mb-10 text-center">
               <p className="mb-2 text-sm font-black uppercase tracking-[0.18em] text-[#D94B8A]">
                 LEARN MORE
@@ -495,11 +522,13 @@ export default function Contact() {
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+
               {/* Case */}
-              <Link
-                to="/case"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-2xl
                   border
                   border-charcoal/5
@@ -510,10 +539,6 @@ export default function Contact() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
@@ -524,21 +549,25 @@ export default function Contact() {
                   Explore the Case
                 </h3>
 
-                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                <p className="mt-3 flex-1 text-body-small leading-7 text-charcoal/70">
                   Learn about the 2010 lease-to-own agreement, the dispute,
                   the litigation history, and the continuing legal effort.
                 </p>
 
-                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
-                  View Case →
-                </span>
-              </Link>
+                <div className="mt-5">
+                  <SectionButton
+                    text="View Case"
+                    to="/case"
+                  />
+                </div>
+              </div>
 
               {/* Updates */}
-              <Link
-                to="/updates"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-2xl
                   border
                   border-charcoal/5
@@ -549,10 +578,6 @@ export default function Contact() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
@@ -563,21 +588,25 @@ export default function Contact() {
                   Follow Updates
                 </h3>
 
-                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                <p className="mt-3 flex-1 text-body-small leading-7 text-charcoal/70">
                   Follow court developments, campaign progress, legal
                   milestones, and future announcements.
                 </p>
 
-                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
-                  View Updates →
-                </span>
-              </Link>
+                <div className="mt-5">
+                  <SectionButton
+                    text="View Updates"
+                    to="/updates"
+                  />
+                </div>
+              </div>
 
               {/* Videos */}
-              <Link
-                to="/videos"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-2xl
                   border
                   border-charcoal/5
@@ -588,10 +617,6 @@ export default function Contact() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
@@ -602,21 +627,25 @@ export default function Contact() {
                   Watch the Videos
                 </h3>
 
-                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                <p className="mt-3 flex-1 text-body-small leading-7 text-charcoal/70">
                   Watch the introduction to The Death of the Contract and
                   learn about the story behind the campaign.
                 </p>
 
-                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
-                  View Videos →
-                </span>
-              </Link>
+                <div className="mt-5">
+                  <SectionButton
+                    text="View Videos"
+                    to="/videos"
+                  />
+                </div>
+              </div>
 
               {/* Press & Media */}
-              <Link
-                to="/press"
+              <div
                 className="
                   group
+                  flex
+                  flex-col
                   rounded-2xl
                   border
                   border-charcoal/5
@@ -627,10 +656,6 @@ export default function Contact() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="mb-2 text-xs font-black uppercase tracking-[0.15em] text-[#D94B8A]">
@@ -641,15 +666,19 @@ export default function Contact() {
                   Press & Media
                 </h3>
 
-                <p className="mt-3 text-body-small leading-7 text-charcoal/70">
+                <p className="mt-3 flex-1 text-body-small leading-7 text-charcoal/70">
                   Journalists and researchers can review case information,
                   available resources, and media reference materials.
                 </p>
 
-                <span className="mt-5 inline-block text-body-small font-bold text-purple transition-colors group-hover:text-[#D94B8A]">
-                  View Press & Media →
-                </span>
-              </Link>
+                <div className="mt-5">
+                  <SectionButton
+                    text="View Press & Media"
+                    to="/press"
+                  />
+                </div>
+              </div>
+
             </div>
           </div>
         </section>

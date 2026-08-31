@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
+
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
@@ -12,6 +13,7 @@ import FeaturedUpdate from '@/components/updates/FeaturedUpdate'
 import CaseProgress from '@/components/updates/CaseProgress'
 import UpdateGrid from '@/components/updates/UpdateGrid'
 import FutureUpdates from '@/components/updates/FutureUpdates'
+import SectionButton from '@/components/SectionButton'
 
 import { updates } from '@/data/updates'
 
@@ -76,27 +78,10 @@ export default function Updates() {
 
             <p
               id="updates-description"
-              className="mx-auto max-w-3xl text-center text-lg leading-8 text-charcoal"
+              className="mx-auto max-w-5xl text-center text-lg leading-8 text-charcoal sm:text-xl lg:text-2xl font-semibold italic text-charcoal/70"
             >
-              Follow the latest developments in the case, including court
-              filings, legal milestones, campaign progress, media coverage,
-              and important announcements.{' '}
-              <Link
-                to="/case"
-                className="
-                  font-medium
-                  text-purple
-                  underline
-                  decoration-lime
-                  decoration-2
-                  underline-offset-4
-                  hover:text-magenta
-                  transition-colors
-                "
-              >
-                Review the full case
-              </Link>{' '}
-              for the broader legal history and timeline.
+              The 2010 agreement, the investment, the dispute, and more than
+              eleven years seeking enforcement.
             </p>
           </header>
 
@@ -171,166 +156,138 @@ export default function Updates() {
           </section>
 
           {/* Related Case Resources */}
-          <section
-            aria-labelledby="related-case-resources-heading"
-            className="mt-14"
-          >
-            <h2
-              id="related-case-resources-heading"
-              className="sr-only"
-            >
-              Related Case Resources
-            </h2>
+<section
+  aria-labelledby="related-case-resources-heading"
+  className="mt-14"
+>
+  <h2
+    id="related-case-resources-heading"
+    className="sr-only"
+  >
+    Related Case Resources
+  </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Case */}
-              <Link
-                to="/case"
-                className="
-                  group
-                  rounded-xl
-                  bg-white
-                  border
-                  border-charcoal/10
-                  p-6
-                  shadow-card
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-card-hover
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
-                "
-              >
-                <p className="text-label text-magenta mb-2">
-                  CASE CONTEXT
-                </p>
+  <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
 
-                <h3 className="text-xl font-semibold text-purple">
-                  Review the Case
-                </h3>
+    {/* Case */}
+    <div
+      className="
+        flex
+        h-full
+        flex-col
+        rounded-xl
+        bg-white
+        border-[3px]
+        border-charcoal/10
+        p-6
+        shadow-card
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:shadow-card-hover
+      "
+    >
+      <p className="text-label text-magenta mb-2">
+        CASE CONTEXT
+      </p>
 
-                <p className="mt-2 text-body-small text-charcoal/70 leading-7">
-                  Read the full case history, contractual dispute, timeline,
-                  and legal context behind these developments.
-                </p>
+      <h3 className="text-xl font-semibold text-purple">
+        Review the Case
+      </h3>
 
-                <span
-                  className="
-                    mt-4
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Case →
-                </span>
-              </Link>
+      <p className="mt-2 text-body-small text-charcoal/70 leading-7">
+        Read the full case history, contractual dispute, timeline,
+        and legal context behind these developments.
+      </p>
 
-              {/* Documents */}
-              <Link
-                to="/documents"
-                className="
-                  group
-                  rounded-xl
-                  bg-white
-                  border
-                  border-charcoal/10
-                  p-6
-                  shadow-card
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-card-hover
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
-                "
-              >
-                <p className="text-label text-magenta mb-2">
-                  PUBLIC RECORD
-                </p>
+      <div className="mt-auto pt-5">
+        <SectionButton
+          text="Read Full Case"
+          to="/case"
+        />
+      </div>
+    </div>
 
-                <h3 className="text-xl font-semibold text-purple">
-                  Review Case Documents
-                </h3>
+    {/* Documents */}
+    <div
+      className="
+        flex
+        h-full
+        flex-col
+        rounded-xl
+        bg-white
+        border-[3px]
+        border-charcoal/10
+        p-6
+        shadow-card
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:shadow-card-hover
+      "
+    >
+      <p className="text-label text-magenta mb-2">
+        PUBLIC RECORD
+      </p>
 
-                <p className="mt-2 text-body-small text-charcoal/70 leading-7">
-                  Review publicly available filings, agreements, motions, and
-                  other materials connected to the case.
-                </p>
+      <h3 className="text-xl font-semibold text-purple">
+        Review Case Documents
+      </h3>
 
-                <span
-                  className="
-                    mt-4
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Documents →
-                </span>
-              </Link>
+      <p className="mt-2 text-body-small text-charcoal/70 leading-7">
+        Review publicly available filings, agreements, motions, and
+        other materials connected to the case.
+      </p>
 
-              {/* Photos */}
-              <Link
-                to="/photos"
-                className="
-                  group
-                  rounded-xl
-                  bg-white
-                  border
-                  border-charcoal/10
-                  p-6
-                  shadow-card
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-card-hover
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
-                "
-              >
-                <p className="text-label text-magenta mb-2">
-                  VISUAL RECORD
-                </p>
+      <div className="mt-auto pt-5">
+        <SectionButton
+          text="View Documents"
+          to="/documents"
+        />
+      </div>
+    </div>
 
-                <h3 className="text-xl font-semibold text-purple">
-                  See the Property Record
-                </h3>
+    {/* Photos */}
+    <div
+      className="
+        flex
+        h-full
+        flex-col
+        rounded-xl
+        bg-white
+        border-[3px]
+        border-charcoal/10
+        p-6
+        shadow-card
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:shadow-card-hover
+      "
+    >
+      <p className="text-label text-magenta mb-2">
+        VISUAL RECORD
+      </p>
 
-                <p className="mt-2 text-body-small text-charcoal/70 leading-7">
-                  Explore photographs documenting the property and its
-                  transformation alongside the case history.
-                </p>
+      <h3 className="text-xl font-semibold text-purple">
+        See the Property Record
+      </h3>
 
-                <span
-                  className="
-                    mt-4
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Photos →
-                </span>
-              </Link>
-            </div>
-          </section>
+      <p className="mt-2 text-body-small text-charcoal/70 leading-7">
+        Explore photographs documenting the property and its
+        transformation alongside the case history.
+      </p>
+
+      <div className="mt-auto pt-5">
+        <SectionButton
+          text="View Photos"
+          to="/photos"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
 
           {/* Future Updates */}
           <section

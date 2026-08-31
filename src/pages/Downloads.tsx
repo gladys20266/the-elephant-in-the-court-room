@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
+
 import Hero from '@/components/Hero'
 import DownloadSection from '@/components/downloads/DownloadSection'
+import SectionButton from '@/components/SectionButton'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import { webPageSchema } from '@/seo/pageSchemas'
+
 import {
   Scale,
   FileText,
@@ -364,12 +367,14 @@ export default function Downloads() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Case */}
-              <Link
-                to="/case"
+            <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+
+              {/* CASE CARD */}
+              <div
                 className="
-                  group
+                  flex
+                  h-full
+                  flex-col
                   rounded-3xl
                   border
                   border-gray-200
@@ -380,10 +385,6 @@ export default function Downloads() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="text-label text-magenta mb-2">
@@ -399,26 +400,20 @@ export default function Downloads() {
                   and continuing legal effort.
                 </p>
 
-                <span
-                  className="
-                    mt-5
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Case →
-                </span>
-              </Link>
+                <div className="mt-auto pt-5">
+                  <SectionButton
+                    text="Explore the Case"
+                    to="/case"
+                  />
+                </div>
+              </div>
 
-              {/* Documents */}
-              <Link
-                to="/documents"
+              {/* DOCUMENTS CARD */}
+              <div
                 className="
-                  group
+                  flex
+                  h-full
+                  flex-col
                   rounded-3xl
                   border
                   border-gray-200
@@ -429,10 +424,6 @@ export default function Downloads() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="text-label text-magenta mb-2">
@@ -448,26 +439,20 @@ export default function Downloads() {
                   records and supporting materials.
                 </p>
 
-                <span
-                  className="
-                    mt-5
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Documents →
-                </span>
-              </Link>
+                <div className="mt-auto pt-5">
+                  <SectionButton
+                    text="Review Documents"
+                    to="/documents"
+                  />
+                </div>
+              </div>
 
-              {/* Photos */}
-              <Link
-                to="/photos"
+              {/* PHOTOS CARD */}
+              <div
                 className="
-                  group
+                  flex
+                  h-full
+                  flex-col
                   rounded-3xl
                   border
                   border-gray-200
@@ -478,10 +463,6 @@ export default function Downloads() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-purple
-                  focus-visible:ring-offset-2
                 "
               >
                 <p className="text-label text-magenta mb-2">
@@ -497,20 +478,14 @@ export default function Downloads() {
                   condition, and transformation described in the campaign.
                 </p>
 
-                <span
-                  className="
-                    mt-5
-                    inline-block
-                    text-body-small
-                    font-semibold
-                    text-purple
-                    group-hover:text-magenta
-                    transition-colors
-                  "
-                >
-                  View Photos →
-                </span>
-              </Link>
+                <div className="mt-auto pt-5">
+                  <SectionButton
+                    text="View Property Photos"
+                    to="/photos"
+                  />
+                </div>
+              </div>
+
             </div>
           </section>
         </div>
