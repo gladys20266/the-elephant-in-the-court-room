@@ -4,8 +4,8 @@ content:
   - name: our-story
     label: Our Story
     type: file
-    path: src/content/our-story.yml
-    format: yaml
+    path: src/content/our-story.json
+    format: json
     fields:
       - name: title
         label: Main Title

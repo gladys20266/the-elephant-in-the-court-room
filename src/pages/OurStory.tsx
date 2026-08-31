@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import { webPageSchema } from "@/seo/pageSchemas";
 import { Link } from "react-router-dom";
 import SectionButton from "@/components/SectionButton";
-
+import ourStoryContent from "@/content/our-story.json";
 const ourStorySeo = {
   title: "Our Story | The Elephant In The Court Room",
   description:
@@ -182,24 +182,20 @@ export default function OurStory() {
   "
 >
   <span className="block text-center whitespace-nowrap">
-    The Story Behind
-  </span>
+  {ourStoryContent.title}
+</span>
 
-  <span className="mt-1 block text-center whitespace-nowrap">
-    The Elephant In The Court ROOM
-  </span>
+<span className="mt-1 block text-center whitespace-nowrap">
+  {ourStoryContent.subtitle}
+</span>
 </h1>
 
               <p
-                id="our-story-description"
-                className="reveal-child mt-6 text-subheading italic text-charcoal"
-              >
-                This is the story of a contract, an investment, a business, and
-                more than eleven years of litigation. 
-                It is the story of Leo and
-                Olga and their continuing effort to enforce the agreement they
-                signed in 2010.
-              </p>
+  id="our-story-description"
+  className="reveal-child mt-6 text-subheading italic text-charcoal"
+>
+  {ourStoryContent.description}
+</p>
 
               {/* Introductory links */}
               <div className="reveal-child mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-body-small">
