@@ -1,0 +1,20 @@
+media: media
+
+content:
+  - name: our-story
+    label: Our Story
+    type: file
+    path: src/content/our-story.yml
+    format: yaml
+    fields:
+      - name: title
+        label: Main Title
+        type: string
+
+      - name: subtitle
+        label: Subtitle
+        type: string
+
+      - name: description
+        label: Introduction
+        type: text
