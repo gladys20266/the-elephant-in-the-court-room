@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Hero from '@/components/Hero'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import ContactForm from '@/components/ContactForm'
-import { Link } from 'react-router-dom'
+
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'

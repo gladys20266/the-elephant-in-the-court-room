@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 
 import SEO from '@/components/seo/SEO'
