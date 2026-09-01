@@ -19,11 +19,27 @@ content:
         label: Introduction
         type: text
 
-  - name: updates
+    - name: updates
     label: Updates
     type: collection
     path: src/content/updates
+    filename: "{slug}.json"
     format: json
+
+    view:
+      fields:
+        - title
+        - category
+        - status
+        - date
+        - featured
+      primary: title
+      sort:
+        - date
+        - title
+      default:
+        sort: date
+        order: desc
 
     fields:
       - name: id
