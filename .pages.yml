@@ -19,12 +19,12 @@ content:
         label: Introduction
         type: text
 
-    - name: updates
+      - name: updates
     label: Updates
     type: collection
     path: src/content/updates
-    filename: "{slug}.json"
     format: json
+    filename: "{slug}.json"
 
     view:
       fields:
