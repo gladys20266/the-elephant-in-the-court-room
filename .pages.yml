@@ -1,3 +1,5 @@
+media: media
+
 content:
   - name: our-story
     label: Our Story
@@ -103,7 +105,7 @@ content:
         label: Featured Update
         type: boolean
 
-            - name: image
+      - name: image
         label: Featured Image
         type: image
         options:
