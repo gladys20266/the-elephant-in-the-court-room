@@ -2,7 +2,7 @@
   "id": "1",
   "slug": "website-campaign-launched",
   "title": "Website Campaign Launched",
-  "summary": "The official campaign website has been launched to document the case, share evidence, and provide public updates for supporters and visitors.",
+  "summary": "The official campaign website has been launched to document the case, share evidence, and provide ongoing public updates for supporters and visitors.",
   "content": [
     "The official campaign website for The Elephant In The Court Room has been launched as a central resource for documenting the case and following the campaign.",
     "The website brings together information about the case, photographs documenting the property, videos, court documents, campaign updates, and information about ways to support the ongoing legal effort.",
@@ -11,7 +11,6 @@
   "category": "Website",
   "status": "Active",
   "date": "July 2026",
-  
   "featured": false,
   "image": "/media/after-0007.webp"
 }
