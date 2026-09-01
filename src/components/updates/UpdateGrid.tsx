@@ -103,7 +103,7 @@ export default function UpdateGrid({
 
                 <div className="mb-5 flex gap-5 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
                   <span>{update.date}</span>
-                  <span>{update.readingTime}</span>
+                  
                 </div>
 
                 {/* Summary */}

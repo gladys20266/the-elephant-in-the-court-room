@@ -95,11 +95,15 @@ export default function Updates() {
             </h2>
 
             <FeaturedUpdate
-              title={updates[0].title}
-              summary={updates[0].summary}
-              category={updates[0].category}
-              date={updates[0].date}
-            />
+  title={updates[0].title}
+  summary={updates[0].summary}
+  category={updates[0].category}
+  date={updates[0].date}
+  
+  status={updates[0].status}
+  slug={updates[0].slug}
+  image={updates[0].image}
+/>
           </section>
 
           {/* Case Progress */}

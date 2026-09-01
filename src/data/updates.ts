@@ -17,7 +17,7 @@ export interface CaseUpdate {
     | 'Completed'
     | 'Upcoming'
   date: string
-  readingTime: string
+
   featured: boolean
   image?: string
 }

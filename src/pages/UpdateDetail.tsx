@@ -140,11 +140,21 @@ export default function UpdateDetail() {
                 <span>{update.date}</span>
               )}
 
-              <span>{update.readingTime}</span>
+              
 
               <span>{update.status}</span>
             </div>
-          </header>
+                    </header>
+
+          {update.image && (
+            <figure className="mb-12 overflow-hidden rounded-2xl">
+              <img
+                src={update.image}
+                alt={update.title}
+                className="h-auto w-full object-cover"
+              />
+            </figure>
+          )}
 
           <article
             aria-labelledby="update-title"

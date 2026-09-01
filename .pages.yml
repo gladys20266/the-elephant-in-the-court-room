@@ -96,10 +96,7 @@ content:
         type: string
         required: true
 
-      - name: readingTime
-        label: Reading Time
-        type: string
-        required: true
+      
 
       - name: featured
         label: Featured Update

@@ -1,4 +1,3 @@
-
 import SectionButton from "@/components/SectionButton";
 
 interface FeaturedUpdateProps {
@@ -6,6 +5,10 @@ interface FeaturedUpdateProps {
   summary: string;
   category: string;
   date: string;
+  
+  status: string;
+  slug: string;
+  image?: string;
 }
 
 const categoryColors = {
@@ -17,11 +20,22 @@ const categoryColors = {
   Fundraising: "bg-[#87CB28]",
 };
 
+const statusColors = {
+  Active: "bg-[#87CB28]",
+  New: "bg-[#3B82F6]",
+  Completed: "bg-gray-500",
+  Upcoming: "bg-[#D94B8A]",
+};
+
 export default function FeaturedUpdate({
   title,
   summary,
   category,
   date,
+  
+  status,
+  slug,
+  image,
 }: FeaturedUpdateProps) {
   return (
     <section className="mb-20">
@@ -53,10 +67,28 @@ export default function FeaturedUpdate({
             {category}
           </span>
 
-          <span className="rounded-full bg-[#87CB28] px-5 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white">
-            Active
+          <span
+            className={`rounded-full px-5 py-2 text-[0.95rem] font-black uppercase tracking-[0.05em] text-white ${
+              statusColors[
+                status as keyof typeof statusColors
+              ]
+            }`}
+          >
+            {status}
           </span>
         </div>
+
+        {/* Featured Image */}
+
+        {image && (
+          <figure className="mb-6 overflow-hidden rounded-2xl">
+            <img
+              src={image}
+              alt={title}
+              className="h-32 w-full object-cover sm:h-40"
+            />
+          </figure>
+        )}
 
         {/* Title */}
 
@@ -69,7 +101,7 @@ export default function FeaturedUpdate({
         <div className="mb-6 flex flex-wrap gap-6 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
           <span>{date}</span>
 
-          <span>2 min read</span>
+          
         </div>
 
         {/* Summary */}
@@ -84,7 +116,7 @@ export default function FeaturedUpdate({
           <div className="mt-4">
             <SectionButton
               text="Read Full Story"
-              to="/updates/website-campaign-launched"
+              to={`/updates/${slug}`}
             />
           </div>
         </div>
