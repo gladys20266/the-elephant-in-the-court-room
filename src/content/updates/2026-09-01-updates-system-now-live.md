@@ -1,0 +1,16 @@
+{
+  "id": "2",
+  "slug": "updates-system-live",
+  "title": "Updates System Now Live",
+  "summary": "The website now has a dedicated updates system for publishing clear, organized, and ongoing campaign developments.",
+  "content": [
+    "The website now includes a dedicated Updates section designed to provide a clear and organized record of important developments related to the campaign.",
+    "Updates can now be published with a title, summary, detailed content, category, status, date, reading time, and optional featured image.",
+    "This creates a central place where supporters and visitors can follow new developments, website progress, campaign activity, documents, fundraising efforts, and other important updates."
+  ],
+  "category": "Website",
+  "status": "Completed",
+  "date": "September 2026",
+  "readingTime": "1 min read",
+  "featured": false
+}
