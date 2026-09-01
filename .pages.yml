@@ -103,6 +103,8 @@ content:
         label: Featured Update
         type: boolean
 
-      - name: image
+            - name: image
         label: Featured Image
         type: image
+        options:
+          media: media
