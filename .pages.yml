@@ -18,3 +18,77 @@ content:
       - name: description
         label: Introduction
         type: text
+
+  - name: updates
+    label: Updates
+    type: collection
+    path: src/content/updates
+    format: json
+
+    fields:
+      - name: id
+        label: ID
+        type: string
+        required: true
+
+      - name: slug
+        label: Slug
+        type: string
+        required: true
+
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: summary
+        label: Summary
+        type: text
+        required: true
+
+      - name: content
+        label: Content Paragraphs
+        type: string
+        list: true
+
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values:
+            - Court
+            - Website
+            - Campaign
+            - Media
+            - Documents
+            - Fundraising
+
+      - name: status
+        label: Status
+        type: select
+        required: true
+        options:
+          values:
+            - Active
+            - New
+            - Completed
+            - Upcoming
+
+      - name: date
+        label: Date
+        type: string
+        required: true
+
+      - name: readingTime
+        label: Reading Time
+        type: string
+        required: true
+
+      - name: featured
+        label: Featured Update
+        type: boolean
+
+      - name: image
+        label: Featured Image
+        type: image
