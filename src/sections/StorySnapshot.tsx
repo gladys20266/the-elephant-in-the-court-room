@@ -21,14 +21,14 @@ function StorySnapshotVisual({
   sectionRef,
 }: StorySnapshotVisualProps) {
   const tinaResult = useTina({
-  query: response.query,
-  variables: response.variables,
-  data: response.data,
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
 
-  experimental___selectFormByFormId() {
-    return `src/content/${response.variables.relativePath}`
-  },
-})
+    experimental___selectFormByFormId() {
+      return `src/content/${response.variables.relativePath}`
+    },
+  })
 
   const story = tinaResult.data.storySnapshot
 
@@ -80,6 +80,8 @@ function StorySnapshotVisual({
                 text-purple
                 leading-tight
                 mb-5
+                lg:whitespace-nowrap
+                lg:text-[clamp(2.75rem,4.5vw,4rem)]
               "
               data-tina-field={tinaField(
                 story,
@@ -247,6 +249,8 @@ export default function StorySnapshot() {
                   text-purple
                   leading-tight
                   mb-5
+                  lg:whitespace-nowrap
+                  lg:text-[clamp(2.75rem,4.5vw,4rem)]
                 "
               >
                 The Death of the Contract
