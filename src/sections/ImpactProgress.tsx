@@ -1,64 +1,179 @@
-import { useEffect, useRef } from 'react'
-import { useSectionReveal } from '@/hooks/useSectionReveal'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import DonateButton from '@/components/DonateButton'
-import { Briefcase, FileText, Shield } from 'lucide-react'
+import { useEffect, useRef, useState } from "react";
+import { useSectionReveal } from "@/hooks/useSectionReveal";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import DonateButton from "@/components/DonateButton";
+import { Briefcase, FileText, Shield } from "lucide-react";
+import { client } from "../../tina/__generated__/client";
+import { useTina, tinaField } from "tinacms/dist/react";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
-const expenseCards = [
-  {
-    icon: Briefcase,
-    title: 'Legal Representation',
-    amount: '$30,000',
-    description:
-      'Attorney fees for immigration court proceedings, case preparation, and hearings.',
-  },
-  {
-    icon: FileText,
-    title: 'Documentation & Evidence',
-    amount: '$12,000',
-    description:
-      'Obtaining records, expert testimony, translations, and supporting documentation.',
-  },
-  {
-    icon: Shield,
-    title: 'Emergency Reserve',
-    amount: '$8,000',
-    description:
-      'Unexpected legal costs, filing fees, and additional representation if needed.',
-  },
-]
+const fallbackImpactProgress = {
+  badgeText: "IMPACT",
+  title: "Where Your Support Goes",
+  description:
+    "Every dollar raised goes directly toward The Elephant In The Court Room's legal defense. Here's how funds are allocated and how close we are to the goal.",
+  raisedAmount: 31000,
+  goalAmount: 50000,
+  totalGoalLabel: "TOTAL GOAL",
+  amountRaisedLabel: "AMOUNT RAISED",
+  expenses: [
+    {
+      title: "Legal Representation",
+      amount: "$30,000",
+      description:
+        "Attorney fees for immigration court proceedings, case preparation, and hearings.",
+    },
+    {
+      title: "Documentation & Evidence",
+      amount: "$12,000",
+      description:
+        "Obtaining records, expert testimony, translations, and supporting documentation.",
+    },
+    {
+      title: "Emergency Reserve",
+      amount: "$8,000",
+      description:
+        "Unexpected legal costs, filing fees, and additional representation if needed.",
+    },
+  ],
+};
 
-export default function ImpactProgress() {
-  const sectionRef = useSectionReveal<HTMLElement>()
-  const progressRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
+type ImpactProgressData = typeof fallbackImpactProgress;
+
+type ImpactProgressQueryResult = Awaited<
+  ReturnType<typeof client.queries.impactProgress>
+>;
+
+function normalizeImpactProgress(
+  data: ImpactProgressQueryResult["data"]["impactProgress"]
+): ImpactProgressData {
+  return {
+    badgeText:
+      data?.badgeText ??
+      fallbackImpactProgress.badgeText,
+
+    title:
+      data?.title ??
+      fallbackImpactProgress.title,
+
+    description:
+      data?.description ??
+      fallbackImpactProgress.description,
+
+    raisedAmount:
+      data?.raisedAmount ??
+      fallbackImpactProgress.raisedAmount,
+
+    goalAmount:
+      data?.goalAmount ??
+      fallbackImpactProgress.goalAmount,
+
+    totalGoalLabel:
+      data?.totalGoalLabel ??
+      fallbackImpactProgress.totalGoalLabel,
+
+    amountRaisedLabel:
+      data?.amountRaisedLabel ??
+      fallbackImpactProgress.amountRaisedLabel,
+
+    expenses:
+      data?.expenses?.map((expense, index) => ({
+        title:
+          expense?.title ??
+          fallbackImpactProgress.expenses[index]?.title ??
+          "",
+        amount:
+          expense?.amount ??
+          fallbackImpactProgress.expenses[index]?.amount ??
+          "",
+        description:
+          expense?.description ??
+          fallbackImpactProgress.expenses[index]?.description ??
+          "",
+      })) ?? fallbackImpactProgress.expenses,
+  };
+}
+
+function formatCurrency(amount: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+function ImpactProgressVisual({
+  response,
+}: {
+  response: ImpactProgressQueryResult;
+}) {
+  const tinaResult = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+    experimental___selectFormByFormId() {
+      return `src/content/${response.variables.relativePath}`;
+    },
+  });
+
+  const rawImpactProgress =
+    tinaResult.data.impactProgress;
+
+  const impactProgress =
+    normalizeImpactProgress(rawImpactProgress);
+
+  const sectionRef = useSectionReveal<HTMLElement>();
+  const progressRef = useRef<HTMLDivElement>(null);
+  const progressFillRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  const progressPercentage =
+    impactProgress.goalAmount > 0
+      ? Math.min(
+          100,
+          Math.max(
+            0,
+            (impactProgress.raisedAmount /
+              impactProgress.goalAmount) *
+              100
+          )
+        )
+      : 0;
 
   useEffect(() => {
-    if (!progressRef.current) return
+    if (!progressRef.current || !progressFillRef.current) {
+      return;
+    }
 
     const ctx = gsap.context(() => {
-      gsap.to('.progress-fill', {
-        width: '62%',
-        duration: 1.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: progressRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+      gsap.fromTo(
+        progressFillRef.current,
+        {
+          width: "0%",
         },
-      })
-    }, progressRef)
+        {
+          width: `${progressPercentage}%`,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: progressRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }, progressRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, [progressPercentage]);
 
   useEffect(() => {
-    if (!cardsRef.current) return
+    if (!cardsRef.current) return;
 
-    const cards = cardsRef.current.querySelectorAll('.expense-card')
+    const cards =
+      cardsRef.current.querySelectorAll(".expense-card");
 
     const ctx = gsap.context(() => {
       gsap.to(cards, {
@@ -66,17 +181,17 @@ export default function ImpactProgress() {
         y: 0,
         duration: 0.6,
         stagger: 0.15,
-        ease: 'power2.out',
+        ease: "power2.out",
         scrollTrigger: {
           trigger: cardsRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+          start: "top 80%",
+          toggleActions: "play none none none",
         },
-      })
-    }, cardsRef)
+      });
+    }, cardsRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
@@ -89,24 +204,36 @@ export default function ImpactProgress() {
       <div className="content-container">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4">
-            IMPACT
+          <span
+            className="reveal-child inline-block bg-magenta text-white text-label px-2.5 py-1 rounded-sm mb-4"
+            data-tina-field={tinaField(
+              rawImpactProgress,
+              "badgeText"
+            )}
+          >
+            {impactProgress.badgeText}
           </span>
 
           <h2
             id="impact-heading"
             className="reveal-child text-section-title text-purple mb-4"
+            data-tina-field={tinaField(
+              rawImpactProgress,
+              "title"
+            )}
           >
-            Where Your Support Goes
+            {impactProgress.title}
           </h2>
 
           <p
             id="impact-description"
             className="reveal-child text-body text-charcoal/80 max-w-xl mx-auto"
+            data-tina-field={tinaField(
+              rawImpactProgress,
+              "description"
+            )}
           >
-            Every dollar raised goes directly toward The Elephant In The Court
-            Room's legal defense. Here's how funds are allocated and how close
-            we are to the goal.
+            {impactProgress.description}
           </p>
         </div>
 
@@ -120,22 +247,38 @@ export default function ImpactProgress() {
             id="impact-progress-label"
             className="sr-only"
           >
-            Campaign fundraising progress: $31,000 raised toward a $50,000 goal,
-            which is 62 percent of the goal.
+            Campaign fundraising progress:{" "}
+            {formatCurrency(
+              impactProgress.raisedAmount
+            )}{" "}
+            raised toward a{" "}
+            {formatCurrency(
+              impactProgress.goalAmount
+            )}{" "}
+            goal, which is{" "}
+            {Math.round(progressPercentage)} percent
+            of the goal.
           </div>
 
           <div
             className="h-3 bg-off-white rounded-full overflow-hidden relative"
-            style={{ background: '#E8E8E4' }}
+            style={{ background: "#E8E8E4" }}
           >
             <div
+              ref={progressFillRef}
               className="progress-fill"
-              style={{ width: '0%' }}
+              style={{ width: "0%" }}
               role="progressbar"
               aria-valuemin={0}
-              aria-valuemax={50000}
-              aria-valuenow={31000}
-              aria-valuetext="$31,000 raised of a $50,000 goal, 62% funded"
+              aria-valuemax={impactProgress.goalAmount}
+              aria-valuenow={impactProgress.raisedAmount}
+              aria-valuetext={`${formatCurrency(
+                impactProgress.raisedAmount
+              )} raised of ${formatCurrency(
+                impactProgress.goalAmount
+              )}, ${Math.round(
+                progressPercentage
+              )}% funded`}
               aria-label="Campaign fundraising progress"
             />
 
@@ -147,7 +290,8 @@ export default function ImpactProgress() {
                 className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-gold rounded-full"
                 style={{
                   left: `${pct}%`,
-                  transform: 'translate(-50%, -50%)',
+                  transform:
+                    "translate(-50%, -50%)",
                 }}
               />
             ))}
@@ -158,11 +302,17 @@ export default function ImpactProgress() {
             aria-label="Fundraising totals"
           >
             <span className="text-body-small text-charcoal">
-              Raised: $31,000
+              Raised:{" "}
+              {formatCurrency(
+                impactProgress.raisedAmount
+              )}
             </span>
 
             <span className="text-body-small text-charcoal">
-              Goal: $50,000
+              Goal:{" "}
+              {formatCurrency(
+                impactProgress.goalAmount
+              )}
             </span>
           </div>
         </div>
@@ -174,40 +324,83 @@ export default function ImpactProgress() {
           aria-label="Campaign expense allocation"
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
         >
-          {expenseCards.map((card, index) => {
-            const Icon = card.icon
+          {impactProgress.expenses.map(
+            (card, index) => {
+              const icons = [
+                Briefcase,
+                FileText,
+                Shield,
+              ];
 
-            return (
-              <div
-                key={index}
-                role="listitem"
-                className="expense-card bg-white rounded-xl p-6 shadow-card opacity-0 translate-y-8"
-              >
+              const Icon = icons[index] ?? FileText;
+
+              const rawExpense =
+                rawImpactProgress.expenses?.[
+                  index
+                ];
+
+              return (
                 <div
-                  aria-hidden="true"
-                  className="w-12 h-12 rounded-full bg-lime/20 flex items-center justify-center mb-4"
+                  key={index}
+                  role="listitem"
+                  className="expense-card bg-white rounded-xl p-6 shadow-card opacity-0 translate-y-8"
                 >
-                  <Icon
+                  <div
                     aria-hidden="true"
-                    focusable="false"
-                    className="w-5 h-5 text-purple"
-                  />
+                    className="w-12 h-12 rounded-full bg-lime/20 flex items-center justify-center mb-4"
+                  >
+                    <Icon
+                      aria-hidden="true"
+                      focusable="false"
+                      className="w-5 h-5 text-purple"
+                    />
+                  </div>
+
+                  <h3
+                    className="text-body font-medium text-charcoal"
+                    data-tina-field={
+                      rawExpense
+                        ? tinaField(
+                            rawExpense,
+                            "title"
+                          )
+                        : undefined
+                    }
+                  >
+                    {card.title}
+                  </h3>
+
+                  <p
+                    className="font-display text-2xl text-purple mt-2"
+                    data-tina-field={
+                      rawExpense
+                        ? tinaField(
+                            rawExpense,
+                            "amount"
+                          )
+                        : undefined
+                    }
+                  >
+                    {card.amount}
+                  </p>
+
+                  <p
+                    className="text-body-small text-charcoal/70 mt-2"
+                    data-tina-field={
+                      rawExpense
+                        ? tinaField(
+                            rawExpense,
+                            "description"
+                          )
+                        : undefined
+                    }
+                  >
+                    {card.description}
+                  </p>
                 </div>
-
-                <h3 className="text-body font-medium text-charcoal">
-                  {card.title}
-                </h3>
-
-                <p className="font-display text-2xl text-purple mt-2">
-                  {card.amount}
-                </p>
-
-                <p className="text-body-small text-charcoal/70 mt-2">
-                  {card.description}
-                </p>
-              </div>
-            )
-          })}
+              );
+            }
+          )}
         </div>
 
         {/* Total Summary */}
@@ -232,27 +425,59 @@ export default function ImpactProgress() {
         >
           <div
             className="text-center sm:pr-8 sm:border-r border-lime/20"
-            aria-label="Total fundraising goal: $50,000"
+            aria-label={`Total fundraising goal: ${formatCurrency(
+              impactProgress.goalAmount
+            )}`}
           >
-            <p className="text-label text-charcoal/50">
-              TOTAL GOAL
+            <p
+              className="text-label text-charcoal/50"
+              data-tina-field={tinaField(
+                rawImpactProgress,
+                "totalGoalLabel"
+              )}
+            >
+              {impactProgress.totalGoalLabel}
             </p>
 
-            <p className="font-display text-2xl text-purple mt-1">
-              $50,000
+            <p
+              className="font-display text-2xl text-purple mt-1"
+              data-tina-field={tinaField(
+                rawImpactProgress,
+                "goalAmount"
+              )}
+            >
+              {formatCurrency(
+                impactProgress.goalAmount
+              )}
             </p>
           </div>
 
           <div
             className="text-center sm:pl-8"
-            aria-label="Amount raised: $31,000"
+            aria-label={`Amount raised: ${formatCurrency(
+              impactProgress.raisedAmount
+            )}`}
           >
-            <p className="text-label text-charcoal/50">
-              AMOUNT RAISED
+            <p
+              className="text-label text-charcoal/50"
+              data-tina-field={tinaField(
+                rawImpactProgress,
+                "amountRaisedLabel"
+              )}
+            >
+              {impactProgress.amountRaisedLabel}
             </p>
 
-            <p className="font-display text-2xl text-success mt-1">
-              $31,000
+            <p
+              className="font-display text-2xl text-success mt-1"
+              data-tina-field={tinaField(
+                rawImpactProgress,
+                "raisedAmount"
+              )}
+            >
+              {formatCurrency(
+                impactProgress.raisedAmount
+              )}
             </p>
           </div>
         </div>
@@ -263,5 +488,42 @@ export default function ImpactProgress() {
         </div>
       </div>
     </section>
-  )
+  );
+}
+
+export default function ImpactProgress() {
+  const [response, setResponse] =
+    useState<ImpactProgressQueryResult | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    client.queries
+      .impactProgress({
+        relativePath: "impact-progress.json",
+      })
+      .then((result) => {
+        if (mounted) {
+          setResponse(result);
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "[Tina ImpactProgress]",
+          error
+        );
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (!response) {
+    return null;
+  }
+
+  return (
+    <ImpactProgressVisual response={response} />
+  );
 }

@@ -1,0 +1,11 @@
+{
+  "badgeText": "DOWNLOADS",
+  "title": "DOWNLOAD THE CASE FILES",
+  "description": "Download case summaries, supporting evidence, legal documents, and additional resources to better understand the issues involved.",
+  "buttonText": "Explore downloads",
+  "buttonRoute": "/downloads",
+  "cardTitle": "Case Resources",
+  "cardSubtitle": "Summaries, evidence packages and downloadable reference material.",
+  "cardButtonText": "Download Files",
+  "cardLink": "/downloads"
+}

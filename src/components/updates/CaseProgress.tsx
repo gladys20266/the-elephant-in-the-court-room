@@ -1,21 +1,49 @@
-export default function CaseProgress() {
+import { client } from "../../../tina/__generated__/client";
+import { tinaField, useTina } from "tinacms/dist/react";
+
+type CaseProgressQueryResult = Awaited<
+  ReturnType<typeof client.queries.caseProgress>
+>;
+
+interface CaseProgressProps {
+  response: CaseProgressQueryResult;
+}
+
+export default function CaseProgress({
+  response,
+}: CaseProgressProps) {
+  const { data } = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+  });
+
+  const content = data.caseProgress;
+
   return (
     <section className="mb-20">
 
       <div className="text-center mb-12">
 
-        <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#d94b8a]">
-          Case Progress
+        <p
+          className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#d94b8a]"
+          data-tina-field={tinaField(content, "badgeText")}
+        >
+          {content.badgeText}
         </p>
 
-        <h2 className="text-4xl font-bold text-purple">
-          Eleven Years Pursuing Justice
+        <h2
+          className="text-4xl font-bold text-purple"
+          data-tina-field={tinaField(content, "title")}
+        >
+          {content.title}
         </h2>
 
-        <p className="mx-auto mt-5 max-w-3xl text-charcoal leading-8">
-          From the signing of the Lease-to-Own Agreement in 2010 to the
-          ongoing legal proceedings today, the case has spanned more than
-          a decade.
+        <p
+          className="mx-auto mt-5 max-w-3xl text-charcoal leading-8"
+          data-tina-field={tinaField(content, "description")}
+        >
+          {content.description}
         </p>
 
       </div>
@@ -33,25 +61,18 @@ export default function CaseProgress() {
 
         <div className="relative flex justify-between">
 
-          <ProgressPoint
-            number="2010"
-            title="Contract Signed"
-          />
+          {content.timeline?.map((point, index) => {
+            if (!point) {
+              return null;
+            }
 
-          <ProgressPoint
-            number="2014"
-            title="Purchase Refused"
-          />
-
-          <ProgressPoint
-            number="2014"
-            title="Court Case Filed"
-          />
-
-          <ProgressPoint
-            number="2026"
-            title="Campaign Active"
-          />
+            return (
+              <ProgressPoint
+                key={index}
+                point={point}
+              />
+            );
+          })}
 
         </div>
 
@@ -61,25 +82,18 @@ export default function CaseProgress() {
 
       <div className="mt-20 grid gap-8 md:grid-cols-4">
 
-        <StatCard
-          value="11+"
-          label="Years"
-        />
+        {content.statistics?.map((stat, index) => {
+          if (!stat) {
+            return null;
+          }
 
-        <StatCard
-          value="4,000+"
-          label="Days"
-        />
-
-        <StatCard
-          value="1"
-          label="Broken Contract"
-        />
-
-        <StatCard
-          value="Active"
-          label="Campaign"
-        />
+          return (
+            <StatCard
+              key={index}
+              stat={stat}
+            />
+          );
+        })}
 
       </div>
 
@@ -88,25 +102,32 @@ export default function CaseProgress() {
 }
 
 interface ProgressPointProps {
-  number: string;
-  title: string;
+  point: {
+    number?: string | null;
+    title?: string | null;
+  };
 }
 
 function ProgressPoint({
-  number,
-  title,
+  point,
 }: ProgressPointProps) {
   return (
     <div className="relative text-center">
 
       <div className="mx-auto mb-4 h-6 w-6 rounded-full border-4 border-white bg-[#d94b8a] shadow-lg" />
 
-      <div className="text-lg font-bold text-purple">
-        {number}
+      <div
+        className="text-lg font-bold text-purple"
+        data-tina-field={tinaField(point, "number")}
+      >
+        {point.number}
       </div>
 
-      <div className="mt-2 max-w-[130px] text-sm text-charcoal">
-        {title}
+      <div
+        className="mt-2 max-w-[130px] text-sm text-charcoal"
+        data-tina-field={tinaField(point, "title")}
+      >
+        {point.title}
       </div>
 
     </div>
@@ -114,23 +135,30 @@ function ProgressPoint({
 }
 
 interface StatCardProps {
-  value: string;
-  label: string;
+  stat: {
+    value?: string | null;
+    label?: string | null;
+  };
 }
 
 function StatCard({
-  value,
-  label,
+  stat,
 }: StatCardProps) {
   return (
     <div className="rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-lg">
 
-      <div className="text-5xl font-bold text-[#6b3a8f]">
-        {value}
+      <div
+        className="text-5xl font-bold text-[#6b3a8f]"
+        data-tina-field={tinaField(stat, "value")}
+      >
+        {stat.value}
       </div>
 
-      <div className="mt-3 uppercase tracking-[0.15em] text-charcoal">
-        {label}
+      <div
+        className="mt-3 uppercase tracking-[0.15em] text-charcoal"
+        data-tina-field={tinaField(stat, "label")}
+      >
+        {stat.label}
       </div>
 
     </div>

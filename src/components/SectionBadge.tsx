@@ -4,15 +4,18 @@ import { ChevronRight } from "lucide-react";
 interface SectionBadgeProps {
   text: string;
   to: string;
+  dataTinaField?: string;
 }
 
 export default function SectionBadge({
   text,
   to,
+  dataTinaField,
 }: SectionBadgeProps) {
   return (
     <Link
       to={to}
+      data-tina-field={dataTinaField}
       className="
         reveal-child
         group
@@ -29,26 +32,26 @@ export default function SectionBadge({
         transition-all
         duration-200
         hover:bg-[#c9367a]
-hover:-translate-y-0.5
-hover:shadow-md
+        hover:-translate-y-0.5
+        hover:shadow-md
       "
     >
       <span>{text}</span>
 
       <ChevronRight
-  aria-hidden="true"
-  focusable="false"
-  size={23}
-  strokeWidth={6}
-  className="
-    flex-shrink-0
-    -translate-y-px
-    text-white
-    transition-transform
-    duration-200
-    group-hover:translate-x-0.5
-  "
-/>
+        aria-hidden="true"
+        focusable="false"
+        size={23}
+        strokeWidth={6}
+        className="
+          flex-shrink-0
+          -translate-y-px
+          text-white
+          transition-transform
+          duration-200
+          group-hover:translate-x-0.5
+        "
+      />
     </Link>
   );
 }

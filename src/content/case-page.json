@@ -1,0 +1,102 @@
+{
+  "heroTitle": "The Case",
+  "heroSubtitle": "The 2010 agreement, the investment, the dispute, and more than eleven years seeking enforcement.",
+  "overviewBadge": "THE CASE",
+  "overviewTitle": "Understanding the Legal Dispute",
+  "overviewDescription": "The case centers on a lease-to-own agreement, the investment made to transform the property, and the dispute that followed when Leo and Olga sought to exercise their contractual option to purchase.",
+  "overviewLinkText": "Read the full story",
+  "overviewButtonText": "Read the full story",
+  "timeline": [
+    {
+      "date": "2010",
+      "title": "Lease-to-Own Agreement",
+      "description": "Leo and Olga entered into a lease-to-own agreement concerning the commercial property in Delray Beach, Florida."
+    },
+    {
+      "date": "2010–2014",
+      "title": "Investment and Transformation",
+      "description": "They invested their life savings, professional expertise, and substantial effort into rebuilding and operating the property as a family business."
+    },
+    {
+      "date": "2014",
+      "title": "Purchase Dispute and Lawsuit",
+      "description": "After they say they exercised their contractual option to purchase the property, a dispute developed over enforcement of the agreement. Leo and Olga filed suit in Florida on October 30, 2014."
+    },
+    {
+      "date": "2014–2025",
+      "title": "Prolonged Litigation",
+      "description": "The dispute continued through more than eleven years of litigation as Leo and Olga pursued enforcement of the agreement and related claims."
+    },
+    {
+      "date": "2022",
+      "title": "Related Litigation",
+      "description": "Additional litigation and legal proceedings became part of the continuing dispute."
+    },
+    {
+      "date": "2025",
+      "title": "Judicial Recusal",
+      "description": "A judicial recusal became another development in the continuing legal proceedings."
+    },
+    {
+      "date": "2026",
+      "title": "Continuing Legal Effort",
+      "description": "Leo and Olga continue seeking focused legal representation and support for the claims described in the public record."
+    }
+  ],
+  "contractTitle": "The Contractual Dispute Explained",
+  "contractParagraphs": [
+    {
+      "text": "Leo and Olga say that they followed the terms of their lease-to-own agreement and invested substantial personal resources into the property with the expectation that they could ultimately purchase it."
+    },
+    {
+      "text": "After the dispute over the purchase of the property arose, they chose to pursue legal enforcement of the agreement through the Florida courts."
+    },
+    {
+      "text": "The campaign seeks support for experienced national legal representation as they continue pursuing the claims described in the public record."
+    },
+    {
+      "text": "The legal history is documented through the campaign's public materials, including the case record, photographs, videos, and campaign updates."
+    }
+  ],
+  "whyTitle": "Why This Case Matters",
+  "whyText": "Beyond the circumstances of one property dispute, the case raises a broader question about what happens when a written agreement is challenged after one party has invested years of work, money, and effort in reliance on that agreement.",
+  "caseSummaryLinkText": "Download Case Summary (PDF)",
+  "evidenceBadge": "EVIDENCE",
+  "evidenceTitle": "Evidence & Documentation",
+  "evidenceDescription": "Explore the campaign's videos, photographs, documents, and other materials that help document the history of the property and the legal dispute.",
+  "evidenceNote": "The materials presented on this website are provided for informational purposes and should be reviewed in their original context.",
+  "evidenceCards": [
+    {
+      "route": "/videos",
+      "image": "/assets/welcome-poster.webp",
+      "imageAlt": "Preview of The Elephant In The Court Room campaign video",
+      "navigationLabel": "VIDEOS",
+      "title": "Watch The Case Unfold",
+      "description": "Watch the campaign introduction and follow the legal journey."
+    },
+    {
+      "route": "/photos",
+      "image": "/photos/after/after-0006.webp",
+      "imageAlt": "Photograph of the property and outdoor grounds following the transformation",
+      "navigationLabel": "PHOTOS",
+      "title": "See The Transformation",
+      "description": "Explore the before-and-after photographic record of the property."
+    },
+    {
+      "route": "/documents",
+      "image": "",
+      "imageAlt": "",
+      "navigationLabel": "DOCUMENTS",
+      "title": "Review The Court Record",
+      "description": "Review the agreements, filings, motions, and supporting materials."
+    },
+    {
+      "route": "/updates",
+      "image": "",
+      "imageAlt": "",
+      "navigationLabel": "UPDATES",
+      "title": "Follow The Case",
+      "description": "Follow litigation developments, campaign milestones, and important announcements."
+    }
+  ]
+}

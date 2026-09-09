@@ -1,0 +1,48 @@
+{
+  "pageTitle": "Videos",
+  "pageDescription": "Watch documentaries and campaign videos about The Death of the Contract, the lease-to-own agreement, the litigation, and the case for specific performance.",
+  "intro": {
+    "description": "This documentary introduces the story behind The Death of the Contract. It explains the events surrounding the lease-to-own agreement, the years of litigation that followed, and why Leo and Olga continue to seek specific performance of the original contract.",
+    "caseLinkText": "Explore the Case",
+    "documentsLinkText": "Review Documents",
+    "photosLinkText": "View Photos"
+  },
+  "videos": [
+    {
+      "title": "Introduction",
+      "videoSrc": "/videos/welcome.mp4",
+      "poster": "/assets/welcome-poster.webp",
+      "videoAlt": "Introduction documentary about The Death of the Contract",
+      "description": "This documentary presents the beginning of the story behind The Death of the Contract. It explains how a lease-to-own agreement evolved into years of litigation and introduces the people, events, and evidence at the heart of the case.",
+      "duration": "PT1M46S"
+    }
+  ],
+  "relatedResources": [
+    {
+      "label": "LEGAL CONTEXT",
+      "title": "Understand the Case",
+      "description": "Explore the contract, legal dispute, timeline, and ongoing effort described by the campaign.",
+      "buttonText": "View Case",
+      "route": "/case"
+    },
+    {
+      "label": "SUPPORTING RECORD",
+      "title": "Review Documents",
+      "description": "Examine publicly available agreements, filings, motions, and other materials connected to the case.",
+      "buttonText": "View Documents",
+      "route": "/documents"
+    },
+    {
+      "label": "VISUAL RECORD",
+      "title": "Explore the Photos",
+      "description": "View photographs documenting the property, its condition, and the transformation described in the campaign.",
+      "buttonText": "View Photos",
+      "route": "/photos"
+    }
+  ],
+  "futureVideos": {
+    "title": "More Videos Coming Soon",
+    "cardTitle": "Future Documentary Updates",
+    "description": "Additional documentaries, court updates, supporting evidence, interviews, and campaign videos will be published here as they become available. This page will continue to document the progress of the case and important developments."
+  }
+}

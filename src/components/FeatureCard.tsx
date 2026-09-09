@@ -1,4 +1,3 @@
-
 import type { ReactNode } from "react";
 import SectionButton from "@/components/SectionButton";
 
@@ -8,6 +7,10 @@ interface FeatureCardProps {
   subtitle: string;
   buttonText: string;
   link: string;
+  dataTinaFieldTitle?: string;
+  dataTinaFieldSubtitle?: string;
+  dataTinaFieldButtonText?: string;
+  dataTinaFieldLink?: string;
 }
 
 export default function FeatureCard({
@@ -16,6 +19,10 @@ export default function FeatureCard({
   subtitle,
   buttonText,
   link,
+  dataTinaFieldTitle,
+  dataTinaFieldSubtitle,
+  dataTinaFieldButtonText,
+  dataTinaFieldLink,
 }: FeatureCardProps) {
   return (
     <div className="group reveal-child block w-full">
@@ -27,22 +34,40 @@ export default function FeatureCard({
         </div>
 
         {/* Title */}
-        <h3 className="mb-3 text-center text-xl font-bold text-purple">
+        <h3
+          className="mb-3 text-center text-xl font-bold text-purple"
+          data-tina-field={dataTinaFieldTitle}
+        >
           {title}
         </h3>
 
         {/* Description */}
-        <p className="mb-8 text-center text-body text-charcoal">
+        <p
+          className="mb-8 text-center text-body text-charcoal"
+          data-tina-field={dataTinaFieldSubtitle}
+        >
           {subtitle}
         </p>
 
         {/* CTA */}
-        <div className="flex justify-center">
+        <div
+          className="flex justify-center"
+          data-tina-field={dataTinaFieldButtonText}
+        >
           <SectionButton
             text={buttonText}
             to={link}
           />
         </div>
+
+        {/* Link field marker */}
+        {dataTinaFieldLink && (
+          <span
+            className="sr-only"
+            data-tina-field={dataTinaFieldLink}
+            aria-hidden="true"
+          />
+        )}
 
       </div>
     </div>

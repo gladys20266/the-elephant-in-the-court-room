@@ -1,0 +1,35 @@
+{
+  "badgeText": "UPDATES",
+  "title": "Campaign Updates",
+  "cards": [
+    {
+      "category": "CASE HISTORY",
+      "date": "2010",
+      "title": "The Lease-to-Own Agreement",
+      "excerpt": "Leo and Olga entered into a lease-to-own agreement concerning a distressed commercial property in Delray Beach, Florida. The campaign describes a fixed purchase price and a four-year period in which they could exercise the purchase option.",
+      "image": "/photos/after/after-0014.webp",
+      "imageAlt": "Photograph of the property connected to the campaign case",
+      "link": "/updates"
+    },
+    {
+      "category": "LEGAL",
+      "date": "OCTOBER 30, 2014",
+      "title": "The Lawsuit Begins",
+      "excerpt": "After the dispute over the purchase of the property arose, Leo and Olga turned to the Florida courts to seek enforcement of the agreement. The campaign describes the litigation that followed as continuing for more than eleven years.",
+      "image": "/photos/after/after-0006.webp",
+      "imageAlt": "Photograph of the property connected to the legal case",
+      "link": "/updates"
+    },
+    {
+      "category": "CURRENT CAMPAIGN",
+      "date": "2026",
+      "title": "Seeking National Legal Representation",
+      "excerpt": "The crowdfunding campaign seeks support to secure experienced national legal representation and continue pursuing the claims and remedies described in the campaign materials and public record.",
+      "image": "/photos/food/food-0041.webp",
+      "imageAlt": "Photograph documenting the property and campaign story",
+      "link": "/updates"
+    }
+  ],
+  "buttonText": "See all updates",
+  "buttonRoute": "/updates"
+}

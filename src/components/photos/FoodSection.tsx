@@ -1,31 +1,55 @@
-import { foodPhotos } from "@/data/photos";
-import PhotoGrid from "./PhotoGrid";
+import PhotoGrid from './PhotoGrid'
+import type { Photo, RawTinaPhoto } from './photoTypes'
 
-export default function FoodSection() {
+interface FoodSectionProps {
+  title: string
+  subtitle: string
+  description: string
+  photos: Photo[]
+  rawPhotos?: (RawTinaPhoto | null)[] | null
+  dataTinaFieldTitle?: string
+  dataTinaFieldSubtitle?: string
+  dataTinaFieldDescription?: string
+}
+
+export default function FoodSection({
+  title,
+  subtitle,
+  description,
+  photos,
+  rawPhotos,
+  dataTinaFieldTitle,
+  dataTinaFieldSubtitle,
+  dataTinaFieldDescription,
+}: FoodSectionProps) {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-
         <div className="mb-12 text-center">
+          <h2
+            className="text-section-title text-purple mb-2"
+            data-tina-field={dataTinaFieldTitle}
+          >
+            {title}
+          </h2>
 
-  <h2 className="text-section-title text-purple mb-2">
-  Food Gallery
-</h2>
+          <h3
+            className="text-xl font-semibold text-purple font-sans mb-6"
+            data-tina-field={dataTinaFieldSubtitle}
+          >
+            {subtitle}
+          </h3>
 
-  <h3 className="text-xl font-semibold text-purple font-sans mb-6">
-  The dishes served at Eclectic Eats.
-</h3>
-
-  <p className="max-w-3xl mx-auto text-body text-charcoal leading-8">
-  These photographs showcase a selection of meals prepared and served
-  at Eclectic Eats, providing a visual record of the restaurant and the
-  dining experience associated with the property.
-</p>
+          <p
+            className="max-w-3xl mx-auto text-body text-charcoal leading-8"
+            data-tina-field={dataTinaFieldDescription}
+          >
+            {description}
+          </p>
         </div>
 
-        <PhotoGrid photos={foodPhotos} />
-
+        <PhotoGrid photos={photos} rawPhotos={rawPhotos} />
       </div>
     </section>
-  );
+  )
 }

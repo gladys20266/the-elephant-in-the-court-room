@@ -1,4 +1,20 @@
-export default function FutureDocuments() {
+interface FutureDocumentsProps {
+  title: string
+  cardTitle: string
+  description: string
+  dataTinaFieldTitle?: string
+  dataTinaFieldCardTitle?: string
+  dataTinaFieldDescription?: string
+}
+
+export default function FutureDocuments({
+  title,
+  cardTitle,
+  description,
+  dataTinaFieldTitle,
+  dataTinaFieldCardTitle,
+  dataTinaFieldDescription,
+}: FutureDocumentsProps) {
   return (
     <section
       id="future-documents"
@@ -8,8 +24,9 @@ export default function FutureDocuments() {
       <h2
         id="future-documents-heading"
         className="text-2xl font-bold text-purple mb-6"
+        data-tina-field={dataTinaFieldTitle}
       >
-        Additional Documents Coming Soon
+        {title}
       </h2>
 
       <div
@@ -50,16 +67,19 @@ export default function FutureDocuments() {
           </div>
 
           <div>
-            <h3 className="text-2xl font-bold text-purple mb-3">
-              Future Case Records
+            <h3
+              className="text-2xl font-bold text-purple mb-3"
+              data-tina-field={dataTinaFieldCardTitle}
+            >
+              {cardTitle}
             </h3>
 
-            <p className="text-charcoal leading-8 text-lg">
-  Additional court filings, legal documents, correspondence, and
-  supporting records will be added here as they become available.
-  The document library will be updated as additional materials are
-  publicly available and appropriate for publication.
-</p>
+            <p
+              className="text-charcoal leading-8 text-lg"
+              data-tina-field={dataTinaFieldDescription}
+            >
+              {description}
+            </p>
           </div>
         </div>
       </div>

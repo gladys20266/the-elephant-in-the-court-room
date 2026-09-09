@@ -1,0 +1,62 @@
+{
+  "pageTitle": "Documents",
+
+  "pageDescription": "This document library provides access to key records related to The Death of the Contract. These materials help explain the background of the dispute, the legal proceedings, and the evidence supporting the case. Additional documents will be added as they become available.",
+
+  "caseDocumentsTitle": "Case Documents",
+
+  "emptyStateText": "No documents match your current search or category filter.",
+
+  "futureDocumentsTitle": "Additional Documents Coming Soon",
+
+  "futureDocumentsCardTitle": "Future Case Records",
+
+  "futureDocumentsDescription": "Additional court filings, legal documents, correspondence, and supporting records will be added here as they become available. The document library will be updated as additional materials are publicly available and appropriate for publication.",
+
+  "documents": [
+    {
+      "slug": "lease-2010",
+      "title": "Lease-to-Own Agreement (2010)",
+      "description": "The original agreement establishing the lease-to-own terms, purchase option, and obligations of the parties.",
+      "category": "Contract",
+      "date": "July 2010",
+      "file": "/documents/lease-to-own-agreement-2010.pdf"
+    },
+
+    {
+      "slug": "complaint",
+      "title": "Court Complaint",
+      "description": "The initial complaint filed with the court outlining the claims and legal basis of the case.",
+      "category": "Court Filing",
+      "date": "2014",
+      "file": "/documents/court-complaint.pdf"
+    },
+
+    {
+      "slug": "orders",
+      "title": "Court Orders",
+      "description": "Orders issued by the court during the proceedings of the case.",
+      "category": "Court Order",
+      "date": "2014–Present",
+      "file": "/documents/court-orders.pdf"
+    },
+
+    {
+      "slug": "docket",
+      "title": "Case Docket",
+      "description": "A chronological record of filings, hearings, and court activity throughout the litigation.",
+      "category": "Court Record",
+      "date": "2014–Present",
+      "file": "/documents/case-docket.pdf"
+    },
+
+    {
+      "slug": "llc",
+      "title": "Eclectic Synergy LLC Formation Documents",
+      "description": "Corporate records relating to the formation of Eclectic Synergy LLC.",
+      "category": "Corporate Record",
+      "date": "2010",
+      "file": "/documents/eclectic-synergy-llc.pdf"
+    }
+  ]
+}

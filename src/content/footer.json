@@ -1,0 +1,95 @@
+{
+  "brandDescription": "In Support of The Elephant In The Court Room, Fighting for Justice And All Substantive Rights, Constitutional Rights, Civil, Due Process of Law, etc.",
+  "navigate": [
+    {
+      "label": "Home",
+      "route": "/"
+    },
+    {
+      "label": "Our Story",
+      "route": "/our-story"
+    },
+    {
+      "label": "Case",
+      "route": "/case"
+    },
+    {
+      "label": "Updates",
+      "route": "/updates"
+    },
+    {
+      "label": "Videos",
+      "route": "/videos"
+    },
+    {
+      "label": "Photos",
+      "route": "/photos"
+    },
+    {
+      "label": "Documents",
+      "route": "/documents"
+    },
+    {
+      "label": "Downloads",
+      "route": "/downloads"
+    },
+    {
+      "label": "Contact",
+      "route": "/contact"
+    }
+  ],
+  "takeAction": [
+    {
+      "label": "Donate on GoFundMe",
+      "url": "https://www.gofundme.com",
+      "external": true
+    },
+    {
+      "label": "Sign the Petition",
+      "url": "https://www.change.org",
+      "external": true
+    },
+    {
+      "label": "Share on Social Media",
+      "url": "/contact",
+      "external": false
+    },
+    {
+      "label": "Contact the Campaign",
+      "url": "/contact",
+      "external": false
+    }
+  ],
+  "petitionButtonText": "Sign the Petition",
+  "petitionButtonUrl": "https://www.change.org",
+  "legal": [
+    {
+      "label": "Privacy Policy",
+      "route": "/privacy"
+    },
+    {
+      "label": "Terms of Service",
+      "route": "/terms"
+    },
+    {
+      "label": "Disclaimer",
+      "route": "/disclaimer"
+    }
+  ],
+  "copyrightText": "© Eclectic Synergy LLC.",
+  "socialLinks": [
+    {
+      "platform": "Facebook",
+      "url": "#"
+    },
+    {
+      "platform": "Twitter",
+      "url": "#"
+    },
+    {
+      "platform": "Instagram",
+      "url": "#"
+    }
+  ],
+  "legalDisclaimer": "This website does not constitute legal advice."
+}

@@ -1,0 +1,148 @@
+{
+  "pageTitle": "Contact | The Elephant In The Court Room",
+  "pageDescription": "Contact The Elephant In The Court Room campaign with questions, media inquiries, support requests, or messages about The Death of the Contract and the ongoing legal advocacy effort.",
+  "heroTitle": "Get in Touch",
+  "heroSubtitle": "Have a question, a media inquiry, or want to support the campaign? We'd love to hear from you.",
+  "contactContentTitle": "Contact Information and Campaign Support",
+  "contactContentDescription": "Contact information, campaign support options, case documents, and ways to share The Elephant In The Court Room campaign.",
+  "form": {
+    "title": "Send Us a Message",
+    "description": "Complete the form below and we'll be in touch.",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "phoneLabel": "Phone Number (Optional)",
+    "phonePlaceholder": "Enter your phone number",
+    "inquiryTypeLabel": "Inquiry Type",
+    "inquiryPlaceholder": "Select an option",
+    "inquiryOptions": [
+      {
+        "key": "general-question",
+        "label": "General Question"
+      },
+      {
+        "key": "media-inquiry",
+        "label": "Media Inquiry"
+      },
+      {
+        "key": "legal-support",
+        "label": "Legal Support"
+      },
+      {
+        "key": "donation",
+        "label": "Donation"
+      },
+      {
+        "key": "partnership",
+        "label": "Partnership"
+      },
+      {
+        "key": "technical-issue",
+        "label": "Technical Issue"
+      },
+      {
+        "key": "other",
+        "label": "Other"
+      }
+    ],
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Enter the subject of your message",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "submitButtonText": "Send Message",
+    "privacyNotice": "Your information is secure and will only be used to respond to your inquiry.",
+    "successTitle": "Thank you!",
+    "successMessage": "We'll be in touch soon."
+  },
+  "contactInformation": {
+    "title": "Contact Information",
+    "emailLabel": "Email",
+    "email": "contact@ElephantFiles@proton.me",
+    "phoneLabel": "Phone",
+    "phone": "+1 (561) 602-6602",
+    "campaignLabel": "Campaign",
+    "campaignName": "The Elephant In The Court Room",
+    "campaignSubtitle": "Online Legal Awareness Campaign"
+  },
+  "support": {
+    "title": "Support the Campaign",
+    "description": "This campaign exists to raise awareness of a long-running legal dispute and to seek justice through lawful means. Your support helps cover legal expenses, document production, public awareness efforts, and outreach.",
+    "emphasis": "Every contribution and every share helps expand the campaign's reach.",
+    "gofundmeText": "GoFundMe Coming Soon",
+    "caseDocumentsButtonText": "View Case Documents",
+    "caseDocumentsRoute": "/documents"
+  },
+  "share": {
+    "title": "Share the Campaign",
+    "description": "Help others learn about this case by sharing the website with friends, family, and your community.",
+    "emphasis": "Every share increases awareness.",
+    "platforms": [
+      {
+        "key": "facebook",
+        "label": "Facebook"
+      },
+      {
+        "key": "youtube",
+        "label": "YouTube"
+      },
+      {
+        "key": "tiktok",
+        "label": "TikTok"
+      },
+      {
+        "key": "whatsapp",
+        "label": "WhatsApp"
+      },
+      {
+        "key": "email",
+        "label": "Email"
+      },
+      {
+        "key": "copy-link",
+        "label": "Copy Link"
+      }
+    ],
+    "copySuccessText": "Link copied!",
+    "instructionText": "Click any icon above to share this website."
+  },
+  "resources": {
+    "eyebrow": "LEARN MORE",
+    "title": "Explore the Campaign",
+    "description": "Before reaching out, you can learn more about the case, review recent developments, and watch the documentary introduction.",
+    "cards": [
+      {
+        "key": "case",
+        "eyebrow": "LEGAL CONTEXT",
+        "title": "Explore the Case",
+        "description": "Learn about the 2010 lease-to-own agreement, the dispute, the litigation history, and the continuing legal effort.",
+        "buttonText": "View Case",
+        "route": "/case"
+      },
+      {
+        "key": "updates",
+        "eyebrow": "DEVELOPMENTS",
+        "title": "Follow Updates",
+        "description": "Follow court developments, campaign progress, legal milestones, and future announcements.",
+        "buttonText": "View Updates",
+        "route": "/updates"
+      },
+      {
+        "key": "videos",
+        "eyebrow": "DOCUMENTARY",
+        "title": "Watch the Videos",
+        "description": "Watch the introduction to The Death of the Contract and learn about the story behind the campaign.",
+        "buttonText": "View Videos",
+        "route": "/videos"
+      },
+      {
+        "key": "press",
+        "eyebrow": "MEDIA RESOURCE",
+        "title": "Press & Media",
+        "description": "Journalists and researchers can review case information, available resources, and media reference materials.",
+        "buttonText": "View Press & Media",
+        "route": "/press"
+      }
+    ]
+  }
+}

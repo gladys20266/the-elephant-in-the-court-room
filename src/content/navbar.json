@@ -1,0 +1,46 @@
+{
+  "navigation": [
+    {
+      "label": "Home",
+      "route": "/"
+    },
+    {
+      "label": "Our Story",
+      "route": "/our-story"
+    },
+    {
+      "label": "Case",
+      "route": "/case"
+    },
+    {
+      "label": "Updates",
+      "route": "/updates"
+    },
+    {
+      "label": "Videos",
+      "route": "/videos"
+    },
+    {
+      "label": "Photos",
+      "route": "/photos"
+    },
+    {
+      "label": "Documents",
+      "route": "/documents"
+    },
+    {
+      "label": "Downloads",
+      "route": "/downloads"
+    },
+    {
+      "label": "Contact",
+      "route": "/contact"
+    }
+  ],
+  "donationButton": {
+    "topText": "SWITCH TO GOFUNDME",
+    "bottomText": "TO DONATE",
+    "url": "https://www.gofundme.com"
+  },
+  "shareLabel": "SHARE"
+}

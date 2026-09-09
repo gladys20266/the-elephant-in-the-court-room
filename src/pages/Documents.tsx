@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSectionReveal } from '@/hooks/useSectionReveal'
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
@@ -7,8 +7,16 @@ import { webPageSchema } from '@/seo/pageSchemas'
 
 import SearchBar from '@/components/documents/SearchBar'
 import CategoryFilter from '@/components/documents/CategoryFilter'
-import DocumentGrid from '@/components/documents/DocumentGrid'
+import DocumentGrid, {
+  type TinaCaseDocument,
+} from '@/components/documents/DocumentGrid'
 import FutureDocuments from '@/components/documents/FutureDocuments'
+
+import { client } from '../../tina/__generated__/client'
+import { tinaField, useTina } from 'tinacms/dist/react'
+
+type DocumentsQueryResult =
+  Awaited<ReturnType<typeof client.queries.documents>>
 
 const documentsSeo = {
   title: 'Documents | The Elephant In The Court Room',
@@ -21,8 +29,127 @@ const documentsSeo = {
 export default function Documents() {
   const sectionRef = useSectionReveal<HTMLElement>()
 
+  const [response, setResponse] =
+    useState<DocumentsQueryResult | null>(null)
+
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
+
+  useEffect(() => {
+    let mounted = true
+
+    client.queries
+      .documents({
+        relativePath: 'documents.json',
+      })
+      .then((result) => {
+        if (mounted) {
+          setResponse(result)
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load Documents content:', error)
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  if (!response) {
+    return null
+  }
+
+  return (
+    <DocumentsVisual
+      response={response}
+      search={search}
+      setSearch={setSearch}
+      category={category}
+      setCategory={setCategory}
+      sectionRef={sectionRef}
+    />
+  )
+}
+
+function DocumentsVisual({
+  response,
+  search,
+  setSearch,
+  category,
+  setCategory,
+  sectionRef,
+}: {
+  response: DocumentsQueryResult
+  search: string
+  setSearch: (value: string) => void
+  category: string
+  setCategory: (value: string) => void
+  sectionRef: ReturnType<typeof useSectionReveal<HTMLElement>>
+}) {
+  const tinaResult = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+    experimental___selectFormByFormId() {
+      return `src/content/${response.variables.relativePath}`
+    },
+  })
+
+  const rawDocuments = tinaResult.data.documents
+
+  const pageTitle =
+    rawDocuments?.pageTitle || 'Documents'
+
+  const pageDescription =
+    rawDocuments?.pageDescription ||
+    'This document library provides access to key records related to The Death of the Contract. These materials help explain the background of the dispute, the legal proceedings, and the evidence supporting the case. Additional documents will be added as they become available.'
+
+  const caseDocumentsTitle =
+    rawDocuments?.caseDocumentsTitle || 'Case Documents'
+
+  const emptyStateText =
+    rawDocuments?.emptyStateText ||
+    'No documents match your current search or category filter.'
+
+  const futureDocumentsTitle =
+    rawDocuments?.futureDocumentsTitle ||
+    'Additional Documents Coming Soon'
+
+  const futureDocumentsCardTitle =
+    rawDocuments?.futureDocumentsCardTitle ||
+    'Future Case Records'
+
+  const futureDocumentsDescription =
+    rawDocuments?.futureDocumentsDescription ||
+    'Additional court filings, legal documents, correspondence, and supporting records will be added here as they become available. The document library will be updated as additional materials are publicly available and appropriate for publication.'
+
+  const documents: TinaCaseDocument[] =
+    (rawDocuments?.documents || [])
+      .filter(
+        (
+          document,
+        ): document is NonNullable<
+          typeof document
+        > =>
+          Boolean(
+            document &&
+              document.slug &&
+              document.title &&
+              document.description &&
+              document.category &&
+              document.date &&
+              document.file,
+          ),
+      )
+      .map((document) => ({
+        slug: document.slug || '',
+        title: document.title || '',
+        description: document.description || '',
+        category: document.category || '',
+        date: document.date || '',
+        file: document.file || '',
+      }))
 
   return (
     <>
@@ -74,8 +201,13 @@ export default function Documents() {
                   text-center
                   md:text-left
                 "
+                data-tina-field={
+                  rawDocuments
+                    ? tinaField(rawDocuments, 'pageTitle')
+                    : undefined
+                }
               >
-                Documents
+                {pageTitle}
               </h1>
 
               <p
@@ -92,12 +224,13 @@ export default function Documents() {
                   md:text-left
                   break-words
                 "
+                data-tina-field={
+                  rawDocuments
+                    ? tinaField(rawDocuments, 'pageDescription')
+                    : undefined
+                }
               >
-                This document library provides access to key records related
-                to <strong>The Death of the Contract</strong>. These materials
-                help explain the background of the dispute, the legal
-                proceedings, and the evidence supporting the case. Additional
-                documents will be added as they become available.
+                {pageDescription}
               </p>
             </header>
 
@@ -115,8 +248,16 @@ export default function Documents() {
                   text-center
                   md:text-left
                 "
+                data-tina-field={
+                  rawDocuments
+                    ? tinaField(
+                        rawDocuments,
+                        'caseDocumentsTitle',
+                      )
+                    : undefined
+                }
               >
-                Case Documents
+                {caseDocumentsTitle}
               </h2>
 
               {/* Search and Filter Controls */}
@@ -155,8 +296,13 @@ export default function Documents() {
                 </h3>
 
                 <DocumentGrid
+                  documents={documents}
                   search={search}
                   category={category}
+                  emptyStateText={emptyStateText}
+                  rawDocuments={
+                    rawDocuments?.documents || []
+                  }
                 />
               </section>
             </section>
@@ -173,7 +319,35 @@ export default function Documents() {
                 Future Documents
               </h2>
 
-              <FutureDocuments />
+              <FutureDocuments
+                title={futureDocumentsTitle}
+                cardTitle={futureDocumentsCardTitle}
+                description={futureDocumentsDescription}
+                dataTinaFieldTitle={
+                  rawDocuments
+                    ? tinaField(
+                        rawDocuments,
+                        'futureDocumentsTitle',
+                      )
+                    : undefined
+                }
+                dataTinaFieldCardTitle={
+                  rawDocuments
+                    ? tinaField(
+                        rawDocuments,
+                        'futureDocumentsCardTitle',
+                      )
+                    : undefined
+                }
+                dataTinaFieldDescription={
+                  rawDocuments
+                    ? tinaField(
+                        rawDocuments,
+                        'futureDocumentsDescription',
+                      )
+                    : undefined
+                }
+              />
             </section>
           </div>
         </section>

@@ -1,14 +1,42 @@
 import DocumentCard from './DocumentCard'
-import { documents } from '@/data/documents'
+import { tinaField } from 'tinacms/dist/react'
+
+export interface TinaCaseDocument {
+  slug: string
+  title: string
+  description: string
+  category: string
+  date: string
+  file: string
+}
+
+export interface RawTinaCaseDocument {
+  [key: string]: unknown
+  slug?: string | null
+  title?: string | null
+  description?: string | null
+  category?: string | null
+  date?: string | null
+  file?: string | null
+}
 
 interface DocumentGridProps {
+  documents: TinaCaseDocument[]
   search: string
   category: string
+  emptyStateText: string
+  rawDocuments:
+    | (RawTinaCaseDocument | null)[]
+    | null
+    | undefined
 }
 
 export default function DocumentGrid({
+  documents,
   search,
   category,
+  emptyStateText,
+  rawDocuments,
 }: DocumentGridProps) {
   const filteredDocuments = documents.filter((document) => {
     const matchesCategory =
@@ -33,7 +61,7 @@ export default function DocumentGrid({
         className="rounded-xl bg-white p-8 text-center shadow-sm"
       >
         <p className="text-body text-charcoal">
-          No documents match your current search or category filter.
+          {emptyStateText}
         </p>
       </div>
     )
@@ -45,20 +73,53 @@ export default function DocumentGrid({
       aria-label="Available case documents"
       className="grid gap-8 md:grid-cols-2"
     >
-      {filteredDocuments.map((document) => (
-        <div
-          key={document.id}
-          role="listitem"
-        >
-          <DocumentCard
-            title={document.title}
-            description={document.description}
-            category={document.category}
-            date={document.date}
-            file={document.file}
-          />
-        </div>
-      ))}
+      {filteredDocuments.map((document) => {
+        const documentIndex = documents.findIndex(
+          (item) => item.slug === document.slug
+        )
+
+        const rawDocument = rawDocuments?.[documentIndex]
+
+        return (
+          <div
+            key={document.slug}
+            role="listitem"
+          >
+            <DocumentCard
+              title={document.title}
+              description={document.description}
+              category={document.category}
+              date={document.date}
+              file={document.file}
+              dataTinaFieldTitle={
+                rawDocument
+                  ? tinaField(rawDocument, 'title')
+                  : undefined
+              }
+              dataTinaFieldDescription={
+                rawDocument
+                  ? tinaField(rawDocument, 'description')
+                  : undefined
+              }
+              dataTinaFieldCategory={
+                rawDocument
+                  ? tinaField(rawDocument, 'category')
+                  : undefined
+              }
+              dataTinaFieldDate={
+                rawDocument
+                  ? tinaField(rawDocument, 'date')
+                  : undefined
+              }
+              dataTinaFieldFile={
+                rawDocument
+                  ? tinaField(rawDocument, 'file')
+                  : undefined
+              }
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }

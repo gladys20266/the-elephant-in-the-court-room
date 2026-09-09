@@ -1,156 +1,252 @@
 import SectionButton from "@/components/SectionButton";
+import { tinaField } from "tinacms/dist/react";
 
-export default function FutureUpdates() {
+interface FutureUpdateCard extends Record<string, unknown> {
+  type?: string | null;
+  title?: string | null;
+  description?: string | null;
+  buttonText?: string | null;
+  route?: string | null;
+  external?: boolean | null;
+}
+
+interface FutureUpdatesData extends Record<string, unknown> {
+  badgeText?: string | null;
+  title?: string | null;
+  description?: string | null;
+  cards?: (FutureUpdateCard | null)[] | null;
+}
+
+interface FutureUpdatesProps {
+  data?: FutureUpdatesData | null;
+}
+
+const fallbackData: FutureUpdatesData = {
+  badgeText: "Stay Connected",
+  title: "The Story Continues",
+  description:
+    "This page will continue documenting court filings, legal developments, campaign progress, media coverage, and newly released evidence as they become available.",
+  cards: [
+    {
+      type: "resource",
+      title: "Documents",
+      description:
+        "Review court filings, legal records, contracts and supporting evidence related to the case.",
+      buttonText: "View Documents",
+      route: "/documents",
+      external: false,
+    },
+    {
+      type: "resource",
+      title: "Videos",
+      description:
+        "Watch documentaries, campaign updates, interviews and case presentations.",
+      buttonText: "Watch Videos",
+      route: "/videos",
+      external: false,
+    },
+    {
+      type: "support",
+      title: "Support the Campaign",
+      description:
+        "Help us continue documenting the case and sharing future developments with the public.",
+      buttonText: "Support on GoFundMe",
+      route: "https://www.gofundme.com/",
+      external: true,
+    },
+  ],
+};
+
+export default function FutureUpdates({
+  data,
+}: FutureUpdatesProps) {
+  const content = data ?? fallbackData;
+
+  const badgeText =
+    content.badgeText ??
+    fallbackData.badgeText ??
+    "Stay Connected";
+
+  const title =
+    content.title ??
+    fallbackData.title ??
+    "The Story Continues";
+
+  const description =
+    content.description ??
+    fallbackData.description ??
+    "This page will continue documenting court filings, legal developments, campaign progress, media coverage, and newly released evidence as they become available.";
+
+  const cards = (
+    content.cards ??
+    fallbackData.cards ??
+    []
+  ).filter(
+    (card): card is FutureUpdateCard => card !== null
+  );
+
   return (
     <section className="mt-28">
-
-      {/* Heading */}
-
       <div className="text-center">
-
-        <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#D94B8A]">
-          Stay Connected
+        <p
+          className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-[#D94B8A]"
+          data-tina-field={tinaField(content, "badgeText")}
+        >
+          {badgeText}
         </p>
 
-        <h2 className="text-5xl font-bold text-purple">
-          The Story Continues
+        <h2
+          className="text-5xl font-bold text-purple"
+          data-tina-field={tinaField(content, "title")}
+        >
+          {title}
         </h2>
 
-        <p className="mx-auto mt-6 max-w-3xl leading-8 text-charcoal">
-          This page will continue documenting court filings, legal
-          developments, campaign progress, media coverage, and newly
-          released evidence as they become available.
+        <p
+          className="mx-auto mt-6 max-w-3xl leading-8 text-charcoal"
+          data-tina-field={tinaField(content, "description")}
+        >
+          {description}
         </p>
-
       </div>
-
-      {/* Cards */}
 
       <div className="mt-20 grid items-stretch gap-8 md:grid-cols-3">
+        {cards.map((card, index) => {
+          const fallbackCard =
+            fallbackData.cards?.[index] ?? null;
 
-        {/* Documents */}
+          const cardType =
+            card.type ??
+            fallbackCard?.type ??
+            "resource";
 
-        <div
-          className="
-            group
-            flex
-            h-full
-            flex-col
-            rounded-3xl
-            border
-            border-gray-200
-            bg-white
-            p-8
-            shadow-lg
-            transition-all
-            duration-300
-            hover:-translate-y-1
-            hover:border-[#6B3A8F]
-            hover:shadow-2xl
-          "
-        >
+          const cardTitle =
+            card.title ??
+            fallbackCard?.title ??
+            "";
 
-          <h3 className="text-2xl font-bold text-purple">
-            Documents
-          </h3>
+          const cardDescription =
+            card.description ??
+            fallbackCard?.description ??
+            "";
 
-          <p className="mt-5 leading-8 text-charcoal">
-            Review court filings, legal records, contracts and supporting
-            evidence related to the case.
-          </p>
+          const buttonText =
+            card.buttonText ??
+            fallbackCard?.buttonText ??
+            "";
 
-          <div className="mt-auto pt-10">
-            <SectionButton
-              text="View Documents"
-              to="/documents"
-            />
-          </div>
+          const route =
+            card.route ??
+            fallbackCard?.route ??
+            "";
 
-        </div>
+          const external =
+            card.external ??
+            fallbackCard?.external ??
+            false;
 
-        {/* Videos */}
+          const isSupport = cardType === "support";
 
-        <div
-          className="
-            group
-            flex
-            h-full
-            flex-col
-            rounded-3xl
-            border
-            border-gray-200
-            bg-white
-            p-8
-            shadow-lg
-            transition-all
-            duration-300
-            hover:-translate-y-1
-            hover:border-[#6B3A8F]
-            hover:shadow-2xl
-          "
-        >
+          if (isSupport) {
+            return (
+              <div
+                key={`${cardTitle}-${index}`}
+                className="flex h-full flex-col rounded-3xl bg-[#6B3A8F] p-8 text-white shadow-xl"
+              >
+                <h3
+                  className="text-2xl font-bold"
+                  data-tina-field={tinaField(
+                    card,
+                    "title"
+                  )}
+                >
+                  {cardTitle}
+                </h3>
 
-          <h3 className="text-2xl font-bold text-purple">
-            Videos
-          </h3>
+                <p
+                  className="mt-5 leading-8 text-purple-100"
+                  data-tina-field={tinaField(
+                    card,
+                    "description"
+                  )}
+                >
+                  {cardDescription}
+                </p>
 
-          <p className="mt-5 leading-8 text-charcoal">
-            Watch documentaries, campaign updates, interviews and case
-            presentations.
-          </p>
+                <div className="mt-auto pt-10">
+                  <a
+                    href={route}
+                    target={
+                      external ? "_blank" : undefined
+                    }
+                    rel={
+                      external
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    className="inline-block rounded-xl bg-[#CFEA8B] px-8 py-4 font-bold text-[#24331B] transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                    data-tina-field={tinaField(
+                      card,
+                      "buttonText"
+                    )}
+                  >
+                    {buttonText}
+                  </a>
+                </div>
+              </div>
+            );
+          }
 
-          <div className="mt-auto pt-10">
-            <SectionButton
-              text="Watch Videos"
-              to="/videos"
-            />
-          </div>
-
-        </div>
-
-        {/* Support */}
-
-        <div className="flex h-full flex-col rounded-3xl bg-[#6B3A8F] p-8 text-white shadow-xl">
-
-          <h3 className="text-2xl font-bold">
-            Support the Campaign
-          </h3>
-
-          <p className="mt-5 leading-8 text-purple-100">
-            Help us continue documenting the case and sharing future
-            developments with the public.
-          </p>
-
-          <div className="mt-auto pt-10">
-
-            <a
-              href="https://www.gofundme.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                inline-block
-                rounded-xl
-                bg-[#CFEA8B]
-                px-8
-                py-4
-                font-bold
-                text-[#24331B]
-                transition-all
-                duration-300
-                hover:scale-105
-                hover:shadow-lg
-                cursor-pointer
-              "
+          return (
+            <div
+              key={`${cardTitle}-${index}`}
+              className="group flex h-full flex-col rounded-3xl border border-gray-200 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-[#6B3A8F] hover:shadow-2xl"
             >
-              Support on GoFundMe
-            </a>
+              <h3
+                className="text-2xl font-bold text-purple"
+                data-tina-field={tinaField(
+                  card,
+                  "title"
+                )}
+              >
+                {cardTitle}
+              </h3>
 
-          </div>
+              <p
+                className="mt-5 leading-8 text-charcoal"
+                data-tina-field={tinaField(
+                  card,
+                  "description"
+                )}
+              >
+                {cardDescription}
+              </p>
 
-        </div>
-
+              <div className="mt-auto pt-10">
+                {external ? (
+                  <a
+                    href={route}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block rounded-xl bg-[#CFEA8B] px-8 py-4 font-bold text-[#24331B] transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+                    data-tina-field={tinaField(
+                      card,
+                      "buttonText"
+                    )}
+                  >
+                    {buttonText}
+                  </a>
+                ) : (
+                  <SectionButton
+                    text={buttonText}
+                    to={route}
+                  />
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
-
     </section>
   );
 }

@@ -1,0 +1,21 @@
+{
+  "badgeText": "SUPPORTERS",
+  "title": "This Is Our Fight",
+  "testimonials": [
+    {
+      "quote": "The Elephant In The Court Room is the first person to offer help when someone in the neighborhood needs it. They've fixed my car, helped move furniture, and always checks in on the elderly residents. They ARE this community.",
+      "name": "Margaret Chen",
+      "role": "Neighbor, 8 Years"
+    },
+    {
+      "quote": "I've worked alongside The Elephant In The Court Room for over a decade. They are one of the most reliable, hardworking, and kind people I know. Losing them would mean losing a piece of what makes our workplace special.",
+      "name": "David Rodriguez",
+      "role": "Coworker"
+    },
+    {
+      "quote": "The Elephant In The Court Room has volunteered hundreds of hours coaching our youth soccer program. The kids adore them. They're not just a coach — they're a mentor and a role model for an entire generation.",
+      "name": "Sarah Williams",
+      "role": "Youth Program Director"
+    }
+  ]
+}

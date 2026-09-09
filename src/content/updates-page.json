@@ -1,0 +1,99 @@
+{
+  "pageTitle": "Updates",
+  "pageDescription": "The 2010 agreement, the investment, the dispute, and more than eleven years seeking enforcement.",
+  "caseProgress": {
+    "badgeText": "Case Progress",
+    "title": "Eleven Years Pursuing Justice",
+    "description": "From the signing of the original agreement to the present campaign, this timeline documents the major developments in the case.",
+    "timeline": [
+      {
+        "number": "2010",
+        "title": "Contract Signed"
+      },
+      {
+        "number": "2014",
+        "title": "Purchase Refused"
+      },
+      {
+        "number": "2014",
+        "title": "Court Case Filed"
+      },
+      {
+        "number": "2026",
+        "title": "Campaign Active"
+      }
+    ],
+    "statistics": [
+      {
+        "value": "11+",
+        "label": "Years"
+      },
+      {
+        "value": "4,000+",
+        "label": "Days"
+      },
+      {
+        "value": "1",
+        "label": "Broken Contract"
+      },
+      {
+        "value": "Active",
+        "label": "Campaign"
+      }
+    ]
+  },
+  "relatedResources": [
+    {
+      "label": "CASE CONTEXT",
+      "title": "Review the Case",
+      "description": "Read the full case history, contractual dispute, timeline, and legal context behind these developments.",
+      "buttonText": "Read Full Case",
+      "route": "/case"
+    },
+    {
+      "label": "PUBLIC RECORD",
+      "title": "Review Case Documents",
+      "description": "Review publicly available filings, agreements, motions, and other materials connected to the case.",
+      "buttonText": "View Documents",
+      "route": "/documents"
+    },
+    {
+      "label": "VISUAL RECORD",
+      "title": "See the Property Record",
+      "description": "Explore photographs documenting the property and its transformation alongside the case history.",
+      "buttonText": "View Photos",
+      "route": "/photos"
+    }
+  ],
+  "futureUpdates": {
+    "badgeText": "Stay Connected",
+    "title": "The Story Continues",
+    "description": "This page will continue documenting court filings, legal developments, campaign progress, media coverage, and newly released evidence as they become available.",
+    "cards": [
+      {
+        "type": "resource",
+        "title": "Documents",
+        "description": "Review court filings, legal records, contracts and supporting evidence related to the case.",
+        "buttonText": "View Documents",
+        "route": "/documents",
+        "external": false
+      },
+      {
+        "type": "resource",
+        "title": "Videos",
+        "description": "Watch documentaries, campaign updates, interviews and case presentations.",
+        "buttonText": "Watch Videos",
+        "route": "/videos",
+        "external": false
+      },
+      {
+        "type": "support",
+        "title": "Support the Campaign",
+        "description": "Help us continue documenting the case and sharing future developments with the public.",
+        "buttonText": "Support on GoFundMe",
+        "route": "https://www.gofundme.com/",
+        "external": true
+      }
+    ]
+  }
+}

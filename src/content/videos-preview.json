@@ -1,0 +1,9 @@
+{
+  "badgeText": "VIDEOS",
+  "title": "Watch The Case Unfold",
+  "description": "Watch the introduction and follow the legal journey through videos documenting the broken promise, the evidence, and the pursuit of justice.",
+  "buttonText": "Watch all videos",
+  "buttonRoute": "/videos",
+  "image": "/assets/welcome-poster.webp",
+  "imageAlt": "Preview image for The Elephant In The Court Room introduction video"
+}

@@ -6,6 +6,11 @@ interface DocumentCardProps {
   category: string
   date: string
   file: string
+  dataTinaFieldTitle?: string
+  dataTinaFieldDescription?: string
+  dataTinaFieldCategory?: string
+  dataTinaFieldDate?: string
+  dataTinaFieldFile?: string
 }
 
 export default function DocumentCard({
@@ -14,6 +19,11 @@ export default function DocumentCard({
   category,
   date,
   file,
+  dataTinaFieldTitle,
+  dataTinaFieldDescription,
+  dataTinaFieldCategory,
+  dataTinaFieldDate,
+  dataTinaFieldFile,
 }: DocumentCardProps) {
   const titleId = `document-title-${title
     .toLowerCase()
@@ -86,6 +96,7 @@ export default function DocumentCard({
                 text-white
                 break-words
               "
+              data-tina-field={dataTinaFieldCategory}
             >
               {category}
             </span>
@@ -102,12 +113,16 @@ export default function DocumentCard({
                 break-words
                 mb-2
               "
+              data-tina-field={dataTinaFieldTitle}
             >
               {title}
             </h3>
 
             {/* Date */}
-            <time className="block text-sm text-charcoal mb-4">
+            <time
+              className="block text-sm text-charcoal mb-4"
+              data-tina-field={dataTinaFieldDate}
+            >
               {date}
             </time>
 
@@ -119,6 +134,7 @@ export default function DocumentCard({
                 leading-7
                 break-words
               "
+              data-tina-field={dataTinaFieldDescription}
             >
               {description}
             </p>
@@ -127,7 +143,10 @@ export default function DocumentCard({
       </div>
 
       {/* Button */}
-      <div className="mt-8">
+      <div
+        className="mt-8"
+        data-tina-field={dataTinaFieldFile}
+      >
         <SectionButton
           text="View Document"
           href={file}

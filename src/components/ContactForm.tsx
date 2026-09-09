@@ -1,8 +1,44 @@
 import { useState } from 'react'
 import { Check, Send, Lock, ChevronDown } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import { tinaField } from 'tinacms/dist/react'
 
-export default function ContactForm() {
+interface InquiryOption {
+  [key: string]: unknown
+  key: string
+  label: string
+}
+
+interface ContactFormContent {
+  [key: string]: unknown
+  title: string
+  description: string
+  fullNameLabel: string
+  fullNamePlaceholder: string
+  emailLabel: string
+  emailPlaceholder: string
+  phoneLabel: string
+  phonePlaceholder: string
+  inquiryTypeLabel: string
+  inquiryPlaceholder: string
+  inquiryOptions: InquiryOption[]
+  subjectLabel: string
+  subjectPlaceholder: string
+  messageLabel: string
+  messagePlaceholder: string
+  submitButtonText: string
+  privacyNotice: string
+  successTitle: string
+  successMessage: string
+}
+
+interface ContactFormProps {
+  form: ContactFormContent
+}
+
+export default function ContactForm({
+  form,
+}: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -33,26 +69,38 @@ export default function ContactForm() {
               <h2
                 id="contact-form-title"
                 className="text-2xl font-black text-charcoal"
+                data-tina-field={tinaField(form, 'title')}
               >
-                Send Us a Message
+                {form.title}
               </h2>
 
               <p
                 id="contact-form-description"
                 className="mt-2 text-body text-charcoal/70"
+                data-tina-field={tinaField(
+                  form,
+                  'description',
+                )}
               >
-                Complete the form below and we'll be in touch.
+                {form.description}
               </p>
             </div>
 
-            {/* Row 1 */}
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <div>
                 <label
                   htmlFor="contact-full-name"
                   className="mb-2.5 block text-[15px] font-extrabold text-charcoal"
                 >
-                  Full Name <span className="text-red-500">*</span>
+                  <span
+                    data-tina-field={tinaField(
+                      form,
+                      'fullNameLabel',
+                    )}
+                  >
+                    {form.fullNameLabel}
+                  </span>{' '}
+                  <span className="text-red-500">*</span>
                 </label>
 
                 <input
@@ -62,7 +110,8 @@ export default function ContactForm() {
                   required
                   aria-required="true"
                   autoComplete="name"
-                  placeholder="Enter your full name"
+                  placeholder={form.fullNamePlaceholder}
+                  data-tina-field={tinaField(form, 'fullNamePlaceholder')}
                   value={formData.fullName}
                   onChange={(e) =>
                     setFormData({
@@ -79,7 +128,15 @@ export default function ContactForm() {
                   htmlFor="contact-email"
                   className="mb-2.5 block text-[15px] font-black tracking-[-0.01em] text-charcoal"
                 >
-                  Email Address <span className="text-red-500">*</span>
+                  <span
+                    data-tina-field={tinaField(
+                      form,
+                      'emailLabel',
+                    )}
+                  >
+                    {form.emailLabel}
+                  </span>{' '}
+                  <span className="text-red-500">*</span>
                 </label>
 
                 <input
@@ -89,7 +146,8 @@ export default function ContactForm() {
                   required
                   aria-required="true"
                   autoComplete="email"
-                  placeholder="Enter your email address"
+                  placeholder={form.emailPlaceholder}
+                  data-tina-field={tinaField(form, 'emailPlaceholder')}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({
@@ -102,14 +160,20 @@ export default function ContactForm() {
               </div>
             </div>
 
-            {/* Row 2 */}
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <div>
                 <label
                   htmlFor="contact-phone"
                   className="mb-2.5 block text-[15px] font-black tracking-[-0.01em] text-charcoal"
                 >
-                  Phone Number (Optional)
+                  <span
+                    data-tina-field={tinaField(
+                      form,
+                      'phoneLabel',
+                    )}
+                  >
+                    {form.phoneLabel}
+                  </span>
                 </label>
 
                 <input
@@ -117,7 +181,8 @@ export default function ContactForm() {
                   name="phone"
                   type="tel"
                   autoComplete="tel"
-                  placeholder="Enter your phone number"
+                  placeholder={form.phonePlaceholder}
+                  data-tina-field={tinaField(form, 'phonePlaceholder')}
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({
@@ -134,7 +199,15 @@ export default function ContactForm() {
                   htmlFor="contact-inquiry-type"
                   className="mb-2.5 block text-[15px] font-black tracking-[-0.01em] text-charcoal"
                 >
-                  Inquiry Type <span className="text-red-500">*</span>
+                  <span
+                    data-tina-field={tinaField(
+                      form,
+                      'inquiryTypeLabel',
+                    )}
+                  >
+                    {form.inquiryTypeLabel}
+                  </span>{' '}
+                  <span className="text-red-500">*</span>
                 </label>
 
                 <div className="relative">
@@ -152,14 +225,22 @@ export default function ContactForm() {
                     }
                     className="w-full appearance-none rounded-lg border border-charcoal/20 bg-white px-4 py-3.5 pr-10 text-body outline-none transition-all duration-200 focus:border-purple focus:ring-2 focus:ring-purple/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple/30"
                   >
-                    <option value="">Select an option</option>
-                    <option>General Question</option>
-                    <option>Media Inquiry</option>
-                    <option>Legal Support</option>
-                    <option>Donation</option>
-                    <option>Partnership</option>
-                    <option>Technical Issue</option>
-                    <option>Other</option>
+                    <option
+                      value=""
+                      data-tina-field={tinaField(form, 'inquiryPlaceholder')}
+                    >
+                      {form.inquiryPlaceholder}
+                    </option>
+
+                    {form.inquiryOptions.map((option) => (
+                      <option
+                        key={option.key}
+                        value={option.key}
+                        data-tina-field={tinaField(option, 'label')}
+                      >
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
 
                   <ChevronDown
@@ -170,13 +251,20 @@ export default function ContactForm() {
               </div>
             </div>
 
-            {/* Subject */}
             <div>
               <label
                 htmlFor="contact-subject"
                 className="mb-2.5 block text-[15px] font-black tracking-[-0.01em] text-charcoal"
               >
-                Subject <span className="text-red-500">*</span>
+                <span
+                  data-tina-field={tinaField(
+                    form,
+                    'subjectLabel',
+                  )}
+                >
+                  {form.subjectLabel}
+                </span>{' '}
+                <span className="text-red-500">*</span>
               </label>
 
               <input
@@ -186,7 +274,8 @@ export default function ContactForm() {
                 required
                 aria-required="true"
                 autoComplete="off"
-                placeholder="Enter the subject of your message"
+                placeholder={form.subjectPlaceholder}
+                data-tina-field={tinaField(form, 'subjectPlaceholder')}
                 value={formData.subject}
                 onChange={(e) =>
                   setFormData({
@@ -198,13 +287,20 @@ export default function ContactForm() {
               />
             </div>
 
-            {/* Message */}
             <div>
               <label
                 htmlFor="contact-message"
                 className="mb-2.5 block text-[15px] font-black tracking-[-0.01em] text-charcoal"
               >
-                Message <span className="text-red-500">*</span>
+                <span
+                  data-tina-field={tinaField(
+                    form,
+                    'messageLabel',
+                  )}
+                >
+                  {form.messageLabel}
+                </span>{' '}
+                <span className="text-red-500">*</span>
               </label>
 
               <textarea
@@ -213,7 +309,8 @@ export default function ContactForm() {
                 required
                 aria-required="true"
                 rows={7}
-                placeholder="Write your message here..."
+                placeholder={form.messagePlaceholder}
+                data-tina-field={tinaField(form, 'messagePlaceholder')}
                 value={formData.message}
                 onChange={(e) =>
                   setFormData({
@@ -225,7 +322,6 @@ export default function ContactForm() {
               />
             </div>
 
-            {/* Submit Button */}
             <div className="mb-2">
               <button
                 type="submit"
@@ -235,24 +331,37 @@ export default function ContactForm() {
                   className="h-4 w-4"
                   aria-hidden="true"
                 />
-                Send Message
+
+                <span
+                  data-tina-field={tinaField(
+                    form,
+                    'submitButtonText',
+                  )}
+                >
+                  {form.submitButtonText}
+                </span>
               </button>
             </div>
 
-            {/* Privacy Notice */}
             <div
-  className="flex items-start gap-2"
-  role="note"
->
-  <Lock
-    className="mt-0.5 h-4 w-4 flex-shrink-0 text-charcoal/70"
-    aria-hidden="true"
-  />
+              className="flex items-start gap-2"
+              role="note"
+            >
+              <Lock
+                className="mt-0.5 h-4 w-4 flex-shrink-0 text-charcoal/70"
+                aria-hidden="true"
+              />
 
-  <p className="font-sans text-[16px] font-semibold leading-6 text-charcoal">
-    Your information is secure and will only be used to respond to your inquiry.
-  </p>
-</div>
+              <p
+                className="font-sans text-[16px] font-semibold leading-6 text-charcoal"
+                data-tina-field={tinaField(
+                  form,
+                  'privacyNotice',
+                )}
+              >
+                {form.privacyNotice}
+              </p>
+            </div>
           </form>
         ) : (
           <div
@@ -271,12 +380,22 @@ export default function ContactForm() {
             <h2
               id="contact-success-title"
               className="mb-2 font-body text-xl font-medium text-charcoal"
+              data-tina-field={tinaField(
+                form,
+                'successTitle',
+              )}
             >
-              Thank you!
+              {form.successTitle}
             </h2>
 
-            <p className="text-body text-charcoal/70">
-              We'll be in touch soon.
+            <p
+              className="text-body text-charcoal/70"
+              data-tina-field={tinaField(
+                form,
+                'successMessage',
+              )}
+            >
+              {form.successMessage}
             </p>
           </div>
         )}

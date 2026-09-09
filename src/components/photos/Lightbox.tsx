@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import type { Photo } from '@/data/photos'
+import type { Photo } from './photoTypes'
 
 interface LightboxProps {
   photos: Photo[]
@@ -62,7 +62,7 @@ export default function Lightbox({
           previousButtonRef.current,
           nextButtonRef.current,
         ].filter(
-          (element): element is HTMLButtonElement => element !== null
+          (element): element is HTMLButtonElement => element !== null,
         )
 
         if (focusableElements.length === 0) return
@@ -89,7 +89,6 @@ export default function Lightbox({
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
       document.body.style.overflow = ''
-
       previouslyFocusedElement.current?.focus()
     }
   }, [photo, onClose, onPrevious, onNext])
@@ -123,7 +122,6 @@ export default function Lightbox({
       "
       onClick={onClose}
     >
-      {/* Close */}
       <button
         ref={closeButtonRef}
         type="button"
@@ -149,14 +147,9 @@ export default function Lightbox({
           sm:top-6
         "
       >
-        <X
-          aria-hidden="true"
-          focusable="false"
-          size={30}
-        />
+        <X aria-hidden="true" focusable="false" size={30} />
       </button>
 
-      {/* Previous */}
       <button
         ref={previousButtonRef}
         type="button"
@@ -186,14 +179,9 @@ export default function Lightbox({
           sm:p-3
         "
       >
-        <ChevronLeft
-          aria-hidden="true"
-          focusable="false"
-          size={38}
-        />
+        <ChevronLeft aria-hidden="true" focusable="false" size={38} />
       </button>
 
-      {/* Full-size image */}
       <img
         src={photo.src}
         alt={photoAlt}
@@ -215,7 +203,6 @@ export default function Lightbox({
         "
       />
 
-      {/* Caption */}
       {photo.caption && (
         <div
           className="
@@ -242,7 +229,6 @@ export default function Lightbox({
         </div>
       )}
 
-      {/* Next */}
       <button
         ref={nextButtonRef}
         type="button"
@@ -272,11 +258,7 @@ export default function Lightbox({
           sm:p-3
         "
       >
-        <ChevronRight
-          aria-hidden="true"
-          focusable="false"
-          size={38}
-        />
+        <ChevronRight aria-hidden="true" focusable="false" size={38} />
       </button>
     </div>
   )

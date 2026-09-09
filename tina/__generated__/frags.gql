@@ -1,0 +1,735 @@
+fragment HeroParts on Hero {
+  __typename
+  title
+  subtitle
+  bannerImage
+  bannerAlt
+  donationUrl
+  donationSwitchLabel
+  donationButtonLabel
+}
+
+fragment StorySnapshotParts on StorySnapshot {
+  __typename
+  badgeText
+  title
+  paragraphs
+  buttonText
+  image
+  imageAlt
+}
+
+fragment CasePageParts on CasePage {
+  __typename
+  heroTitle
+  heroSubtitle
+  overviewBadge
+  overviewTitle
+  overviewDescription
+  overviewLinkText
+  overviewButtonText
+  timeline {
+    __typename
+    date
+    title
+    description
+  }
+  contractTitle
+  contractParagraphs {
+    __typename
+    text
+  }
+  whyTitle
+  whyText
+  caseSummaryLinkText
+  evidenceBadge
+  evidenceTitle
+  evidenceDescription
+  evidenceNote
+  evidenceCards {
+    __typename
+    route
+    image
+    imageAlt
+    navigationLabel
+    title
+    description
+  }
+}
+
+fragment CaseDetailsParts on CaseDetails {
+  __typename
+  badgeText
+  title
+  description
+  timeline {
+    __typename
+    date
+    title
+    description
+  }
+  campaignTitle
+  campaignParagraphs {
+    __typename
+    text
+  }
+  quote
+  quoteNote
+}
+
+fragment EvidenceGalleryParts on EvidenceGallery {
+  __typename
+  badgeText
+  title
+  description
+  cards {
+    __typename
+    type
+    route
+    image
+    imageAlt
+    navigationLabel
+    title
+    description
+  }
+}
+
+fragment PressParts on Press {
+  __typename
+  pageTitle
+  pageDescription
+  heroSection {
+    __typename
+    section
+    title
+    subtitle
+  }
+  introduction {
+    __typename
+    badge
+    title
+    paragraphs {
+      __typename
+      text
+    }
+  }
+  caseReference {
+    __typename
+    badge
+    title
+    description
+    fields {
+      __typename
+      key
+      label
+      value
+    }
+  }
+  resources {
+    __typename
+    badge
+    title
+    description
+    cards {
+      __typename
+      key
+      title
+      description
+      linkText
+      route
+    }
+  }
+  editorialNote {
+    __typename
+    badge
+    title
+    paragraphs {
+      __typename
+      text
+    }
+  }
+}
+
+fragment VideosParts on Videos {
+  __typename
+  pageTitle
+  pageDescription
+  intro {
+    __typename
+    description
+    caseLinkText
+    documentsLinkText
+    photosLinkText
+  }
+  videos {
+    __typename
+    title
+    videoSrc
+    poster
+    videoAlt
+    description
+    duration
+  }
+  relatedResources {
+    __typename
+    label
+    title
+    description
+    buttonText
+    route
+  }
+  futureVideos {
+    __typename
+    title
+    cardTitle
+    description
+  }
+}
+
+fragment VideosPreviewParts on VideosPreview {
+  __typename
+  badgeText
+  title
+  description
+  buttonText
+  buttonRoute
+  image
+  imageAlt
+}
+
+fragment PhotosPreviewParts on PhotosPreview {
+  __typename
+  badgeText
+  title
+  description
+  buttonText
+  buttonRoute
+  image
+  imageAlt
+}
+
+fragment DocumentsPreviewParts on DocumentsPreview {
+  __typename
+  badgeText
+  title
+  description
+  buttonText
+  buttonRoute
+  cardTitle
+  cardSubtitle
+  cardButtonText
+  cardLink
+}
+
+fragment DownloadsPreviewParts on DownloadsPreview {
+  __typename
+  badgeText
+  title
+  description
+  buttonText
+  buttonRoute
+  cardTitle
+  cardSubtitle
+  cardButtonText
+  cardLink
+}
+
+fragment ImpactProgressParts on ImpactProgress {
+  __typename
+  badgeText
+  title
+  description
+  raisedAmount
+  goalAmount
+  totalGoalLabel
+  amountRaisedLabel
+  expenses {
+    __typename
+    title
+    amount
+    description
+  }
+}
+
+fragment UpdatesPreviewParts on UpdatesPreview {
+  __typename
+  badgeText
+  title
+  cards {
+    __typename
+    category
+    date
+    title
+    excerpt
+    image
+    imageAlt
+    link
+  }
+  buttonText
+  buttonRoute
+}
+
+fragment SupportersPreviewParts on SupportersPreview {
+  __typename
+  badgeText
+  title
+  testimonials {
+    __typename
+    quote
+    name
+    role
+  }
+}
+
+fragment ContactSectionParts on ContactSection {
+  __typename
+  badgeText
+  title
+  description
+  preferEmailText
+  reachUsText
+  email
+  image
+  imageAlt
+  donationButtonText
+  donationUrl
+}
+
+fragment FinalCTAParts on FinalCTA {
+  __typename
+  title
+  description
+  donationButtonText
+  shareButtonText
+  supportText
+  shareTitle
+  donationUrl
+}
+
+fragment OurStoryParts on OurStory {
+  __typename
+  heroTitle
+  heroSubtitle
+  title
+  subtitle
+  description
+  exploreCaseText
+  propertyPhotosText
+  documentsText
+  videosText
+  chapters {
+    __typename
+    heading
+    paragraphs {
+      __typename
+      text
+    }
+    image
+    imageAlt
+  }
+  closingStatement
+  closingSupportingText
+  closingExploreCaseText
+  closingDocumentsText
+  closingPhotosText
+}
+
+fragment DocumentsParts on Documents {
+  __typename
+  pageTitle
+  pageDescription
+  caseDocumentsTitle
+  emptyStateText
+  futureDocumentsTitle
+  futureDocumentsCardTitle
+  futureDocumentsDescription
+  documents {
+    __typename
+    slug
+    title
+    description
+    category
+    date
+    file
+  }
+}
+
+fragment DownloadsParts on Downloads {
+  __typename
+  heroTitle
+  heroSubtitle
+  contextLabel
+  contextTitle
+  contextDescription
+  documentsLinkText
+  caseLinkText
+  featuredLabel
+  featuredTitle
+  featuredDescription
+  featuredFormatLabel
+  featuredStatusLabel
+  featuredButtonText
+  sections {
+    __typename
+    key
+    title
+    description
+    documents {
+      __typename
+      key
+      title
+      description
+      buttonText
+    }
+  }
+  relatedLabel
+  relatedTitle
+  relatedDescription
+  relatedCards {
+    __typename
+    key
+    label
+    title
+    description
+    buttonText
+  }
+}
+
+fragment PhotosParts on Photos {
+  __typename
+  heroTitle
+  heroSubtitle
+  contextLabel
+  contextTitle
+  contextDescription
+  contextLinks {
+    __typename
+    story
+    case
+    videos
+  }
+  highlights {
+    __typename
+    title
+    description
+  }
+  before {
+    __typename
+    title
+    description
+  }
+  after {
+    __typename
+    title
+    description
+  }
+  food {
+    __typename
+    title
+    subtitle
+    description
+  }
+  beforePhotos {
+    __typename
+    id
+    image
+    thumbnail
+    alt
+    caption
+    width
+    height
+  }
+  afterPhotos {
+    __typename
+    id
+    image
+    thumbnail
+    alt
+    caption
+    width
+    height
+  }
+  foodPhotos {
+    __typename
+    id
+    image
+    thumbnail
+    alt
+    caption
+    width
+    height
+  }
+  resources {
+    __typename
+    label
+    title
+    description
+    cards {
+      __typename
+      label
+      title
+      description
+      buttonText
+      route
+    }
+  }
+}
+
+fragment PrivacyParts on Privacy {
+  __typename
+  pageTitle
+  pageDescription
+  heroSubtitle
+  lastUpdated
+  sections {
+    __typename
+    id
+    title
+    content {
+      __typename
+      text
+    }
+  }
+}
+
+fragment TermsParts on Terms {
+  __typename
+  pageTitle
+  pageDescription
+  heroSubtitle
+  lastUpdated
+  sections {
+    __typename
+    id
+    title
+    content {
+      __typename
+      text
+    }
+  }
+}
+
+fragment DisclaimerParts on Disclaimer {
+  __typename
+  pageTitle
+  pageDescription
+  heroSubtitle
+  lastUpdated
+  sections {
+    __typename
+    id
+    title
+    content {
+      __typename
+      text
+    }
+  }
+}
+
+fragment ContactParts on Contact {
+  __typename
+  pageTitle
+  pageDescription
+  heroTitle
+  heroSubtitle
+  contactContentTitle
+  contactContentDescription
+  form {
+    __typename
+    title
+    description
+    fullNameLabel
+    fullNamePlaceholder
+    emailLabel
+    emailPlaceholder
+    phoneLabel
+    phonePlaceholder
+    inquiryTypeLabel
+    inquiryPlaceholder
+    inquiryOptions {
+      __typename
+      key
+      label
+    }
+    subjectLabel
+    subjectPlaceholder
+    messageLabel
+    messagePlaceholder
+    submitButtonText
+    privacyNotice
+    successTitle
+    successMessage
+  }
+  contactInformation {
+    __typename
+    title
+    emailLabel
+    email
+    phoneLabel
+    phone
+    campaignLabel
+    campaignName
+    campaignSubtitle
+  }
+  support {
+    __typename
+    title
+    description
+    emphasis
+    gofundmeText
+    caseDocumentsButtonText
+    caseDocumentsRoute
+  }
+  share {
+    __typename
+    title
+    description
+    emphasis
+    platforms {
+      __typename
+      key
+      label
+    }
+    copySuccessText
+    instructionText
+  }
+  resources {
+    __typename
+    eyebrow
+    title
+    description
+    cards {
+      __typename
+      key
+      eyebrow
+      title
+      description
+      buttonText
+      route
+    }
+  }
+}
+
+fragment CaseProgressParts on CaseProgress {
+  __typename
+  badgeText
+  title
+  description
+  timeline {
+    __typename
+    number
+    title
+  }
+  statistics {
+    __typename
+    value
+    label
+  }
+}
+
+fragment UpdatesPageParts on UpdatesPage {
+  __typename
+  pageTitle
+  pageDescription
+  caseProgress {
+    __typename
+    badgeText
+    title
+    description
+    timeline {
+      __typename
+      number
+      title
+    }
+    statistics {
+      __typename
+      value
+      label
+    }
+  }
+  relatedResources {
+    __typename
+    label
+    title
+    description
+    buttonText
+    route
+  }
+  futureUpdates {
+    __typename
+    badgeText
+    title
+    description
+    cards {
+      __typename
+      type
+      title
+      description
+      buttonText
+      route
+      external
+    }
+  }
+}
+
+fragment NavbarParts on Navbar {
+  __typename
+  navigation {
+    __typename
+    label
+    route
+  }
+  donationButton {
+    __typename
+    topText
+    bottomText
+    url
+  }
+  shareLabel
+}
+
+fragment FooterParts on Footer {
+  __typename
+  brandDescription
+  navigate {
+    __typename
+    label
+    route
+  }
+  takeAction {
+    __typename
+    label
+    url
+    external
+  }
+  petitionButtonText
+  petitionButtonUrl
+  legal {
+    __typename
+    label
+    route
+  }
+  copyrightText
+  socialLinks {
+    __typename
+    platform
+    url
+  }
+  legalDisclaimer
+}
+
+fragment UpdatesParts on Updates {
+  __typename
+  slug
+  title
+  summary
+  content {
+    __typename
+    text
+  }
+  category
+  status
+  date
+  featured
+  image
+}

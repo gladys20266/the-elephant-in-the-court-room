@@ -1,14 +1,14 @@
 import SectionButton from "@/components/SectionButton";
 
+import { client } from "../../../tina/__generated__/client";
+import { tinaField, useTina } from "tinacms/dist/react";
+
+type UpdateQueryResult = Awaited<
+  ReturnType<typeof client.queries.updates>
+>;
+
 interface FeaturedUpdateProps {
-  title: string;
-  summary: string;
-  category: string;
-  date: string;
-  
-  status: string;
-  slug: string;
-  image?: string;
+  response: UpdateQueryResult;
 }
 
 const categoryColors = {
@@ -28,15 +28,24 @@ const statusColors = {
 };
 
 export default function FeaturedUpdate({
-  title,
-  summary,
-  category,
-  date,
-  
-  status,
-  slug,
-  image,
+  response,
 }: FeaturedUpdateProps) {
+  const { data } = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+  });
+
+  const update = data.updates;
+
+  const title = update.title ?? "";
+  const summary = update.summary ?? "";
+  const category = update.category ?? "";
+  const date = update.date ?? "";
+  const status = update.status ?? "";
+  const slug = update.slug ?? "";
+  const image = update.image ?? "";
+
   return (
     <section className="mb-20">
       {/* Section Heading */}
@@ -63,6 +72,7 @@ export default function FeaturedUpdate({
                 category as keyof typeof categoryColors
               ]
             }`}
+            data-tina-field={tinaField(update, "category")}
           >
             {category}
           </span>
@@ -73,6 +83,7 @@ export default function FeaturedUpdate({
                 status as keyof typeof statusColors
               ]
             }`}
+            data-tina-field={tinaField(update, "status")}
           >
             {status}
           </span>
@@ -86,27 +97,34 @@ export default function FeaturedUpdate({
               src={image}
               alt={title}
               className="h-32 w-full object-cover sm:h-40"
+              data-tina-field={tinaField(update, "image")}
             />
           </figure>
         )}
 
         {/* Title */}
 
-        <h3 className="mb-4 text-4xl font-bold text-purple">
+        <h3
+          className="mb-4 text-4xl font-bold text-purple"
+          data-tina-field={tinaField(update, "title")}
+        >
           {title}
         </h3>
 
         {/* Meta */}
 
         <div className="mb-6 flex flex-wrap gap-6 text-[1rem] font-bold uppercase tracking-[0.08em] text-charcoal">
-          <span>{date}</span>
-
-          
+          <span data-tina-field={tinaField(update, "date")}>
+            {date}
+          </span>
         </div>
 
         {/* Summary */}
 
-        <p className="leading-8 text-charcoal">
+        <p
+          className="leading-8 text-charcoal"
+          data-tina-field={tinaField(update, "summary")}
+        >
           {summary}
         </p>
 

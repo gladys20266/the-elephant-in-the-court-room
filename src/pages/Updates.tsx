@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { useSectionReveal } from '@/hooks/useSectionReveal'
+
 
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
@@ -15,7 +15,23 @@ import UpdateGrid from '@/components/updates/UpdateGrid'
 import FutureUpdates from '@/components/updates/FutureUpdates'
 import SectionButton from '@/components/SectionButton'
 
-import { updates } from '@/data/updates'
+import { fetchUpdates } from '@/data/updates'
+import type { CaseUpdate } from '@/data/updates'
+
+import { client } from '../../tina/__generated__/client'
+import { tinaField, useTina } from 'tinacms/dist/react'
+
+type UpdateQueryResult = Awaited<
+  ReturnType<typeof client.queries.updates>
+>
+
+type CaseProgressQueryResult = Awaited<
+  ReturnType<typeof client.queries.caseProgress>
+>
+
+type UpdatesPageQueryResult = Awaited<
+  ReturnType<typeof client.queries.updatesPage>
+>
 
 const updatesSeo = {
   title: 'Updates | The Elephant In The Court Room',
@@ -25,11 +41,51 @@ const updatesSeo = {
   type: 'website' as const,
 }
 
-export default function Updates() {
-  const sectionRef = useSectionReveal<HTMLElement>()
+function UpdatesPageContent({
+  response,
+  updates,
+  updateResponses,
+  featuredUpdate,
+  featuredResponse,
+  caseProgressResponse,
+  search,
+  category,
+  setSearch,
+  setCategory,
+  loading,
+}: {
+  response: UpdatesPageQueryResult
+  updates: CaseUpdate[]
+  updateResponses: UpdateQueryResult[]
+  featuredUpdate?: CaseUpdate
+  featuredResponse?: UpdateQueryResult
+  caseProgressResponse: CaseProgressQueryResult | null
+  search: string
+  category: string
+  setSearch: (value: string) => void
+  setCategory: (value: string) => void
+  loading: boolean
+}) {
+  const { data } = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+    experimental___selectFormByFormId() {
+      return `src/content/${response.variables.relativePath}`
+    },
+  })
 
-  const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('All')
+  const page = data.updatesPage
+
+  const pageTitle = page?.pageTitle ?? 'Updates'
+
+  const pageDescription =
+    page?.pageDescription ??
+    'The 2010 agreement, the investment, the dispute, and more than eleven years seeking enforcement.'
+
+  const relatedResources = page?.relatedResources ?? []
+
+  const futureUpdates = page?.futureUpdates
 
   return (
     <>
@@ -62,30 +118,33 @@ export default function Updates() {
         />
 
         <section
-          ref={sectionRef}
+          
           aria-labelledby="updates-heading"
           aria-describedby="updates-description"
           className="container mx-auto px-6 py-20"
         >
           {/* Page Title */}
+
           <header className="mb-16">
             <h1
               id="updates-heading"
               className="mb-6 text-center text-5xl font-bold text-purple"
+              data-tina-field={tinaField(page, 'pageTitle')}
             >
-              Updates
+              {pageTitle}
             </h1>
 
             <p
               id="updates-description"
               className="mx-auto max-w-5xl text-center text-lg leading-8 text-charcoal sm:text-xl lg:text-2xl font-semibold italic text-charcoal/70"
+              data-tina-field={tinaField(page, 'pageDescription')}
             >
-              The 2010 agreement, the investment, the dispute, and more than
-              eleven years seeking enforcement.
+              {pageDescription}
             </p>
           </header>
 
           {/* Featured Update */}
+
           <section aria-labelledby="featured-update-heading">
             <h2
               id="featured-update-heading"
@@ -94,19 +153,13 @@ export default function Updates() {
               Featured Update
             </h2>
 
-            <FeaturedUpdate
-  title={updates[0].title}
-  summary={updates[0].summary}
-  category={updates[0].category}
-  date={updates[0].date}
-  
-  status={updates[0].status}
-  slug={updates[0].slug}
-  image={updates[0].image}
-/>
+            {!loading && featuredUpdate && featuredResponse && (
+              <FeaturedUpdate response={featuredResponse} />
+            )}
           </section>
 
           {/* Case Progress */}
+
           <section aria-labelledby="case-progress-heading">
             <h2
               id="case-progress-heading"
@@ -115,10 +168,13 @@ export default function Updates() {
               Case Progress
             </h2>
 
-            <CaseProgress />
+            {!loading && caseProgressResponse && (
+              <CaseProgress response={caseProgressResponse} />
+            )}
           </section>
 
           {/* Search and Filtering */}
+
           <section
             aria-labelledby="updates-filter-heading"
             className="mt-10"
@@ -142,6 +198,7 @@ export default function Updates() {
           </section>
 
           {/* Timeline */}
+
           <section
             aria-labelledby="updates-list-heading"
             className="mt-10"
@@ -156,144 +213,93 @@ export default function Updates() {
             <UpdateGrid
               search={search}
               category={category}
+              updates={updates}
+              updateResponses={updateResponses}
             />
           </section>
 
           {/* Related Case Resources */}
-<section
-  aria-labelledby="related-case-resources-heading"
-  className="mt-14"
->
-  <h2
-    id="related-case-resources-heading"
-    className="sr-only"
-  >
-    Related Case Resources
-  </h2>
 
-  <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+          <section
+            aria-labelledby="related-case-resources-heading"
+            className="mt-14"
+          >
+            <h2
+              id="related-case-resources-heading"
+              className="sr-only"
+            >
+              Related Case Resources
+            </h2>
 
-    {/* Case */}
-    <div
-      className="
-        flex
-        h-full
-        flex-col
-        rounded-xl
-        bg-white
-        border-[3px]
-        border-charcoal/10
-        p-6
-        shadow-card
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-card-hover
-      "
-    >
-      <p className="text-label text-magenta mb-2">
-        CASE CONTEXT
-      </p>
+            <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+              {relatedResources.map((resource, index) => {
+                if (!resource) {
+                  return null
+                }
 
-      <h3 className="text-xl font-semibold text-purple">
-        Review the Case
-      </h3>
+                return (
+                  <div
+                    key={`${resource.title}-${index}`}
+                    className="
+                      flex
+                      h-full
+                      flex-col
+                      rounded-xl
+                      bg-white
+                      border-[3px]
+                      border-charcoal/10
+                      p-6
+                      shadow-card
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:shadow-card-hover
+                    "
+                  >
+                    <p
+                      className="text-label text-magenta mb-2"
+                      data-tina-field={tinaField(
+                        resource,
+                        'label'
+                      )}
+                    >
+                      {resource.label}
+                    </p>
 
-      <p className="mt-2 text-body-small text-charcoal/70 leading-7">
-        Read the full case history, contractual dispute, timeline,
-        and legal context behind these developments.
-      </p>
+                    <h3
+                      className="text-xl font-semibold text-purple"
+                      data-tina-field={tinaField(
+                        resource,
+                        'title'
+                      )}
+                    >
+                      {resource.title}
+                    </h3>
 
-      <div className="mt-auto pt-5">
-        <SectionButton
-          text="Read Full Case"
-          to="/case"
-        />
-      </div>
-    </div>
+                    <p
+                      className="mt-2 text-body-small text-charcoal/70 leading-7"
+                      data-tina-field={tinaField(
+                        resource,
+                        'description'
+                      )}
+                    >
+                      {resource.description}
+                    </p>
 
-    {/* Documents */}
-    <div
-      className="
-        flex
-        h-full
-        flex-col
-        rounded-xl
-        bg-white
-        border-[3px]
-        border-charcoal/10
-        p-6
-        shadow-card
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-card-hover
-      "
-    >
-      <p className="text-label text-magenta mb-2">
-        PUBLIC RECORD
-      </p>
-
-      <h3 className="text-xl font-semibold text-purple">
-        Review Case Documents
-      </h3>
-
-      <p className="mt-2 text-body-small text-charcoal/70 leading-7">
-        Review publicly available filings, agreements, motions, and
-        other materials connected to the case.
-      </p>
-
-      <div className="mt-auto pt-5">
-        <SectionButton
-          text="View Documents"
-          to="/documents"
-        />
-      </div>
-    </div>
-
-    {/* Photos */}
-    <div
-      className="
-        flex
-        h-full
-        flex-col
-        rounded-xl
-        bg-white
-        border-[3px]
-        border-charcoal/10
-        p-6
-        shadow-card
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-card-hover
-      "
-    >
-      <p className="text-label text-magenta mb-2">
-        VISUAL RECORD
-      </p>
-
-      <h3 className="text-xl font-semibold text-purple">
-        See the Property Record
-      </h3>
-
-      <p className="mt-2 text-body-small text-charcoal/70 leading-7">
-        Explore photographs documenting the property and its
-        transformation alongside the case history.
-      </p>
-
-      <div className="mt-auto pt-5">
-        <SectionButton
-          text="View Photos"
-          to="/photos"
-        />
-      </div>
-    </div>
-
-  </div>
-</section>
+                    <div className="mt-auto pt-5">
+                      <SectionButton
+                        text={resource.buttonText ?? ''}
+                        to={resource.route ?? ''}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </section>
 
           {/* Future Updates */}
+
           <section
             aria-labelledby="future-updates-heading"
             className="mt-10"
@@ -305,10 +311,108 @@ export default function Updates() {
               Future Updates
             </h2>
 
-            <FutureUpdates />
+            <FutureUpdates data={futureUpdates} />
           </section>
         </section>
       </main>
+    </>
+  )
+}
+
+export default function Updates() {
+  
+
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('All')
+  const [updates, setUpdates] = useState<CaseUpdate[]>([])
+  const [updateResponses, setUpdateResponses] = useState<
+    UpdateQueryResult[]
+  >([])
+  const [caseProgressResponse, setCaseProgressResponse] =
+    useState<CaseProgressQueryResult | null>(null)
+  const [updatesPageResponse, setUpdatesPageResponse] =
+    useState<UpdatesPageQueryResult | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let mounted = true
+
+    async function loadUpdates() {
+      try {
+        const data = await fetchUpdates()
+
+        if (!mounted) {
+          return
+        }
+
+        setUpdates(data)
+
+        const responses = await Promise.all(
+          data.map((update) =>
+            client.queries.updates({
+              relativePath: `${update.slug}.json`,
+            })
+          )
+        )
+
+        const progressResponse =
+          await client.queries.caseProgress({
+            relativePath: 'case-progress.json',
+          })
+
+        const pageResponse =
+          await client.queries.updatesPage({
+            relativePath: 'updates-page.json',
+          })
+
+        if (mounted) {
+          setUpdateResponses(responses)
+          setCaseProgressResponse(progressResponse)
+          setUpdatesPageResponse(pageResponse)
+        }
+      } catch (error) {
+        console.error('Failed to load updates:', error)
+      } finally {
+        if (mounted) {
+          setLoading(false)
+        }
+      }
+    }
+
+    loadUpdates()
+
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  const featuredUpdate = updates[0]
+
+  const featuredResponse = featuredUpdate
+    ? updateResponses.find(
+        (response) =>
+          response.variables.relativePath ===
+          `${featuredUpdate.slug}.json`
+      )
+    : undefined
+
+  return (
+    <>
+      {updatesPageResponse && (
+        <UpdatesPageContent
+          response={updatesPageResponse}
+          updates={updates}
+          updateResponses={updateResponses}
+          featuredUpdate={featuredUpdate}
+          featuredResponse={featuredResponse}
+          caseProgressResponse={caseProgressResponse}
+          search={search}
+          category={category}
+          setSearch={setSearch}
+          setCategory={setCategory}
+          loading={loading}
+        />
+      )}
     </>
   )
 }

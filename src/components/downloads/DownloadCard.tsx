@@ -3,13 +3,21 @@ import type { LucideIcon } from 'lucide-react'
 interface DownloadCardProps {
   title: string
   description: string
+  buttonText: string
   icon: LucideIcon
+  dataTinaFieldTitle?: string
+  dataTinaFieldDescription?: string
+  dataTinaFieldButtonText?: string
 }
 
 export default function DownloadCard({
   title,
   description,
+  buttonText,
   icon: Icon,
+  dataTinaFieldTitle,
+  dataTinaFieldDescription,
+  dataTinaFieldButtonText,
 }: DownloadCardProps) {
   const cardId = `download-card-${title
     .toLowerCase()
@@ -45,6 +53,7 @@ export default function DownloadCard({
       <h3
         id={titleId}
         className="mb-3 text-2xl font-bold text-charcoal"
+        data-tina-field={dataTinaFieldTitle}
       >
         {title}
       </h3>
@@ -52,6 +61,7 @@ export default function DownloadCard({
       <p
         id={descriptionId}
         className="mb-8 leading-relaxed text-gray-600"
+        data-tina-field={dataTinaFieldDescription}
       >
         {description}
       </p>
@@ -71,9 +81,11 @@ export default function DownloadCard({
           font-bold
           text-gray-500
         "
-        aria-label={`${title} PDF coming soon`}
+        aria-label={`${title} ${buttonText.toLowerCase()}`}
       >
-        PDF COMING SOON
+        <span data-tina-field={dataTinaFieldButtonText}>
+          {buttonText}
+        </span>
       </div>
     </article>
   )

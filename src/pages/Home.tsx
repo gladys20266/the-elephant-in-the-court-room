@@ -96,10 +96,8 @@ export default function Home() {
         />
       )}
 
-      <Hero
-        title="The Death of the Contract"
-        subtitle="Two siblings. One lease-to-own agreement. More than eleven years seeking to enforce their contractual rights."
-      />
+      <Hero />
+        
 
       <StorySnapshot />
 

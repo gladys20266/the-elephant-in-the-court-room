@@ -1,0 +1,109 @@
+{
+  "pageTitle": "Press & Media",
+  "pageDescription": "Press and media information for The Elephant In The Court Room, a Florida legal advocacy campaign documenting the Eclectic Synergy, LLC v. Seredin case, its history, public record, and ongoing legal effort.",
+  "heroSection": {
+    "section": "Press & Media",
+    "title": "Press & Media Information",
+    "subtitle": "A factual reference for journalists, researchers, and others seeking information about the campaign and the case."
+  },
+  "introduction": {
+    "badge": "MEDIA RESOURCE",
+    "title": "About The Campaign",
+    "paragraphs": [
+      {
+        "text": "The Elephant In The Court Room is a Florida legal advocacy campaign documenting the Eclectic Synergy, LLC v. Seredin case, its history, available public records, and the ongoing legal effort."
+      },
+      {
+        "text": "This page provides a central reference point for journalists, researchers, and other interested parties who want to review information about the case and the materials available on the official campaign website."
+      }
+    ]
+  },
+  "caseReference": {
+    "badge": "CASE REFERENCE",
+    "title": "Case Identification",
+    "description": "The following information can be used to identify the case when reviewing the public record.",
+    "fields": [
+      {
+        "key": "case",
+        "label": "Case",
+        "value": "Eclectic Synergy, LLC v. Seredin"
+      },
+      {
+        "key": "case-number",
+        "label": "Case Number",
+        "value": "50-2014-CA-013268"
+      },
+      {
+        "key": "location",
+        "label": "Location",
+        "value": "Palm Beach County, Florida"
+      },
+      {
+        "key": "subject",
+        "label": "Subject",
+        "value": "Lease-to-own property dispute and related litigation"
+      }
+    ]
+  },
+  "resources": {
+    "badge": "REFERENCE MATERIAL",
+    "title": "Available Resources",
+    "description": "Review the available case materials and campaign resources directly through the official website.",
+    "cards": [
+      {
+        "key": "case",
+        "title": "Case Background",
+        "description": "Review the case history, timeline, lease-to-own agreement, property dispute, litigation history, and ongoing legal effort.",
+        "linkText": "View Case →",
+        "route": "/case"
+      },
+      {
+        "key": "documents",
+        "title": "Court Documents",
+        "description": "Review the court documents and other materials that have been made available through the website.",
+        "linkText": "View Documents →",
+        "route": "/documents"
+      },
+      {
+        "key": "updates",
+        "title": "Campaign Updates",
+        "description": "Follow published updates concerning the campaign, legal developments, documents, media, and future announcements.",
+        "linkText": "View Updates →",
+        "route": "/updates"
+      },
+      {
+        "key": "videos",
+        "title": "Videos",
+        "description": "Watch campaign and documentary material related to the case and the story being documented.",
+        "linkText": "View Videos →",
+        "route": "/videos"
+      },
+      {
+        "key": "photos",
+        "title": "Photographs",
+        "description": "Review photographs documenting the property and the visual record presented by the campaign.",
+        "linkText": "View Photos →",
+        "route": "/photos"
+      },
+      {
+        "key": "contact",
+        "title": "Media Inquiries",
+        "description": "Journalists and other media representatives can use the Contact page for questions and media inquiries.",
+        "linkText": "Contact the Campaign",
+        "route": "/contact"
+      }
+    ]
+  },
+  "editorialNote": {
+    "badge": "IMPORTANT",
+    "title": "About This Information",
+    "paragraphs": [
+      {
+        "text": "The Elephant In The Court Room is a campaign website documenting the case and presenting information and materials connected to the campaign. It is not operated by, affiliated with, or endorsed by any court or government agency."
+      },
+      {
+        "text": "Journalists and researchers are encouraged to review the available source materials and public records when evaluating information concerning the case."
+      }
+    ]
+  }
+}

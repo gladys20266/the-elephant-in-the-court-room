@@ -1,0 +1,34 @@
+{
+  "badgeText": "EVIDENCE",
+  "title": "Evidence & Documentation",
+  "description": "Explore the videos, photographs, and documents that help tell the story of the property, the transformation, and the legal case.",
+  "cards": [
+    {
+      "type": "video",
+      "route": "/videos",
+      "image": "/assets/welcome-poster.webp",
+      "imageAlt": "Preview of The Elephant In The Court Room campaign video",
+      "navigationLabel": "VIDEOS",
+      "title": "Watch The Case Unfold",
+      "description": "Watch the campaign introduction and follow the legal journey."
+    },
+    {
+      "type": "photo",
+      "route": "/photos",
+      "image": "/photos/after-thumbs/after-0006.webp",
+      "imageAlt": "Photograph of the property and outdoor grounds following the transformation",
+      "navigationLabel": "PHOTOS",
+      "title": "See The Transformation",
+      "description": "Explore the before-and-after photographic record of the property."
+    },
+    {
+      "type": "document",
+      "route": "/documents",
+      "image": "",
+      "imageAlt": "",
+      "navigationLabel": "DOCUMENTS",
+      "title": "Review The Court Record",
+      "description": "Review the agreements, filings, motions, and supporting materials."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "badgeText": "IMPACT",
+  "title": "Where Your Support Goes",
+  "description": "Every dollar raised goes directly toward The Elephant In The Court Room's legal defense. Here's how funds are allocated and how close we are to the goal.",
+  "raisedAmount": 31000,
+  "goalAmount": 50000,
+  "totalGoalLabel": "TOTAL GOAL",
+  "amountRaisedLabel": "AMOUNT RAISED",
+  "expenses": [
+    {
+      "title": "Legal Representation",
+      "amount": "$30,000",
+      "description": "Attorney fees for immigration court proceedings, case preparation, and hearings."
+    },
+    {
+      "title": "Documentation & Evidence",
+      "amount": "$12,000",
+      "description": "Obtaining records, expert testimony, translations, and supporting documentation."
+    },
+    {
+      "title": "Emergency Reserve",
+      "amount": "$8,000",
+      "description": "Unexpected legal costs, filing fees, and additional representation if needed."
+    }
+  ]
+}

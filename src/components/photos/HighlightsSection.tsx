@@ -1,9 +1,23 @@
-import { afterPhotos } from '@/data/photos'
 import PhotoGrid from './PhotoGrid'
+import type { Photo, RawTinaPhoto } from './photoTypes'
 
-export default function HighlightsSection() {
-  const highlightPhotos = afterPhotos.slice(0, 8)
+interface HighlightsSectionProps {
+  title: string
+  description: string
+  photos: Photo[]
+  rawPhotos?: (RawTinaPhoto | null)[] | null
+  dataTinaFieldTitle?: string
+  dataTinaFieldDescription?: string
+}
 
+export default function HighlightsSection({
+  title,
+  description,
+  photos,
+  rawPhotos,
+  dataTinaFieldTitle,
+  dataTinaFieldDescription,
+}: HighlightsSectionProps) {
   return (
     <section
       id="transformation-highlights"
@@ -16,20 +30,21 @@ export default function HighlightsSection() {
           <h2
             id="transformation-highlights-heading"
             className="text-section-title text-purple"
+            data-tina-field={dataTinaFieldTitle}
           >
-            Transformation Highlights
+            {title}
           </h2>
 
           <p
             id="transformation-highlights-description"
             className="mt-4 max-w-3xl mx-auto text-body text-charcoal"
+            data-tina-field={dataTinaFieldDescription}
           >
-            A selection of the strongest images showcasing the property's
-            transformation.
+            {description}
           </p>
         </header>
 
-        <PhotoGrid photos={highlightPhotos} />
+        <PhotoGrid photos={photos} rawPhotos={rawPhotos} />
       </div>
     </section>
   )

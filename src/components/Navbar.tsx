@@ -3,20 +3,98 @@ import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Share2 } from 'lucide-react'
 import logoUrl from '@/assets/logo.webp'
 import { SITE_NAME } from '@/lib/brand'
+import { client } from '../../tina/__generated__/client'
+import { tinaField, useTina } from 'tinacms/dist/react'
 
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Our Story', href: '/our-story' },
-  { label: 'Case', href: '/case' },
-  { label: 'Updates', href: '/updates' },
-  { label: 'Videos', href: '/videos' },
-  { label: 'Photos', href: '/photos' },
-  { label: 'Documents', href: '/documents' },
-  { label: 'Downloads', href: '/downloads' },
-  { label: 'Contact', href: '/contact' },
-]
+type NavbarQueryResult = Awaited<ReturnType<typeof client.queries.navbar>>
 
-export default function Navbar() {
+interface NavigationItem {
+  label: string
+  route: string
+}
+
+interface DonationButton {
+  topText: string
+  bottomText: string
+  url: string
+}
+
+interface NavbarContent {
+  navigation: NavigationItem[]
+  donationButton: DonationButton
+  shareLabel: string
+}
+
+const fallbackNavbar: NavbarContent = {
+  navigation: [
+    { label: 'Home', route: '/' },
+    { label: 'Our Story', route: '/our-story' },
+    { label: 'Case', route: '/case' },
+    { label: 'Updates', route: '/updates' },
+    { label: 'Videos', route: '/videos' },
+    { label: 'Photos', route: '/photos' },
+    { label: 'Documents', route: '/documents' },
+    { label: 'Downloads', route: '/downloads' },
+    { label: 'Contact', route: '/contact' },
+  ],
+  donationButton: {
+    topText: 'SWITCH TO GOFUNDME',
+    bottomText: 'TO DONATE',
+    url: 'https://www.gofundme.com',
+  },
+  shareLabel: 'SHARE',
+}
+
+function normalizeNavbar(
+  source: NavbarQueryResult['data']['navbar'] | null | undefined
+): NavbarContent {
+  const navigation =
+    source?.navigation
+      ?.filter(
+        (
+          item
+        ): item is NonNullable<typeof item> =>
+          item !== null && item !== undefined
+      )
+      .map((item) => ({
+        label: item.label ?? '',
+        route: item.route ?? '/',
+      })) ?? []
+
+  return {
+    navigation,
+    donationButton: {
+      topText: source?.donationButton?.topText ?? 'SWITCH TO GOFUNDME',
+      bottomText: source?.donationButton?.bottomText ?? 'TO DONATE',
+      url: source?.donationButton?.url ?? 'https://www.gofundme.com',
+    },
+    shareLabel: source?.shareLabel ?? 'SHARE',
+  }
+}
+
+function getTinaField(
+  source: unknown,
+  field: string
+): string | undefined {
+  if (!source || typeof source !== 'object') {
+    return undefined
+  }
+
+  return tinaField(
+    source as Record<string, unknown>,
+    field
+  )
+}
+
+interface NavbarMarkupProps {
+  data: NavbarContent
+  tinaData?: NavbarQueryResult['data']['navbar'] | null
+}
+
+function NavbarMarkup({
+  data,
+  tinaData,
+}: NavbarMarkupProps) {
   const [visible, setVisible] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { pathname } = useLocation()
@@ -130,7 +208,9 @@ export default function Navbar() {
     }
   }, [showToast])
 
-  const gofundmeUrl = 'https://www.gofundme.com'
+  const donationButton = data.donationButton
+  const navigation = data.navigation
+  const shareLabel = data.shareLabel
 
   return (
     <>
@@ -190,22 +270,31 @@ export default function Navbar() {
             aria-label="Primary navigation"
             className="hidden 2xl:flex flex-1 items-center justify-center gap-5 px-2 min-w-0"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                aria-current={
-                  pathname === link.href ? 'page' : undefined
-                }
-                className={`text-label transition-colors duration-150 hover:text-purple ${
-                  pathname === link.href
-                    ? 'text-purple'
-                    : 'text-charcoal'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navigation.map((link, index) => {
+              const rawLink = tinaData?.navigation?.[index]
+
+              return (
+                <Link
+                  key={link.route}
+                  to={link.route}
+                  aria-current={
+                    pathname === link.route ? 'page' : undefined
+                  }
+                  className={`text-label transition-colors duration-150 hover:text-purple ${
+                    pathname === link.route
+                      ? 'text-purple'
+                      : 'text-charcoal'
+                  }`}
+                  data-tina-field={
+                    rawLink
+                      ? getTinaField(rawLink, 'label')
+                      : undefined
+                  }
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
 
           {/* =====================================================
@@ -215,21 +304,47 @@ export default function Navbar() {
 
             {/* GoFundMe */}
             <a
-              href={gofundmeUrl}
+              href={donationButton.url}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-pale-lime text-charcoal rounded-md border border-forest px-3 xl:px-4 py-3 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
+              data-tina-field={
+                tinaData?.donationButton
+                  ? getTinaField(
+                      tinaData.donationButton,
+                      'url'
+                    )
+                  : undefined
+              }
             >
               <div className="text-center leading-tight">
-                <div className="text-button text-[0.8rem] font-black tracking-wider">
-                  SWITCH TO GOFUNDME
+                <div
+                  className="text-button text-[0.8rem] font-black tracking-wider"
+                  data-tina-field={
+                    tinaData?.donationButton
+                      ? getTinaField(
+                          tinaData.donationButton,
+                          'topText'
+                        )
+                      : undefined
+                  }
+                >
+                  {donationButton.topText}
                 </div>
 
                 <div
                   className="text-[0.68rem] font-black tracking-wide mt-0.5"
                   style={{ fontFamily: 'Arial, sans-serif' }}
+                  data-tina-field={
+                    tinaData?.donationButton
+                      ? getTinaField(
+                          tinaData.donationButton,
+                          'bottomText'
+                        )
+                      : undefined
+                  }
                 >
-                  TO DONATE
+                  {donationButton.bottomText}
                 </div>
               </div>
             </a>
@@ -239,7 +354,7 @@ export default function Navbar() {
               type="button"
               onClick={handleShare}
               className="w-10 h-10 rounded-full bg-forest flex items-center justify-center hover:bg-[#2A4F3B] transition-colors duration-150"
-              aria-label="Share"
+              aria-label={shareLabel}
             >
               <Share2
                 className="w-4 h-4 text-lime"
@@ -302,25 +417,32 @@ export default function Navbar() {
             aria-label="Mobile navigation"
             className="flex flex-col items-center gap-6"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                onClick={() => setMobileOpen(false)}
-                aria-current={
-                  pathname === link.href
-                    ? 'page'
-                    : undefined
-                }
-                className={`font-display text-3xl uppercase tracking-tight transition-colors duration-150 hover:text-purple ${
-                  pathname === link.href
-                    ? 'text-purple'
-                    : 'text-charcoal'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navigation.map((link, index) => {
+              const rawLink = tinaData?.navigation?.[index]
+
+              return (
+                <Link
+                  key={link.route}
+                  to={link.route}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={
+                    pathname === link.route ? 'page' : undefined
+                  }
+                  className={`font-display text-3xl uppercase tracking-tight transition-colors duration-150 hover:text-purple ${
+                    pathname === link.route
+                      ? 'text-purple'
+                      : 'text-charcoal'
+                  }`}
+                  data-tina-field={
+                    rawLink
+                      ? getTinaField(rawLink, 'label')
+                      : undefined
+                  }
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
 
           {/* Mobile actions */}
@@ -328,25 +450,49 @@ export default function Navbar() {
 
             {/* GoFundMe */}
             <a
-              href={gofundmeUrl}
+              href={donationButton.url}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-pale-lime text-charcoal rounded-md border border-forest px-7 py-4 hover:bg-[#E0F0B0] transition-colors duration-200"
+              data-tina-field={
+                tinaData?.donationButton
+                  ? getTinaField(
+                      tinaData.donationButton,
+                      'url'
+                    )
+                  : undefined
+              }
             >
               <div className="text-center leading-tight">
 
                 <div
                   className="text-[1rem] font-black tracking-wider uppercase"
                   style={{ fontFamily: 'Arial, sans-serif' }}
+                  data-tina-field={
+                    tinaData?.donationButton
+                      ? getTinaField(
+                          tinaData.donationButton,
+                          'topText'
+                        )
+                      : undefined
+                  }
                 >
-                  SWITCH TO GOFUNDME
+                  {donationButton.topText}
                 </div>
 
                 <div
                   className="text-[0.85rem] font-black tracking-wide mt-0.5"
                   style={{ fontFamily: 'Arial, sans-serif' }}
+                  data-tina-field={
+                    tinaData?.donationButton
+                      ? getTinaField(
+                          tinaData.donationButton,
+                          'bottomText'
+                        )
+                      : undefined
+                  }
                 >
-                  TO DONATE
+                  {donationButton.bottomText}
                 </div>
 
               </div>
@@ -360,6 +506,7 @@ export default function Navbar() {
                 setMobileOpen(false)
               }}
               className="flex items-center gap-2 bg-forest text-lime rounded-md px-7 py-4 hover:bg-[#2A4F3B] transition-colors duration-150"
+              aria-label={shareLabel}
             >
               <Share2
                 className="w-5 h-5"
@@ -370,8 +517,13 @@ export default function Navbar() {
               <span
                 className="text-sm font-black tracking-wide uppercase"
                 style={{ fontFamily: 'Arial, sans-serif' }}
+                data-tina-field={
+                  tinaData
+                    ? getTinaField(tinaData, 'shareLabel')
+                    : undefined
+                }
               >
-                SHARE
+                {shareLabel}
               </span>
             </button>
 
@@ -380,4 +532,64 @@ export default function Navbar() {
       </div>
     </>
   )
+}
+
+function NavbarTina({
+  response,
+}: {
+  response: NavbarQueryResult
+}) {
+  const { data } = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+  })
+
+  const navbarData = normalizeNavbar(data.navbar)
+
+  return (
+    <NavbarMarkup
+      data={navbarData}
+      tinaData={data.navbar}
+    />
+  )
+}
+
+function NavbarFallback() {
+  return <NavbarMarkup data={fallbackNavbar} />
+}
+
+export default function Navbar() {
+  const [response, setResponse] =
+    useState<NavbarQueryResult | null>(null)
+
+  useEffect(() => {
+    let mounted = true
+
+    client.queries
+      .navbar({
+        relativePath: 'navbar.json',
+      })
+      .then((result) => {
+        if (mounted) {
+          setResponse(result)
+        }
+      })
+      .catch((error) => {
+        console.error(
+          'Failed to load Navbar content from TinaCMS:',
+          error
+        )
+      })
+
+    return () => {
+      mounted = false
+    }
+  }, [])
+
+  if (!response) {
+    return <NavbarFallback />
+  }
+
+  return <NavbarTina response={response} />
 }

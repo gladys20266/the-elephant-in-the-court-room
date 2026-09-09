@@ -1,22 +1,44 @@
-import { afterPhotos } from "@/data/photos";
-import PhotoGrid from "./PhotoGrid";
+import PhotoGrid from './PhotoGrid'
+import type { Photo, RawTinaPhoto } from './photoTypes'
 
-export default function AfterSection() {
+interface AfterSectionProps {
+  title: string
+  description: string
+  photos: Photo[]
+  rawPhotos?: (RawTinaPhoto | null)[] | null
+  dataTinaFieldTitle?: string
+  dataTinaFieldDescription?: string
+}
+
+export default function AfterSection({
+  title,
+  description,
+  photos,
+  rawPhotos,
+  dataTinaFieldTitle,
+  dataTinaFieldDescription,
+}: AfterSectionProps) {
   return (
     <section className="section-padding bg-white">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="mb-12 text-center">
-          <h2 className="text-section-title text-purple">
-            After the Transformation
+          <h2
+            className="text-section-title text-purple"
+            data-tina-field={dataTinaFieldTitle}
+          >
+            {title}
           </h2>
 
-          <p className="mt-4 max-w-3xl mx-auto text-body text-charcoal">
-            Images showing the completed restoration and improvements.
+          <p
+            className="mt-4 max-w-3xl mx-auto text-body text-charcoal"
+            data-tina-field={dataTinaFieldDescription}
+          >
+            {description}
           </p>
         </div>
 
-        <PhotoGrid photos={afterPhotos} />
+        <PhotoGrid photos={photos} rawPhotos={rawPhotos} />
       </div>
     </section>
-  );
+  )
 }

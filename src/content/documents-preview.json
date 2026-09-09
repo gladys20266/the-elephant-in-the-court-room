@@ -1,0 +1,11 @@
+{
+  "badgeText": "DOCUMENTS",
+  "title": "THE COURT RECORD",
+  "description": "Review the lease-to-own agreement, court filings, legal motions, and supporting materials that provide the documented record of the dispute and the legal proceedings described in this campaign.",
+  "buttonText": "Explore documents",
+  "buttonRoute": "/documents",
+  "cardTitle": "Lease-to-Own Agreement",
+  "cardSubtitle": "Court filings, agreements, motions and supporting evidence.",
+  "cardButtonText": "View Documents",
+  "cardLink": "/documents"
+}

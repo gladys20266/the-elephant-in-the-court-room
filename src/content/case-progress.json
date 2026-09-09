@@ -1,0 +1,41 @@
+{
+  "badgeText": "Case Progress",
+  "title": "Eleven Years Pursuing Justice",
+  "description": "From the signing of the Lease-to-Own Agreement in 2010 to the ongoing legal proceedings today, the case has spanned more than a decade.",
+  "timeline": [
+    {
+      "number": "2010",
+      "title": "Contract Signed"
+    },
+    {
+      "number": "2014",
+      "title": "Purchase Refused"
+    },
+    {
+      "number": "2014",
+      "title": "Court Case Filed"
+    },
+    {
+      "number": "2026",
+      "title": "Campaign Active"
+    }
+  ],
+  "statistics": [
+    {
+      "value": "11+",
+      "label": "Years"
+    },
+    {
+      "value": "4,000+",
+      "label": "Days"
+    },
+    {
+      "value": "1",
+      "label": "Broken Contract"
+    },
+    {
+      "value": "Active",
+      "label": "Campaign"
+    }
+  ]
+}

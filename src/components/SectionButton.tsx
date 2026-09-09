@@ -6,6 +6,7 @@ interface SectionButtonProps {
   href?: string;
   target?: string;
   rel?: string;
+  dataTinaField?: string;
 }
 
 export default function SectionButton({
@@ -14,6 +15,7 @@ export default function SectionButton({
   href,
   target,
   rel,
+  dataTinaField,
 }: SectionButtonProps) {
   const className = `
     group
@@ -46,7 +48,7 @@ export default function SectionButton({
 
   const content = (
     <>
-      <span>{text}</span>
+      <span data-tina-field={dataTinaField}>{text}</span>
 
       <span
         aria-hidden="true"

@@ -1,0 +1,12 @@
+{
+  "badgeText": "CONTACT",
+  "title": "Get In Touch",
+  "description": "Have questions about the case or the crowdfunding campaign? Want to support Leo and Olga, support Eclectic Eats, or contribute ideas? We'd like to hear from you.",
+  "preferEmailText": "Prefer email?",
+  "reachUsText": "Reach us at",
+  "email": "ElephantFiles@proton.me",
+  "image": "/assets/contact-elephant.webp",
+  "imageAlt": "Decorative floral elephant with a message calling for support to Restore Justice",
+  "donationButtonText": "Switch to GoFundMe to Donate",
+  "donationUrl": "PASTE_YOUR_GOFUNDME_URL_HERE"
+}

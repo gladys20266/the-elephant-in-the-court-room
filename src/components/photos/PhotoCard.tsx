@@ -6,6 +6,8 @@ export interface PhotoCardProps {
   width?: number
   height?: number
   onClick?: () => void
+  dataTinaFieldImage?: string
+  dataTinaFieldAlt?: string
 }
 
 const PhotoCard: React.FC<PhotoCardProps> = ({
@@ -14,6 +16,8 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
   width,
   height,
   onClick,
+  dataTinaFieldImage,
+  dataTinaFieldAlt,
 }) => {
   return (
     <button
@@ -43,8 +47,15 @@ const PhotoCard: React.FC<PhotoCardProps> = ({
         decoding="async"
         {...(width ? { width } : {})}
         {...(height ? { height } : {})}
+        data-tina-field={dataTinaFieldImage}
         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
+      <span
+        className="sr-only"
+        data-tina-field={dataTinaFieldAlt}
+      >
+        {alt}
+      </span>
     </button>
   )
 }

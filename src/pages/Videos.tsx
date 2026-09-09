@@ -1,10 +1,17 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { tinaField, useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+
 import { useSectionReveal } from '@/hooks/useSectionReveal'
+
 import SEO from '@/components/seo/SEO'
 import StructuredData from '@/components/seo/StructuredData'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import SectionButton from '@/components/SectionButton'
 import { webPageSchema, videoSchema } from '@/seo/pageSchemas'
+
+import fallbackVideos from '@/content/videos.json'
 
 const videosSeo = {
   title: 'Videos | The Elephant In The Court Room',
@@ -14,15 +21,147 @@ const videosSeo = {
   type: 'website' as const,
 }
 
-export default function Videos() {
+type VideosQueryResult = Awaited<ReturnType<typeof client.queries.videos>>
+
+type VideoItem = {
+  title: string
+  videoSrc: string
+  poster: string
+  videoAlt: string
+  description: string
+  duration: string
+}
+
+type RelatedResource = {
+  label: string
+  title: string
+  description: string
+  buttonText: string
+  route: string
+}
+
+type VideosContent = {
+  pageTitle: string
+  pageDescription: string
+  intro: {
+    description: string
+    caseLinkText: string
+    documentsLinkText: string
+    photosLinkText: string
+  }
+  videos: VideoItem[]
+  relatedResources: RelatedResource[]
+  futureVideos: {
+    title: string
+    cardTitle: string
+    description: string
+  }
+}
+
+function normalizeVideos(
+  data: VideosQueryResult['data']['videos'] | null | undefined,
+): VideosContent {
+  const source = (data ?? fallbackVideos) as unknown as Partial<VideosContent>
+
+  return {
+    pageTitle: source.pageTitle ?? fallbackVideos.pageTitle,
+    pageDescription:
+      source.pageDescription ?? fallbackVideos.pageDescription,
+    intro: {
+      description:
+        source.intro?.description ?? fallbackVideos.intro.description,
+      caseLinkText:
+        source.intro?.caseLinkText ?? fallbackVideos.intro.caseLinkText,
+      documentsLinkText:
+        source.intro?.documentsLinkText ??
+        fallbackVideos.intro.documentsLinkText,
+      photosLinkText:
+        source.intro?.photosLinkText ?? fallbackVideos.intro.photosLinkText,
+    },
+    videos:
+      source.videos?.map((video) => ({
+        title: video?.title ?? '',
+        videoSrc: video?.videoSrc ?? '',
+        poster: video?.poster ?? '',
+        videoAlt: video?.videoAlt ?? '',
+        description: video?.description ?? '',
+        duration: video?.duration ?? '',
+      })) ?? fallbackVideos.videos,
+    relatedResources:
+      source.relatedResources?.map((resource) => ({
+        label: resource?.label ?? '',
+        title: resource?.title ?? '',
+        description: resource?.description ?? '',
+        buttonText: resource?.buttonText ?? '',
+        route: resource?.route ?? '#',
+      })) ?? fallbackVideos.relatedResources,
+    futureVideos: {
+      title:
+        source.futureVideos?.title ?? fallbackVideos.futureVideos.title,
+      cardTitle:
+        source.futureVideos?.cardTitle ??
+        fallbackVideos.futureVideos.cardTitle,
+      description:
+        source.futureVideos?.description ??
+        fallbackVideos.futureVideos.description,
+    },
+  }
+}
+
+interface VideosPageProps {
+  videos: VideosContent
+  rawVideos?: VideosQueryResult['data']['videos']
+}
+
+function VideosPage({ videos, rawVideos }: VideosPageProps) {
   const sectionRef = useSectionReveal<HTMLElement>()
+
+  const firstVideo = videos.videos[0]
+
+  const pageTitleField = rawVideos
+    ? tinaField(rawVideos, 'pageTitle')
+    : undefined
+
+  const pageDescriptionField = rawVideos
+    ? tinaField(rawVideos, 'pageDescription')
+    : undefined
+
+  const introDescriptionField = rawVideos?.intro
+    ? tinaField(rawVideos.intro, 'description')
+    : undefined
+
+  const caseLinkTextField = rawVideos?.intro
+    ? tinaField(rawVideos.intro, 'caseLinkText')
+    : undefined
+
+  const documentsLinkTextField = rawVideos?.intro
+    ? tinaField(rawVideos.intro, 'documentsLinkText')
+    : undefined
+
+  const photosLinkTextField = rawVideos?.intro
+    ? tinaField(rawVideos.intro, 'photosLinkText')
+    : undefined
+
+  const futureTitleField = rawVideos?.futureVideos
+    ? tinaField(rawVideos.futureVideos, 'title')
+    : undefined
+
+  const futureCardTitleField = rawVideos?.futureVideos
+    ? tinaField(rawVideos.futureVideos, 'cardTitle')
+    : undefined
+
+  const futureDescriptionField = rawVideos?.futureVideos
+    ? tinaField(rawVideos.futureVideos, 'description')
+    : undefined
 
   return (
     <>
       <SEO
         data={{
           ...videosSeo,
-          image: '/assets/welcome-poster.webp',
+          title: `${videos.pageTitle} | The Elephant In The Court Room`,
+          description: videos.pageDescription,
+          image: firstVideo?.poster || undefined,
         }}
       />
 
@@ -31,35 +170,31 @@ export default function Videos() {
           '@context': 'https://schema.org',
           '@graph': [
             webPageSchema({
-              title: videosSeo.title,
-              description: videosSeo.description,
+              title: `${videos.pageTitle} | The Elephant In The Court Room`,
+              description: videos.pageDescription,
               path: videosSeo.canonical,
               type: 'CollectionPage',
             }),
-
-            videoSchema({
-              name: 'The Death of the Contract — Introduction',
-              description:
-                'An introductory documentary about The Death of the Contract, explaining the lease-to-own agreement, the years of litigation that followed, and the continuing effort to seek specific performance of the original contract.',
-              path: '/videos',
-              contentUrl: '/videos/welcome.mp4',
-              thumbnailUrl: '/assets/welcome-poster.webp',
-              duration: 'PT1M46S',
-            }),
+            ...(firstVideo
+              ? [
+                  videoSchema({
+                    name: firstVideo.title,
+                    description: firstVideo.description,
+                    path: videosSeo.canonical,
+                    contentUrl: firstVideo.videoSrc,
+                    thumbnailUrl: firstVideo.poster,
+                    duration: firstVideo.duration,
+                  }),
+                ]
+              : []),
           ],
         }}
       />
 
       <Breadcrumbs
         items={[
-          {
-            name: 'Home',
-            path: '/',
-          },
-          {
-            name: 'Videos',
-            path: '/videos',
-          },
+          { name: 'Home', path: '/' },
+          { name: videos.pageTitle, path: '/videos' },
         ]}
       />
 
@@ -71,119 +206,163 @@ export default function Videos() {
         className="section-padding bg-off-white min-h-screen"
       >
         <div className="max-w-6xl mx-auto px-5">
-
-          {/* Page Introduction */}
           <header className="reveal-child">
             <h1
               id="videos-heading"
               className="text-section-title text-purple mb-4"
+              data-tina-field={pageTitleField}
             >
-              Videos
+              {videos.pageTitle}
             </h1>
 
             <p
               id="videos-description"
               className="text-body text-charcoal max-w-3xl mb-6 leading-8"
+              data-tina-field={introDescriptionField}
             >
-              This documentary introduces the story behind{' '}
-              <strong>The Death of the Contract</strong>. It explains the events
-              surrounding the lease-to-own agreement, the years of litigation
-              that followed, and why Leo and Olga continue to seek specific
-              performance of the original contract.
+              {videos.intro.description}
             </p>
+
+            <span
+              className="sr-only"
+              data-tina-field={pageDescriptionField}
+            >
+              {videos.pageDescription}
+            </span>
 
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-body-small">
               <Link
                 to="/case"
-                className="
-                  font-semibold
-                  text-purple
-                  underline
-                  decoration-lime
-                  decoration-2
-                  underline-offset-4
-                  hover:text-magenta
-                  transition-colors
-                "
+                className="font-semibold text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                data-tina-field={caseLinkTextField}
               >
-                Explore the Case
+                {videos.intro.caseLinkText}
               </Link>
 
               <Link
                 to="/documents"
-                className="
-                  font-semibold
-                  text-purple
-                  underline
-                  decoration-lime
-                  decoration-2
-                  underline-offset-4
-                  hover:text-magenta
-                  transition-colors
-                "
+                className="font-semibold text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                data-tina-field={documentsLinkTextField}
               >
-                Review Documents
+                {videos.intro.documentsLinkText}
               </Link>
 
               <Link
                 to="/photos"
-                className="
-                  font-semibold
-                  text-purple
-                  underline
-                  decoration-lime
-                  decoration-2
-                  underline-offset-4
-                  hover:text-magenta
-                  transition-colors
-                "
+                className="font-semibold text-purple underline decoration-lime decoration-2 underline-offset-4 hover:text-magenta transition-colors"
+                data-tina-field={photosLinkTextField}
               >
-                View Photos
+                {videos.intro.photosLinkText}
               </Link>
             </div>
           </header>
 
-          {/* Featured Documentary */}
-          <article
-            aria-labelledby="introduction-heading"
-            className="
-              reveal-child
-              bg-white
-              rounded-3xl
-              shadow-2xl
-              border
-              border-gray-200
-              my-16
-              p-6
-            "
-          >
-            <video
-              src="/videos/welcome.mp4"
-              poster="/assets/welcome-poster.webp"
-              controls
-              preload="metadata"
-              playsInline
-              aria-label="Introduction documentary about The Death of the Contract"
-              className="w-full aspect-video bg-black rounded-3xl"
-            />
-
-            <div className="p-8">
+          {/* Videos */}
+          {videos.videos.length > 0 && (
+            <section
+              aria-labelledby="videos-library-heading"
+              className="reveal-child"
+            >
               <h2
-                id="introduction-heading"
-                className="text-3xl font-bold text-purple mb-4"
+                id="videos-library-heading"
+                className="sr-only"
               >
-                Introduction
+                Videos
               </h2>
 
-              <p className="text-charcoal leading-8 text-lg">
-                This documentary presents the beginning of the story behind
-                <strong> The Death of the Contract</strong>. It explains how a
-                lease-to-own agreement evolved into years of litigation and
-                introduces the people, events, and evidence at the heart of the
-                case.
-              </p>
-            </div>
-          </article>
+              <div className="space-y-10">
+                {videos.videos.map((video, index) => {
+                  const rawVideo = rawVideos?.videos?.[index]
+                  const isFirstVideo = index === 0
+
+                  const titleField = rawVideo
+                    ? tinaField(rawVideo, 'title')
+                    : undefined
+
+                  const videoSrcField = rawVideo
+                    ? tinaField(rawVideo, 'videoSrc')
+                    : undefined
+
+                  const posterField = rawVideo
+                    ? tinaField(rawVideo, 'poster')
+                    : undefined
+
+                  const videoAltField = rawVideo
+                    ? tinaField(rawVideo, 'videoAlt')
+                    : undefined
+
+                  const descriptionField = rawVideo
+                    ? tinaField(rawVideo, 'description')
+                    : undefined
+
+                  const durationField = rawVideo
+                    ? tinaField(rawVideo, 'duration')
+                    : undefined
+
+                  return (
+                    <article
+                      key={`${video.videoSrc}-${index}`}
+                      aria-labelledby={`video-heading-${index}`}
+                      className={
+                        isFirstVideo
+                          ? 'bg-white rounded-3xl shadow-2xl border border-gray-200 my-16 p-6'
+                          : 'bg-white rounded-3xl shadow-xl border border-gray-200 p-6'
+                      }
+                    >
+                      <video
+                        src={video.videoSrc}
+                        poster={video.poster || undefined}
+                        controls
+                        preload="metadata"
+                        playsInline
+                        aria-label={video.videoAlt}
+                        className="w-full aspect-video bg-black rounded-3xl"
+                        data-tina-field={videoSrcField}
+                      />
+
+                      <div className="p-8">
+                        <h2
+                          id={`video-heading-${index}`}
+                          className="text-3xl font-bold text-purple mb-4"
+                          data-tina-field={titleField}
+                        >
+                          {video.title}
+                        </h2>
+
+                        <p
+                          className="text-charcoal leading-8 text-lg"
+                          data-tina-field={descriptionField}
+                        >
+                          {video.description}
+                        </p>
+
+                        <span
+                          className="sr-only"
+                          data-tina-field={posterField}
+                        >
+                          {video.poster}
+                        </span>
+
+                        <span
+                          className="sr-only"
+                          data-tina-field={videoAltField}
+                        >
+                          {video.videoAlt}
+                        </span>
+
+                        <span
+                          className="sr-only"
+                          data-tina-field={durationField}
+                        >
+                          {video.duration}
+                        </span>
+                      </div>
+                    </article>
+                  )
+                })}
+              </div>
+            </section>
+          )}
 
           {/* Related Case Resources */}
           <section
@@ -198,124 +377,61 @@ export default function Videos() {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {videos.relatedResources.map((resource, index) => {
+                const rawResource = rawVideos?.relatedResources?.[index]
 
-              {/* Case */}
-              <div
-                className="
-                  group
-                  flex
-                  flex-col
-                  rounded-3xl
-                  bg-white
-                  border
-                  border-gray-200
-                  p-7
-                  shadow-xl
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-2xl
-                "
-              >
-                <p className="text-label text-magenta mb-2">
-                  LEGAL CONTEXT
-                </p>
+                return (
+                  <div
+                    key={resource.route || index}
+                    className="group flex flex-col rounded-3xl bg-white border border-gray-200 p-7 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                  >
+                    <p
+                      className="text-label text-magenta mb-2"
+                      data-tina-field={
+                        rawResource
+                          ? tinaField(rawResource, 'label')
+                          : undefined
+                      }
+                    >
+                      {resource.label}
+                    </p>
 
-                <h3 className="text-2xl font-bold text-purple">
-                  Understand the Case
-                </h3>
+                    <h3
+                      className="text-2xl font-bold text-purple"
+                      data-tina-field={
+                        rawResource
+                          ? tinaField(rawResource, 'title')
+                          : undefined
+                      }
+                    >
+                      {resource.title}
+                    </h3>
 
-                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
-                  Explore the contract, legal dispute, timeline, and ongoing
-                  effort described by the campaign.
-                </p>
+                    <p
+                      className="mt-3 text-body-small text-charcoal/70 leading-7"
+                      data-tina-field={
+                        rawResource
+                          ? tinaField(rawResource, 'description')
+                          : undefined
+                      }
+                    >
+                      {resource.description}
+                    </p>
 
-                <div className="mt-auto pt-6">
-                  <SectionButton
-                    text="View Case"
-                    to="/case"
-                  />
-                </div>
-              </div>
-
-              {/* Documents */}
-              <div
-                className="
-                  group
-                  flex
-                  flex-col
-                  rounded-3xl
-                  bg-white
-                  border
-                  border-gray-200
-                  p-7
-                  shadow-xl
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-2xl
-                "
-              >
-                <p className="text-label text-magenta mb-2">
-                  SUPPORTING RECORD
-                </p>
-
-                <h3 className="text-2xl font-bold text-purple">
-                  Review Documents
-                </h3>
-
-                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
-                  Examine publicly available agreements, filings, motions, and
-                  other materials connected to the case.
-                </p>
-
-                <div className="mt-auto pt-6">
-                  <SectionButton
-                    text="View Documents"
-                    to="/documents"
-                  />
-                </div>
-              </div>
-
-              {/* Photos */}
-              <div
-                className="
-                  group
-                  flex
-                  flex-col
-                  rounded-3xl
-                  bg-white
-                  border
-                  border-gray-200
-                  p-7
-                  shadow-xl
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:shadow-2xl
-                "
-              >
-                <p className="text-label text-magenta mb-2">
-                  VISUAL RECORD
-                </p>
-
-                <h3 className="text-2xl font-bold text-purple">
-                  Explore the Photos
-                </h3>
-
-                <p className="mt-3 text-body-small text-charcoal/70 leading-7">
-                  View photographs documenting the property, its condition, and
-                  the transformation described in the campaign.
-                </p>
-
-                <div className="mt-auto pt-6">
-                  <SectionButton
-                    text="View Photos"
-                    to="/photos"
-                  />
-                </div>
-              </div>
-
+                    <div className="mt-auto pt-6">
+                      <SectionButton
+                        text={resource.buttonText}
+                        to={resource.route}
+                        dataTinaField={
+                          rawResource
+                            ? tinaField(rawResource, 'buttonText')
+                            : undefined
+                        }
+                      />
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </section>
 
@@ -327,37 +443,16 @@ export default function Videos() {
             <h2
               id="future-videos-heading"
               className="text-2xl font-bold text-purple mb-6"
+              data-tina-field={futureTitleField}
             >
-              More Videos Coming Soon
+              {videos.futureVideos.title}
             </h2>
 
-            <div
-              className="
-                bg-white
-                rounded-3xl
-                shadow-xl
-                border
-                border-gray-200
-                p-12
-                transition-all
-                duration-300
-                hover:shadow-2xl
-                hover:-translate-y-1
-              "
-            >
+            <div className="bg-white rounded-3xl shadow-xl border border-gray-200 p-12 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
               <div className="flex items-start gap-7">
                 <div
                   aria-hidden="true"
-                  className="
-                    flex
-                    h-20
-                    w-20
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-purple/5
-                    flex-shrink-0
-                  "
+                  className="flex h-20 w-20 items-center justify-center rounded-full bg-purple/5 flex-shrink-0"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -378,24 +473,85 @@ export default function Videos() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold text-purple mb-3">
-                    Future Documentary Updates
+                  <h3
+                    className="text-2xl font-bold text-purple mb-3"
+                    data-tina-field={futureCardTitleField}
+                  >
+                    {videos.futureVideos.cardTitle}
                   </h3>
 
-                  <p className="text-charcoal leading-8 text-lg">
-                    Additional documentaries, court updates, supporting
-                    evidence, interviews, and campaign videos will be
-                    published here as they become available. This page will
-                    continue to document the progress of the case and important
-                    developments.
+                  <p
+                    className="text-charcoal leading-8 text-lg"
+                    data-tina-field={futureDescriptionField}
+                  >
+                    {videos.futureVideos.description}
                   </p>
                 </div>
               </div>
             </div>
           </section>
-
         </div>
       </section>
     </>
   )
+}
+
+function VideosVisual({ response }: { response: VideosQueryResult }) {
+  const tinaResult = useTina({
+    query: response.query,
+    variables: response.variables,
+    data: response.data,
+    experimental___selectFormByFormId() {
+      return `src/content/${response.variables.relativePath}`
+    },
+  })
+
+  return (
+    <VideosPage
+      videos={normalizeVideos(tinaResult.data.videos)}
+      rawVideos={tinaResult.data.videos}
+    />
+  )
+}
+
+export default function Videos() {
+  const [response, setResponse] =
+    useState<VideosQueryResult | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+
+    const loadVideos = async () => {
+      try {
+        const result = await client.queries.videos({
+          relativePath: 'videos.json',
+        })
+
+        if (!cancelled) {
+          setResponse(result)
+        }
+      } catch {
+        if (!cancelled) {
+          setResponse(null)
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false)
+        }
+      }
+    }
+
+    loadVideos()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  if (loading || !response) {
+    return <VideosPage videos={normalizeVideos(null)} />
+  }
+
+  return <VideosVisual response={response} />
 }
