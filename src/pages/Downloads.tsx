@@ -46,6 +46,7 @@ interface DownloadDocument {
   title: string
   description: string
   buttonText: string
+  href?: string
 }
 
 interface DownloadSectionContent {
@@ -106,6 +107,28 @@ const routeMap: Record<string, string> = {
   case: '/case',
   documents: '/documents',
   photos: '/photos',
+}
+
+function getReferencedDocumentFile(value: unknown): string | undefined {
+  if (!value || typeof value !== 'object') {
+    return undefined
+  }
+
+  const record = value as Record<string, unknown>
+
+  if (typeof record.file === 'string' && record.file.trim()) {
+    return record.file
+  }
+
+  if (record.data && typeof record.data === 'object') {
+    const data = record.data as Record<string, unknown>
+
+    if (typeof data.file === 'string' && data.file.trim()) {
+      return data.file
+    }
+  }
+
+  return undefined
 }
 
 function normalizeDownloads(
@@ -178,6 +201,10 @@ function normalizeDownloads(
             buttonText:
               document?.buttonText ??
               'PDF COMING SOON',
+            href: getReferencedDocumentFile(
+              (document as unknown as Record<string, unknown>)
+                ?.documentReference,
+            ),
           })) ?? [],
       })) ?? fallbackDownloads.sections,
 
@@ -221,6 +248,11 @@ function DownloadsVisual({
 
   const rawDownloads = tinaResult.data.downloads
   const downloads = normalizeDownloads(rawDownloads)
+
+  const featuredDocumentFile = getReferencedDocumentFile(
+    (rawDownloads as unknown as Record<string, unknown>)
+      ?.featuredDocument,
+  )
 
   return (
     <>
@@ -388,35 +420,68 @@ function DownloadsVisual({
                 </span>
               </div>
 
-              <button
-                type="button"
-                disabled
-                aria-label={`${downloads.featuredTitle} ${downloads.featuredButtonText.toLowerCase()}`}
-                className="
-                  w-full
-                  cursor-not-allowed
-                  rounded-xl
-                  border
-                  border-forest
-                  bg-gray-100
-                  px-7
-                  py-3
-                  text-center
-                  font-black
-                  text-gray-500
-                  opacity-80
-                  md:w-auto
-                "
-              >
-                <span
-                  data-tina-field={tinaField(
-                    rawDownloads,
-                    'featuredButtonText',
-                  )}
+              {featuredDocumentFile ? (
+                <a
+                  href={featuredDocumentFile}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${downloads.featuredTitle} ${downloads.featuredButtonText}`}
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-forest
+                    bg-white
+                    px-7
+                    py-3
+                    text-center
+                    font-black
+                    text-purple-800
+                    transition-colors
+                    hover:bg-purple-50
+                    md:w-auto
+                  "
                 >
-                  {downloads.featuredButtonText}
-                </span>
-              </button>
+                  <span
+                    data-tina-field={tinaField(
+                      rawDownloads,
+                      'featuredButtonText',
+                    )}
+                  >
+                    {downloads.featuredButtonText}
+                  </span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  aria-label={`${downloads.featuredTitle} ${downloads.featuredButtonText.toLowerCase()}`}
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    border
+                    border-forest
+                    bg-gray-100
+                    px-7
+                    py-3
+                    text-center
+                    font-black
+                    text-gray-500
+                    opacity-80
+                    md:w-auto
+                  "
+                >
+                  <span
+                    data-tina-field={tinaField(
+                      rawDownloads,
+                      'featuredButtonText',
+                    )}
+                  >
+                    {downloads.featuredButtonText}
+                  </span>
+                </button>
+              )}
             </div>
           </div>
         </section>
@@ -439,6 +504,7 @@ function DownloadsVisual({
                     title: document.title,
                     description: document.description,
                     buttonText: document.buttonText,
+                    href: document.href,
                     icon:
                       iconMap[document.key] ?? FileText,
 

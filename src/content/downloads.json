@@ -10,8 +10,9 @@
   "featuredTitle": "Case Summary & Timeline",
   "featuredDescription": "A concise overview of the legal dispute, timeline, court proceedings, and supporting evidence. This resource is being prepared for visitors who want to understand the case before reviewing the complete record.",
   "featuredFormatLabel": "PDF",
-  "featuredStatusLabel": "Coming Soon",
-  "featuredButtonText": "PDF COMING SOON",
+  "featuredStatusLabel": "Available",
+  "featuredButtonText": "VIEW CASE SUMMARY (PDF)",
+  "featuredDocument": "src/content/case-documents/EXECUTIVE-SUMMARY-CASE.json",
   "sections": [
     {
       "key": "court-documents",
@@ -22,19 +23,22 @@
           "key": "complaint",
           "title": "Complaint",
           "description": "The original complaint filed in Palm Beach County. A downloadable copy will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/court-complaint.json"
         },
         {
           "key": "court-orders",
           "title": "Court Orders",
           "description": "Important court orders and rulings issued throughout the case. Downloadable copies will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/court-orders.json"
         },
         {
           "key": "docket-history",
           "title": "Docket History",
           "description": "A chronological record of filings, hearings, and court activity. A downloadable copy will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/docket-history.json"
         }
       ]
     },
@@ -47,7 +51,8 @@
           "key": "lease-to-own-agreement",
           "title": "Lease-to-Own Agreement",
           "description": "The original Lease-to-Own Agreement signed by the parties. A downloadable copy will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/lease-to-own-agreement.json"
         },
         {
           "key": "supporting-agreements",
@@ -59,7 +64,8 @@
           "key": "contract-amendments",
           "title": "Contract Amendments",
           "description": "Amendments or modifications to the original agreement, if applicable. Downloadable copies will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/contract-amendments.json"
         }
       ]
     },
@@ -72,19 +78,22 @@
           "key": "before-after-photos",
           "title": "Before & After Photos",
           "description": "A downloadable collection of photographs documenting the property and its transformation will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/before-after-photos.json"
         },
         {
           "key": "financial-records",
           "title": "Financial Records",
           "description": "Financial records supporting the documented investment in the property. Downloadable materials will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/financial-records.json"
         },
         {
           "key": "supporting-evidence",
           "title": "Supporting Evidence",
           "description": "Additional evidence supporting the facts presented in the case. Downloadable materials will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/supporting-evidence.json"
         }
       ]
     },
@@ -97,19 +106,22 @@
           "key": "official-petition",
           "title": "Official Petition",
           "description": "Petition materials supporting the campaign. A downloadable copy will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/official-petition.json"
         },
         {
           "key": "signature-campaign",
           "title": "Signature Campaign",
           "description": "Materials relating to the public signature campaign. Downloadable materials will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/signature-campaign.json"
         },
         {
           "key": "public-statements",
           "title": "Public Statements",
           "description": "Public statements related to the campaign. Downloadable materials will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/public-statements.json"
         }
       ]
     },
@@ -122,19 +134,22 @@
           "key": "demand-letters",
           "title": "Demand Letters",
           "description": "Formal demand letters related to the dispute. Downloadable copies will be published when available and appropriate for publication.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/demand-letters.json"
         },
         {
           "key": "legal-correspondence",
           "title": "Legal Correspondence",
           "description": "Legal correspondence related to the case. Downloadable materials will be published when available and appropriate for publication.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/legal-correspondence.json"
         },
         {
           "key": "public-communications",
           "title": "Public Communications",
           "description": "Public communications and related campaign materials. Downloadable copies will be published when available.",
-          "buttonText": "PDF COMING SOON"
+          "buttonText": "PDF COMING SOON",
+          "documentReference": "src/content/case-documents/public-communications.json"
         }
       ]
     }

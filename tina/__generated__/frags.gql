@@ -334,6 +334,16 @@ fragment OurStoryParts on OurStory {
   closingPhotosText
 }
 
+fragment CaseDocumentsParts on CaseDocuments {
+  __typename
+  slug
+  title
+  description
+  category
+  date
+  file
+}
+
 fragment DocumentsParts on Documents {
   __typename
   pageTitle
@@ -369,6 +379,29 @@ fragment DownloadsParts on Downloads {
   featuredFormatLabel
   featuredStatusLabel
   featuredButtonText
+  featuredDocument {
+    ... on CaseDocuments {
+      __typename
+      slug
+      title
+      description
+      category
+      date
+      file
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
   sections {
     __typename
     key
@@ -380,6 +413,29 @@ fragment DownloadsParts on Downloads {
       title
       description
       buttonText
+      documentReference {
+        ... on CaseDocuments {
+          __typename
+          slug
+          title
+          description
+          category
+          date
+          file
+        }
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+      }
     }
   }
   relatedLabel
@@ -669,6 +725,18 @@ fragment UpdatesPageParts on UpdatesPage {
       route
       external
     }
+  }
+}
+
+fragment SiteSettingsParts on SiteSettings {
+  __typename
+  canonicalUrl
+  donationUrl
+  petitionUrl
+  socialLinks {
+    __typename
+    platform
+    url
   }
 }
 

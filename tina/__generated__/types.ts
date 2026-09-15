@@ -115,6 +115,8 @@ export type Query = {
   finalCTAConnection: FinalCtaConnection;
   ourStory: OurStory;
   ourStoryConnection: OurStoryConnection;
+  caseDocuments: CaseDocuments;
+  caseDocumentsConnection: CaseDocumentsConnection;
   documents: Documents;
   documentsConnection: DocumentsConnection;
   downloads: Downloads;
@@ -133,6 +135,8 @@ export type Query = {
   caseProgressConnection: CaseProgressConnection;
   updatesPage: UpdatesPage;
   updatesPageConnection: UpdatesPageConnection;
+  siteSettings: SiteSettings;
+  siteSettingsConnection: SiteSettingsConnection;
   navbar: Navbar;
   navbarConnection: NavbarConnection;
   footer: Footer;
@@ -418,6 +422,21 @@ export type QueryOurStoryConnectionArgs = {
 };
 
 
+export type QueryCaseDocumentsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryCaseDocumentsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<CaseDocumentsFilter>;
+};
+
+
 export type QueryDocumentsArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -553,6 +572,21 @@ export type QueryUpdatesPageConnectionArgs = {
 };
 
 
+export type QuerySiteSettingsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySiteSettingsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SiteSettingsFilter>;
+};
+
+
 export type QueryNavbarArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -615,6 +649,7 @@ export type DocumentFilter = {
   contactSection?: InputMaybe<ContactSectionFilter>;
   finalCTA?: InputMaybe<FinalCtaFilter>;
   ourStory?: InputMaybe<OurStoryFilter>;
+  caseDocuments?: InputMaybe<CaseDocumentsFilter>;
   documents?: InputMaybe<DocumentsFilter>;
   downloads?: InputMaybe<DownloadsFilter>;
   photos?: InputMaybe<PhotosFilter>;
@@ -624,6 +659,7 @@ export type DocumentFilter = {
   contact?: InputMaybe<ContactFilter>;
   caseProgress?: InputMaybe<CaseProgressFilter>;
   updatesPage?: InputMaybe<UpdatesPageFilter>;
+  siteSettings?: InputMaybe<SiteSettingsFilter>;
   navbar?: InputMaybe<NavbarFilter>;
   footer?: InputMaybe<FooterFilter>;
   updates?: InputMaybe<UpdatesFilter>;
@@ -666,7 +702,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Hero | StorySnapshot | CasePage | CaseDetails | EvidenceGallery | Press | Videos | VideosPreview | PhotosPreview | DocumentsPreview | DownloadsPreview | ImpactProgress | UpdatesPreview | SupportersPreview | ContactSection | FinalCta | OurStory | Documents | Downloads | Photos | Privacy | Terms | Disclaimer | Contact | CaseProgress | UpdatesPage | Navbar | Footer | Updates | Folder;
+export type DocumentNode = Hero | StorySnapshot | CasePage | CaseDetails | EvidenceGallery | Press | Videos | VideosPreview | PhotosPreview | DocumentsPreview | DownloadsPreview | ImpactProgress | UpdatesPreview | SupportersPreview | ContactSection | FinalCta | OurStory | CaseDocuments | Documents | Downloads | Photos | Privacy | Terms | Disclaimer | Contact | CaseProgress | UpdatesPage | SiteSettings | Navbar | Footer | Updates | Folder;
 
 export type Hero = Node & Document & {
   __typename?: 'Hero';
@@ -1691,6 +1727,41 @@ export type OurStoryConnection = Connection & {
   edges?: Maybe<Array<Maybe<OurStoryConnectionEdges>>>;
 };
 
+export type CaseDocuments = Node & Document & {
+  __typename?: 'CaseDocuments';
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  category?: Maybe<Scalars['String']['output']>;
+  date?: Maybe<Scalars['String']['output']>;
+  file?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type CaseDocumentsFilter = {
+  slug?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  category?: InputMaybe<StringFilter>;
+  date?: InputMaybe<StringFilter>;
+  file?: InputMaybe<ImageFilter>;
+};
+
+export type CaseDocumentsConnectionEdges = {
+  __typename?: 'CaseDocumentsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<CaseDocuments>;
+};
+
+export type CaseDocumentsConnection = Connection & {
+  __typename?: 'CaseDocumentsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<CaseDocumentsConnectionEdges>>>;
+};
+
 export type DocumentsDocuments = {
   __typename?: 'DocumentsDocuments';
   slug?: Maybe<Scalars['String']['output']>;
@@ -1749,12 +1820,17 @@ export type DocumentsConnection = Connection & {
   edges?: Maybe<Array<Maybe<DocumentsConnectionEdges>>>;
 };
 
+export type DownloadsFeaturedDocument = CaseDocuments;
+
+export type DownloadsSectionsDocumentsDocumentReference = CaseDocuments;
+
 export type DownloadsSectionsDocuments = {
   __typename?: 'DownloadsSectionsDocuments';
   key?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   buttonText?: Maybe<Scalars['String']['output']>;
+  documentReference?: Maybe<DownloadsSectionsDocumentsDocumentReference>;
 };
 
 export type DownloadsSections = {
@@ -1789,6 +1865,7 @@ export type Downloads = Node & Document & {
   featuredFormatLabel?: Maybe<Scalars['String']['output']>;
   featuredStatusLabel?: Maybe<Scalars['String']['output']>;
   featuredButtonText?: Maybe<Scalars['String']['output']>;
+  featuredDocument?: Maybe<DownloadsFeaturedDocument>;
   sections?: Maybe<Array<Maybe<DownloadsSections>>>;
   relatedLabel?: Maybe<Scalars['String']['output']>;
   relatedTitle?: Maybe<Scalars['String']['output']>;
@@ -1799,11 +1876,20 @@ export type Downloads = Node & Document & {
   _values: Scalars['JSON']['output'];
 };
 
+export type DownloadsFeaturedDocumentFilter = {
+  caseDocuments?: InputMaybe<CaseDocumentsFilter>;
+};
+
+export type DownloadsSectionsDocumentsDocumentReferenceFilter = {
+  caseDocuments?: InputMaybe<CaseDocumentsFilter>;
+};
+
 export type DownloadsSectionsDocumentsFilter = {
   key?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
   buttonText?: InputMaybe<StringFilter>;
+  documentReference?: InputMaybe<DownloadsSectionsDocumentsDocumentReferenceFilter>;
 };
 
 export type DownloadsSectionsFilter = {
@@ -1835,6 +1921,7 @@ export type DownloadsFilter = {
   featuredFormatLabel?: InputMaybe<StringFilter>;
   featuredStatusLabel?: InputMaybe<StringFilter>;
   featuredButtonText?: InputMaybe<StringFilter>;
+  featuredDocument?: InputMaybe<DownloadsFeaturedDocumentFilter>;
   sections?: InputMaybe<DownloadsSectionsFilter>;
   relatedLabel?: InputMaybe<StringFilter>;
   relatedTitle?: InputMaybe<StringFilter>;
@@ -2615,6 +2702,48 @@ export type UpdatesPageConnection = Connection & {
   edges?: Maybe<Array<Maybe<UpdatesPageConnectionEdges>>>;
 };
 
+export type SiteSettingsSocialLinks = {
+  __typename?: 'SiteSettingsSocialLinks';
+  platform?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type SiteSettings = Node & Document & {
+  __typename?: 'SiteSettings';
+  canonicalUrl?: Maybe<Scalars['String']['output']>;
+  donationUrl?: Maybe<Scalars['String']['output']>;
+  petitionUrl?: Maybe<Scalars['String']['output']>;
+  socialLinks?: Maybe<Array<Maybe<SiteSettingsSocialLinks>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type SiteSettingsSocialLinksFilter = {
+  platform?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
+};
+
+export type SiteSettingsFilter = {
+  canonicalUrl?: InputMaybe<StringFilter>;
+  donationUrl?: InputMaybe<StringFilter>;
+  petitionUrl?: InputMaybe<StringFilter>;
+  socialLinks?: InputMaybe<SiteSettingsSocialLinksFilter>;
+};
+
+export type SiteSettingsConnectionEdges = {
+  __typename?: 'SiteSettingsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<SiteSettings>;
+};
+
+export type SiteSettingsConnection = Connection & {
+  __typename?: 'SiteSettingsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<SiteSettingsConnectionEdges>>>;
+};
+
 export type NavbarNavigation = {
   __typename?: 'NavbarNavigation';
   label?: Maybe<Scalars['String']['output']>;
@@ -2846,6 +2975,8 @@ export type Mutation = {
   createFinalCTA: FinalCta;
   updateOurStory: OurStory;
   createOurStory: OurStory;
+  updateCaseDocuments: CaseDocuments;
+  createCaseDocuments: CaseDocuments;
   updateDocuments: Documents;
   createDocuments: Documents;
   updateDownloads: Downloads;
@@ -2864,6 +2995,8 @@ export type Mutation = {
   createCaseProgress: CaseProgress;
   updateUpdatesPage: UpdatesPage;
   createUpdatesPage: UpdatesPage;
+  updateSiteSettings: SiteSettings;
+  createSiteSettings: SiteSettings;
   updateNavbar: Navbar;
   createNavbar: Navbar;
   updateFooter: Footer;
@@ -3110,6 +3243,18 @@ export type MutationCreateOurStoryArgs = {
 };
 
 
+export type MutationUpdateCaseDocumentsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: CaseDocumentsMutation;
+};
+
+
+export type MutationCreateCaseDocumentsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: CaseDocumentsMutation;
+};
+
+
 export type MutationUpdateDocumentsArgs = {
   relativePath: Scalars['String']['input'];
   params: DocumentsMutation;
@@ -3218,6 +3363,18 @@ export type MutationCreateUpdatesPageArgs = {
 };
 
 
+export type MutationUpdateSiteSettingsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SiteSettingsMutation;
+};
+
+
+export type MutationCreateSiteSettingsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SiteSettingsMutation;
+};
+
+
 export type MutationUpdateNavbarArgs = {
   relativePath: Scalars['String']['input'];
   params: NavbarMutation;
@@ -3271,6 +3428,7 @@ export type DocumentUpdateMutation = {
   contactSection?: InputMaybe<ContactSectionMutation>;
   finalCTA?: InputMaybe<FinalCtaMutation>;
   ourStory?: InputMaybe<OurStoryMutation>;
+  caseDocuments?: InputMaybe<CaseDocumentsMutation>;
   documents?: InputMaybe<DocumentsMutation>;
   downloads?: InputMaybe<DownloadsMutation>;
   photos?: InputMaybe<PhotosMutation>;
@@ -3280,6 +3438,7 @@ export type DocumentUpdateMutation = {
   contact?: InputMaybe<ContactMutation>;
   caseProgress?: InputMaybe<CaseProgressMutation>;
   updatesPage?: InputMaybe<UpdatesPageMutation>;
+  siteSettings?: InputMaybe<SiteSettingsMutation>;
   navbar?: InputMaybe<NavbarMutation>;
   footer?: InputMaybe<FooterMutation>;
   updates?: InputMaybe<UpdatesMutation>;
@@ -3304,6 +3463,7 @@ export type DocumentMutation = {
   contactSection?: InputMaybe<ContactSectionMutation>;
   finalCTA?: InputMaybe<FinalCtaMutation>;
   ourStory?: InputMaybe<OurStoryMutation>;
+  caseDocuments?: InputMaybe<CaseDocumentsMutation>;
   documents?: InputMaybe<DocumentsMutation>;
   downloads?: InputMaybe<DownloadsMutation>;
   photos?: InputMaybe<PhotosMutation>;
@@ -3313,6 +3473,7 @@ export type DocumentMutation = {
   contact?: InputMaybe<ContactMutation>;
   caseProgress?: InputMaybe<CaseProgressMutation>;
   updatesPage?: InputMaybe<UpdatesPageMutation>;
+  siteSettings?: InputMaybe<SiteSettingsMutation>;
   navbar?: InputMaybe<NavbarMutation>;
   footer?: InputMaybe<FooterMutation>;
   updates?: InputMaybe<UpdatesMutation>;
@@ -3661,6 +3822,15 @@ export type OurStoryMutation = {
   closingPhotosText?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type CaseDocumentsMutation = {
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  file?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type DocumentsDocumentsMutation = {
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -3686,6 +3856,7 @@ export type DownloadsSectionsDocumentsMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   buttonText?: InputMaybe<Scalars['String']['input']>;
+  documentReference?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DownloadsSectionsMutation = {
@@ -3717,6 +3888,7 @@ export type DownloadsMutation = {
   featuredFormatLabel?: InputMaybe<Scalars['String']['input']>;
   featuredStatusLabel?: InputMaybe<Scalars['String']['input']>;
   featuredButtonText?: InputMaybe<Scalars['String']['input']>;
+  featuredDocument?: InputMaybe<Scalars['String']['input']>;
   sections?: InputMaybe<Array<InputMaybe<DownloadsSectionsMutation>>>;
   relatedLabel?: InputMaybe<Scalars['String']['input']>;
   relatedTitle?: InputMaybe<Scalars['String']['input']>;
@@ -4024,6 +4196,18 @@ export type UpdatesPageMutation = {
   caseProgress?: InputMaybe<UpdatesPageCaseProgressMutation>;
   relatedResources?: InputMaybe<Array<InputMaybe<UpdatesPageRelatedResourcesMutation>>>;
   futureUpdates?: InputMaybe<UpdatesPageFutureUpdatesMutation>;
+};
+
+export type SiteSettingsSocialLinksMutation = {
+  platform?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SiteSettingsMutation = {
+  canonicalUrl?: InputMaybe<Scalars['String']['input']>;
+  donationUrl?: InputMaybe<Scalars['String']['input']>;
+  petitionUrl?: InputMaybe<Scalars['String']['input']>;
+  socialLinks?: InputMaybe<Array<InputMaybe<SiteSettingsSocialLinksMutation>>>;
 };
 
 export type NavbarNavigationMutation = {
@@ -4459,6 +4643,15 @@ export type OurStoryFilter = {
   closingPhotosText?: StringFilter | null | undefined;
 };
 
+export type CaseDocumentsFilter = {
+  slug?: StringFilter | null | undefined;
+  title?: StringFilter | null | undefined;
+  description?: StringFilter | null | undefined;
+  category?: StringFilter | null | undefined;
+  date?: StringFilter | null | undefined;
+  file?: ImageFilter | null | undefined;
+};
+
 export type DocumentsDocumentsFilter = {
   slug?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
@@ -4479,11 +4672,20 @@ export type DocumentsFilter = {
   documents?: DocumentsDocumentsFilter | null | undefined;
 };
 
+export type DownloadsFeaturedDocumentFilter = {
+  caseDocuments?: CaseDocumentsFilter | null | undefined;
+};
+
+export type DownloadsSectionsDocumentsDocumentReferenceFilter = {
+  caseDocuments?: CaseDocumentsFilter | null | undefined;
+};
+
 export type DownloadsSectionsDocumentsFilter = {
   key?: StringFilter | null | undefined;
   title?: StringFilter | null | undefined;
   description?: StringFilter | null | undefined;
   buttonText?: StringFilter | null | undefined;
+  documentReference?: DownloadsSectionsDocumentsDocumentReferenceFilter | null | undefined;
 };
 
 export type DownloadsSectionsFilter = {
@@ -4515,6 +4717,7 @@ export type DownloadsFilter = {
   featuredFormatLabel?: StringFilter | null | undefined;
   featuredStatusLabel?: StringFilter | null | undefined;
   featuredButtonText?: StringFilter | null | undefined;
+  featuredDocument?: DownloadsFeaturedDocumentFilter | null | undefined;
   sections?: DownloadsSectionsFilter | null | undefined;
   relatedLabel?: StringFilter | null | undefined;
   relatedTitle?: StringFilter | null | undefined;
@@ -4829,6 +5032,18 @@ export type UpdatesPageFilter = {
   futureUpdates?: UpdatesPageFutureUpdatesFilter | null | undefined;
 };
 
+export type SiteSettingsSocialLinksFilter = {
+  platform?: StringFilter | null | undefined;
+  url?: StringFilter | null | undefined;
+};
+
+export type SiteSettingsFilter = {
+  canonicalUrl?: StringFilter | null | undefined;
+  donationUrl?: StringFilter | null | undefined;
+  petitionUrl?: StringFilter | null | undefined;
+  socialLinks?: SiteSettingsSocialLinksFilter | null | undefined;
+};
+
 export type NavbarNavigationFilter = {
   label?: StringFilter | null | undefined;
   route?: StringFilter | null | undefined;
@@ -4929,9 +5144,11 @@ export type FinalCtaPartsFragment = { __typename: 'FinalCTA', title: string | nu
 
 export type OurStoryPartsFragment = { __typename: 'OurStory', heroTitle: string | null, heroSubtitle: string | null, title: string | null, subtitle: string | null, description: string | null, exploreCaseText: string | null, propertyPhotosText: string | null, documentsText: string | null, videosText: string | null, closingStatement: string | null, closingSupportingText: string | null, closingExploreCaseText: string | null, closingDocumentsText: string | null, closingPhotosText: string | null, chapters: Array<{ __typename: 'OurStoryChapters', heading: string | null, image: string | null, imageAlt: string | null, paragraphs: Array<{ __typename: 'OurStoryChaptersParagraphs', text: string | null } | null> | null } | null> | null };
 
+export type CaseDocumentsPartsFragment = { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null };
+
 export type DocumentsPartsFragment = { __typename: 'Documents', pageTitle: string | null, pageDescription: string | null, caseDocumentsTitle: string | null, emptyStateText: string | null, futureDocumentsTitle: string | null, futureDocumentsCardTitle: string | null, futureDocumentsDescription: string | null, documents: Array<{ __typename: 'DocumentsDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null } | null> | null };
 
-export type DownloadsPartsFragment = { __typename: 'Downloads', heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, documentsLinkText: string | null, caseLinkText: string | null, featuredLabel: string | null, featuredTitle: string | null, featuredDescription: string | null, featuredFormatLabel: string | null, featuredStatusLabel: string | null, featuredButtonText: string | null, relatedLabel: string | null, relatedTitle: string | null, relatedDescription: string | null, sections: Array<{ __typename: 'DownloadsSections', key: string | null, title: string | null, description: string | null, documents: Array<{ __typename: 'DownloadsSectionsDocuments', key: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } | null> | null, relatedCards: Array<{ __typename: 'DownloadsRelatedCards', key: string | null, label: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null };
+export type DownloadsPartsFragment = { __typename: 'Downloads', heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, documentsLinkText: string | null, caseLinkText: string | null, featuredLabel: string | null, featuredTitle: string | null, featuredDescription: string | null, featuredFormatLabel: string | null, featuredStatusLabel: string | null, featuredButtonText: string | null, relatedLabel: string | null, relatedTitle: string | null, relatedDescription: string | null, featuredDocument: { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, sections: Array<{ __typename: 'DownloadsSections', key: string | null, title: string | null, description: string | null, documents: Array<{ __typename: 'DownloadsSectionsDocuments', key: string | null, title: string | null, description: string | null, buttonText: string | null, documentReference: { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, relatedCards: Array<{ __typename: 'DownloadsRelatedCards', key: string | null, label: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null };
 
 export type PhotosPartsFragment = { __typename: 'Photos', heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, contextLinks: { __typename: 'PhotosContextLinks', story: string | null, case: string | null, videos: string | null } | null, highlights: { __typename: 'PhotosHighlights', title: string | null, description: string | null } | null, before: { __typename: 'PhotosBefore', title: string | null, description: string | null } | null, after: { __typename: 'PhotosAfter', title: string | null, description: string | null } | null, food: { __typename: 'PhotosFood', title: string | null, subtitle: string | null, description: string | null } | null, beforePhotos: Array<{ __typename: 'PhotosBeforePhotos', id: string | null, image: string | null, thumbnail: string | null, alt: string | null, caption: string | null, width: number | null, height: number | null } | null> | null, afterPhotos: Array<{ __typename: 'PhotosAfterPhotos', id: string | null, image: string | null, thumbnail: string | null, alt: string | null, caption: string | null, width: number | null, height: number | null } | null> | null, foodPhotos: Array<{ __typename: 'PhotosFoodPhotos', id: string | null, image: string | null, thumbnail: string | null, alt: string | null, caption: string | null, width: number | null, height: number | null } | null> | null, resources: { __typename: 'PhotosResources', label: string | null, title: string | null, description: string | null, cards: Array<{ __typename: 'PhotosResourcesCards', label: string | null, title: string | null, description: string | null, buttonText: string | null, route: string | null } | null> | null } | null };
 
@@ -4946,6 +5163,8 @@ export type ContactPartsFragment = { __typename: 'Contact', pageTitle: string | 
 export type CaseProgressPartsFragment = { __typename: 'CaseProgress', badgeText: string | null, title: string | null, description: string | null, timeline: Array<{ __typename: 'CaseProgressTimeline', number: string | null, title: string | null } | null> | null, statistics: Array<{ __typename: 'CaseProgressStatistics', value: string | null, label: string | null } | null> | null };
 
 export type UpdatesPagePartsFragment = { __typename: 'UpdatesPage', pageTitle: string | null, pageDescription: string | null, caseProgress: { __typename: 'UpdatesPageCaseProgress', badgeText: string | null, title: string | null, description: string | null, timeline: Array<{ __typename: 'UpdatesPageCaseProgressTimeline', number: string | null, title: string | null } | null> | null, statistics: Array<{ __typename: 'UpdatesPageCaseProgressStatistics', value: string | null, label: string | null } | null> | null } | null, relatedResources: Array<{ __typename: 'UpdatesPageRelatedResources', label: string | null, title: string | null, description: string | null, buttonText: string | null, route: string | null } | null> | null, futureUpdates: { __typename: 'UpdatesPageFutureUpdates', badgeText: string | null, title: string | null, description: string | null, cards: Array<{ __typename: 'UpdatesPageFutureUpdatesCards', type: string | null, title: string | null, description: string | null, buttonText: string | null, route: string | null, external: boolean | null } | null> | null } | null };
+
+export type SiteSettingsPartsFragment = { __typename: 'SiteSettings', canonicalUrl: string | null, donationUrl: string | null, petitionUrl: string | null, socialLinks: Array<{ __typename: 'SiteSettingsSocialLinks', platform: string | null, url: string | null } | null> | null };
 
 export type NavbarPartsFragment = { __typename: 'Navbar', shareLabel: string | null, navigation: Array<{ __typename: 'NavbarNavigation', label: string | null, route: string | null } | null> | null, donationButton: { __typename: 'NavbarDonationButton', topText: string | null, bottomText: string | null, url: string | null } | null };
 
@@ -5276,6 +5495,25 @@ export type OurStoryConnectionQueryVariables = Exact<{
 
 export type OurStoryConnectionQuery = { ourStoryConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'OurStory', id: string, heroTitle: string | null, heroSubtitle: string | null, title: string | null, subtitle: string | null, description: string | null, exploreCaseText: string | null, propertyPhotosText: string | null, documentsText: string | null, videosText: string | null, closingStatement: string | null, closingSupportingText: string | null, closingExploreCaseText: string | null, closingDocumentsText: string | null, closingPhotosText: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, chapters: Array<{ __typename: 'OurStoryChapters', heading: string | null, image: string | null, imageAlt: string | null, paragraphs: Array<{ __typename: 'OurStoryChaptersParagraphs', text: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
+export type CaseDocumentsQueryVariables = Exact<{
+  relativePath: string;
+}>;
+
+
+export type CaseDocumentsQuery = { caseDocuments: { __typename: 'CaseDocuments', id: string, slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type CaseDocumentsConnectionQueryVariables = Exact<{
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: CaseDocumentsFilter | null | undefined;
+}>;
+
+
+export type CaseDocumentsConnectionQuery = { caseDocumentsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'CaseDocuments', id: string, slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
 export type DocumentsQueryVariables = Exact<{
   relativePath: string;
 }>;
@@ -5300,7 +5538,7 @@ export type DownloadsQueryVariables = Exact<{
 }>;
 
 
-export type DownloadsQuery = { downloads: { __typename: 'Downloads', id: string, heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, documentsLinkText: string | null, caseLinkText: string | null, featuredLabel: string | null, featuredTitle: string | null, featuredDescription: string | null, featuredFormatLabel: string | null, featuredStatusLabel: string | null, featuredButtonText: string | null, relatedLabel: string | null, relatedTitle: string | null, relatedDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DownloadsSections', key: string | null, title: string | null, description: string | null, documents: Array<{ __typename: 'DownloadsSectionsDocuments', key: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } | null> | null, relatedCards: Array<{ __typename: 'DownloadsRelatedCards', key: string | null, label: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } };
+export type DownloadsQuery = { downloads: { __typename: 'Downloads', id: string, heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, documentsLinkText: string | null, caseLinkText: string | null, featuredLabel: string | null, featuredTitle: string | null, featuredDescription: string | null, featuredFormatLabel: string | null, featuredStatusLabel: string | null, featuredButtonText: string | null, relatedLabel: string | null, relatedTitle: string | null, relatedDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featuredDocument: { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, sections: Array<{ __typename: 'DownloadsSections', key: string | null, title: string | null, description: string | null, documents: Array<{ __typename: 'DownloadsSectionsDocuments', key: string | null, title: string | null, description: string | null, buttonText: string | null, documentReference: { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, relatedCards: Array<{ __typename: 'DownloadsRelatedCards', key: string | null, label: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } };
 
 export type DownloadsConnectionQueryVariables = Exact<{
   before?: string | null | undefined;
@@ -5312,7 +5550,7 @@ export type DownloadsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type DownloadsConnectionQuery = { downloadsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Downloads', id: string, heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, documentsLinkText: string | null, caseLinkText: string | null, featuredLabel: string | null, featuredTitle: string | null, featuredDescription: string | null, featuredFormatLabel: string | null, featuredStatusLabel: string | null, featuredButtonText: string | null, relatedLabel: string | null, relatedTitle: string | null, relatedDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections: Array<{ __typename: 'DownloadsSections', key: string | null, title: string | null, description: string | null, documents: Array<{ __typename: 'DownloadsSectionsDocuments', key: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } | null> | null, relatedCards: Array<{ __typename: 'DownloadsRelatedCards', key: string | null, label: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } | null } | null> | null } };
+export type DownloadsConnectionQuery = { downloadsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'Downloads', id: string, heroTitle: string | null, heroSubtitle: string | null, contextLabel: string | null, contextTitle: string | null, contextDescription: string | null, documentsLinkText: string | null, caseLinkText: string | null, featuredLabel: string | null, featuredTitle: string | null, featuredDescription: string | null, featuredFormatLabel: string | null, featuredStatusLabel: string | null, featuredButtonText: string | null, relatedLabel: string | null, relatedTitle: string | null, relatedDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, featuredDocument: { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null, sections: Array<{ __typename: 'DownloadsSections', key: string | null, title: string | null, description: string | null, documents: Array<{ __typename: 'DownloadsSectionsDocuments', key: string | null, title: string | null, description: string | null, buttonText: string | null, documentReference: { __typename: 'CaseDocuments', slug: string | null, title: string | null, description: string | null, category: string | null, date: string | null, file: string | null, id: string, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } | null> | null, relatedCards: Array<{ __typename: 'DownloadsRelatedCards', key: string | null, label: string | null, title: string | null, description: string | null, buttonText: string | null } | null> | null } | null } | null> | null } };
 
 export type PhotosQueryVariables = Exact<{
   relativePath: string;
@@ -5446,6 +5684,25 @@ export type UpdatesPageConnectionQueryVariables = Exact<{
 
 
 export type UpdatesPageConnectionQuery = { updatesPageConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'UpdatesPage', id: string, pageTitle: string | null, pageDescription: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, caseProgress: { __typename: 'UpdatesPageCaseProgress', badgeText: string | null, title: string | null, description: string | null, timeline: Array<{ __typename: 'UpdatesPageCaseProgressTimeline', number: string | null, title: string | null } | null> | null, statistics: Array<{ __typename: 'UpdatesPageCaseProgressStatistics', value: string | null, label: string | null } | null> | null } | null, relatedResources: Array<{ __typename: 'UpdatesPageRelatedResources', label: string | null, title: string | null, description: string | null, buttonText: string | null, route: string | null } | null> | null, futureUpdates: { __typename: 'UpdatesPageFutureUpdates', badgeText: string | null, title: string | null, description: string | null, cards: Array<{ __typename: 'UpdatesPageFutureUpdatesCards', type: string | null, title: string | null, description: string | null, buttonText: string | null, route: string | null, external: boolean | null } | null> | null } | null } | null } | null> | null } };
+
+export type SiteSettingsQueryVariables = Exact<{
+  relativePath: string;
+}>;
+
+
+export type SiteSettingsQuery = { siteSettings: { __typename: 'SiteSettings', id: string, canonicalUrl: string | null, donationUrl: string | null, petitionUrl: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, socialLinks: Array<{ __typename: 'SiteSettingsSocialLinks', platform: string | null, url: string | null } | null> | null } };
+
+export type SiteSettingsConnectionQueryVariables = Exact<{
+  before?: string | null | undefined;
+  after?: string | null | undefined;
+  first?: number | null | undefined;
+  last?: number | null | undefined;
+  sort?: string | null | undefined;
+  filter?: SiteSettingsFilter | null | undefined;
+}>;
+
+
+export type SiteSettingsConnectionQuery = { siteSettingsConnection: { totalCount: number, pageInfo: { hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges: Array<{ cursor: string, node: { __typename: 'SiteSettings', id: string, canonicalUrl: string | null, donationUrl: string | null, petitionUrl: string | null, _sys: { filename: string, basename: string, hasReferences: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, socialLinks: Array<{ __typename: 'SiteSettingsSocialLinks', platform: string | null, url: string | null } | null> | null } | null } | null> | null } };
 
 export type NavbarQueryVariables = Exact<{
   relativePath: string;
@@ -5857,6 +6114,17 @@ export const OurStoryPartsFragmentDoc = gql`
   closingPhotosText
 }
     `;
+export const CaseDocumentsPartsFragmentDoc = gql`
+    fragment CaseDocumentsParts on CaseDocuments {
+  __typename
+  slug
+  title
+  description
+  category
+  date
+  file
+}
+    `;
 export const DocumentsPartsFragmentDoc = gql`
     fragment DocumentsParts on Documents {
   __typename
@@ -5894,6 +6162,29 @@ export const DownloadsPartsFragmentDoc = gql`
   featuredFormatLabel
   featuredStatusLabel
   featuredButtonText
+  featuredDocument {
+    ... on CaseDocuments {
+      __typename
+      slug
+      title
+      description
+      category
+      date
+      file
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
   sections {
     __typename
     key
@@ -5905,6 +6196,29 @@ export const DownloadsPartsFragmentDoc = gql`
       title
       description
       buttonText
+      documentReference {
+        ... on CaseDocuments {
+          __typename
+          slug
+          title
+          description
+          category
+          date
+          file
+        }
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+      }
     }
   }
   relatedLabel
@@ -6201,6 +6515,19 @@ export const UpdatesPagePartsFragmentDoc = gql`
       route
       external
     }
+  }
+}
+    `;
+export const SiteSettingsPartsFragmentDoc = gql`
+    fragment SiteSettingsParts on SiteSettings {
+  __typename
+  canonicalUrl
+  donationUrl
+  petitionUrl
+  socialLinks {
+    __typename
+    platform
+    url
   }
 }
     `;
@@ -7238,6 +7565,63 @@ export const OurStoryConnectionDocument = gql`
   }
 }
     ${OurStoryPartsFragmentDoc}`;
+export const CaseDocumentsDocument = gql`
+    query caseDocuments($relativePath: String!) {
+  caseDocuments(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...CaseDocumentsParts
+  }
+}
+    ${CaseDocumentsPartsFragmentDoc}`;
+export const CaseDocumentsConnectionDocument = gql`
+    query caseDocumentsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: CaseDocumentsFilter) {
+  caseDocumentsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...CaseDocumentsParts
+      }
+    }
+  }
+}
+    ${CaseDocumentsPartsFragmentDoc}`;
 export const DocumentsDocument = gql`
     query documents($relativePath: String!) {
   documents(relativePath: $relativePath) {
@@ -7751,6 +8135,63 @@ export const UpdatesPageConnectionDocument = gql`
   }
 }
     ${UpdatesPagePartsFragmentDoc}`;
+export const SiteSettingsDocument = gql`
+    query siteSettings($relativePath: String!) {
+  siteSettings(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SiteSettingsParts
+  }
+}
+    ${SiteSettingsPartsFragmentDoc}`;
+export const SiteSettingsConnectionDocument = gql`
+    query siteSettingsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiteSettingsFilter) {
+  siteSettingsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SiteSettingsParts
+      }
+    }
+  }
+}
+    ${SiteSettingsPartsFragmentDoc}`;
 export const NavbarDocument = gql`
     query navbar($relativePath: String!) {
   navbar(relativePath: $relativePath) {
@@ -8027,6 +8468,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     ourStoryConnection(variables?: OurStoryConnectionQueryVariables, options?: C): Promise<{data: OurStoryConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: OurStoryConnectionQueryVariables, query: string}> {
         return requester<{data: OurStoryConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: OurStoryConnectionQueryVariables, query: string}, OurStoryConnectionQueryVariables>(OurStoryConnectionDocument, variables, options);
       },
+    caseDocuments(variables: CaseDocumentsQueryVariables, options?: C): Promise<{data: CaseDocumentsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CaseDocumentsQueryVariables, query: string}> {
+        return requester<{data: CaseDocumentsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CaseDocumentsQueryVariables, query: string}, CaseDocumentsQueryVariables>(CaseDocumentsDocument, variables, options);
+      },
+    caseDocumentsConnection(variables?: CaseDocumentsConnectionQueryVariables, options?: C): Promise<{data: CaseDocumentsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CaseDocumentsConnectionQueryVariables, query: string}> {
+        return requester<{data: CaseDocumentsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CaseDocumentsConnectionQueryVariables, query: string}, CaseDocumentsConnectionQueryVariables>(CaseDocumentsConnectionDocument, variables, options);
+      },
     documents(variables: DocumentsQueryVariables, options?: C): Promise<{data: DocumentsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DocumentsQueryVariables, query: string}> {
         return requester<{data: DocumentsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DocumentsQueryVariables, query: string}, DocumentsQueryVariables>(DocumentsDocument, variables, options);
       },
@@ -8080,6 +8527,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     updatesPageConnection(variables?: UpdatesPageConnectionQueryVariables, options?: C): Promise<{data: UpdatesPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UpdatesPageConnectionQueryVariables, query: string}> {
         return requester<{data: UpdatesPageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: UpdatesPageConnectionQueryVariables, query: string}, UpdatesPageConnectionQueryVariables>(UpdatesPageConnectionDocument, variables, options);
+      },
+    siteSettings(variables: SiteSettingsQueryVariables, options?: C): Promise<{data: SiteSettingsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteSettingsQueryVariables, query: string}> {
+        return requester<{data: SiteSettingsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteSettingsQueryVariables, query: string}, SiteSettingsQueryVariables>(SiteSettingsDocument, variables, options);
+      },
+    siteSettingsConnection(variables?: SiteSettingsConnectionQueryVariables, options?: C): Promise<{data: SiteSettingsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteSettingsConnectionQueryVariables, query: string}> {
+        return requester<{data: SiteSettingsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SiteSettingsConnectionQueryVariables, query: string}, SiteSettingsConnectionQueryVariables>(SiteSettingsConnectionDocument, variables, options);
       },
     navbar(variables: NavbarQueryVariables, options?: C): Promise<{data: NavbarQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: NavbarQueryVariables, query: string}> {
         return requester<{data: NavbarQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: NavbarQueryVariables, query: string}, NavbarQueryVariables>(NavbarDocument, variables, options);

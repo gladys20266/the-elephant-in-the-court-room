@@ -5,6 +5,7 @@ interface DownloadCardProps {
   description: string
   buttonText: string
   icon: LucideIcon
+  href?: string
   dataTinaFieldTitle?: string
   dataTinaFieldDescription?: string
   dataTinaFieldButtonText?: string
@@ -15,6 +16,7 @@ export default function DownloadCard({
   description,
   buttonText,
   icon: Icon,
+  href,
   dataTinaFieldTitle,
   dataTinaFieldDescription,
   dataTinaFieldButtonText,
@@ -66,27 +68,58 @@ export default function DownloadCard({
         {description}
       </p>
 
-      <div
-        className="
-          inline-flex
-          w-full
-          cursor-not-allowed
-          items-center
-          justify-center
-          rounded-xl
-          border
-          border-gray-300
-          bg-gray-100
-          py-3
-          font-bold
-          text-gray-500
-        "
-        aria-label={`${title} ${buttonText.toLowerCase()}`}
-      >
-        <span data-tina-field={dataTinaFieldButtonText}>
-          {buttonText}
-        </span>
-      </div>
+      {href ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex
+            w-full
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-gray-300
+            bg-gray-100
+            py-3
+            font-bold
+            text-gray-700
+            transition
+            duration-200
+            hover:border-purple
+            hover:bg-purple
+            hover:text-white
+          "
+          aria-label={`${title} ${buttonText.toLowerCase()}`}
+        >
+          <span data-tina-field={dataTinaFieldButtonText}>
+            {buttonText}
+          </span>
+        </a>
+      ) : (
+        <div
+          className="
+            inline-flex
+            w-full
+            cursor-not-allowed
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-gray-300
+            bg-gray-100
+            py-3
+            font-bold
+            text-gray-500
+          "
+          aria-label={`${title} ${buttonText.toLowerCase()}`}
+        >
+          <span data-tina-field={dataTinaFieldButtonText}>
+            {buttonText}
+          </span>
+        </div>
+      )}
     </article>
   )
 }

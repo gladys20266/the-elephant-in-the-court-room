@@ -75,8 +75,8 @@ export default function Documents() {
 function DocumentsVisual({
   response,
   search,
-  setSearch,
   category,
+  setSearch,
   setCategory,
   sectionRef,
 }: {

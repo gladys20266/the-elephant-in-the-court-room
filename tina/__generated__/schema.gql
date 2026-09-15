@@ -88,6 +88,8 @@ type Query {
   finalCTAConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: FinalCTAFilter): FinalCTAConnection!
   ourStory(relativePath: String): OurStory!
   ourStoryConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: OurStoryFilter): OurStoryConnection!
+  caseDocuments(relativePath: String): CaseDocuments!
+  caseDocumentsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CaseDocumentsFilter): CaseDocumentsConnection!
   documents(relativePath: String): Documents!
   documentsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentsFilter): DocumentsConnection!
   downloads(relativePath: String): Downloads!
@@ -106,6 +108,8 @@ type Query {
   caseProgressConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CaseProgressFilter): CaseProgressConnection!
   updatesPage(relativePath: String): UpdatesPage!
   updatesPageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: UpdatesPageFilter): UpdatesPageConnection!
+  siteSettings(relativePath: String): SiteSettings!
+  siteSettingsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: SiteSettingsFilter): SiteSettingsConnection!
   navbar(relativePath: String): Navbar!
   navbarConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: NavbarFilter): NavbarConnection!
   footer(relativePath: String): Footer!
@@ -132,6 +136,7 @@ input DocumentFilter {
   contactSection: ContactSectionFilter
   finalCTA: FinalCTAFilter
   ourStory: OurStoryFilter
+  caseDocuments: CaseDocumentsFilter
   documents: DocumentsFilter
   downloads: DownloadsFilter
   photos: PhotosFilter
@@ -141,6 +146,7 @@ input DocumentFilter {
   contact: ContactFilter
   caseProgress: CaseProgressFilter
   updatesPage: UpdatesPageFilter
+  siteSettings: SiteSettingsFilter
   navbar: NavbarFilter
   footer: FooterFilter
   updates: UpdatesFilter
@@ -169,7 +175,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Hero | StorySnapshot | CasePage | CaseDetails | EvidenceGallery | Press | Videos | VideosPreview | PhotosPreview | DocumentsPreview | DownloadsPreview | ImpactProgress | UpdatesPreview | SupportersPreview | ContactSection | FinalCTA | OurStory | Documents | Downloads | Photos | Privacy | Terms | Disclaimer | Contact | CaseProgress | UpdatesPage | Navbar | Footer | Updates | Folder
+union DocumentNode = Hero | StorySnapshot | CasePage | CaseDetails | EvidenceGallery | Press | Videos | VideosPreview | PhotosPreview | DocumentsPreview | DownloadsPreview | ImpactProgress | UpdatesPreview | SupportersPreview | ContactSection | FinalCTA | OurStory | CaseDocuments | Documents | Downloads | Photos | Privacy | Terms | Disclaimer | Contact | CaseProgress | UpdatesPage | SiteSettings | Navbar | Footer | Updates | Folder
 
 type Hero implements Node & Document {
   title: String
@@ -1119,6 +1125,38 @@ type OurStoryConnection implements Connection {
   edges: [OurStoryConnectionEdges]
 }
 
+type CaseDocuments implements Node & Document {
+  slug: String
+  title: String
+  description: String
+  category: String
+  date: String
+  file: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input CaseDocumentsFilter {
+  slug: StringFilter
+  title: StringFilter
+  description: StringFilter
+  category: StringFilter
+  date: StringFilter
+  file: ImageFilter
+}
+
+type CaseDocumentsConnectionEdges {
+  cursor: String!
+  node: CaseDocuments
+}
+
+type CaseDocumentsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [CaseDocumentsConnectionEdges]
+}
+
 type DocumentsDocuments {
   slug: String
   title: String
@@ -1173,11 +1211,16 @@ type DocumentsConnection implements Connection {
   edges: [DocumentsConnectionEdges]
 }
 
+union DownloadsFeaturedDocument = CaseDocuments
+
+union DownloadsSectionsDocumentsDocumentReference = CaseDocuments
+
 type DownloadsSectionsDocuments {
   key: String
   title: String
   description: String
   buttonText: String
+  documentReference: DownloadsSectionsDocumentsDocumentReference
 }
 
 type DownloadsSections {
@@ -1209,6 +1252,7 @@ type Downloads implements Node & Document {
   featuredFormatLabel: String
   featuredStatusLabel: String
   featuredButtonText: String
+  featuredDocument: DownloadsFeaturedDocument
   sections: [DownloadsSections]
   relatedLabel: String
   relatedTitle: String
@@ -1219,11 +1263,20 @@ type Downloads implements Node & Document {
   _values: JSON!
 }
 
+input DownloadsFeaturedDocumentFilter {
+  caseDocuments: CaseDocumentsFilter
+}
+
+input DownloadsSectionsDocumentsDocumentReferenceFilter {
+  caseDocuments: CaseDocumentsFilter
+}
+
 input DownloadsSectionsDocumentsFilter {
   key: StringFilter
   title: StringFilter
   description: StringFilter
   buttonText: StringFilter
+  documentReference: DownloadsSectionsDocumentsDocumentReferenceFilter
 }
 
 input DownloadsSectionsFilter {
@@ -1255,6 +1308,7 @@ input DownloadsFilter {
   featuredFormatLabel: StringFilter
   featuredStatusLabel: StringFilter
   featuredButtonText: StringFilter
+  featuredDocument: DownloadsFeaturedDocumentFilter
   sections: DownloadsSectionsFilter
   relatedLabel: StringFilter
   relatedTitle: StringFilter
@@ -1980,6 +2034,44 @@ type UpdatesPageConnection implements Connection {
   edges: [UpdatesPageConnectionEdges]
 }
 
+type SiteSettingsSocialLinks {
+  platform: String
+  url: String
+}
+
+type SiteSettings implements Node & Document {
+  canonicalUrl: String
+  donationUrl: String
+  petitionUrl: String
+  socialLinks: [SiteSettingsSocialLinks]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input SiteSettingsSocialLinksFilter {
+  platform: StringFilter
+  url: StringFilter
+}
+
+input SiteSettingsFilter {
+  canonicalUrl: StringFilter
+  donationUrl: StringFilter
+  petitionUrl: StringFilter
+  socialLinks: SiteSettingsSocialLinksFilter
+}
+
+type SiteSettingsConnectionEdges {
+  cursor: String!
+  node: SiteSettings
+}
+
+type SiteSettingsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [SiteSettingsConnectionEdges]
+}
+
 type NavbarNavigation {
   label: String
   route: String
@@ -2194,6 +2286,8 @@ type Mutation {
   createFinalCTA(relativePath: String!, params: FinalCTAMutation!): FinalCTA!
   updateOurStory(relativePath: String!, params: OurStoryMutation!): OurStory!
   createOurStory(relativePath: String!, params: OurStoryMutation!): OurStory!
+  updateCaseDocuments(relativePath: String!, params: CaseDocumentsMutation!): CaseDocuments!
+  createCaseDocuments(relativePath: String!, params: CaseDocumentsMutation!): CaseDocuments!
   updateDocuments(relativePath: String!, params: DocumentsMutation!): Documents!
   createDocuments(relativePath: String!, params: DocumentsMutation!): Documents!
   updateDownloads(relativePath: String!, params: DownloadsMutation!): Downloads!
@@ -2212,6 +2306,8 @@ type Mutation {
   createCaseProgress(relativePath: String!, params: CaseProgressMutation!): CaseProgress!
   updateUpdatesPage(relativePath: String!, params: UpdatesPageMutation!): UpdatesPage!
   createUpdatesPage(relativePath: String!, params: UpdatesPageMutation!): UpdatesPage!
+  updateSiteSettings(relativePath: String!, params: SiteSettingsMutation!): SiteSettings!
+  createSiteSettings(relativePath: String!, params: SiteSettingsMutation!): SiteSettings!
   updateNavbar(relativePath: String!, params: NavbarMutation!): Navbar!
   createNavbar(relativePath: String!, params: NavbarMutation!): Navbar!
   updateFooter(relativePath: String!, params: FooterMutation!): Footer!
@@ -2238,6 +2334,7 @@ input DocumentUpdateMutation {
   contactSection: ContactSectionMutation
   finalCTA: FinalCTAMutation
   ourStory: OurStoryMutation
+  caseDocuments: CaseDocumentsMutation
   documents: DocumentsMutation
   downloads: DownloadsMutation
   photos: PhotosMutation
@@ -2247,6 +2344,7 @@ input DocumentUpdateMutation {
   contact: ContactMutation
   caseProgress: CaseProgressMutation
   updatesPage: UpdatesPageMutation
+  siteSettings: SiteSettingsMutation
   navbar: NavbarMutation
   footer: FooterMutation
   updates: UpdatesMutation
@@ -2271,6 +2369,7 @@ input DocumentMutation {
   contactSection: ContactSectionMutation
   finalCTA: FinalCTAMutation
   ourStory: OurStoryMutation
+  caseDocuments: CaseDocumentsMutation
   documents: DocumentsMutation
   downloads: DownloadsMutation
   photos: PhotosMutation
@@ -2280,6 +2379,7 @@ input DocumentMutation {
   contact: ContactMutation
   caseProgress: CaseProgressMutation
   updatesPage: UpdatesPageMutation
+  siteSettings: SiteSettingsMutation
   navbar: NavbarMutation
   footer: FooterMutation
   updates: UpdatesMutation
@@ -2628,6 +2728,15 @@ input OurStoryMutation {
   closingPhotosText: String
 }
 
+input CaseDocumentsMutation {
+  slug: String
+  title: String
+  description: String
+  category: String
+  date: String
+  file: String
+}
+
 input DocumentsDocumentsMutation {
   slug: String
   title: String
@@ -2653,6 +2762,7 @@ input DownloadsSectionsDocumentsMutation {
   title: String
   description: String
   buttonText: String
+  documentReference: String
 }
 
 input DownloadsSectionsMutation {
@@ -2684,6 +2794,7 @@ input DownloadsMutation {
   featuredFormatLabel: String
   featuredStatusLabel: String
   featuredButtonText: String
+  featuredDocument: String
   sections: [DownloadsSectionsMutation]
   relatedLabel: String
   relatedTitle: String
@@ -2991,6 +3102,18 @@ input UpdatesPageMutation {
   caseProgress: UpdatesPageCaseProgressMutation
   relatedResources: [UpdatesPageRelatedResourcesMutation]
   futureUpdates: UpdatesPageFutureUpdatesMutation
+}
+
+input SiteSettingsSocialLinksMutation {
+  platform: String
+  url: String
+}
+
+input SiteSettingsMutation {
+  canonicalUrl: String
+  donationUrl: String
+  petitionUrl: String
+  socialLinks: [SiteSettingsSocialLinksMutation]
 }
 
 input NavbarNavigationMutation {

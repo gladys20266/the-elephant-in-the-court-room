@@ -6,6 +6,7 @@ interface DownloadItem {
   description: string
   buttonText: string
   icon: LucideIcon
+  href?: string
   dataTinaFieldTitle?: string
   dataTinaFieldDescription?: string
   dataTinaFieldButtonText?: string
@@ -72,6 +73,7 @@ export default function DownloadSection({
               description={document.description}
               buttonText={document.buttonText}
               icon={document.icon}
+              href={document.href}
               dataTinaFieldTitle={document.dataTinaFieldTitle}
               dataTinaFieldDescription={
                 document.dataTinaFieldDescription

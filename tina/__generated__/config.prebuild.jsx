@@ -59,7 +59,7 @@ var config_default = defineConfig({
       mediaRoot: "",
       static: false
     },
-    accept: ["image/*", "video/mp4", "video/webm"]
+    accept: ["image/*", "video/mp4", "video/webm", "application/pdf"]
   },
   schema: {
     collections: [
@@ -1680,6 +1680,58 @@ var config_default = defineConfig({
         ]
       },
       {
+        name: "caseDocuments",
+        label: "Case Document Records",
+        path: "src/content/case-documents",
+        format: "json",
+        match: {
+          include: "*"
+        },
+        ui: {
+          allowedActions: {
+            create: true,
+            delete: true,
+            createNestedFolder: false
+          }
+        },
+        fields: [
+          {
+            type: "string",
+            name: "slug",
+            label: "Document Slug"
+          },
+          {
+            type: "string",
+            name: "title",
+            label: "Document Title"
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            ui: {
+              component: "textarea"
+            }
+          },
+          {
+            type: "string",
+            name: "category",
+            label: "Category"
+          },
+          {
+            type: "string",
+            name: "date",
+            label: "Date"
+          },
+          {
+            type: "image",
+            name: "file",
+            label: "Document File",
+            accept: ["document"]
+          }
+        ]
+      },
+      {
         name: "documents",
         label: "Documents",
         path: "src/content",
@@ -1784,7 +1836,6 @@ var config_default = defineConfig({
           include: "downloads"
         },
         ui: {
-          router: () => "/downloads",
           allowedActions: {
             create: false,
             delete: false,
@@ -1829,6 +1880,7 @@ var config_default = defineConfig({
             name: "caseLinkText",
             label: "Case Link Text"
           },
+          // Featured Resource
           {
             type: "string",
             name: "featuredLabel",
@@ -1860,6 +1912,13 @@ var config_default = defineConfig({
             name: "featuredButtonText",
             label: "Featured Button Text"
           },
+          {
+            type: "reference",
+            name: "featuredDocument",
+            label: "Featured Document",
+            collections: ["caseDocuments"]
+          },
+          // Download Sections
           {
             type: "object",
             name: "sections",
@@ -1910,11 +1969,18 @@ var config_default = defineConfig({
                     type: "string",
                     name: "buttonText",
                     label: "Button Text"
+                  },
+                  {
+                    type: "reference",
+                    name: "documentReference",
+                    label: "Document Record",
+                    collections: ["caseDocuments"]
                   }
                 ]
               }
             ]
           },
+          // Related Resources
           {
             type: "string",
             name: "relatedLabel",
@@ -3123,6 +3189,65 @@ var config_default = defineConfig({
                     label: "External Link"
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "siteSettings",
+        label: "Site Settings",
+        path: "src/content",
+        format: "json",
+        match: {
+          include: "site-settings"
+        },
+        ui: {
+          global: true,
+          allowedActions: {
+            create: false,
+            delete: false,
+            createNestedFolder: false
+          }
+        },
+        fields: [
+          {
+            type: "string",
+            name: "canonicalUrl",
+            label: "Canonical Website URL"
+          },
+          {
+            type: "string",
+            name: "donationUrl",
+            label: "GoFundMe URL"
+          },
+          {
+            type: "string",
+            name: "petitionUrl",
+            label: "Petition URL"
+          },
+          {
+            type: "object",
+            name: "socialLinks",
+            label: "Social Media Links",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "platform",
+                label: "Platform",
+                options: [
+                  "Facebook",
+                  "Instagram",
+                  "TikTok",
+                  "YouTube",
+                  "Twitter"
+                ]
+              },
+              {
+                type: "string",
+                name: "url",
+                label: "URL"
               }
             ]
           }

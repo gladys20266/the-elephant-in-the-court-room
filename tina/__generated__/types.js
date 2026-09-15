@@ -358,6 +358,17 @@ export const OurStoryPartsFragmentDoc = gql`
   closingPhotosText
 }
     `;
+export const CaseDocumentsPartsFragmentDoc = gql`
+    fragment CaseDocumentsParts on CaseDocuments {
+  __typename
+  slug
+  title
+  description
+  category
+  date
+  file
+}
+    `;
 export const DocumentsPartsFragmentDoc = gql`
     fragment DocumentsParts on Documents {
   __typename
@@ -395,6 +406,29 @@ export const DownloadsPartsFragmentDoc = gql`
   featuredFormatLabel
   featuredStatusLabel
   featuredButtonText
+  featuredDocument {
+    ... on CaseDocuments {
+      __typename
+      slug
+      title
+      description
+      category
+      date
+      file
+    }
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+  }
   sections {
     __typename
     key
@@ -406,6 +440,29 @@ export const DownloadsPartsFragmentDoc = gql`
       title
       description
       buttonText
+      documentReference {
+        ... on CaseDocuments {
+          __typename
+          slug
+          title
+          description
+          category
+          date
+          file
+        }
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+      }
     }
   }
   relatedLabel
@@ -702,6 +759,19 @@ export const UpdatesPagePartsFragmentDoc = gql`
       route
       external
     }
+  }
+}
+    `;
+export const SiteSettingsPartsFragmentDoc = gql`
+    fragment SiteSettingsParts on SiteSettings {
+  __typename
+  canonicalUrl
+  donationUrl
+  petitionUrl
+  socialLinks {
+    __typename
+    platform
+    url
   }
 }
     `;
@@ -1739,6 +1809,63 @@ export const OurStoryConnectionDocument = gql`
   }
 }
     ${OurStoryPartsFragmentDoc}`;
+export const CaseDocumentsDocument = gql`
+    query caseDocuments($relativePath: String!) {
+  caseDocuments(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...CaseDocumentsParts
+  }
+}
+    ${CaseDocumentsPartsFragmentDoc}`;
+export const CaseDocumentsConnectionDocument = gql`
+    query caseDocumentsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: CaseDocumentsFilter) {
+  caseDocumentsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...CaseDocumentsParts
+      }
+    }
+  }
+}
+    ${CaseDocumentsPartsFragmentDoc}`;
 export const DocumentsDocument = gql`
     query documents($relativePath: String!) {
   documents(relativePath: $relativePath) {
@@ -2252,6 +2379,63 @@ export const UpdatesPageConnectionDocument = gql`
   }
 }
     ${UpdatesPagePartsFragmentDoc}`;
+export const SiteSettingsDocument = gql`
+    query siteSettings($relativePath: String!) {
+  siteSettings(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SiteSettingsParts
+  }
+}
+    ${SiteSettingsPartsFragmentDoc}`;
+export const SiteSettingsConnectionDocument = gql`
+    query siteSettingsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SiteSettingsFilter) {
+  siteSettingsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SiteSettingsParts
+      }
+    }
+  }
+}
+    ${SiteSettingsPartsFragmentDoc}`;
 export const NavbarDocument = gql`
     query navbar($relativePath: String!) {
   navbar(relativePath: $relativePath) {
@@ -2527,6 +2711,12 @@ export function getSdk(requester) {
     ourStoryConnection(variables, options) {
       return requester(OurStoryConnectionDocument, variables, options);
     },
+    caseDocuments(variables, options) {
+      return requester(CaseDocumentsDocument, variables, options);
+    },
+    caseDocumentsConnection(variables, options) {
+      return requester(CaseDocumentsConnectionDocument, variables, options);
+    },
     documents(variables, options) {
       return requester(DocumentsDocument, variables, options);
     },
@@ -2580,6 +2770,12 @@ export function getSdk(requester) {
     },
     updatesPageConnection(variables, options) {
       return requester(UpdatesPageConnectionDocument, variables, options);
+    },
+    siteSettings(variables, options) {
+      return requester(SiteSettingsDocument, variables, options);
+    },
+    siteSettingsConnection(variables, options) {
+      return requester(SiteSettingsConnectionDocument, variables, options);
     },
     navbar(variables, options) {
       return requester(NavbarDocument, variables, options);

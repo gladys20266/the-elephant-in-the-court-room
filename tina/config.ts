@@ -24,7 +24,7 @@ export default defineConfig({
       mediaRoot: "",
       static: false,
     },
-    accept: ["image/*", "video/mp4", "video/webm"],
+    accept: ["image/*", "video/mp4", "video/webm", "application/pdf"],
   },
 
   schema: {
@@ -1663,6 +1663,59 @@ export default defineConfig({
       },
 
       {
+        name: "caseDocuments",
+        label: "Case Document Records",
+        path: "src/content/case-documents",
+        format: "json",
+        match: {
+          include: "*",
+        },
+        ui: {
+          allowedActions: {
+            create: true,
+            delete: true,
+            createNestedFolder: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "slug",
+            label: "Document Slug",
+          },
+          {
+            type: "string",
+            name: "title",
+            label: "Document Title",
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "string",
+            name: "category",
+            label: "Category",
+          },
+          {
+            type: "string",
+            name: "date",
+            label: "Date",
+          },
+          {
+            type: "image",
+            name: "file",
+            label: "Document File",
+            accept: ["document"],
+          },
+        ],
+      },
+
+      {
         name: "documents",
         label: "Documents",
         path: "src/content",
@@ -1760,198 +1813,215 @@ export default defineConfig({
       },
 
       {
-        name: "downloads",
-        label: "Downloads",
-        path: "src/content",
-        format: "json",
-        match: {
-          include: "downloads",
+  name: "downloads",
+  label: "Downloads",
+  path: "src/content",
+  format: "json",
+  match: {
+    include: "downloads",
+  },
+  ui: {
+  allowedActions: {
+    create: false,
+    delete: false,
+    createNestedFolder: false,
+  },
+},
+  fields: [
+    {
+      type: "string",
+      name: "heroTitle",
+      label: "Hero Title",
+    },
+    {
+      type: "string",
+      name: "heroSubtitle",
+      label: "Hero Subtitle",
+      ui: { component: "textarea" },
+    },
+    {
+      type: "string",
+      name: "contextLabel",
+      label: "Context Label",
+    },
+    {
+      type: "string",
+      name: "contextTitle",
+      label: "Context Heading",
+    },
+    {
+      type: "string",
+      name: "contextDescription",
+      label: "Context Description",
+      ui: { component: "textarea" },
+    },
+    {
+      type: "string",
+      name: "documentsLinkText",
+      label: "Documents Link Text",
+    },
+    {
+      type: "string",
+      name: "caseLinkText",
+      label: "Case Link Text",
+    },
+
+    // Featured Resource
+    {
+      type: "string",
+      name: "featuredLabel",
+      label: "Featured Resource Label",
+    },
+    {
+      type: "string",
+      name: "featuredTitle",
+      label: "Featured Resource Title",
+    },
+    {
+      type: "string",
+      name: "featuredDescription",
+      label: "Featured Resource Description",
+      ui: { component: "textarea" },
+    },
+    {
+      type: "string",
+      name: "featuredFormatLabel",
+      label: "Featured Format Label",
+    },
+    {
+      type: "string",
+      name: "featuredStatusLabel",
+      label: "Featured Status Label",
+    },
+    {
+      type: "string",
+      name: "featuredButtonText",
+      label: "Featured Button Text",
+    },
+    {
+      type: "reference",
+      name: "featuredDocument",
+      label: "Featured Document",
+      collections: ["caseDocuments"],
+    },
+
+    // Download Sections
+    {
+      type: "object",
+      name: "sections",
+      label: "Download Sections",
+      list: true,
+      fields: [
+        {
+          type: "string",
+          name: "key",
+          label: "Section Key",
+          ui: { component: "hidden" },
         },
-        ui: {
-          router: () => "/downloads",
-          allowedActions: {
-            create: false,
-            delete: false,
-            createNestedFolder: false,
-          },
+        {
+          type: "string",
+          name: "title",
+          label: "Section Title",
         },
-        fields: [
-          {
-            type: "string",
-            name: "heroTitle",
-            label: "Hero Title",
-          },
-          {
-            type: "string",
-            name: "heroSubtitle",
-            label: "Hero Subtitle",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "string",
-            name: "contextLabel",
-            label: "Context Label",
-          },
-          {
-            type: "string",
-            name: "contextTitle",
-            label: "Context Heading",
-          },
-          {
-            type: "string",
-            name: "contextDescription",
-            label: "Context Description",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "string",
-            name: "documentsLinkText",
-            label: "Documents Link Text",
-          },
-          {
-            type: "string",
-            name: "caseLinkText",
-            label: "Case Link Text",
-          },
-          {
-            type: "string",
-            name: "featuredLabel",
-            label: "Featured Resource Label",
-          },
-          {
-            type: "string",
-            name: "featuredTitle",
-            label: "Featured Resource Title",
-          },
-          {
-            type: "string",
-            name: "featuredDescription",
-            label: "Featured Resource Description",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "string",
-            name: "featuredFormatLabel",
-            label: "Featured Format Label",
-          },
-          {
-            type: "string",
-            name: "featuredStatusLabel",
-            label: "Featured Status Label",
-          },
-          {
-            type: "string",
-            name: "featuredButtonText",
-            label: "Featured Button Text",
-          },
-          {
-            type: "object",
-            name: "sections",
-            label: "Download Sections",
-            list: true,
-            fields: [
-              {
-                type: "string",
-                name: "key",
-                label: "Section Key",
-                ui: { component: "hidden" },
-              },
-              {
-                type: "string",
-                name: "title",
-                label: "Section Title",
-              },
-              {
-                type: "string",
-                name: "description",
-                label: "Section Description",
-                ui: { component: "textarea" },
-              },
-              {
-                type: "object",
-                name: "documents",
-                label: "Download Items",
-                list: true,
-                fields: [
-                  {
-                    type: "string",
-                    name: "key",
-                    label: "Item Key",
-                    ui: { component: "hidden" },
-                  },
-                  {
-                    type: "string",
-                    name: "title",
-                    label: "Download Title",
-                  },
-                  {
-                    type: "string",
-                    name: "description",
-                    label: "Description",
-                    ui: { component: "textarea" },
-                  },
-                  {
-                    type: "string",
-                    name: "buttonText",
-                    label: "Button Text",
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            type: "string",
-            name: "relatedLabel",
-            label: "Related Resources Label",
-          },
-          {
-            type: "string",
-            name: "relatedTitle",
-            label: "Related Resources Heading",
-          },
-          {
-            type: "string",
-            name: "relatedDescription",
-            label: "Related Resources Description",
-            ui: { component: "textarea" },
-          },
-          {
-            type: "object",
-            name: "relatedCards",
-            label: "Related Resource Cards",
-            list: true,
-            fields: [
-              {
-                type: "string",
-                name: "key",
-                label: "Card Key",
-                ui: { component: "hidden" },
-              },
-              {
-                type: "string",
-                name: "label",
-                label: "Card Label",
-              },
-              {
-                type: "string",
-                name: "title",
-                label: "Card Title",
-              },
-              {
-                type: "string",
-                name: "description",
-                label: "Card Description",
-                ui: { component: "textarea" },
-              },
-              {
-                type: "string",
-                name: "buttonText",
-                label: "Button Text",
-              },
-            ],
-          },
-        ],
-      },
+        {
+          type: "string",
+          name: "description",
+          label: "Section Description",
+          ui: { component: "textarea" },
+        },
+        {
+          type: "object",
+          name: "documents",
+          label: "Download Items",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              name: "key",
+              label: "Item Key",
+              ui: { component: "hidden" },
+            },
+            {
+              type: "string",
+              name: "title",
+              label: "Download Title",
+            },
+            {
+              type: "string",
+              name: "description",
+              label: "Description",
+              ui: { component: "textarea" },
+            },
+            {
+              type: "string",
+              name: "buttonText",
+              label: "Button Text",
+            },
+            {
+              type: "reference",
+              name: "documentReference",
+              label: "Document Record",
+              collections: ["caseDocuments"],
+            },
+          ],
+        },
+      ],
+    },
+
+    // Related Resources
+    {
+      type: "string",
+      name: "relatedLabel",
+      label: "Related Resources Label",
+    },
+    {
+      type: "string",
+      name: "relatedTitle",
+      label: "Related Resources Heading",
+    },
+    {
+      type: "string",
+      name: "relatedDescription",
+      label: "Related Resources Description",
+      ui: { component: "textarea" },
+    },
+    {
+      type: "object",
+      name: "relatedCards",
+      label: "Related Resource Cards",
+      list: true,
+      fields: [
+        {
+          type: "string",
+          name: "key",
+          label: "Card Key",
+          ui: { component: "hidden" },
+        },
+        {
+          type: "string",
+          name: "label",
+          label: "Card Label",
+        },
+        {
+          type: "string",
+          name: "title",
+          label: "Card Title",
+        },
+        {
+          type: "string",
+          name: "description",
+          label: "Card Description",
+          ui: { component: "textarea" },
+        },
+        {
+          type: "string",
+          name: "buttonText",
+          label: "Button Text",
+        },
+      ],
+    },
+  ],
+},
 
       {
         name: "photos",
@@ -3124,6 +3194,65 @@ export default defineConfig({
     },
   ],
 },
+      {
+        name: "siteSettings",
+        label: "Site Settings",
+        path: "src/content",
+        format: "json",
+        match: {
+          include: "site-settings",
+        },
+        ui: {
+  global: true,
+  allowedActions: {
+    create: false,
+    delete: false,
+    createNestedFolder: false,
+  },
+},
+        fields: [
+          {
+            type: "string",
+            name: "canonicalUrl",
+            label: "Canonical Website URL",
+          },
+          {
+            type: "string",
+            name: "donationUrl",
+            label: "GoFundMe URL",
+          },
+          {
+            type: "string",
+            name: "petitionUrl",
+            label: "Petition URL",
+          },
+          {
+            type: "object",
+            name: "socialLinks",
+            label: "Social Media Links",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "platform",
+                label: "Platform",
+                options: [
+                  "Facebook",
+                  "Instagram",
+                  "TikTok",
+                  "YouTube",
+                  "Twitter",
+                ],
+              },
+              {
+                type: "string",
+                name: "url",
+                label: "URL",
+              },
+            ],
+          },
+        ],
+      },
 {
   name: "navbar",
   label: "Navbar",
