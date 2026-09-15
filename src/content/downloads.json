@@ -55,11 +55,12 @@
           "documentReference": "src/content/case-documents/lease-to-own-agreement.json"
         },
         {
-          "key": "supporting-agreements",
-          "title": "Supporting Agreements",
-          "description": "Additional agreements and related legal documents supporting the case. Downloadable copies will be published when available.",
-          "buttonText": "PDF COMING SOON"
-        },
+  "key": "supporting-agreements",
+  "title": "Supporting Agreements",
+  "description": "Additional agreements and related legal documents supporting the case. Downloadable copies will be published when available.",
+  "buttonText": "PDF COMING SOON",
+  "documentReference": "src/content/case-documents/supporting-agreements.json"
+},
         {
           "key": "contract-amendments",
           "title": "Contract Amendments",

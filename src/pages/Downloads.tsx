@@ -109,26 +109,33 @@ const routeMap: Record<string, string> = {
   photos: '/photos',
 }
 
-function getReferencedDocumentFile(value: unknown): string | undefined {
+function getReferencedDocumentField(
+  value: unknown,
+  field: 'title' | 'description' | 'file',
+): string | undefined {
   if (!value || typeof value !== 'object') {
     return undefined
   }
 
   const record = value as Record<string, unknown>
 
-  if (typeof record.file === 'string' && record.file.trim()) {
-    return record.file
+  if (typeof record[field] === 'string' && record[field].trim()) {
+    return record[field] as string
   }
 
   if (record.data && typeof record.data === 'object') {
     const data = record.data as Record<string, unknown>
 
-    if (typeof data.file === 'string' && data.file.trim()) {
-      return data.file
+    if (typeof data[field] === 'string' && data[field].trim()) {
+      return data[field] as string
     }
   }
 
   return undefined
+}
+
+function getReferencedDocumentFile(value: unknown): string | undefined {
+  return getReferencedDocumentField(value, 'file')
 }
 
 function normalizeDownloads(
@@ -194,18 +201,31 @@ function normalizeDownloads(
         title: section?.title ?? '',
         description: section?.description ?? '',
         documents:
-          section?.documents?.map((document) => ({
-            key: document?.key ?? '',
-            title: document?.title ?? '',
-            description: document?.description ?? '',
-            buttonText:
-              document?.buttonText ??
-              'PDF COMING SOON',
-            href: getReferencedDocumentFile(
+          section?.documents?.map((document) => {
+            const documentReference =
               (document as unknown as Record<string, unknown>)
-                ?.documentReference,
-            ),
-          })) ?? [],
+                ?.documentReference
+
+            return {
+              key: document?.key ?? '',
+              title:
+                getReferencedDocumentField(
+                  documentReference,
+                  'title',
+                ) ?? document?.title ?? '',
+              description:
+                getReferencedDocumentField(
+                  documentReference,
+                  'description',
+                ) ?? document?.description ?? '',
+              buttonText:
+                document?.buttonText ??
+                'PDF COMING SOON',
+              href: getReferencedDocumentFile(
+                documentReference,
+              ),
+            }
+          }) ?? [],
       })) ?? fallbackDownloads.sections,
 
     relatedLabel:
@@ -247,12 +267,27 @@ function DownloadsVisual({
   })
 
   const rawDownloads = tinaResult.data.downloads
-  const downloads = normalizeDownloads(rawDownloads)
+const downloads = normalizeDownloads(rawDownloads)
+
+  const featuredDocumentReference =
+    (rawDownloads as unknown as Record<string, unknown>)
+      ?.featuredDocument
 
   const featuredDocumentFile = getReferencedDocumentFile(
-    (rawDownloads as unknown as Record<string, unknown>)
-      ?.featuredDocument,
+    featuredDocumentReference,
   )
+
+  const featuredDocumentTitle =
+    getReferencedDocumentField(
+      featuredDocumentReference,
+      'title',
+    )
+
+  const featuredDocumentDescription =
+    getReferencedDocumentField(
+      featuredDocumentReference,
+      'description',
+    )
 
   return (
     <>
@@ -381,7 +416,7 @@ function DownloadsVisual({
                 'featuredTitle',
               )}
             >
-              {downloads.featuredTitle}
+              {featuredDocumentTitle ?? downloads.featuredTitle}
             </h2>
 
             <p
@@ -391,7 +426,8 @@ function DownloadsVisual({
                 'featuredDescription',
               )}
             >
-              {downloads.featuredDescription}
+              {featuredDocumentDescription ??
+                downloads.featuredDescription}
             </p>
 
             <div className="mt-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
