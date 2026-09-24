@@ -5,6 +5,7 @@ import logoUrl from '@/assets/logo.webp'
 import { SITE_NAME } from '@/lib/brand'
 import { client } from '../../tina/__generated__/client'
 import { tinaField, useTina } from 'tinacms/dist/react'
+import { safeExternalUrl } from '@/utils/safeUrl'
 
 type NavbarQueryResult = Awaited<ReturnType<typeof client.queries.navbar>>
 
@@ -304,7 +305,7 @@ function NavbarMarkup({
 
             {/* GoFundMe */}
             <a
-              href={donationButton.url}
+              href={safeExternalUrl(donationButton.url)}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-pale-lime text-charcoal rounded-md border border-forest px-3 xl:px-4 py-3 hover:bg-[#E0F0B0] hover:shadow-button-hover hover:-translate-y-0.5 transition-all duration-200"
@@ -450,7 +451,7 @@ function NavbarMarkup({
 
             {/* GoFundMe */}
             <a
-              href={donationButton.url}
+              href={safeExternalUrl(donationButton.url)}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-pale-lime text-charcoal rounded-md border border-forest px-7 py-4 hover:bg-[#E0F0B0] transition-colors duration-200"

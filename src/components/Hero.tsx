@@ -3,6 +3,7 @@ import { Share2, ExternalLink } from 'lucide-react'
 import { useTina, tinaField } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { SITE_NAME } from '@/lib/brand'
+import { safeExternalUrl } from '@/utils/safeUrl'
 
 type TinaFieldSource =
   | string
@@ -207,7 +208,7 @@ function HeroGlobalVisual({
         aria-label="Campaign actions"
       >
         <a
-          href={donationUrl}
+          href={safeExternalUrl(donationUrl)}
           aria-label="Support the legal campaign on GoFundMe"
           target="_blank"
           rel="noopener noreferrer"
@@ -468,7 +469,7 @@ function HeroCaseVisual({
         aria-label="Campaign actions"
       >
         <a
-          href={donationUrl}
+          href={safeExternalUrl(donationUrl)}
           aria-label="Support the legal campaign on GoFundMe"
           target="_blank"
           rel="noopener noreferrer"

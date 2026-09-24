@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { client } from '../../tina/__generated__/client'
 import { tinaField, useTina } from 'tinacms/dist/react'
+import { safeExternalUrl } from '@/utils/safeUrl'
 
 import fallbackContact from '@/content/contact.json'
 
@@ -274,7 +275,7 @@ function ContactSectionVisual({
             {/* Switch to GoFundMe Button */}
             <div className="mt-5 flex justify-center">
               <a
-                href={contactSection.donationUrl}
+                href={safeExternalUrl(contactSection.donationUrl)}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Switch to GoFundMe to donate"

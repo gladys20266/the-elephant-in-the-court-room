@@ -4,6 +4,7 @@ import logoUrl from "@/assets/logo.webp";
 import { SITE_NAME } from "@/lib/brand";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { client } from "../../tina/__generated__/client";
+import { safeExternalUrl } from "@/utils/safeUrl";
 
 type FooterQueryResult = Awaited<
   ReturnType<typeof client.queries.footer>
@@ -88,7 +89,7 @@ export default function Footer({ response }: FooterProps) {
                 <li key={link?.label}>
                   {link?.external ? (
                     <a
-                      href={link?.url ?? "#"}
+                      href={safeExternalUrl(link?.url)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-sm font-medium text-white/90 hover:text-lime transition-colors duration-200"
@@ -115,7 +116,7 @@ export default function Footer({ response }: FooterProps) {
             </ul>
 
             <a
-              href={footer.petitionButtonUrl ?? "#"}
+              href={safeExternalUrl(footer.petitionButtonUrl)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full text-center bg-lime text-charcoal text-button text-sm rounded-md py-3.5 hover:bg-pale-lime transition-colors duration-150"
@@ -163,7 +164,7 @@ export default function Footer({ response }: FooterProps) {
                 return (
                   <a
                     key={social.platform}
-                    href={social.url ?? "#"}
+                    href={safeExternalUrl(social.url)}
                     className="text-white/85 hover:text-lime transition-colors duration-200"
                     aria-label="Facebook"
                     data-tina-field={tinaField(social, "url")}
@@ -177,7 +178,7 @@ export default function Footer({ response }: FooterProps) {
                 return (
                   <a
                     key={social.platform}
-                    href={social.url ?? "#"}
+                    href={safeExternalUrl(social.url)}
                     className="text-white/85 hover:text-lime transition-colors duration-200"
                     aria-label="Twitter"
                     data-tina-field={tinaField(social, "url")}
@@ -191,7 +192,7 @@ export default function Footer({ response }: FooterProps) {
                 return (
                   <a
                     key={social.platform}
-                    href={social.url ?? "#"}
+                    href={safeExternalUrl(social.url)}
                     className="text-white/85 hover:text-lime transition-colors duration-200"
                     aria-label="Instagram"
                     data-tina-field={tinaField(social, "url")}
